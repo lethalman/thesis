@@ -180,7 +180,7 @@ abstract class GivenConflictFreeSemantics extends Semantics {
     }
 }
 
-abstract class GivenAdmissibleSemantics extends Semantics {
+abstract class GivenAdmissibleSemantics1 extends Semantics {
     @Override
     public DAF montecarloSample (PAF paf, ArgSet set) {
         DAF daf;
@@ -191,7 +191,7 @@ abstract class GivenAdmissibleSemantics extends Semantics {
 		daf.addArg (a);
 	    }
 	    for (String a: paf.argsList) {
-		if (!set.contains(a) && paf.args.get(a) >= Math.random()) {
+		if (!set.contains(a) && Math.random () <= paf.args.get(a)) {
 		    daf.addArg (a);
 		}
 	    }
@@ -203,16 +203,16 @@ abstract class GivenAdmissibleSemantics extends Semantics {
 		    }
 		    if (set.contains (b)) {
 			// can't be handled here because it would be incorrect, do it later
-			//continue;
+			continue;
 		    }
-		    if (daf.args.contains (b) && paf.defeats.get(a).get(b) >= Math.random ()) {
+		    if (daf.args.contains (b) && Math.random () <= paf.defeats.get(a).get(b)) {
 			daf.addDefeat (a, b);
 		    }
 		}
 	    }
 	    for (String a: set) {
 		for (String b: paf.getDefeatedBy(a).keySet()) {
-		    if (!set.contains (b)) {
+		    if (daf.args.contains (b) && !set.contains (b)) {
 			// "a" must be defended from "b"
 			boolean defended = false;
 			for (String c: daf.getDefeatedBy(b)) {
@@ -223,11 +223,68 @@ abstract class GivenAdmissibleSemantics extends Semantics {
 			}
 			if (!defended) {
 			    // not acceptable
-			    //continue;
+			    continue;
 			}
-			if (daf.args.contains (b) && paf.defeats.get(b).get(a) >= Math.random ()) {
-			    //daf.addDefeat (b, a);
+			if (Math.random() <= paf.defeats.get(b).get(a)) {
+			    daf.addDefeat (b, a);
 			}
+		    }
+		}
+	    }
+	} while (filterSample (daf, set));
+        return daf;
+    }
+
+    @Override
+    public double conditional (PAF paf, ArgSet set) {
+	return paf.admissible (set);
+    }
+}
+
+abstract class GivenAdmissibleSemantics extends Semantics {
+    @Override
+    public DAF montecarloSample (PAF paf, ArgSet set) {
+        DAF daf;
+	do {
+	    daf = new DAF();
+	    for (String a: set) {
+		// args must be in daf for set to be admissible
+		daf.addArg (a);
+	    }
+	    for (String a: paf.argsList) {
+		if (!set.contains(a) && Math.random () <= paf.args.get(a)) {
+		    daf.addArg (a);
+		}
+	    }
+	    // first generate defeats toward S
+	    for (String a: set) {
+		for (String b: paf.getDefeatedBy(a).keySet()) {
+		    if (set.contains (b)) {
+			// conflict
+			continue;
+		    }
+		    if (daf.args.contains (b) && Math.random() <= paf.defeats.get(b).get(a)) {
+			daf.addDefeat (b, a);
+			// generate defenders
+			for (String c: paf.getDefeatedBy(b).keySet()) {
+			    daf.addDefeat (c, b);
+			}
+		    }
+		}
+	    }
+	    // generate everything else, if a node in S is attacked then generate a defender
+	    for (String a: daf.args) {
+		for (String b: paf.getDefeats(a).keySet()) {
+		    if (set.contains(a) && set.contains(b)) {
+			// conflict
+			continue;
+		    }
+		    if (set.contains(b)) {
+			// already considered
+			continue;
+		    }
+		    if (daf.args.contains (b) && !daf.getDefeats(a).contains(b) && Math.random () <= paf.defeats.get(a).get(b)) {
+			daf.addDefeat (a, b);
 		    }
 		}
 	    }
@@ -382,17 +439,17 @@ class Generator {
 
 class Stats {
     double meanTime;
-    double meanSuccesses, meanIters;
+    double meanSuccesses, meanTrials;
     double meanValue, meanConditional;
     double absError, relError;
     double maxValue, minValue=1000000000;
 
     public static String headerString (String prefix) {
-	return prefix+"CPU time,"+prefix+"Successes,"++prefix+"Iters,"+prefix+"Mean Value,"+prefix+"Abs Error,"+prefix+"Rel Error,"+prefix+"Min Value,"+prefix+"Max Value";
+	return prefix+"CPU time,"+prefix+"Successes,"+prefix+"Trials,"+prefix+"Mean Conditional,"+prefix+"Mean Value,"+prefix+"Abs Error,"+prefix+"Rel Error,"+prefix+"Min Value,"+prefix+"Max Value";
     }
 
     public String toString () {
-	return meanTime+","+meanSuccesses+","+meanIters+","+meanValue+","+absError+","+relError+","+minValue+","+maxValue;
+	return meanTime+","+meanSuccesses+","+meanTrials+","+meanConditional+","+meanValue+","+absError+","+relError+","+minValue+","+maxValue;
     }
 }
 
@@ -410,12 +467,13 @@ abstract class Montecarlo {
             stats.meanValue += value;
 	    stats.meanConditional += r.toDouble();
 	    stats.meanSuccesses += r.num;
-            stats.meanIters += r.den;
+            stats.meanTrials += r.den;
         }
         stats.meanTime /= runs;
         stats.meanValue /= runs;
+	stats.meanConditional /= runs;
 	stats.meanSuccesses /= runs;
-        stats.meanIters /= runs;
+        stats.meanTrials /= runs;
         stats.absError = (stats.maxValue-stats.minValue)/2;
         stats.relError = stats.absError / stats.meanValue;
         return stats;
@@ -474,7 +532,7 @@ class MontecarloError extends Montecarlo {
 
 	    // Agresti-Coull interval
 	    double n = N+z2;
-	    double p = (X+(z2/2))/n;
+	    double p = (X+(z2/2))/n*cond;
 	    Nthreshold = ((p*(1-p))/e2)*z2*c2-z2;
 	} while (N <= Nthreshold);
 
@@ -868,7 +926,7 @@ class PAF {
 	double ret = 0;
 	if (interp != 0 && semantic.evaluate (daf, set)) {
 	    ret = interp;
-	    //	    System.out.println(daf);
+	    //System.out.println(interp+" "+daf);
 	}
 	return ret;
     }
@@ -910,7 +968,7 @@ class PAF {
 
     // IMPORTANT: assumes conflict free
     public double depthFirst (Semantics semantic, ArgSet set) {
-	return depthFirstHelperArg (semantic, set, new ArgSet(set), null);
+	return depthFirstHelperArg (semantic, set, new ArgSet(set), null) / semantic.conditional (this, set);
     }
 
     public String toString () {
@@ -985,14 +1043,14 @@ class DAF {
 
     public boolean acceptable (ArgSet set, String a) {
 	for (String b: getDefeatedBy(a)) {
-	    boolean countered = false;
+	    boolean defended = false;
 	    for (String c: getDefeatedBy(b)) {
 		if (set.contains (c)) {
-		    countered = true;
+		    defended = true;
 		    break;
 		}
 	    }
-	    if (!countered) {
+	    if (!defended) {
 		return false;
 	    }
 	}
@@ -1174,20 +1232,19 @@ public class PAFTest {
         defProb.add (0.8, 0.1);
         defProb.add (0.9, 0.7);
         
-	//optTestArgsSameIters ("Complete", "complete_same_iters.csv", 20000, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
-        optTestArgsSameError ("Complete", "complete_same_error_01.csv", 1.96, 0.01, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
-        optTestArgsSameError ("Complete", "complete_same_error_005.csv", 1.96, 0.005, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
+	//optTestArgsSameError ("Complete", "complete_same_error_01.csv", 1.96, 0.01, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
+	// optTestArgsSameError ("Complete", "complete_same_error_005.csv", 1.96, 0.005, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
 	optTestArgsSameError ("Grounded", "grounded_same_error_01.csv", 1.96, 0.01, new GroundedSemantics(), new GroundedGivenConflictFreeSemantics());
-	optTestArgsSameError ("Grounded", "grounded_same_error_005.csv", 1.96, 0.005, new GroundedSemantics(), new GroundedGivenConflictFreeSemantics());
-        //optTestArgsSameTime ("Complete", "complete_same_time.csv", 1000, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
+	//optTestArgsSameError ("Grounded", "grounded_same_error_005.csv", 1.96, 0.005, new GroundedSemantics(), new GroundedGivenConflictFreeSemantics());
 
+	//testAdmissible ();
 	//profOptimization ();
 	//paperExamples ();
 	//profExamples ();
 
         //testGenerator ();
         //testGraph ();
-	describeInstances ();
+	//describeInstances ();
     }
 
     static void writeInstance (String graphfile, PAF paf, ArgSet set) {
@@ -1371,12 +1428,12 @@ public class PAFTest {
         return new Stats[]{orig, opt};
     }
 
-    static void optTestArgsSameIters (String semanticName, String filename, int iters, Semantics originalSemantics, Semantics optimizedSemantics) throws IOException {
+    static void optTestArgsSameTrials (String semanticName, String filename, int trials, Semantics originalSemantics, Semantics optimizedSemantics) throws IOException {
 	PrintWriter pw = new PrintWriter (new FileOutputStream (filename), true);
-	pw.println (semanticName+"; Iters="+iters+", Arguments, % CPU Time, Orig Time, Opt Time, Relative Error, Orig Error, Opt Error)");
-        Montecarlo m = new MontecarloIter (iters);
+	pw.println (semanticName+"; Trials="+trials+", Arguments, % CPU Time, Orig Time, Opt Time, Relative Error, Orig Error, Opt Error)");
+        Montecarlo m = new MontecarloIter (trials);
 	for (int args=10; args <= 20; args += 2) {
-            Stats[] stats = treeAndRuns (args, new MontecarloIter (iters), null, originalSemantics, optimizedSemantics);
+            Stats[] stats = treeAndRuns (args, new MontecarloIter (trials), null, originalSemantics, optimizedSemantics);
             Stats orig = stats[0];
             Stats opt = stats[1];
 	    pw.println (args+","+(1.0)+","+(opt.meanTime/orig.meanTime)+","+orig.relError+","+opt.relError);
@@ -1386,13 +1443,13 @@ public class PAFTest {
 
     static void optTestArgsSameError (String semanticName, String filename, double quantile, double error, Semantics originalSemantics, Semantics optimizedSemantics) throws IOException {
 	PrintWriter pw = new PrintWriter (new FileOutputStream (filename), true);
-	pw.println ("Args,"+Stats.headerString("Orig ")+","+Stats.headerString("Opt "));
+	pw.println ("Args,"+Stats.headerString("Naive ")+","+Stats.headerString("Optim "));
         Montecarlo m = new MontecarloError (quantile, error);
 	for (int args=10; args <= 20; args++) {
             Stats[] stats = treeAndRuns (args, m, null, originalSemantics, optimizedSemantics);
-            Stats orig = stats[0];
-            Stats opt = stats[1];
-	    pw.println (args+","+orig.toString()+","+opt.toString());
+            Stats naive = stats[0];
+            Stats optim = stats[1];
+	    pw.println (args+","+naive.toString()+","+optim.toString());
 	}
 	pw.close ();
     }
@@ -1409,6 +1466,28 @@ public class PAFTest {
 	    pw.println (args+","+orig.relError+","+opt.relError);
 	}
 	pw.close ();
+    }
+
+    static void testAdmissible () {
+	PAF paf = new PAF();
+	paf.addArgs ("a", 1.0,
+		     "b", 2/3.0,
+		     "c", 2/3.0,
+		     "d", 1.0);
+	paf.addDefeats ("a", "b", 2/3.0,
+			"b", "c", 2/3.0);
+	ArgSet s = new ArgSet ("a", "c", "d");
+	Montecarlo m = new MontecarloError (1.96, 0.005);
+	Semantics compl = new CompleteSemantics();
+	Semantics complGA = new CompleteGivenAdmissibleSemantics();
+	System.out.println("exact cf: "+paf.conflictFree (s));
+	System.out.println("exact compl: "+paf.depthFirst (compl, s));
+	System.out.println("exact adm: "+paf.depthFirst (new AdmissibleSemantics(), s));
+	System.out.println("exact compl|A: "+paf.depthFirst (complGA, s));
+	System.out.println("mc compl: "+m.run(paf, compl, s).toDouble());
+	double p = m.run(paf, complGA, s).toDouble();
+	System.out.println("mc compl|A: "+p);
+	System.out.println("mc compl|A*A: "+complGA.conditional(paf, s)*p);
     }
 
     /*
