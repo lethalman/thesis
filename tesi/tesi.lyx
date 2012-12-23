@@ -1,0 +1,2403 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref true
+\pdf_title "Casi trattabili in Probabilistic Argumentation Framework"
+\pdf_author "Luca Bruno"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Indice
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace 1in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ../../../bore/tesi/197_unical.jpg
+	width 60col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+FACOLTÀ DI INGEGNERIA
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+Corso di Laurea in Ingegneria Informatica
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+Indirizzo Metodologico
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+TESI DI LAUREA
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size larger
+Casi trattabili in Probabilistic Argumentation Framework
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+RELATORI
+\begin_inset space \hfill{}
+\end_inset
+
+CANDIDATO
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+Prof.
+ Sergio FLESCA
+\begin_inset space \hfill{}
+\end_inset
+
+Luca BRUNO
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+Ing.
+ xx XX
+\begin_inset space \hfill{}
+\end_inset
+
+Matr.
+ 145994
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100line%"
+height "1pt"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\size larger
+Anno Accademico 2012-2013
+\size default
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduzione
+\end_layout
+
+\begin_layout Section
+Obiettivo della tesi
+\end_layout
+
+\begin_layout Section
+Contributo della tesi
+\end_layout
+
+\begin_layout Section
+Organizzazione della tesi
+\end_layout
+
+\begin_layout Chapter
+Argumentation Framework
+\end_layout
+
+\begin_layout Section
+Abstract Argumentation Framework
+\end_layout
+
+\begin_layout Standard
+Nell'Abstract Argumentation Framework (AAF) ci si astrae dai differenti
+ significati di 
+\begin_inset Quotes eld
+\end_inset
+
+argomento
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Ciò che ci interessa è che un argomento possa attaccare un altro argomento.
+\end_layout
+
+\begin_layout Standard
+Dall'insieme di argomenti e di relazioni di attacco tra di essi, vogliamo
+ decidere il 
+\emph on
+justification state
+\emph default
+ degli argomenti.
+ Intuitivamente, un argomento è giustificato se riesce a sopravvivere agli
+ attacchi di altri argomenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename graph2.png
+	height 7col%
+
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:L'argomento-b-attacca"
+
+\end_inset
+
+L'argomento 
+\emph on
+b
+\emph default
+ attacca l'argomento 
+\emph on
+a
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename graph3.png
+	height 7col%
+
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Argomento-a-difeso"
+
+\end_inset
+
+L'argomento 
+\emph on
+a
+\emph default
+ è difeso dall'argomento 
+\emph on
+c
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nella 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:L'argomento-b-attacca"
+
+\end_inset
+
+ l'argomento 
+\emph on
+b
+\emph default
+ è giustificato perché non è attaccato da nessun altro argomento, mentre
+ l'argomento 
+\emph on
+a
+\emph default
+ non può essere giustificato perché è attaccato in ogni caso dall'argomento
+ 
+\begin_inset Quotes eld
+\end_inset
+
+b
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nella 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Argomento-a-difeso"
+
+\end_inset
+
+, l'argomento 
+\emph on
+a
+\emph default
+ è giustificato nonostante 
+\emph on
+a
+\emph default
+ sia attaccato da 
+\emph on
+b
+\emph default
+, poiché è difeso dall'argomento 
+\emph on
+c
+\emph default
+.
+ Infatti, non essendo 
+\emph on
+b
+\emph default
+ giustificato il suo attacco sull'argomento 
+\emph on
+a
+\emph default
+ non ha validità.
+\end_layout
+
+\begin_layout Standard
+La relazione di attacco (
+\emph on
+attack
+\emph default
+) viene anche più comunemente denominata 
+\emph on
+defeat
+\emph default
+.
+\end_layout
+
+\begin_layout Definition
+Un Dung's argumentation framework è una coppia 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ dove 
+\begin_inset Formula $Arg$
+\end_inset
+
+ è un insieme di argomenti e 
+\begin_inset Formula $Def\subseteq Arg\times Arg$
+\end_inset
+
+ è un insieme di relazioni di defeat tra coppie di argomenti.
+\end_layout
+
+\begin_layout Standard
+La semantica degli argumentation framework è data un insieme di estensioni.
+ Una estensione è un insieme di argomenti che soddisfa determinate proprietà.
+ La prima proprietà fondamentale richiesta per ogni estensione di un argumentati
+on framework è che l'insieme di argomenti sia 
+\emph on
+conflict-free
+\emph default
+, cioè che gli argomenti non siano in conflitto tra di loro.
+\end_layout
+
+\begin_layout Definition
+Dato un argumentation framework 
+\begin_inset Formula $AF=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+, 
+\begin_inset Formula $S$
+\end_inset
+
+ è 
+\emph on
+conflict-free
+\emph default
+ se e solo se 
+\begin_inset Formula $\nexists a,b\in S$
+\end_inset
+
+ tale che 
+\begin_inset Formula $\left\langle a,b\right\rangle \in Def$
+\end_inset
+
+, e si esprime come 
+\begin_inset Formula $CF\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La seconda proprietà fondamentale è quella di 
+\emph on
+ammissibilità
+\emph default
+, cioè che un insieme di argomenti 
+\begin_inset Formula $S$
+\end_inset
+
+ sia in grado di contrattaccare gli argomenti che attaccano l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ stesso.
+ Per definire questa proprietà, si definisce prima l'
+\emph on
+accettabilità
+\emph default
+ di un argomento rispetto all'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Dato un argumentation framework 
+\begin_inset Formula $AF=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ ed un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+, un argomento 
+\begin_inset Formula $a\in A$
+\end_inset
+
+ è 
+\emph on
+accettabile
+\emph default
+ rispetto ad 
+\begin_inset Formula $S$
+\end_inset
+
+ se e solo se 
+\begin_inset Formula $\forall b\in A$
+\end_inset
+
+ tale che 
+\begin_inset Formula $\left\langle b,a\right\rangle \in Def$
+\end_inset
+
+ allora 
+\begin_inset Formula $\exists c\in S$
+\end_inset
+
+ tale che 
+\begin_inset Formula $\left\langle c,b\right\rangle \in Def$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename graph6.png
+	width 18col%
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Argomento 
+\emph on
+c
+\emph default
+ accettabile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename accept2.png
+	width 18col%
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Argomento 
+\emph on
+c
+\emph default
+ accettabile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename accept3.png
+	width 25col%
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Argomento 
+\emph on
+c
+\emph default
+ non accettabile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Accettabilità-argomenti-rispetto"
+
+\end_inset
+
+Accettabilità argomenti rispetto ad 
+\begin_inset Formula $S$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Più semplicemente un argomento 
+\begin_inset Formula $a\in A$
+\end_inset
+
+ è accettabile rispetto all'insieme di argomenti 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+ se è difeso dall'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ I casi possibili sono raffigurati in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Accettabilità-argomenti-rispetto"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Dato un argumentation framework 
+\begin_inset Formula $AF=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+ è 
+\emph on
+ammissibile
+\emph default
+ se e solo se 
+\begin_inset Formula $S$
+\end_inset
+
+ è conflict-free e 
+\begin_inset Formula $\forall a\in S$
+\end_inset
+
+ allora 
+\begin_inset Formula $a$
+\end_inset
+
+ è accettabile rispetto ad 
+\begin_inset Formula $S$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Intuitivamente, ciò significa che 
+\begin_inset Formula $S$
+\end_inset
+
+ è in grado di difendersi da tutti gli attacchi possibili.
+ Esempi in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Ammissibilità-di"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graph4.png
+	width 20col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset Formula $S$
+\end_inset
+
+ ammissibile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename admissible2.png
+	width 20col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset Formula $S$
+\end_inset
+
+ non ammissibile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Ammissibilità-di"
+
+\end_inset
+
+Ammissibilità di 
+\begin_inset Formula $S$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename graph1.png
+	height 7col%
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Due casi di argomenti mutuamente attaccati
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Probabilistic Argumentation Framework
+\end_layout
+
+\begin_layout Standard
+Dato 
+\begin_inset Formula $X$
+\end_inset
+
+ il numero di successi osservati, 
+\begin_inset Formula $N$
+\end_inset
+
+ il numero di tentativi e la media osservata 
+\begin_inset Formula $p'=X/N$
+\end_inset
+
+, definiamo l'intervallo di confidenza:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{\xi}\left(S\right)=p'\pm z_{1-\alpha/2}\cdot\sqrt{\frac{p'\left(1-p'\right)}{N}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La stima del numero di iterazioni è la seguente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}-z_{1-\alpha/2}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A Probabilistic Argumentation Framework
+\series bold
+ 
+\begin_inset Formula $PrAF=\left(A,PA,D,PD\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A set of arguments 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A number of trials 
+\begin_inset Formula $N\in\mathbb{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A semantic evaluation function 
+\begin_inset Formula $\xi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\size footnotesize
+\begin_inset Formula $X=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall I=0..N$
+\end_inset
+
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Arg=Def=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall a\in A$
+\end_inset
+
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P_{A}\left(a\right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Arg=Arg\cup\left\{ a\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+end for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall\left\langle a,b\right\rangle \in D$
+\end_inset
+
+ 
+\series default
+such that
+\series bold
+ 
+\begin_inset Formula $a,b\in Arg$
+\end_inset
+
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P_{D}\left(\left\langle a,b\right\rangle \right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Def=Def\cup\left\{ \left\langle a,b\right\rangle \right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+end for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $\xi\left(\left\langle Arg,Def\right\rangle ,S\right)=true$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $X=X+1$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+end for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+return 
+\begin_inset Formula $Count/N$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Algoritmo-per-approssimare"
+
+\end_inset
+
+Algoritmo per approssimare 
+\begin_inset Formula $P_{PrAF}\left(X\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A Probabilistic Argumentation Framework
+\series bold
+ 
+\begin_inset Formula $PrAF=\left(A,P_{A},D,P_{D}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A set of arguments 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A confidence level 
+\begin_inset Formula $z_{1-\alpha/2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+An error level 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A semantic evaluation function 
+\begin_inset Formula $\xi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\size footnotesize
+\begin_inset Formula $X=N=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+
+\family roman
+\size footnotesize
+Generate 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ as in algorithm 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:Algoritmo-per-approssimare"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $\xi\left(\left\langle Arg,Def\right\rangle ,S\right)=true$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $X=X+1$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\begin_layout LyX-Code
+
+\family roman
+\size footnotesize
+\begin_inset Formula $N=N+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+
+\family roman
+\size footnotesize
+\begin_inset Formula $p'=\frac{X+\left(z_{1-\alpha/2}^{2}/2\right)}{N+z_{1-\alpha/2}^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+
+\family roman
+\size footnotesize
+\begin_inset Formula $\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}-z_{1-\alpha/2}^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+while 
+\begin_inset Formula $N\leq\hat{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+return 
+\begin_inset Formula $X/N$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:AlgoErr"
+
+\end_inset
+
+Algoritmo per approssimare 
+\begin_inset Formula $P_{PrAF}\left(X\right)$
+\end_inset
+
+ con intervallo di confidenza
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Altri tipi di Argumentation Framework
+\end_layout
+
+\begin_layout Section
+Casi trattabili di 
+\begin_inset Formula $PrAF$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:Pcf"
+
+\end_inset
+
+Dato 
+\begin_inset Formula $PrAF=\left\langle A,P_{A},D,P_{D}\right\rangle $
+\end_inset
+
+ e un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+, 
+\begin_inset Formula $P_{CF}\left(S\right)=P_{1}\left(S\right)\cdot P_{2}\left(S\right)\cdot P_{3}\left(S\right)$
+\end_inset
+
+, where:
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $P_{1}\left(S\right)={\displaystyle \prod_{a\in S}P_{A}\left(a\right)}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $P_{2}\left(S\right)={\displaystyle \prod_{\begin{subarray}{c}
+\left\langle b,c\right\rangle \in D\\
+\wedge b,c\in S
+\end{subarray}}}\left(1-P_{D}\left(\left\langle b,c\right\rangle \right)\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "lem:Pcf"
+
+\end_inset
+
+ deriva dal fatto che 
+\begin_inset Formula $CF\left(S\right)$
+\end_inset
+
+ possa essere espresso come un evento probabilistico 
+\begin_inset Formula $E_{CF}=e_{1}\wedge e_{2}$
+\end_inset
+
+ dove:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $e_{1}$
+\end_inset
+
+ è l'evento che tutti gli argomenti in 
+\begin_inset Formula $S$
+\end_inset
+
+ siano presenti;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $e_{2}$
+\end_inset
+
+ è l'evento che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia conflict-free.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:Padmissible"
+
+\end_inset
+
+Dato 
+\begin_inset Formula $PrAF=\left\langle A,P_{A},D,P_{D}\right\rangle $
+\end_inset
+
+ e un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+, 
+\begin_inset Formula $P_{admissible}\left(S\right)=P_{CF}\left(S\right)\cdot P_{3}$
+\end_inset
+
+, dove:
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $P_{3}\left(S\right)={\displaystyle \prod_{a\in A\setminus S}\left(P_{31}\left(S,a\right)+P_{32}\left(S,a\right)+P_{33}\left(S,a\right)\right)}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $P_{31}\left(S,a\right)=1-P_{A}\left(a\right)$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $P_{32}\left(S,a\right)=P_{A}\left(d\right)\cdot{\displaystyle \prod_{\begin{subarray}{c}
+\left\langle a,b\right\rangle \in D\\
+\wedge b\in S
+\end{subarray}}\left(1-P_{D}\left(\left\langle a,b\right\rangle \right)\right)}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $P_{33}\left(S,a\right)=P_{A}\left(d\right)\cdot\left(1-{\displaystyle \prod_{\begin{subarray}{c}
+\left\langle a,b\right\rangle \in D\\
+\wedge b\in S
+\end{subarray}}\left(1-P_{D}\left(\left\langle a,b\right\rangle \right)\right)}\right)\cdot\left(1-{\displaystyle \prod_{\begin{subarray}{c}
+\left\langle c,a\right\rangle \in D\\
+\wedge c\in S
+\end{subarray}}\left(1-P_{D}\left(\left\langle c,a\right\rangle \right)\right)}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "lem:Padmissible"
+
+\end_inset
+
+ estende il 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "lem:Pcf"
+
+\end_inset
+
+ al caso dell'ammissibilità.
+ In questo caso si aggiunge l'evento congiunto che tutti gli argomenti in
+ 
+\begin_inset Formula $S$
+\end_inset
+
+ siano accettabili rispetto ad 
+\begin_inset Formula $S$
+\end_inset
+
+, e cioè che per ogni argomento 
+\begin_inset Formula $a\notin A\setminus S$
+\end_inset
+
+ uno dei seguenti eventi indipendenti deve accadere:
+\end_layout
+
+\begin_layout Itemize
+L'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ non è presente;
+\end_layout
+
+\begin_layout Itemize
+L'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ è presente ma non attacca l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+L'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ è presente ed attacca l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ con almeno un defeat, ma l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ ha almeno un defeat verso 
+\begin_inset Formula $a$
+\end_inset
+
+, e quindi 
+\begin_inset Formula $S$
+\end_inset
+
+ è in grado di difendersi.
+\end_layout
+
+\begin_layout Standard
+La possibilità di calcolare 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+ in tempo polinomiale permette di calcolare 
+\begin_inset Formula $P_{\xi}\left(S\right)$
+\end_inset
+
+ in maniera più efficiente.
+\end_layout
+
+\begin_layout Standard
+Infatti, 
+\begin_inset Formula $P_{\xi\cap CF}\left(S\right)=P_{\xi\mid CF}\left(S\right)\cdot P_{CF}\left(S\right)$
+\end_inset
+
+.
+ Siccome 
+\begin_inset Formula $\xi\left(S\right)\Rightarrow CF\left(S\right)$
+\end_inset
+
+ allora 
+\begin_inset Formula $P_{\xi}\left(S\right)=P_{\xi\cap CF}\left(S\right)$
+\end_inset
+
+.
+ Essendo il valore esatto di 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+ calcolato in tempo polinomiale, il problema rimane calcolare la probabilità
+ condizionata 
+\begin_inset Formula $P_{\xi\mid CF}\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ciò che vogliamo stimare con il metodo Monte Carlo è 
+\begin_inset Formula $P_{\xi\mid CF}\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dato 
+\begin_inset Formula $X$
+\end_inset
+
+ il numero di successi osservati, 
+\begin_inset Formula $N$
+\end_inset
+
+ il numero di tentativi e la media osservata 
+\begin_inset Formula $p'=X/N$
+\end_inset
+
+, definiamo l'intervallo di confidenza e l'errore come segue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{CF}\left(S\right)\cdot P_{\xi\mid CF}\left(S\right)=P_{CF}\left(S\right)\cdot\left(p'\pm z_{1-\alpha/2}\cdot\sqrt{\frac{p'\left(1-p'\right)}{N}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dal quale si derivano:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\epsilon=P_{CF}\left(S\right)\cdot z_{1-\alpha/2}\cdot\sqrt{\frac{p'\left(1-p'\right)}{N}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N=\frac{z_{1-\alpha/2}^{2}\cdot p'\left(1-p'\right)}{\epsilon^{2}}\cdot P_{CF}^{2}\left(S\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La stima del numero di iterazioni posto che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia conflict-free per ogni 
+\begin_inset Formula $DAF$
+\end_inset
+
+ campionato indotto dal 
+\begin_inset Formula $PrAF$
+\end_inset
+
+, da sostituire nell'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:AlgoErr"
+
+\end_inset
+
+, è la seguente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}\cdot P_{CF}\left(S\right)-z_{1-\alpha/2}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Teoricamente il numero di iterazioni 
+\begin_inset Formula $N$
+\end_inset
+
+ con l'algoritmo ottimizzato rispetto alle iterazioni 
+\begin_inset Formula $\tilde{N}$
+\end_inset
+
+ dell'algoritmo originale dipendono dal quadrato della probabilità che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia conflict-free: 
+\begin_inset Formula $N\propto\tilde{N}\cdot P_{CF}^{2}\left(S\right)$
+\end_inset
+
+.
+ Conseguentemente a parità di errore 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ il nuovo algoritmo è quadraticamente più veloce dell'originale.
+ Per 
+\begin_inset Formula $P_{CF}\left(S\right)\rightarrow1$
+\end_inset
+
+ i due algoritmi coincidono.
+\end_layout
+
+\begin_layout Standard
+A parità di iterazioni e per 
+\begin_inset Formula $P_{CF}\left(S\right)\ll1$
+\end_inset
+
+ invece il nuovo algoritmo è più lento, poiché la funzione semantica 
+\begin_inset Formula $\xi$
+\end_inset
+
+ verrà invocata su istanze conflict-free del problema, e quindi più difficili.
+\end_layout
+
+\begin_layout Chapter
+Sperimentazione casi trattabili 
+\begin_inset Formula $PrAF$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+L'ambiente di sviluppo
+\end_layout
+
+\begin_layout Section
+Architettura per la sperimentazione
+\end_layout
+
+\begin_layout Section
+Generazione 
+\begin_inset Formula $PrAF$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Ricerca di un insieme di argomenti completo
+\end_layout
+
+\begin_layout Standard
+Per ogni grafo viene determinato un insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ che abbia delle probabilità buone ai fini di avere risultati apprezzabili.
+ Questo è un problema molto difficile, che appartiene ad una classe di complessi
+tà superiore ai problemi visti in precedenza.
+ Le istanze dei problemi visti finora erano delle coppie 
+\begin_inset Formula $\left\langle AF,S\right\rangle $
+\end_inset
+
+ per le quali bisognava determinare se il set 
+\begin_inset Formula $S$
+\end_inset
+
+ soddisfava delle proprietà nel DAF dato.
+ In questo caso il set 
+\begin_inset Formula $S$
+\end_inset
+
+ dev'essere trovato in modo tale da soddisfare tali proprietà.
+\end_layout
+
+\begin_layout Standard
+Per questo sono stati utilizzati degli approcci approssimativi per generare
+ un insieme di argomenti 
+\begin_inset Formula $S$
+\end_inset
+
+ per ogni grafo generato usato negli esperimenti.
+\end_layout
+
+\begin_layout Standard
+Dopo aver generato una istanza 
+\begin_inset Formula $PrAF=\left\langle A,P_{A},D,P_{D}\right\rangle $
+\end_inset
+
+ si cerca l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ tale che ottimizzi la seguente funzione obiettivo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{c}
+\arg{\displaystyle \max_{S}}\, c_{1}\cdot{\displaystyle \prod_{a\in S}}P_{A}\left(a\right)-c_{2}\cdot{\displaystyle \sum_{\begin{subarray}{c}
+a\in S\\
+b\in A
+\end{subarray}}}P_{A}\left(b\right)\cdot P_{D}\left(b,a\right)-c_{3}\cdot{\displaystyle \sum_{a\notin S}P_{A}\left(a\right)}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Intuitivamente, quello che si vuole è massimizzare la probabilità che gli
+ argomenti in 
+\begin_inset Formula $S$
+\end_inset
+
+ siano presenti, minimizzare la probabilità di attachi verso argomenti nell'insi
+eme 
+\begin_inset Formula $S$
+\end_inset
+
+ in modo da aumentare la probabilità che l'insieme sia ammissibile, e minimizzar
+e la probabilità di argomenti presenti al di fuori di 
+\begin_inset Formula $S$
+\end_inset
+
+ in modo da aumentare la probabilità che l'insieme sia completo.
+\end_layout
+
+\begin_layout Standard
+Volendo trasformare il problema di ottimizzazione in un problema di programmazio
+ne lineare, si può approssimare la produttoria con una sommatoria, e per
+ identificare gli argomenti appartenenti ad 
+\begin_inset Formula $S$
+\end_inset
+
+ si usano delle variabili binarie 
+\begin_inset Formula $s_{a}$
+\end_inset
+
+ che indicano se l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ appartiene o meno in 
+\begin_inset Formula $S$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{c}
+\arg{\displaystyle \max_{S}}\, c_{1}\cdot{\displaystyle \sum_{a\in A}}s_{a}\cdot P_{A}\left(a\right)-c_{2}\cdot{\displaystyle \sum_{\begin{subarray}{c}
+a\in A\\
+b\in A
+\end{subarray}}}s_{a}\cdot P_{A}\left(b\right)\cdot P_{D}\left(b,a\right)-c_{3}\cdot{\displaystyle \sum_{a\in A}\left(1-s_{a}\right)\cdot P_{A}\left(a\right)}\\
+\forall a\in A,\, s_{a}\in\left\{ 0,1\right\} 
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le costanti sono state scelte empiricamente: 
+\begin_inset Formula $c_{1}=1,c_{2}=3,c_{3}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Questo procedimento genera un 
+\begin_inset Formula $S$
+\end_inset
+
+ il quale potrà essere usato per una ricerca locale al fine di migliorare
+ 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $P_{complete}\left(S\right)$
+\end_inset
+
+.
+ Per la ricerca locale è stato adottato un semplice hill climbing.
+ Si parte da 
+\begin_inset Formula $S$
+\end_inset
+
+ e si generano degli insiemi nell'intorno di 
+\begin_inset Formula $S$
+\end_inset
+
+ (
+\begin_inset Formula $N_{S}$
+\end_inset
+
+) come segue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{S}=\left\{ \hat{S}\mid\begin{array}{c}
+\hat{S}=S\setminus\left\{ a\right\} ,a\in S\,\vee\\
+\hat{S}=S\cup\left\{ a\right\} ,a\notin S\,\vee\\
+\hat{S}=\left(S\setminus\left\{ a\right\} \right)\cup\left\{ b\right\} ,a\in S,b\notin S
+\end{array}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il terzo tipo di generazione di 
+\begin_inset Formula $\hat{S}$
+\end_inset
+
+ è utile per aumentare le probabilità di trovare dei buoni nodi vicini.
+ Non è scontato che attraverso le prime due generazioni si riesca a raggiungere
+ la terza.
+\end_layout
+
+\begin_layout Section
+Esperimenti
+\end_layout
+
+\begin_layout Standard
+Per 
+\begin_inset Formula $\left|S\right|=8$
+\end_inset
+
+, senza defeat interni e con 
+\begin_inset Formula $P\left(n\in S\right)=0.95$
+\end_inset
+
+ si ha 
+\begin_inset Formula $P_{CF}\left(S\right)=$
+\end_inset
+
+
+\begin_inset Formula $0.95^{8}=0.66$
+\end_inset
+
+.
+ Se aggiungessimo defeat interni ad S o ulteriori argomenti questa probabilità
+ sarebbe ancora più piccola.
+ Per questo scegliamo di non avere archi interni ad S e di non avere un
+ numero alto di argomenti in S.
+\end_layout
+
+\begin_layout Standard
+La 
+\begin_inset Formula $P_{complete}\left(S\right)$
+\end_inset
+
+ invece è circa 22% per 20 argomenti e circa 50% per 10 argomenti.
+\end_layout
+
+\begin_layout Chapter
+Conclusioni e sviluppi futuri
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "sample"
+options "bibtotoc,plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

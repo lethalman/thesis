@@ -1,0 +1,919 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Indice
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\series bold
+Notazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X$
+\end_inset
+
+=numero di successi in Monte Carlo
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $N$
+\end_inset
+
+=numero di prove totali in Monte Carlo
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\hat{N}$
+\end_inset
+
+=soglia del numero di iterazioni
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathfrak{S}$
+\end_inset
+
+ una semantica qualsiasi (complete o grounded)
+\end_layout
+
+\begin_layout Standard
+Ometto l'applicazione ad 
+\begin_inset Formula $S$
+\end_inset
+
+ alle probabilità per semplicità di scrittura
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{\mathfrak{S}}$
+\end_inset
+
+ la probabilità finale
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{CF}$
+\end_inset
+
+ la probabilità conflict-free
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{\mathfrak{S}\mid CF}$
+\end_inset
+
+ la probabilità condizionata da stimare
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+(prescindiamo dalla perturbazione di 
+\begin_inset Formula $p$
+\end_inset
+
+ ed 
+\begin_inset Formula $n$
+\end_inset
+
+ per semplificare il discorso)
+\begin_inset Newline newline
+\end_inset
+
+(sia nell'approccio attuale che con la modifica l'errore rientra perfettamente
+ nel range stabilito)
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Approccio naive del paper.
+\end_layout
+
+\begin_layout Standard
+In questo caso abbiamo 
+\begin_inset Formula $p=X/N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{\mathfrak{S}}=p\pm z_{1-\alpha/2}\cdot\sqrt{\frac{p\left(1-p\right)}{N}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p\cdot\left(1-p\right)}{\epsilon^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il valore di 
+\begin_inset Formula $p$
+\end_inset
+
+ sta stimando 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Approccio attuale.
+\end_layout
+
+\begin_layout Standard
+Anche in questo caso abbiamo 
+\begin_inset Formula $p=X/N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{\mathfrak{S}}=P_{CF}\cdot P_{\mathfrak{S}\mid CF}=P_{CF}\cdot\left(p\pm z_{1-\alpha/2}\cdot\sqrt{\frac{p\left(1-p\right)}{N}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p\cdot\left(1-p\right)}{\epsilon^{2}}\cdot P_{CF}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\lang english
+
+\begin_inset Graphics
+	filename pasted16.png
+	width 100col%
+	height 60col%
+
+\end_inset
+
+
+\lang italian
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il valore di 
+\begin_inset Formula $p$
+\end_inset
+
+ sta stimando 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P_{\mathfrak{S}\mid CF}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Chiamiamo 
+\begin_inset Formula $N_{old}$
+\end_inset
+
+ il numero di iterazioni soglia originale del paper, e 
+\begin_inset Formula $N_{cur}$
+\end_inset
+
+ quelle dell'approccio attuale.
+ Allora, ipotizzando che 
+\begin_inset Formula $p$
+\end_inset
+
+ sia il vero valore descritto precedentemente:
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula 
+\begin{equation}
+N_{cur}=N_{old}\cdot\frac{P_{\mathfrak{S}\mid CF}\cdot\left(1-P_{\mathfrak{S}\mid CF}\right)}{P_{\mathfrak{S}}\cdot\left(1-P_{\mathfrak{S}}\right)}\cdot P_{CF}^{2}\label{eq:Ncur}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+siccome 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P_{\mathfrak{S}}=P_{CF}\cdot P_{\mathfrak{S}\mid CF}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{cur}=N_{old}\cdot\frac{\left(1-P_{\mathfrak{S}\mid CF}\right)}{\left(1-P_{\mathfrak{S}}\right)}\cdot P_{CF}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Infatti, per 20 argomenti abbiamo 
+\begin_inset Formula $N_{old}=6604.1$
+\end_inset
+
+ e calcolando 
+\begin_inset Formula $N_{cur}$
+\end_inset
+
+ con la formula teorica di cui sopra abbiamo 
+\begin_inset Formula $N_{cur}=3356.3$
+\end_inset
+
+, che in percentuale 
+\begin_inset Formula $N_{cur}/N_{old}=50\%$
+\end_inset
+
+ corrisponde al dato che vede nel grafico.
+\end_layout
+
+\begin_layout Standard
+Ma la cosa che fa schizzare il tempo CPU all'80% è il fatto che il tempo
+ CPU dipende 
+\bar under
+molto strettamente
+\bar default
+ dai successi 
+\begin_inset Formula $X$
+\end_inset
+
+ piuttosto che dal numero di iterazioni 
+\begin_inset Formula $N$
+\end_inset
+
+ (caratteristica osservata a fronte delle simulazioni).
+ Quindi, sempre ipotizzando di usare i valori veri per chiarezza, stimiamo
+ il numero di successi 
+\begin_inset Formula $X$
+\end_inset
+
+ di Monte Carlo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{old}=N_{old}\cdot P_{\mathfrak{S}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{cur}=N_{cur}\cdot P_{\mathfrak{S}\mid CF}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+sostituendo 
+\begin_inset Formula $N_{cur}$
+\end_inset
+
+ da 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:Ncur"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{cur}=N_{old}\cdot\frac{P_{\mathfrak{S}\mid CF}^{2}\cdot\left(1-P_{\mathfrak{S}\mid CF}\right)}{P_{\mathfrak{S}}\cdot\left(1-P_{\mathfrak{S}}\right)}\cdot P_{CF}^{2}\left(S\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+anche qui vale 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P_{\mathfrak{S}}=P_{CF}\cdot P_{\mathfrak{S}\mid CF}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{cur}=N_{old}\cdot P_{\mathfrak{S}}\cdot\frac{\left(1-P_{\mathfrak{S}\mid CF}\right)}{\left(1-P_{\mathfrak{S}}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{cur}=X_{old}\cdot\frac{\left(1-P_{\mathfrak{S}\mid CF}\right)}{\left(1-P_{\mathfrak{S}}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Infatti, per 20 argomenti 
+\begin_inset Formula $X_{old}=1457.7$
+\end_inset
+
+ e calcolando 
+\begin_inset Formula $X_{cur}$
+\end_inset
+
+ secondo questa formula abbiamo 
+\begin_inset Formula $X_{cur}=1216.7$
+\end_inset
+
+, che in percentuale corrisponde a 
+\begin_inset Formula $X_{cur}/X_{old}=83\%$
+\end_inset
+
+ che è il dato che vede nel grafico ma in termini di tempo CPU.
+\end_layout
+
+\begin_layout Standard
+In sostanza, con questo approccio tempo CPU e le iterazioni non dipendono
+ esclusivamente da 
+\begin_inset Formula $P_{CF}$
+\end_inset
+
+ come ci aspettavamo.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Approccio alternativo.
+\end_layout
+
+\begin_layout Standard
+Il problema sta nel valore di 
+\begin_inset Formula $p$
+\end_inset
+
+ calcolato da Monte Carlo, che attualmente stima 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)$
+\end_inset
+
+.
+ La mia idea è che Monte Carlo adesso restituisce un'altra variabile aleatoria
+ che ha media 
+\begin_inset Formula $p'=P_{CF}\cdot p=P_{CF}\cdot\frac{X}{N}$
+\end_inset
+
+ e deviazione standard 
+\begin_inset Formula $P_{CF}\cdot z_{1-\alpha/2}\cdot\sqrt{\frac{p'\left(1-p'\right)}{N}}$
+\end_inset
+
+ invece di 
+\begin_inset Formula $P_{CF}\cdot z_{1-\alpha/2}\cdot\sqrt{\frac{p\left(1-p\right)}{N}}$
+\end_inset
+
+ (
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar under
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+non so spiegarmi come
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+).
+ Quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{\mathfrak{S}}=p'\pm P_{CF}\cdot z_{1-\alpha/2}\cdot\sqrt{\frac{p'\left(1-p'\right)}{N}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}\cdot P_{CF}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\lang english
+
+\begin_inset Graphics
+	filename pasted17.png
+	width 100col%
+	height 60col%
+
+\end_inset
+
+
+\lang italian
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Adesso 
+\begin_inset Formula $p'$
+\end_inset
+
+ stima 
+\begin_inset Formula $P_{\mathfrak{S}}$
+\end_inset
+
+ quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{new}=N_{old}\cdot P_{CF}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per 20 argomenti abbiamo sempre 
+\begin_inset Formula $N_{old}=6604.1$
+\end_inset
+
+ e calcolando 
+\begin_inset Formula $N_{new}$
+\end_inset
+
+ con la formula teorica di cui sopra abbiamo 
+\begin_inset Formula $N_{new}=2538.6$
+\end_inset
+
+, che in percentuale 
+\begin_inset Formula $N_{new}/N_{old}=38\%=P_{CF}^{2}$
+\end_inset
+
+ che corrisponde alla percentuale di iterazioni che vede nel grafico nuovo.
+\end_layout
+
+\begin_layout Standard
+Analogamente per il numero di successi (e quindi tempo CPU):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{new}=N_{new}\cdot P_{\mathfrak{S}\mid CF}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+sostituendo 
+\begin_inset Formula $N_{new}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{new}=N_{old}\cdot P_{CF}^{2}\cdot P_{\mathfrak{S}\mid CF}=N_{old}\cdot P_{\mathfrak{S}}\cdot P_{CF}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ma 
+\begin_inset Formula $X_{old}=N_{old}\cdot P_{\mathfrak{S}}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{new}=X_{old}\cdot P_{CF}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Anche qui, per 20 argomenti abbiamo sempre 
+\begin_inset Formula $X_{old}=1457.7$
+\end_inset
+
+ e calcolando 
+\begin_inset Formula $X_{new}$
+\end_inset
+
+ con la formula teorica di cui sopra abbiamo 
+\begin_inset Formula $X_{new}=903$
+\end_inset
+
+, che in percentuale 
+\begin_inset Formula $N_{new}/N_{old}=62\%=P_{CF}$
+\end_inset
+
+ che corrisponde al tempo CPU in percentuale che vede nel grafico nuovo.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Modifica perturbazione.
+\end_layout
+
+\begin_layout Standard
+La perturbazione del paper è la seguente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p'=\frac{X+\left(z_{1-\alpha/2}^{2}/2\right)}{N}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ho fatto delle prove sia sostituendo 
+\begin_inset Formula $X$
+\end_inset
+
+ con 
+\begin_inset Formula $P_{CF}\cdot X$
+\end_inset
+
+ che 
+\begin_inset Formula $p'$
+\end_inset
+
+ con 
+\begin_inset Formula $P_{CF}\cdot p'$
+\end_inset
+
+.
+ In entrambi i casi la finestra d'errore è rispettata, ma con 
+\begin_inset Formula $P_{CF}\cdot X$
+\end_inset
+
+ la percentuale di CPU time è stabile come la vede nel grafico precedente,
+ mentre con 
+\begin_inset Formula $P_{CF}\cdot p'$
+\end_inset
+
+ è più a zig-zag come si vede di seguito.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted19.png
+	width 100col%
+	height 60col%
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Conclusioni.
+\end_layout
+
+\begin_layout Itemize
+Ho sostituito 
+\begin_inset Formula $p$
+\end_inset
+
+ con un altro 
+\begin_inset Formula $p$
+\end_inset
+
+ che stimasse 
+\begin_inset Formula $P_{\mathfrak{S}}$
+\end_inset
+
+ piuttosto che 
+\begin_inset Formula $P_{\mathfrak{S}\mid CF}$
+\end_inset
+
+ ottenendo i risultati attesi che dipendono esclusivamente da 
+\begin_inset Formula $P_{CF}$
+\end_inset
+
+ e 
+\begin_inset Formula $P_{CF}^{2}$
+\end_inset
+
+ per via della nuova deviazione standard della quale personalmente non conosco
+ la provenienza.
+\end_layout
+
+\begin_layout Itemize
+La finestra d'errore viene comunque rispettata in tutti i casi.
+\end_layout
+
+\begin_layout Itemize
+In ogni caso sappiamo che il tempo CPU non dipende dal numero di iterazioni
+ ma dal numero di successi, e nel caso della modifica proposta in particolare
+ dipende da 
+\begin_inset Formula $P_{CF}$
+\end_inset
+
+ e non da 
+\begin_inset Formula $P_{CF}^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Nel nuovo algoritmo, il tempo CPU rispetto a quello naive dipende da 
+\begin_inset Formula $P_{CF}<1$
+\end_inset
+
+, mentre nell'attuale dipende da 
+\begin_inset Formula $\frac{\left(1-P_{\mathfrak{S}\mid CF}\right)}{\left(1-P_{\mathfrak{S}}\right)}<1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La domanda è...
+ cosa fare? Continuare con l'algoritmo attuale? Descrivere entrambi senza
+ conoscere il motivo che porta a questa deviazione standard? Cosa scrivere
+ nel riassunto della tesi per fine dicembre?
+\end_layout
+
+\end_body
+\end_document

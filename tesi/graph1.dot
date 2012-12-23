@@ -1,0 +1,9 @@
+digraph {
+	node [shape=circle];
+	a -> b;
+	b -> a;
+	b -> c;
+	c -> d;
+	d -> c;
+	{rank=same; a b c d}	
+}

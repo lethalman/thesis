@@ -1,0 +1,11 @@
+digraph {
+	node [shape=circle];
+	subgraph cluster_1 {
+		color=black;
+ 		label="S";
+		a;
+	}
+	a -> b;
+	b -> c;
+	{rank=same; b c}
+}
