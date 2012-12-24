@@ -396,8 +396,8 @@ class Generator {
         this.defProb = defProb;
     }
 
-    public PAF generateTree () {
-        PAF paf = new PAF();
+    public Instance generateInstance () {
+	PAF paf = new PAF();
         // gen args
         int argsGenerated = 0;
         argsGenerated:
@@ -413,10 +413,40 @@ class Generator {
         }
 	// gen possible S 
 	ArgSet s = new ArgSet();
-	for (int i=0; i <= paf.argsList.size()/4; i++) {
+	for (int i=0; i <= paf.argsList.size()/2; i++) {
 	    s.add (paf.argsList.get (i));
 	}
 	System.out.println (s);
+        // gen defeats, no defeats within S
+        for (String a: paf.argsList) {
+            int numdef = (int)numdefProb.sample ();
+            for (int i=0; i < numdef; i++) {
+                String b;
+                do {
+                    int j = (int) (Math.random()*nargs);
+                    b = paf.argsList.get(j);
+                } while ((s.contains(a) && s.contains(b)) || paf.getDefeats(a).get(b) != null); // FIXME
+		paf.addDefeat (a, b, 0);
+            }
+        }
+        return paf;
+    }
+
+    public PAF generateTree () {
+        PAF paf = new PAF();
+        // gen args
+        int argsGenerated = 0;
+        argsGenerated:
+        for (char a='a'; a <= 'z'; a++) {
+            paf.addArg(""+a, nodeProb.sample ());
+            argsGenerated++;
+            if (argsGenerated == nargs) {
+                break argsGenerated;
+            }
+        }
+        if (argsGenerated < nargs) {
+            throw new RuntimeException ("argsGenerated < nargs");
+        }
         // gen defeats
         for (String a: paf.argsList) {
             int numdef = (int)numdefProb.sample ();
@@ -426,11 +456,7 @@ class Generator {
                     int j = (int) (Math.random()*nargs);
                     b = paf.argsList.get(j);
                 } while (paf.getDefeats(a).get(b) != null); // FIXME
-		if (false && s.contains (b)) {
-		    paf.addDefeat (a, b, Math.random()*0.3);
-		} else {
-		    paf.addDefeat (a, b, defProb.sample ());
-		}
+		paf.addDefeat (a, b, defProb.sample ());
             }
         }
         return paf;
@@ -618,6 +644,15 @@ class PAF {
 	for (int i=0; i < objs.length; i+=3) {
 	    addDefeat ((String) objs[i], (String) objs[i+1], (Double) objs[i+2]);
 	}
+    }
+
+    public void setArg (String a, double p) {
+	args.put (a, p);
+    }
+
+    public void setDefeat (String a, String b, double p) {
+	defeats.get(a).put(b, p);
+	defeatedBy.get(b).put(a, p);
     }
 
     public ArgProb getDefeats (String a) {
