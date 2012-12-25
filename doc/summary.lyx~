@@ -33,7 +33,7 @@ figs-within-sections
 \paperfontsize 12
 \spacing onehalf
 \use_hyperref true
-\pdf_title "Analysis of tractable cases in Probabilistic Argumentation Frameworks"
+\pdf_title "Analysis and implementation of tractable cases in Probabilistic Argumentation Frameworks"
 \pdf_author "Luca Bruno"
 \pdf_bookmarks true
 \pdf_bookmarksnumbered false
@@ -45,7 +45,7 @@ figs-within-sections
 \pdf_backref false
 \pdf_pdfusetitle true
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_amsmath 1
 \use_esint 1
 \use_mhchem 1
@@ -266,8 +266,14 @@ Goals of this work
 \end_layout
 
 \begin_layout Standard
-The purpose of this work is to study argumentation frameworks and its variants,
- in particular probabilistic argumentation frameworks (
+The purpose of this work is to study argumentation frameworks and its variants
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Li:2011:PAF:2238189.2238191,Rienstra12,Thimm12"
+
+\end_inset
+
+, in particular probabilistic argumentation frameworks (
 \emph on
 PrAF
 \emph default
@@ -285,8 +291,8 @@ It will be shown that for some properties this probability can be computed
 \begin_layout Standard
 Based on these tractable cases, we will extend the existing Monte Carlo
  approach to optimize harder cases.
- We wil show that the new algorithm is generally faster compared to the
- naive algorithm, and especially faster for the complete semantics.
+ We will show that the new algorithm is generally more efficient compared
+ to the naive algorithm, and especially efficient for the complete semantics.
 \end_layout
 
 \begin_layout Subsection
@@ -296,7 +302,14 @@ Why argumentation frameworks
 \begin_layout Standard
 The purpose of argumentation is to search for the requirements that make
  an argument correct by examining the errors of reasoning we make when we
- try to use arguments.
+ try to use arguments
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DunneWooldridge2009"
+
+\end_inset
+
+.
  The task of evaluation is to determine whether an argument is weak or strong
  by general criteria that can be applied to it.
  
@@ -340,8 +353,21 @@ Abstract argumentation frameworks
 \end_layout
 
 \begin_layout Standard
-Dung's abstract argumentation frameworks (AAFs) are widely used in formal
- approaches to argumentation.
+Dung's abstract argumentation frameworks (AAFs) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bondarenko:1997:AAA:257547.257553"
+
+\end_inset
+
+ are widely used in formal approaches to argumentation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Yuan:2011:MDG:2052136.2052205,Fan:2011:CRA:2034396.2034435"
+
+\end_inset
+
+.
  They provide several standard semantics, each capturing different intuitions
  about how to handle conflicts among arguments.
  This makes them a highly useful tool in argumentation and algorithms for
@@ -692,8 +718,14 @@ The second fundamental property is that a set of arguments
 admissible
 \emph default
 .
- Before formalizing this concept, we first define the acceptability of an
- argument with respect to a set 
+ Before formalizing this concept, we first define the acceptability
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dung95onthe"
+
+\end_inset
+
+ of an argument with respect to a set 
 \begin_inset Formula $S$
 \end_inset
 
@@ -1469,9 +1501,76 @@ ideal extension
 .
 \end_layout
 
-\begin_layout Definition
+\begin_layout Standard
 The grounded set is an ideal set.
  Ideal sets that are strictly larger than the grounded set may exist.
+\end_layout
+
+\begin_layout Standard
+The relationships between the above semantics
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Thimm12"
+
+\end_inset
+
+ is shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Relationships-between-semantics"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename semantics.png
+	width 60col%
+	height 20col%
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Relationships-between-semantics"
+
+\end_inset
+
+Relationships between semantics
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1495,7 +1594,14 @@ Likelihoods and probabilities are used to introduce uncertainty to reasoning
 \begin_layout Standard
 The approach is very simple.
  Dung's abstract argumentation frameworks are extended by introducing probabilit
-ies assigned to arguments and defeats.
+ies assigned to arguments and defeats 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Li:2011:PAF:2238189.2238191"
+
+\end_inset
+
+.
  The semantics of such a framework identifies the likelihood of different
  sets of arguments being justified according to different types of extensions.
  
@@ -1778,7 +1884,27 @@ PrAF
  aggregated.
  Monte Carlo simulation has a long history, and has been applied to a variety
  of computationally difficult problems including inference in Bayesian Networks
- [11], reinforcement learning [12] and computer game playing [13].
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MaxwellChickering:1997:EAM:274158.274163"
+
+\end_inset
+
+, reinforcement learning
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Peters:2006:RLA:1227505.1227515"
+
+\end_inset
+
+ and game playing
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gelly:2012:GCC:2093548.2093574"
+
+\end_inset
+
+.
  In this context of probabilistic argumentation frameworks, this process
  involves randomly inducing AAFs from a PrAF by sampling the space of possible
  AAFs in a way that approximates the AAFs true distribution in the probability
@@ -1832,7 +1958,7 @@ reference "alg:Algoritmo-per-approssimare"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -2214,7 +2340,14 @@ Given
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- is defined as follows:
+ is defined as follows
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Brown01intervalestimation"
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
@@ -2262,7 +2395,14 @@ The value of
 
  after a single trial will be either 0 or 1, making the approximation problemati
 c.
- To overcome this problem, the Agresti-Coull interval is used.
+ To overcome this problem, the Agresti-Coull interval
+\begin_inset CommandInset citation
+LatexCommand cite
+key "agresti_1998"
+
+\end_inset
+
+ is used.
  The general form of this interval is the same as that of 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -2328,7 +2468,7 @@ N=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}-z_{1-\al
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -3154,7 +3294,7 @@ Since
 \begin_layout Standard
 \begin_inset Formula 
 \[
-X=\hat{N}\cdot P_{\mathfrak{S}}\left(S\right)\cdot\frac{\left(1-P_{\mathfrak{S}\mid CF}\left(S\right)\right)}{\left(1-P_{\mathfrak{S}}\left(S\right)\right)}
+X=\hat{N}\cdot P_{\mathfrak{S}}\left(S\right)\cdot\frac{1-P_{\mathfrak{S}\mid CF}\left(S\right)}{1-P_{\mathfrak{S}}\left(S\right)}
 \]
 
 \end_inset
@@ -3283,12 +3423,12 @@ Architecture and setting for the experiments
 We have described, given some PrAF, two approaches to computing the likelihood
  of a chosen set of arguments being justified with respect to some semantics.
  Our purpose is to evaluate the running time and iterations of the optimized
- Monte Carlo approach compared to the naive approach, given the same error
+ Monte Carlo algorithm compared to the naive algorithm, given the same error
  level.
 \end_layout
 
 \begin_layout Standard
-Both approaches have been implemented in Java by using hashed data structures
+Both algorithms have been implemented in Java by using hashed data structures
  to efficiently encode the sparseness of the graphs.
 \end_layout
 
@@ -3324,16 +3464,15 @@ Second, we search for a suitable set of arguments
 \begin_inset Formula $0.6\leq P_{CF}\left(S\right)<1.0$
 \end_inset
 
-, since theoretically the optimized approach should run quadratically faster
- than the naive approach dependently on 
-\begin_inset Formula $P_{CF}\left(S\right)$
+, to obtain a higher 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
-, it would be biased to choose lower probabilities;
+;
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $P_{\xi}\left(S\right)\ge0.2$
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)\ge0.2$
 \end_inset
 
 , otherwise the resulting probabilities wouldn't be perceptible.
@@ -3382,7 +3521,7 @@ Finally, given an error level of either
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- with both approaches to estimate the CPU time, the number of successes
+ with both algorithms to estimate the CPU time, the number of successes
  and the number of iterations.
 \end_layout
 
@@ -3425,7 +3564,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted4.png
+	filename argument_probs.png
 	width 30col%
 	height 30col%
 
@@ -3452,7 +3591,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted5.png
+	filename outdegree_probs.png
 	width 30col%
 	height 30col%
 
@@ -3479,7 +3618,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted6.png
+	filename defeat_probs.png
 	width 30col%
 	height 30col%
 
@@ -3625,7 +3764,7 @@ reference "fig:HigherPx"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -3635,13 +3774,21 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\begin_inset space \qquad{}
+\end_inset
+
+
 \begin_inset Graphics
 	filename pdefeat1.png
-	width 30col%
+	width 25col%
 
+\end_inset
+
+
+\begin_inset space \qquad{}
 \end_inset
 
 
@@ -3658,7 +3805,7 @@ name "fig:LowerPx"
 \end_inset
 
 Lower 
-\begin_inset Formula $P_{\xi}\left(S\right)$
+\begin_inset Formula $P_{complete}\left(S\right)$
 \end_inset
 
 
@@ -3686,10 +3833,18 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset space \qquad{}
+\end_inset
+
+
 \begin_inset Graphics
 	filename pdefeat2.png
-	width 30col%
+	width 25col%
 
+\end_inset
+
+
+\begin_inset space \qquad{}
 \end_inset
 
 
@@ -3706,7 +3861,7 @@ name "fig:HigherPx"
 \end_inset
 
 Higher 
-\begin_inset Formula $P_{\xi}\left(S\right)$
+\begin_inset Formula $P_{complete}\left(S\right)$
 \end_inset
 
 
@@ -3865,10 +4020,7 @@ We are not interested in the final value of the function, so we decide to
 \begin_inset Formula 
 \[
 \begin{array}{c}
-\arg{\displaystyle \max_{S}}\, c_{1}\cdot{\displaystyle \sum_{a\in A}}s_{a}\cdot P_{A}\left(a\right)-c_{2}\cdot{\displaystyle \sum_{\begin{subarray}{c}
-a\in A\\
-b\in A
-\end{subarray}}}s_{a}\cdot P_{A}\left(b\right)\cdot P_{D}\left(b,a\right)-c_{3}\cdot{\displaystyle \sum_{a\in A}\left(1-s_{a}\right)\cdot P_{A}\left(a\right)}\\
+\arg{\displaystyle \max_{S}}\, c_{1}\cdot{\displaystyle \sum_{a\in A}}s_{a}\cdot P_{A}\left(a\right)-c_{2}\cdot{\displaystyle \sum_{a,b\in A}}s_{a}\cdot P_{A}\left(b\right)\cdot P_{D}\left(b,a\right)-c_{3}\cdot{\displaystyle \sum_{a\in A}\left(1-s_{a}\right)\cdot P_{A}\left(a\right)}\\
 \forall a\in A:\, s_{a}\in\left\{ 0,1\right\} 
 \end{array}
 \]
@@ -3975,8 +4127,8 @@ reference "fig:Characteristics-of-chosen"
 
 \end_inset
 
- describe the characteristics of each problem instance in terms of instance
- size and probabilities for each semantics computed with an error of 
+ describe the characteristics of each problem instance in terms of size
+ and probabilities for each semantics computed with an error of 
 \begin_inset Formula $\epsilon=0.005$
 \end_inset
 
@@ -4010,7 +4162,7 @@ The cardinality of the chosen set of arguments is
 \begin_inset Formula $\left|S\right|=7$
 \end_inset
 
- for 11 and 12 arguments, then 
+ for 11 and 12 arguments, and 
 \begin_inset Formula $\left|S\right|=8$
 \end_inset
 
@@ -4035,7 +4187,7 @@ For 10 arguments
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -4048,11 +4200,12 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename instance_probs.png
+	width 50col%
 
 \end_inset
 
@@ -4063,13 +4216,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Probability of each semantics with respect to the chosen 
-\emph on
-S
-\emph default
- and 
-\emph on
-PrAF
+Probability of each semantics
 \end_layout
 
 \end_inset
@@ -4077,14 +4224,6 @@ PrAF
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Newline newline
 \end_inset
 
 
@@ -4095,11 +4234,12 @@ PrAF
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename instance_sizes.png
+	width 50col%
 
 \end_inset
 
@@ -4110,12 +4250,8 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Number of defeats and arguments in the set 
+Defeats and arguments in 
 \begin_inset Formula $S$
-\end_inset
-
- for each 
-\begin_inset Formula $PrAF$
 \end_inset
 
 
@@ -4161,7 +4297,7 @@ Characteristics of chosen problem instances
 \begin_layout Standard
 We chose to run the experiments for the complete and grounded semantics.
  For each instance and for each semantics we run the experiment 20 times,
- with a confidence level of 95% and an error level of 
+ with a confidence level of 95% and error levels of 
 \begin_inset Formula $\epsilon=0.01$
 \end_inset
 
@@ -4170,7 +4306,7 @@ We chose to run the experiments for the complete and grounded semantics.
 \end_inset
 
 .
- We then calculate the mean value of the CPU time and the percentage of
+ Finally we compute the mean value of the CPU time and the percentage of
  the number of Monte Carlo trials and successes with respect to the naive
  algorithm.
 \end_layout
@@ -4208,7 +4344,7 @@ reference "fig:Complete005"
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -4226,6 +4362,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename complete_absolute_01.png
+	width 50col%
 
 \end_inset
 
@@ -4236,7 +4373,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Absolute run time and number of iterations
+Absolute time and number of trials
 \end_layout
 
 \end_inset
@@ -4244,14 +4381,6 @@ Absolute run time and number of iterations
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Newline newline
 \end_inset
 
 
@@ -4262,11 +4391,12 @@ Absolute run time and number of iterations
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename complete_relative_01.png
+	width 50col%
 
 \end_inset
 
@@ -4277,7 +4407,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-CPU time and iterations percentage
+Time, trials and successes percentage
 \end_layout
 
 \end_inset
@@ -4304,7 +4434,11 @@ name "fig:Complete01"
 
 \end_inset
 
-Run time comparison for the complete semantics with e=0.01
+Run time comparison for the complete semantics with 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4319,7 +4453,7 @@ Run time comparison for the complete semantics with e=0.01
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -4332,11 +4466,12 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename complete_absolute_005.png
+	width 50col%
 
 \end_inset
 
@@ -4347,7 +4482,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Absolute run time and number of iterations
+Absolute time and number of trials
 \end_layout
 
 \end_inset
@@ -4355,14 +4490,6 @@ Absolute run time and number of iterations
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Newline newline
 \end_inset
 
 
@@ -4378,6 +4505,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename complete_relative_005.png
+	width 50col%
 
 \end_inset
 
@@ -4394,7 +4522,7 @@ name "fig:CompleteRelative005"
 
 \end_inset
 
-CPU time, trials and successes percentage
+Time, trials and successes percentage
 \end_layout
 
 \end_inset
@@ -4421,7 +4549,11 @@ name "fig:Complete005"
 
 \end_inset
 
-Run time comparison for the complete semantics with e=0.005
+Run time comparison for the complete semantics with 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4458,6 +4590,10 @@ reference "fig:Grounded01"
 
 \end_inset
 
+ with 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
  and 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -4465,10 +4601,14 @@ reference "fig:Grounded005"
 
 \end_inset
 
+ with 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
 .
  Interestingly, the CPU time is very tied to the number of successes with
  respect to the naive algorithm.
- This is because, in our experiments, 
+ The reason is that, in our experiments, 
 \begin_inset Formula $P_{grounded}\left(S\right)\cong P_{complete}\left(S\right)$
 \end_inset
 
@@ -4481,7 +4621,7 @@ reference "fig:Grounded005"
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -4494,11 +4634,12 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename grounded_absolute_01.png
+	width 50col%
 
 \end_inset
 
@@ -4509,7 +4650,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Absolute run time and number of iterations
+Absolute time and number of trials
 \end_layout
 
 \end_inset
@@ -4517,14 +4658,6 @@ Absolute run time and number of iterations
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Newline newline
 \end_inset
 
 
@@ -4535,11 +4668,12 @@ Absolute run time and number of iterations
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename grounded_relative_01.png
+	width 50col%
 
 \end_inset
 
@@ -4550,7 +4684,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-CPU time, trials and successes percentage
+Time, trials and successes percentage
 \end_layout
 
 \end_inset
@@ -4577,7 +4711,11 @@ name "fig:Grounded01"
 
 \end_inset
 
-Run time comparison for the grounded semantics with e=0.01
+Run time comparison for the grounded semantics with 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4592,7 +4730,7 @@ Run time comparison for the grounded semantics with e=0.01
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -4605,11 +4743,12 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename grounded_absolute_005.png
+	width 50col%
 
 \end_inset
 
@@ -4620,7 +4759,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Absolute run time and number of iterations
+Absolute time and number of trials
 \end_layout
 
 \end_inset
@@ -4628,14 +4767,6 @@ Absolute run time and number of iterations
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Newline newline
 \end_inset
 
 
@@ -4646,11 +4777,12 @@ Absolute run time and number of iterations
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename grounded_relative_005.png
+	width 50col%
 
 \end_inset
 
@@ -4661,7 +4793,7 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-CPU time, trials and successes percentage
+Time, trials and successes percentage
 \end_layout
 
 \end_inset
@@ -4688,7 +4820,11 @@ name "fig:Grounded005"
 
 \end_inset
 
-Run time comparison for the grounded semantics with e=0.005
+Run time comparison for the grounded semantics with 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4702,9 +4838,9 @@ Run time comparison for the grounded semantics with e=0.005
 \end_layout
 
 \begin_layout Standard
-As we have seen the new algorithm, based on the concept that the probability
- of a set of arguments being conflict-free is computable in polynomial time,
- is generally faster than the naive algorithm.
+As we have seen the new algorithm, based on the novel concept that the probabili
+ty of a set of arguments being conflict-free is computable in polynomial
+ time, is generally faster than the naive algorithm.
  In particular, under the assumption that for the complete semantics the
  CPU time is strictly related to the number of iterations, it follows that
  the new algorithm is at least 
@@ -4721,8 +4857,8 @@ Conclusions and future work
 \begin_layout Standard
 We have described abstract argumentation frameworks and probabilistic argumentat
 ion frameworks.
- In particular, an existing Monte Carlo approach to computing the probability
- of a set of arguments being consistent according to some semantics has
+ An existing approach based on Monte Carlo simulation to computing the probabili
+ty of a set of arguments being consistent according to some semantics has
  been evaluated.
 \end_layout
 
@@ -4733,8 +4869,9 @@ We have shown that the probability of a set of arguments being conflict-free
  Then we have proposed a new algorithm that extends the naive Monte Carlo
  simulation to take advantage of the novel concept that the probability
  of a set being conflict-free is computable in polynomial time.
- In particular, we have shown that the new approach is generally faster
- than the naive one, and is especially faster in the case of complete semantics.
+ Finally, we have shown that the new algorithm is generally more efficient
+ compared to the naive algorithm, and is especially efficient in the case
+ of complete semantics.
 \end_layout
 
 \begin_layout Standard
@@ -4742,8 +4879,7 @@ This work can be extended to the case of admissibility, whereas the probability
  of a set of arguments being admissible is also computable in polynomial
  time.
  In this case, the problem of sampling the space of admissible AAFs that
- can be induced from a PrAF is not trivial compared to that of conflict-free
- AAFs.
+ can be induced from a PrAF is not as trivial as that of conflict-free AAFs.
 \end_layout
 
 \begin_layout Standard
@@ -4756,7 +4892,7 @@ This work can be extended to the case of admissibility, whereas the probability
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "sample"
+bibfiles "summary"
 options "bibtotoc,plain"
 
 \end_inset
