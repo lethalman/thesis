@@ -100,7 +100,7 @@ thispagestyle{empty}
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename ../../../bore/tesi/197_unical.jpg
+	filename 197_unical.jpg
 	width 60col%
 
 \end_inset
@@ -162,7 +162,8 @@ THESIS SUMMARY
 
 \series bold
 \size larger
-Analysis of tractable cases in Probabilistic Argumentation Frameworks
+Analysis and implementation of tractable cases in Probabilistic Argumentation
+ Frameworks
 \end_layout
 
 \begin_layout Standard
@@ -273,28 +274,19 @@ PrAF
 ).
  Then we analyze an existing approach based on Monte Carlo simulation to
  compute the probability that a set of arguments is an extension for a given
- PrAF under specific semantics.
- This approach claims that evaluating the latter is exponential in the number
- of arguments and defeats.
- In this work it will be shown that for some properties this probability
- can be computed in polynomial time instead, and that this result can be
- used to improve the performance of computing the probability for harder
- cases.
+ PrAF according to some semantics.
 \end_layout
 
 \begin_layout Standard
-In the next sections we will recall the abstract argumentation frameworks
- and probabilistic argumentation frameworks.
- Then we will describe existing algorithms for approximating the probability
- of a set of arguments being justified under certain semantics, and the
- novelty of tractable cases for which we can compute the exact probability
+It will be shown that for some properties this probability can be computed
  in polynomial time.
 \end_layout
 
 \begin_layout Standard
-Based on these tractable cases, we will show how it is possible to build
- optimized algorithms for computing the probability of harder cases and
- then we will evaluate the results.
+Based on these tractable cases, we will extend the existing Monte Carlo
+ approach to optimize harder cases.
+ We wil show that the new algorithm is generally faster compared to the
+ naive algorithm, and especially faster for the complete semantics.
 \end_layout
 
 \begin_layout Subsection
@@ -701,7 +693,7 @@ admissible
 \emph default
 .
  Before formalizing this concept, we first define the acceptability of an
- argument with respect to the set 
+ argument with respect to a set 
 \begin_inset Formula $S$
 \end_inset
 
@@ -982,7 +974,11 @@ Given an AAF
 \begin_inset Formula $S\subseteq Arg$
 \end_inset
 
- is admissible iff 
+ is 
+\emph on
+admissible
+\emph default
+ iff 
 \begin_inset Formula $S$
 \end_inset
 
@@ -1033,7 +1029,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1052,7 +1048,7 @@ status collapsed
 \begin_inset Formula $S$
 \end_inset
 
- ammissibile
+ is admissible
 \end_layout
 
 \end_inset
@@ -1070,7 +1066,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1089,7 +1085,7 @@ status collapsed
 \begin_inset Formula $S$
 \end_inset
 
- non ammissibile
+ is not admissible
 \end_layout
 
 \end_inset
@@ -1113,7 +1109,7 @@ name "fig:Ammissibilità-di"
 
 \end_inset
 
-Ammissibilità di 
+Admissibility of 
 \begin_inset Formula $S$
 \end_inset
 
@@ -1188,7 +1184,7 @@ semantic evaluation function
 \begin_inset Formula $\mathfrak{S}$
 \end_inset
 
- when evaluated over the argument framework 
+ when evaluated over the argument system 
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
@@ -1259,8 +1255,9 @@ justified
 
 \begin_layout Standard
 Given the basic definitions of admissibility in the previous section and
- of extension above, we focus on traditional types of extension defined
- below, such as: stable, preferred, complete, grounded and ideal.
+ of extension above, in this work we will focus on traditional types of
+ extension defined below, namely: stable, preferred, complete, grounded
+ and ideal.
 \end_layout
 
 \begin_layout Definition
@@ -1398,8 +1395,8 @@ extension iff
 \end_layout
 
 \begin_layout Standard
-That is, 
-\begin_inset Formula $S$
+A stable extension 
+\begin_inset Formula $E\subseteq Arg$
 \end_inset
 
  must defeat all arguments that are not in the set.
@@ -1477,48 +1474,6 @@ The grounded set is an ideal set.
  Ideal sets that are strictly larger than the grounded set may exist.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Graphics
-	filename graph1.png
-	height 7col%
-
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Due casi di argomenti mutuamente attaccati
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Probabilistic argumentation frameworks
 \end_layout
@@ -1540,7 +1495,7 @@ Likelihoods and probabilities are used to introduce uncertainty to reasoning
 \begin_layout Standard
 The approach is very simple.
  Dung's abstract argumentation frameworks are extended by introducing probabilit
-ies are assigned to arguments and defeats.
+ies assigned to arguments and defeats.
  The semantics of such a framework identifies the likelihood of different
  sets of arguments being justified according to different types of extensions.
  
@@ -1607,7 +1562,11 @@ An AAF
 \begin_inset Formula $\left\langle Arg,Def\right\rangle $
 \end_inset
 
- (or possible world) is said to be induced from a PrAF 
+ (or possible world) is said to be 
+\emph on
+induced
+\emph default
+ from a PrAF 
 \begin_inset Formula $\left\langle A,P_{A},D,P_{D}\right\rangle $
 \end_inset
 
@@ -1733,7 +1692,7 @@ where
 \begin_inset Formula $DefA=\left\{ \left\langle a,b\right\rangle \mid a,b\in Arg\wedge\left\langle a,b\right\rangle \in D\right\} $
 \end_inset
 
- is the set of all possible defeats that can appear for an induced AAF.
+ is the set of all possible defeats that can appear in an induced AAF.
 \end_layout
 
 \begin_layout Standard
@@ -1787,7 +1746,7 @@ Computing the probability that a set of arguments is an extension
 \end_layout
 
 \begin_layout Subsection
-Naive approach
+Monte Carlo simulation
 \end_layout
 
 \begin_layout Standard
@@ -1840,7 +1799,7 @@ reference "alg:Algoritmo-per-approssimare"
 
  AAFs from the set of inducible AAFs.
  A single AAF is generated by randomly selecting arguments and defeats according
- to their likelihood of appearance (Lines 4-7 and 10-14 respectively).
+ to their likelihood of appearance.
  This resultant AAF is then evaluated for the presence of 
 \begin_inset Formula $S$
 \end_inset
@@ -1849,7 +1808,7 @@ reference "alg:Algoritmo-per-approssimare"
 \begin_inset Formula $\xi_{\mathfrak{S}}$
 \end_inset
 
- function, and if this function holds, the AAF is counted.
+, and if this function holds, the AAF is counted.
  The probability 
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
@@ -1859,7 +1818,7 @@ reference "alg:Algoritmo-per-approssimare"
 \begin_inset Formula $\xi_{\mathfrak{S}}$
 \end_inset
 
- holds to the number AAFs sampled (Line 20).
+ holds to the number AAFs sampled.
  As the number of trials increases, the error in the approximation of 
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
@@ -1873,7 +1832,7 @@ reference "alg:Algoritmo-per-approssimare"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -2221,7 +2180,7 @@ name "alg:Algoritmo-per-approssimare"
 
 \end_inset
 
-Algoritmo per approssimare 
+Algorithm for approximating 
 \begin_inset Formula $P_{PrAF}\left(X\right)$
 \end_inset
 
@@ -2270,8 +2229,8 @@ P_{\mathfrak{S}}\left(S\right)=p\pm z_{1-\alpha/2}\cdot\sqrt{\frac{p\left(1-p\ri
 \end_layout
 
 \begin_layout Standard
-from which it is possible to derive the estimated number of iterations for
- the given error level:
+from which it is possible to derive the estimated number of trials for the
+ given error level:
 \end_layout
 
 \begin_layout Standard
@@ -2287,9 +2246,9 @@ from which it is possible to derive the estimated number of iterations for
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p\cdot\left(1-p\right)}{\epsilon^{2}}
-\]
+\begin{equation}
+N=\frac{z_{1-\alpha/2}^{2}\cdot p\cdot\left(1-p\right)}{\epsilon^{2}}\label{eq:NaiveTrials}
+\end{equation}
 
 \end_inset
 
@@ -2301,7 +2260,7 @@ The value of
 \begin_inset Formula $p$
 \end_inset
 
- after a single trail will be either 0 or 1, making the approximation problemati
+ after a single trial will be either 0 or 1, making the approximation problemati
 c.
  To overcome this problem, the Agresti-Coull interval is used.
  The general form of this interval is the same as that of 
@@ -2342,8 +2301,8 @@ N'=N+z_{1-\alpha/2}^{2}\,\qquad p'=\frac{X+\left(z_{1-\alpha/2}^{2}/2\right)}{N'
 \end_layout
 
 \begin_layout Standard
-from which we can derive the new estimated number of iterations to be used
- in algorithm 
+from which we can derive the new estimated number of trials to be used in
+ algorithm 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "alg:AlgoErr"
@@ -2356,7 +2315,7 @@ reference "alg:AlgoErr"
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}-z_{1-\alpha/2}^{2}
+N=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}-z_{1-\alpha/2}^{2}
 \]
 
 \end_inset
@@ -2369,7 +2328,7 @@ reference "alg:AlgoErr"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -2603,11 +2562,11 @@ name "alg:AlgoErr"
 
 \end_inset
 
-Algoritmo per approssimare 
+Algorithm for approximating 
 \begin_inset Formula $P_{PrAF}\left(X\right)$
 \end_inset
 
- con intervallo di confidenza
+ given a confidence interval
 \end_layout
 
 \end_inset
@@ -2674,8 +2633,9 @@ Given
 \end_layout
 
 \begin_layout Standard
+Lemma 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "lem:Pcf"
 
 \end_inset
@@ -2773,8 +2733,9 @@ Given
 \end_layout
 
 \begin_layout Standard
+Lemma 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "lem:Padmissible"
 
 \end_inset
@@ -2787,7 +2748,7 @@ reference "lem:Pcf"
 \end_inset
 
  to the case of admissibility.
- We add the joint event that all arguments in 
+ We introduce the joint event that all arguments in 
 \begin_inset Formula $S$
 \end_inset
 
@@ -2799,7 +2760,7 @@ reference "lem:Pcf"
 \begin_inset Formula $a\notin A\setminus S$
 \end_inset
 
- one of the following independent event must hold:
+ one of the following independent events must hold:
 \end_layout
 
 \begin_layout Itemize
@@ -2881,13 +2842,14 @@ We observe that
 \end_inset
 
  holds.
- This is valid for most of types of extension, as the set of arguments is
- required to be conflict-free.
+ This is valid for all traditional types of extension, as the set of arguments
+ is required to be at least conflict-free.
  Given the exact value of 
 \begin_inset Formula $P_{CF}\left(S\right)$
 \end_inset
 
- is computed in polynomial time, we focus on the problem of estimating 
+ can be computed in polynomial time, we focus on the problem of estimating
+ 
 \begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)$
 \end_inset
 
@@ -2963,13 +2925,13 @@ reference "eq:AgrestiCoull"
 
 \end_inset
 
-, to obtain the following estimated number of iterations:
+, to obtain the following estimated number of trials:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}\cdot P_{CF}^{2}\left(S\right)-z_{1-\alpha/2}^{2}
+N=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}\cdot P_{CF}^{2}\left(S\right)-z_{1-\alpha/2}^{2}
 \]
 
 \end_inset
@@ -2978,101 +2940,335 @@ reference "eq:AgrestiCoull"
 \end_layout
 
 \begin_layout Standard
-This new formula will replace the old estimation in 
+This new formula will replace the old estimation in algorithm 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "alg:AlgoErr"
 
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Standard
-The new number of iterations 
-\begin_inset Formula $N$
-\end_inset
-
- depends quadratically on the probability that 
-\begin_inset Formula $S$
-\end_inset
-
- is conflict-free with respect to the number of iterations 
-\begin_inset Formula $\tilde{N}$
-\end_inset
-
- of the naive algorithm: 
-\begin_inset Formula $N\propto\tilde{N}\cdot P_{CF}^{2}\left(S\right)$
+, together with the returned value 
+\begin_inset Formula $P_{CF}\left(S\right)\cdot X/N$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Standard
-Consequentially, given the same error level 
-\begin_inset Formula $\epsilon$
-\end_inset
-
-, the new approach runs less iterations than the original approach and most
- of the time it will be faster in time because the number of iterations
- is much lower.
+\begin_layout Paragraph*
+Theoretical efficiency of the new algorithm.
 \end_layout
 
 \begin_layout Standard
-Instead, given the same number of iterations this approach is slower than
- the naive one, because the semantic evaluation function 
-\begin_inset Formula $\xi_{\mathfrak{S}}$
+Said 
+\begin_inset Formula $\hat{N}$
 \end_inset
 
- will be always called on conflict-free instances that are harder to be
- decided.
+ the number of trials and 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+ the observed mean in the naive approach, we want to determine the new number
+ of trials in terms of the naive trials.
 \end_layout
 
 \begin_layout Standard
-Also, it should be noted that for 
-\begin_inset Formula $P_{CF}\left(S\right)\rightarrow1$
+For simplicity, we recall 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:NaiveTrials"
+
 \end_inset
 
- the two approaches coincide.
- While for 
-\begin_inset Formula $P_{CF}\left(S\right)\rightarrow0$
-\end_inset
-
- the number of iterations is very small and may lead to undesiderable results.
+ without the Agresti-Coull perturbations:
 \end_layout
 
 \begin_layout Standard
-More formally, the CPU time is more strictly related to the number of successes
- among the Monte Carlo trials, rather than the number of trials.
- Therefore we want to know what determines that number of successes when
- computing the conditional probability.
+\begin_inset Formula 
+\[
+\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot\hat{p}\cdot\left(1-\hat{p}\right)}{\epsilon^{2}}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Supposing that the number of new iterations 
+In this context, 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+ of the naive algorithm estimates 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+, while 
+\begin_inset Formula $p$
+\end_inset
+
+ in the new algorithm estimates 
+\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)$
+\end_inset
+
+.
+ Assuming 
+\begin_inset Formula $\hat{p}\rightarrow P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $p\rightarrow P_{\mathfrak{S}\mid CF}\left(S\right)$
+\end_inset
+
+, the following statements hold:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N=\frac{z_{1-\alpha/2}^{2}\cdot P_{\mathfrak{S}\mid CF}\left(S\right)\cdot\left(1-P_{\mathfrak{S}\mid CF}\left(S\right)\right)}{\epsilon^{2}}\cdot P_{CF}^{2}\left(S\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot P_{\mathfrak{S}}\left(S\right)\cdot\left(1-P_{\mathfrak{S}}\left(S\right)\right)}{\epsilon^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore we can write 
 \begin_inset Formula $N$
 \end_inset
 
- is related to the old number of iterations 
-\begin_inset Formula $N$
+ in terms of 
+\begin_inset Formula $\hat{N}$
+\end_inset
+
+ as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N=\hat{N}\cdot\frac{P_{\mathfrak{S}\mid CF}\left(S\right)\cdot\left(1-P_{\mathfrak{S}\mid CF}\left(S\right)\right)}{P_{\mathfrak{S}}\left(S\right)\cdot\left(1-P_{\mathfrak{S}}\left(S\right)\right)}\cdot P_{CF}^{2}\left(S\right)
+\]
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $N=\tilde{N}\cdot P_{CF}^{2}\left(S\right)$
+Since 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)=P_{\mathfrak{S}\mid CF}\left(S\right)\cdot P_{CF}\left(S\right)$
+\end_inset
+
+ we derive the following relation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+N=\hat{N}\cdot\frac{1-P_{\mathfrak{S}\mid CF}\left(S\right)}{1-P_{\mathfrak{S}}\left(S\right)}\cdot P_{CF}\left(S\right)\label{eq:NewTrials}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Together with the number of trials, we want to determine the relation between
+ the number of successes 
+\begin_inset Formula $\hat{X}$
+\end_inset
+
+ of the naive algorithm and the number of successes 
+\begin_inset Formula $X$
+\end_inset
+
+ of the new algorithm.
+ As we will see in the experiments, this is an interesting measure for the
+ grounded semantics when 
+\begin_inset Formula $P_{complete}\left(S\right)\cong P_{grounded}\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Under the same above assumptions and the basic laws of probability, we can
+ assert what follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{X}=\hat{N}\cdot P_{\mathfrak{S}}\left(S\right)\qquad\qquad X=N\cdot P_{\mathfrak{S}\mid CF}\left(S\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By substituting 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:NewTrials"
+
+\end_inset
+
+ we get the following:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X=\hat{N}\cdot\frac{P_{\mathfrak{S}\mid CF}\left(S\right)\cdot\left(1-P_{\mathfrak{S}\mid CF}\left(S\right)\right)}{P_{\mathfrak{S}}\left(S\right)\cdot\left(1-P_{\mathfrak{S}}\left(S\right)\right)}\cdot P_{CF}^{2}\left(S\right)\cdot P_{\mathfrak{S}\mid CF}\left(S\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)=P_{\mathfrak{S}\mid CF}\left(S\right)\cdot P_{CF}\left(S\right)$
+\end_inset
+
+ the following holds:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X=\hat{N}\cdot P_{\mathfrak{S}}\left(S\right)\cdot\frac{1-P_{\mathfrak{S}\mid CF}\left(S\right)}{1-P_{\mathfrak{S}}\left(S\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, from 
+\begin_inset Formula $\hat{X}=\hat{N}\cdot P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ we can derive the following relation between 
+\begin_inset Formula $X$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{X}$
+\end_inset
+
+ (and recall 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:NewTrials"
+
+\end_inset
+
+ for completeness):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X=\hat{X}\cdot\frac{1-P_{\mathfrak{S}\mid CF}\left(S\right)}{1-P_{\mathfrak{S}}\left(S\right)}\qquad\qquad N=\hat{N}\cdot\frac{1-P_{\mathfrak{S}\mid CF}\left(S\right)}{1-P_{\mathfrak{S}}\left(S\right)}\cdot P_{CF}\left(S\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We observe that 
+\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)\geq P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+, from which 
+\begin_inset Formula $1-P_{\mathfrak{S}\mid CF}\left(S\right)\leq1-P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ follows.
+ Therefore it is easy to see that an upperbound to the number of trials
+ is 
+\begin_inset Formula $N\leq P_{CF}\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For what concerns the number of successes, there is no good news because
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ can assume any value between 0 and 1 independently from 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+.
+ In the worst case where 
+\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)\rightarrow0$
 \end_inset
 
 , 
-\begin_inset Formula $\tilde{X}=\tilde{N}\cdot P_{\mathfrak{S}}\left(S\right)$
+\begin_inset Formula $X\rightarrow\hat{X}$
 \end_inset
 
-, 
-\begin_inset Formula $X=N\cdot P_{\mathfrak{S}\mid CF}\left(S\right)=\tilde{N}\cdot P_{CF}^{2}\left(S\right)\cdot P_{\mathfrak{S}\mid CF}\left(S\right)$
+.
+\end_layout
+
+\begin_layout Standard
+Fixed 
+\begin_inset Formula $P_{CF}\left(S\right)$
 \end_inset
 
+, the lower 
+\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)$
+\end_inset
 
+ is the higher the number of successes with respect to the naive algorithm
+ is.
+ This is a surprising result because intuitively 
+\begin_inset Formula $X\propto P_{\mathfrak{S}\mid CF}\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Fixed 
+\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)$
+\end_inset
+
+, it is easy to see that 
+\begin_inset Formula $1-P_{\mathfrak{S}\mid CF}\left(S\right)\leq\frac{1-P_{\mathfrak{S}\mid CF}\left(S\right)}{1-P_{\mathfrak{S}}\left(S\right)}\leq1$
+\end_inset
+
+, and that the lower 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+ is the lower the number of successes with respect to the naive algorithm
+ is.
 \end_layout
 
 \begin_layout Section
@@ -3099,7 +3295,11 @@ Both approaches have been implemented in Java by using hashed data structures
 \begin_layout Standard
 The experiments have been run for differently sized PrAFs containing between
  10 and 20 arguments, the chosen sets of arguments containing between 6
- and 8 arguments and an error level 
+ and 8 arguments and an error level of 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+ and 
 \begin_inset Formula $\epsilon=0.005$
 \end_inset
 
@@ -3158,7 +3358,11 @@ Third, we delete arguments from this
 \end_layout
 
 \begin_layout Standard
-Finally, given an error level 
+Finally, given an error level of either 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+ or 
 \begin_inset Formula $\epsilon=0.005$
 \end_inset
 
@@ -3166,7 +3370,7 @@ Finally, given an error level
 \begin_inset Formula $z_{1-\alpha/2}=1.96$
 \end_inset
 
-), for each semantic 
+), for each semantics 
 \begin_inset Formula $\mathfrak{S}$
 \end_inset
 
@@ -3178,7 +3382,8 @@ Finally, given an error level
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- with both approaches to estimate the CPU time and iterations.
+ with both approaches to estimate the CPU time, the number of successes
+ and the number of iterations.
 \end_layout
 
 \begin_layout Subsection
@@ -3190,7 +3395,8 @@ We randomly generate a
 \begin_inset Formula $PrAF=\left\langle A,P_{A},D,P_{D}\right\rangle $
 \end_inset
 
- given a number of arguments and the probability distributions in 
+ given a number of arguments and the probability distributions shown in
+ 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:Probability-distributions-for"
@@ -3792,6 +3998,42 @@ reference "fig:Characteristics-of-chosen"
 \end_layout
 
 \begin_layout Standard
+The cardinality of the chosen set of arguments is 
+\begin_inset Formula $\left|S\right|=6$
+\end_inset
+
+ for the the 
+\begin_inset Formula $PrAF$
+\end_inset
+
+ of 10 arguments, 
+\begin_inset Formula $\left|S\right|=7$
+\end_inset
+
+ for 11 and 12 arguments, then 
+\begin_inset Formula $\left|S\right|=8$
+\end_inset
+
+ for 
+\begin_inset Formula $\left|A\right|\geq13$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For 10 arguments 
+\begin_inset Formula $P_{CF}\left(S\right)=0.69$
+\end_inset
+
+ while for 20 arguments 
+\begin_inset Formula $P_{CF}\left(S\right)=0.62$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement h
 wide false
@@ -3806,11 +4048,11 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted13.png
+	filename instance_probs.png
 
 \end_inset
 
@@ -3853,11 +4095,11 @@ PrAF
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted14.png
+	filename instance_sizes.png
 
 \end_inset
 
@@ -3872,7 +4114,11 @@ Number of defeats and arguments in the set
 \begin_inset Formula $S$
 \end_inset
 
- for each PrAF
+ for each 
+\begin_inset Formula $PrAF$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3914,56 +4160,50 @@ Characteristics of chosen problem instances
 
 \begin_layout Standard
 We chose to run the experiments for the complete and grounded semantics.
- For each instance and for each semantic we run the experiment 20 times,
+ For each instance and for each semantics we run the experiment 20 times,
  with a confidence level of 95% and an error level of 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+ and 
 \begin_inset Formula $\epsilon=0.005$
 \end_inset
 
 .
  We then calculate the mean value of the CPU time and the percentage of
- the number iterations with respect to the naive algorithm.
+ the number of Monte Carlo trials and successes with respect to the naive
+ algorithm.
 \end_layout
 
 \begin_layout Standard
 The run time comparison for the complete semantics is shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig:Run-time-comparison"
+reference "fig:Complete01"
 
+\end_inset
+
+ with 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+ and in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Complete005"
+
+\end_inset
+
+ with 
+\begin_inset Formula $\epsilon=0.005$
 \end_inset
 
 .
- As expected the time is strictly related to the probability of the set
- being conflict-free.
- In fact, for 15 arguments, 
-\begin_inset Formula $P_{CF}\left(S\right)\cong0.62$
+ As expected the number of iterations for 20 arguments is 
+\begin_inset Formula $N\leq P_{CF}\left(S\right)=0.62$
 \end_inset
 
- and the iterations are about the 
-\begin_inset Formula $0.62\times0.62=38\%$
-\end_inset
-
- of the naive approach.
- For 20 arguments, despite the 
-\begin_inset Formula $P_{CF}\left(S\right)$
-\end_inset
-
- is the same, more iterations are required to satisfy the given error level.
- The reason is that This is inevitably dependant on the hardness of the
- problem instance and is related to the increase of arguments and defeats,
- 
-\begin_inset Formula $\left|S\right|$
-\end_inset
-
- being constant and the estimation of standard deviation in the confidence
- interval.
-\end_layout
-
-\begin_layout Standard
-Also it must be noted that, since deciding whether a set of arguments is
- complete can be computed in polynomial time with respect to the number
- of arguments and defeats for a given AAF, there is a constant relation
- between the number of iterations and the CPU time percentage.
+.
 \end_layout
 
 \begin_layout Standard
@@ -3985,7 +4225,118 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted11.png
+	filename complete_absolute_01.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Absolute run time and number of iterations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename complete_relative_01.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+CPU time and iterations percentage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Complete01"
+
+\end_inset
+
+Run time comparison for the complete semantics with e=0.01
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename complete_absolute_005.png
 
 \end_inset
 
@@ -4026,7 +4377,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted12.png
+	filename complete_relative_005.png
 
 \end_inset
 
@@ -4037,7 +4388,13 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-CPU time and iterations percentage
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CompleteRelative005"
+
+\end_inset
+
+CPU time, trials and successes percentage
 \end_layout
 
 \end_inset
@@ -4060,11 +4417,11 @@ CPU time and iterations percentage
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Run-time-comparison"
+name "fig:Complete005"
 
 \end_inset
 
-Run time comparison for the complete semantics
+Run time comparison for the complete semantics with e=0.005
 \end_layout
 
 \end_inset
@@ -4078,14 +4435,155 @@ Run time comparison for the complete semantics
 \end_layout
 
 \begin_layout Standard
+Deciding whether a set of arguments is complete can be computed in polynomial
+ time with respect to the number of arguments and defeats for a given AAF.
+ For this reason, it can be seen that there is a constant relation between
+ the number of iterations and the CPU time percentage for the complete semantics
+, that is more especially appreciable in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:CompleteRelative005"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+This is not true for the grounded semantics which is an harder decision
+ problem as shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Grounded01"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Grounded005"
+
+\end_inset
+
+.
+ Interestingly, the CPU time is very tied to the number of successes with
+ respect to the naive algorithm.
+ This is because, in our experiments, 
+\begin_inset Formula $P_{grounded}\left(S\right)\cong P_{complete}\left(S\right)$
+\end_inset
+
+, therefore 
+\begin_inset Formula $S$
+\end_inset
+
+ is unlikely to be complete but not grounded in any induced AAF.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted15.png
+	filename grounded_absolute_01.png
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Absolute run time and number of iterations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted16.png
+	filename grounded_relative_01.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+CPU time, trials and successes percentage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Grounded01"
+
+\end_inset
+
+Run time comparison for the grounded semantics with e=0.01
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -4093,20 +4591,159 @@ Run time comparison for the complete semantics
 \end_layout
 
 \begin_layout Standard
-In this case the number of iterations follows the theoretical expectations,
- but surprisingly the CPU time is very high.
- Though the problem of deciding whether a set of arguments is grounded is
- harder than the complete decision problem, the CPU time should have followed
- the path of the iterations percentage.
-\end_layout
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
 \begin_inset Graphics
-	filename pasted17.png
+	filename grounded_absolute_005.png
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Absolute run time and number of iterations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename grounded_relative_005.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+CPU time, trials and successes percentage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Grounded005"
+
+\end_inset
+
+Run time comparison for the grounded semantics with e=0.005
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As we have seen the new algorithm, based on the concept that the probability
+ of a set of arguments being conflict-free is computable in polynomial time,
+ is generally faster than the naive algorithm.
+ In particular, under the assumption that for the complete semantics the
+ CPU time is strictly related to the number of iterations, it follows that
+ the new algorithm is at least 
+\begin_inset Formula $1-P_{CF}\left(S\right)$
+\end_inset
+
+ faster compared to the naive algorithm.
+\end_layout
+
+\begin_layout Section
+Conclusions and future work
+\end_layout
+
+\begin_layout Standard
+We have described abstract argumentation frameworks and probabilistic argumentat
+ion frameworks.
+ In particular, an existing Monte Carlo approach to computing the probability
+ of a set of arguments being consistent according to some semantics has
+ been evaluated.
+\end_layout
+
+\begin_layout Standard
+We have shown that the probability of a set of arguments being conflict-free
+ and admissible in PrAFs can be computed in polynomial time with respect
+ to the number of arguments and defeats.
+ Then we have proposed a new algorithm that extends the naive Monte Carlo
+ simulation to take advantage of the novel concept that the probability
+ of a set being conflict-free is computable in polynomial time.
+ In particular, we have shown that the new approach is generally faster
+ than the naive one, and is especially faster in the case of complete semantics.
+\end_layout
+
+\begin_layout Standard
+This work can be extended to the case of admissibility, whereas the probability
+ of a set of arguments being admissible is also computable in polynomial
+ time.
+ In this case, the problem of sampling the space of admissible AAFs that
+ can be induced from a PrAF is not trivial compared to that of conflict-free
+ AAFs.
 \end_layout
 
 \begin_layout Standard

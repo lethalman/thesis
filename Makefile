@@ -6,7 +6,7 @@ OBJS = $(subst .java,.class,$(SRCS))
 	javac -cp /usr/share/java/jfreechart.jar $<
 
 sim: PAFTest.class
-	java -cp . PAFTest
+	java -Xmx256m -Xms256m -verbose:gc -cp . PAFTest
 
 plot: Plot.class
 	java -cp .:/usr/share/java/jfreechart.jar Plot

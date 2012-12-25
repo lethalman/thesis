@@ -395,7 +395,7 @@ class Generator {
         this.numdefProb = numdefProb;
         this.defProb = defProb;
     }
-
+  /*
     public Instance generateInstance () {
 	PAF paf = new PAF();
         // gen args
@@ -431,7 +431,7 @@ class Generator {
         }
         return paf;
     }
-
+  */
     public PAF generateTree () {
         PAF paf = new PAF();
         // gen args
@@ -558,7 +558,7 @@ class MontecarloError extends Montecarlo {
 
 	    // Agresti-Coull interval
 	    double n = N+z2;
-	    double p = (X+(z2/2))/n*cond;
+	    double p = (X+(z2/2))/n;
 	    Nthreshold = ((p*(1-p))/e2)*z2*c2-z2;
 	} while (N <= Nthreshold);
 
@@ -1267,9 +1267,9 @@ public class PAFTest {
         defProb.add (0.8, 0.1);
         defProb.add (0.9, 0.7);
         
-	//optTestArgsSameError ("Complete", "complete_same_error_01.csv", 1.96, 0.01, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
+	optTestArgsSameError ("Complete", "complete_same_error_01.csv", 1.96, 0.01, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
 	// optTestArgsSameError ("Complete", "complete_same_error_005.csv", 1.96, 0.005, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
-	optTestArgsSameError ("Grounded", "grounded_same_error_01.csv", 1.96, 0.01, new GroundedSemantics(), new GroundedGivenConflictFreeSemantics());
+	//optTestArgsSameError ("Grounded", "grounded_same_error_01.csv", 1.96, 0.01, new GroundedSemantics(), new GroundedGivenConflictFreeSemantics());
 	//optTestArgsSameError ("Grounded", "grounded_same_error_005.csv", 1.96, 0.005, new GroundedSemantics(), new GroundedGivenConflictFreeSemantics());
 
 	//testAdmissible ();
@@ -1434,7 +1434,8 @@ public class PAFTest {
         ArgSet set = paf.findPossibleSet (optimizedSemantics);
         System.out.println(set);
         System.out.println("Conflict free: "+paf.conflictFree(set));
-        
+
+	System.out.println ("Args "+args);
         Stats orig = m.runs (paf, originalSemantics, set, 20);
         Stats opt = m.runs (paf, optimizedSemantics, set, 20);
         return new Stats[]{orig, opt};
