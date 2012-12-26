@@ -197,8 +197,6 @@ Luca BRUNO
 \begin_layout Standard
 
 \size larger
-Ing.
- xx XX
 \begin_inset space \hfill{}
 \end_inset
 
@@ -3764,7 +3762,7 @@ reference "fig:HigherPx"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}

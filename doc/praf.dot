@@ -1,0 +1,7 @@
+digraph {
+	node [shape=circle];
+	b [label="b\n1.0"];
+	a [label="a\n0.3"];
+	b -> a [label="0.7"];
+	{rank=same; a b}
+}
