@@ -1,11 +1,14 @@
-mode = compare			# describe, generate, compare
+# mode can be one of: describe, generate, compare
+mode = compare
 inputdir = ./instances
 csvdir = ./csv
 dotdir = ./dot
 
+# DESCRIBE instances in the inputdir, will create dot files in dotdir and instance_descriptions.csv in csvdir
 describe.from = 10
 describe.to = 20
 
+# GENERATE an instance <PrAF,S>, requires glpk for the glpsol binary executable
 generate.argument_probability = 0.7: 0.1, \
 			      	0.8: 0.1, \
 				0.9: 0.7, \
@@ -22,11 +25,20 @@ generate.iterations = 1000
 generate.arguments = 20
 generate.output = generated.txt
 
-compare = complete_error_01 complete_error_005 grounded_error_01 grounded_error_005
+# COMPARE mode runs comparison tests between two algorithms and output csv files, 20 runs for each instance
+compare = preferred_error_01
+#compare = complete_error_01 complete_error_005 grounded_error_01 grounded_error_005
+
+compare.preferred_error_01.first = PreferredSemantics
+compare.preferred_error_01.second = PreferredGivenConflictFreeSemantics
+compare.preferred_error_01.exact = null
+compare.preferred_error_01.exactmode = MontecarloError 1.96 0.001
+compare.preferred_error_01.mode = MontecarloError 1.96 0.01
 
 compare.complete_error_01.first = CompleteSemantics
 compare.complete_error_01.second = CompleteGivenConflictFreeSemantics
 compare.complete_error_01.exact = null
+compare.complete_error_01.exactmode = MontecarloError 1.96 0.001
 compare.complete_error_01.mode = MontecarloError 1.96 0.01
 
 compare.complete_error_005.first = CompleteSemantics

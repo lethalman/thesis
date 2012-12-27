@@ -223,7 +223,7 @@ class Generator {
 	return d;
     }
 
-    static void generateInstance20 (Properties props) throws IOException {
+    static void generateInstance (Properties props) throws IOException {
 	Distribution argProb = readDistribution (props, "generate.argument_probability");
 	Distribution outdegProb = readDistribution (props, "generate.argument_outdegree");
 	Distribution defProb = readDistribution (props, "generate.defeat_probability");

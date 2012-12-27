@@ -12,11 +12,13 @@ public class PAFTest {
 	new File(props.getProperty("csvdir")).mkdirs ();
 	new File(props.getProperty("dotdir")).mkdirs ();
 
-	String mode = props.getProperty("mode");
+	String mode = props.getProperty("mode").trim();
 	if (mode.equals ("compare")) {
 	    runCompare (props);
 	} else if (mode.equals ("describe")) {
 	    runDescribe (props);
+	} else if (mode.equals ("generate")) {
+	    Generator.generateInstance (props);
 	}
 
 	//optTestArgsSameError ("Complete", "complete_same_error_01.csv", 1.96, 0.01, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
@@ -50,12 +52,14 @@ public class PAFTest {
 
 	Semantics first = Semantics.fromName (props.getProperty (prefix+"first"));
 	Semantics second = Semantics.fromName (props.getProperty (prefix+"second"));
-	Semantics exact = Semantics.fromName (props.getProperty (prefix+"second"));
+	Semantics exact = Semantics.fromName (props.getProperty (prefix+"exact"));
 	Montecarlo m = Montecarlo.fromString (props.getProperty (prefix+"mode"));
+	Montecarlo mex = null;
 
 	PrintWriter pw = new PrintWriter (new FileOutputStream (csvdir+"/"+type+".csv"), true);
 	if (exact != null) {
 	    pw.println ("Args,Exact,"+Stats.headerString("Naive ")+","+Stats.headerString("Optim "));
+	    mex = Montecarlo.fromString (props.getProperty (prefix+"exactmode"));
 	} else {
 	    pw.println ("Args,"+Stats.headerString("Naive ")+","+Stats.headerString("Optim "));
 	}
@@ -75,7 +79,6 @@ public class PAFTest {
 	    Stats s2 = m.runs (second, paf, set, 20);
 	    double exactValue = 0;
 	    if (exact != null) {
-		Montecarlo mex = Montecarlo.fromString (props.getProperty (prefix+"exactmode"));
 		exactValue = exact.conditional(paf, set)*mex.run (exact, paf, set).toDouble();
 	    }
 	    if (exact != null) {
