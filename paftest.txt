@@ -1,6 +1,6 @@
 # mode can be one of: describe, generate, compare
-mode = compare
-inputdir = ./instances
+mode = describe
+inputdir = ./preferred_instances
 csvdir = ./csv
 dotdir = ./dot
 

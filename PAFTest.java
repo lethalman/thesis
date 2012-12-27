@@ -97,21 +97,28 @@ public class PAFTest {
 	int from = Integer.parseInt (props.getProperty ("describe.from"));
 	int to = Integer.parseInt (props.getProperty ("describe.to"));
 
-	PrintWriter pw = new PrintWriter (new FileOutputStream ("instance_descriptions.csv"), true);
+	PrintWriter pw = new PrintWriter (new FileOutputStream (csvdir+"/instance_descriptions.csv"), true);
 	pw.println ("Args,Defeats,Set size,CF,Admissible,Complete,Preferred,Grounded");
 	for (int i=from; i <= to; i++) {
-	    System.out.println ("Instance: "+i);
+	    System.out.println ("Describing instance: "+i);
 	    Instance pair = new Instance (inputdir+"/instance"+i+".txt");
 	    PAF paf = pair.paf;
 	    ArgSet set = pair.set;
+	    System.out.println("Nodes: "+paf.args.size()+" Defeats: "+paf.defeatsList.size());
+	    System.out.println("Search space: "+(Math.pow(2, paf.args.size())*Math.pow(2, paf.defeatsList.size())));
 	    pair.writeDot (dotdir+"/instance"+i+".dot");
 
 	    Montecarlo m = new MontecarloError (1.96, 0.005);
 	    double cf = paf.conflictFree(set);
+	    System.out.println ("CF: "+cf);
 	    double admissible = paf.admissible(set);
+	    System.out.println ("Admissible: "+admissible);
 	    double complete = cf*m.run (new CompleteGivenConflictFreeSemantics(), paf, set).toDouble();
+	    System.out.println ("Complete: "+complete);
 	    double preferred = cf*m.run (new PreferredGivenConflictFreeSemantics(), paf, set).toDouble();
+	    System.out.println ("Preferred: "+preferred);
 	    double grounded = cf*m.run (new GroundedGivenConflictFreeSemantics(), paf, set).toDouble();
+	    System.out.println ("Grounded: "+grounded);
 	    pw.println(i+","+paf.defeatsList.size()+","+set.size()+","+cf+","+admissible+","+complete+","+preferred+","+grounded);
 	}
 	pw.close ();
