@@ -162,7 +162,7 @@ THESIS SUMMARY
 
 \series bold
 \size larger
-Analysis and implementation of tractable cases in Probabilistic Argumentation
+Analysis and implementation of hard cases in Probabilistic Argumentation
  Frameworks
 \end_layout
 
@@ -3346,7 +3346,7 @@ We observe that
  follows.
  Therefore it is easy to see that an upperbound to the number of trials
  is 
-\begin_inset Formula $N\leq P_{CF}\left(S\right)$
+\begin_inset Formula $N\leq\hat{N}\cdot P_{CF}\left(S\right)$
 \end_inset
 
 .
@@ -3410,7 +3410,7 @@ Fixed
 \end_layout
 
 \begin_layout Section
-Evaluation of tractable cases for probabilistic argumentation frameworks
+Evaluation of hard cases in probabilistic argumentation frameworks
 \end_layout
 
 \begin_layout Subsection
