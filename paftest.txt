@@ -1,0 +1,45 @@
+mode = compare			# describe, generate, compare
+inputdir = ./instances
+csvdir = ./csv
+dotdir = ./dot
+
+describe.from = 10
+describe.to = 20
+
+generate.argument_probability = 0.7: 0.1, \
+			      	0.8: 0.1, \
+				0.9: 0.7, \
+				1.0: 0.1
+generate.argument_outdegree = 0: 0.1, \
+			      1: 0.4, \
+			      2: 0.5
+generate.defeat_probability = 0.6: 0.1, \
+			      0.7: 0.1, \
+			      0.8: 0.1, \
+			      0.9: 0.7
+generate.maximize = GroundedGivenConflictFreeSemantics
+generate.iterations = 1000
+generate.arguments = 20
+generate.output = generated.txt
+
+compare = complete_error_01 complete_error_005 grounded_error_01 grounded_error_005
+
+compare.complete_error_01.first = CompleteSemantics
+compare.complete_error_01.second = CompleteGivenConflictFreeSemantics
+compare.complete_error_01.exact = null
+compare.complete_error_01.mode = MontecarloError 1.96 0.01
+
+compare.complete_error_005.first = CompleteSemantics
+compare.complete_error_005.second = CompleteGivenConflictFreeSemantics
+compare.complete_error_005.exact = null
+compare.complete_error_005.mode = MontecarloError 1.96 0.005
+
+compare.grounded_error_01.first = GroundedSemantics
+compare.grounded_error_01.second = GroundedGivenConflictFreeSemantics
+compare.grounded_error_01.exact = null
+compare.grounded_error_01.mode = MontecarloError 1.96 0.01
+
+compare.grounded_error_005.first = GroundedSemantics
+compare.grounded_error_005.second = GroundedGivenConflictFreeSemantics
+compare.grounded_error_005.exact = null
+compare.grounded_error_005.mode = MontecarloError 1.96 0.005
