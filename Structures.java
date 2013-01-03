@@ -465,6 +465,7 @@ class DAF {
 	    if (set.equals (newset)) {
 		break;
 	    }
+	    set = newset;
 	    ArgSet suppress = new ArgSet ();
 	    for (String a: set) {
 		for (String b: copy.defeats.get (a)) {

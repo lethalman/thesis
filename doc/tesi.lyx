@@ -2257,7 +2257,11 @@ brave
 Data la definizione fondamentale di ammissibilità nella sezione precedente
  e di estensione immediatamente sopra, definiamo una serie di semantiche
  usate tradizionalmente nel contesto degli argumentation framework.
- In particolare: stable, preferred, complete, grounded e ideal.
+ In particolare: complete, grounded, stable, preferred, e ideal.
+\end_layout
+
+\begin_layout Subsection
+Semantica complete
 \end_layout
 
 \begin_layout Definition
@@ -3046,6 +3050,10 @@ Completezza di un insieme di argomenti
 
 \end_layout
 
+\begin_layout Subsection
+Semantica grounded
+\end_layout
+
 \begin_layout Definition
 Dato un AAF 
 \begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
@@ -3079,9 +3087,106 @@ di
 \end_layout
 
 \begin_layout Standard
-Decidere se un insieme di argomenti è grounded è un problema certamente
- più difficile rispetto al complete, poiché richiede tempo esponenziale
- rispetto al numero di argomenti.
+Nonostante la semantica grounded richieda la minimalità, la complessità
+ per costruire l'unico insieme grounded è polinomiale nel numero di argomenti
+ e defeat di un AAF.
+ Infatti, il seguente algoritmo costruisce l'insieme grounded 
+\begin_inset Formula $S$
+\end_inset
+
+ dato un AAF 
+\begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $S=\emptyset$
+\end_inset
+
+, 
+\begin_inset Formula $A=Arg$
+\end_inset
+
+, 
+\begin_inset Formula $D=Def$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $S'=initial\left(A,D\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Se 
+\begin_inset Formula $S=S'$
+\end_inset
+
+, allora 
+\begin_inset Formula $S$
+\end_inset
+
+ è l'estensione grounded 
+\begin_inset Formula $GE\left(\mathcal{F}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Altrimenti, si sopprimono i nodi attaccati da 
+\begin_inset Formula $S':$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $A=A\setminus\left\{ a\mid b\in S'\wedge\exists\left\langle b,a\right\rangle \in D\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $D=D\cap\left(A\times A\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $S=S'$
+\end_inset
+
+ e goto 2
+\end_layout
+
+\begin_layout Proposition
+Dato un AAF 
+\begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, l'estensione grounded esiste sempre.
+\end_layout
+
+\begin_layout Standard
+Esiste almeno una estensione complete per un AAF, di conseguenza esisterà
+ sempre l'estensione grounded per un qualsiasi AAF.
+ Questo è un risultato molto importante per una semantica rispetto ad un
+ formalismo.
+\end_layout
+
+\begin_layout Subsection
+Semantica stable
 \end_layout
 
 \begin_layout Standard
@@ -3130,13 +3235,110 @@ Una estensione stabile
 \end_inset
 
  stesso.
- Per definizione, una estensione stabile è anche complete ed è un insieme
- massimale conflict-free per 
+ Per definizione, una estensione stabile è anche complete, quindi 
+\begin_inset Formula $GE\left(\mathcal{AAF}\right)\subseteq E$
+\end_inset
+
+, ed è un insieme massimale conflict-free per 
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
 .
  
+\end_layout
+
+\begin_layout Standard
+Il problema fondamentale di questa semantica è che non è universalmente
+ definita come la complete e la grounded.
+ Possono esistere degli AAF per i quali non esistono estensioni stabili.
+ Un esempio è illustrato in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:AAF-senza-estensioni"
+
+\end_inset
+
+, dove non esiste un insieme di argomenti conflict-free che attacchi il
+ resto degli arogmenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename nostable.png
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:AAF-senza-estensioni"
+
+\end_inset
+
+AAF senza estensioni stabili
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Anche se chi supporta la semantica stabile afferma che le situazioni per
+ le quali non esiste una semantica stabile sono 
+\begin_inset Quotes eld
+\end_inset
+
+patologiche
+\begin_inset Quotes erd
+\end_inset
+
+ in certo senso, è stato mostrato
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Guid:2008:LPF:1428170.1428188"
+
+\end_inset
+
+ che esistono problemi perfettamente ragionevoli che possono essere formalizzati
+ con gli argumentation framework tali che 
+\begin_inset Formula $\mathcal{E}_{stable}\left(\mathcal{AAF}\right)=\emptyset$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+
 \end_layout
 
 \begin_layout Definition
