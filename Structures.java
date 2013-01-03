@@ -237,6 +237,15 @@ class DAF {
 	argsList.add (name);
     }
 
+    public void removeArg (String name) {
+	args.remove (name);
+	argsList.remove (name);
+	defeats.remove (name);
+	for (String b: defeatedBy.get (name)) {
+	    defeats.get(b).remove (name);
+	}
+    }
+
     public void addArgs (String ... names) {
 	for (String n: names) {
 	    addArg (n);
@@ -425,16 +434,60 @@ class DAF {
 	return true;
     }
 
+    public ArgSet initial () {
+	ArgSet set = new ArgSet ();
+	for (String a: argsList) {
+	    if (defeatedBy.get(a).isEmpty ()) {
+		set.add (a);
+	    }
+	}
+	return set;
+    }
+
+    public DAF copy () {
+	DAF daf = new DAF ();
+	for (String a: argsList) {
+	    daf.addArg (a);
+	}
+	for (String a: argsList) {
+	    for (String b: defeats.get (a)) {
+		daf.addDefeat (a, b);
+	    }
+	}
+	return daf;
+    }
+
+    public ArgSet groundedSet () {
+	DAF copy = copy ();
+	ArgSet set = new ArgSet ();
+	while (true) {
+	    ArgSet newset = copy.initial ();
+	    if (set.equals (newset)) {
+		break;
+	    }
+	    ArgSet suppress = new ArgSet ();
+	    for (String a: set) {
+		for (String b: copy.defeats.get (a)) {
+		    suppress.add (b);
+		}
+	    }
+	    for (String a: suppress) {
+		copy.removeArg (a);
+	    }
+	}
+	return set;
+    }
+
     public boolean grounded (ArgSet set) {
-	return complete(set) && groundedHelper (new ArgSet (set), null);
+	return groundedSet().equals (set);
     }
 
     public boolean groundedGivenConflictFree (ArgSet set) {
-	return completeGivenConflictFree(set) && groundedHelper (new ArgSet (set), null);
+	return grounded (set);
     }
 
     public boolean groundedGivenAdmissible (ArgSet set) {
-	return completeGivenAdmissible(set) && groundedHelper (new ArgSet (set), null);
+	return grounded (set);
     }
 
     public String toString () {

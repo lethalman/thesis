@@ -1,6 +1,6 @@
 # mode can be one of: describe, generate, compare
 mode = compare
-inputdir = ./preferred_instances
+inputdir = ./instances
 csvdir = ./csv
 dotdir = ./dot
 
@@ -26,7 +26,8 @@ generate.arguments = 20
 generate.output = generated.txt
 
 # COMPARE mode runs comparison tests between two algorithms and output csv files, 20 runs for each instance
-compare = complete_error_01 complete_error_005 grounded_error_01 grounded_error_005 preferred_error_01 preferred_error_005
+#compare = complete_error_01 complete_error_005 grounded_error_01 grounded_error_005 preferred_error_01 preferred_error_005
+compare = grounded_error_01 grounded_error_005
 
 compare.preferred_error_01.first = PreferredSemantics
 compare.preferred_error_01.second = PreferredGivenConflictFreeSemantics
