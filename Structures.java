@@ -240,10 +240,14 @@ class DAF {
     public void removeArg (String name) {
 	args.remove (name);
 	argsList.remove (name);
-	defeats.remove (name);
-	for (String b: defeatedBy.get (name)) {
+	for (String b: getDefeatedBy (name)) {
 	    defeats.get(b).remove (name);
 	}
+	for (String b: getDefeats (name)) {
+	    defeatedBy.get(b).remove (name);
+	}
+	defeats.remove (name);
+	defeatedBy.remove (name);
     }
 
     public void addArgs (String ... names) {
@@ -437,7 +441,7 @@ class DAF {
     public ArgSet initial () {
 	ArgSet set = new ArgSet ();
 	for (String a: argsList) {
-	    if (defeatedBy.get(a).isEmpty ()) {
+	    if (getDefeatedBy(a).isEmpty ()) {
 		set.add (a);
 	    }
 	}
@@ -450,7 +454,7 @@ class DAF {
 	    daf.addArg (a);
 	}
 	for (String a: argsList) {
-	    for (String b: defeats.get (a)) {
+	    for (String b: getDefeats (a)) {
 		daf.addDefeat (a, b);
 	    }
 	}
@@ -468,7 +472,7 @@ class DAF {
 	    set = newset;
 	    ArgSet suppress = new ArgSet ();
 	    for (String a: set) {
-		for (String b: copy.defeats.get (a)) {
+		for (String b: copy.getDefeats (a)) {
 		    suppress.add (b);
 		}
 	    }

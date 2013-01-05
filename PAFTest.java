@@ -58,7 +58,7 @@ public class PAFTest {
 
 	PrintWriter pw = new PrintWriter (new FileOutputStream (csvdir+"/"+type+".csv"), true);
 	if (exact != null) {
-	    pw.println ("Args,Exact,"+Stats.headerString("Naive ")+","+Stats.headerString("Optim "));
+	    pw.println ("Args,"+Stats.headerString("Naive ")+","+Stats.headerString("Optim ")+",Exact");
 	    mex = Montecarlo.fromString (props.getProperty (prefix+"exactmode"));
 	} else {
 	    pw.println ("Args,"+Stats.headerString("Naive ")+","+Stats.headerString("Optim "));
@@ -82,7 +82,7 @@ public class PAFTest {
 		exactValue = exact.conditional(paf, set)*mex.run (exact, paf, set).toDouble();
 	    }
 	    if (exact != null) {
-		pw.println (args+","+exactValue+","+s1.toString()+","+s2.toString());
+		pw.println (args+","+s1.toString()+","+s2.toString()+","+exactValue);
 	    } else {
 		pw.println (args+","+s1.toString()+","+s2.toString());
 	    }

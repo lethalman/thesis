@@ -27,7 +27,7 @@ generate.output = generated.txt
 
 # COMPARE mode runs comparison tests between two algorithms and output csv files, 20 runs for each instance
 #compare = complete_error_01 complete_error_005 grounded_error_01 grounded_error_005 preferred_error_01 preferred_error_005
-compare = grounded_error_01 grounded_error_005
+compare = grounded_error_exact_01 preferred_error_exact_01
 
 compare.preferred_error_01.first = PreferredSemantics
 compare.preferred_error_01.second = PreferredGivenConflictFreeSemantics
@@ -61,3 +61,15 @@ compare.grounded_error_005.first = GroundedSemantics
 compare.grounded_error_005.second = GroundedGivenConflictFreeSemantics
 compare.grounded_error_005.exact = null
 compare.grounded_error_005.mode = MontecarloError 1.96 0.005
+
+compare.grounded_error_exact_01.first = GroundedSemantics
+compare.grounded_error_exact_01.second = GroundedGivenConflictFreeSemantics
+compare.grounded_error_exact_01.mode = MontecarloError 1.96 0.01
+compare.grounded_error_exact_01.exact = GroundedSemantics
+compare.grounded_error_exact_01.exactmode = MontecarloError 1.96 0.001
+
+compare.preferred_error_exact_01.first = PreferredSemantics
+compare.preferred_error_exact_01.second = PreferredGivenConflictFreeSemantics
+compare.preferred_error_exact_01.mode = MontecarloError 1.96 0.01
+compare.preferred_error_exact_01.exact = PreferredSemantics
+compare.preferred_error_exact_01.exactmode = MontecarloError 1.96 0.001

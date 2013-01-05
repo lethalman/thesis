@@ -169,7 +169,8 @@ TESI DI LAUREA
 
 \series bold
 \size larger
-Analisi ed ottimizzazione algoritmi in probabilistic argumentation framework
+Analisi ed ottimizzazione di casi intrattabili in probabilistic argumentation
+ frameworks
 \end_layout
 
 \begin_layout Standard
@@ -314,7 +315,7 @@ Argumentation Framework
 \end_layout
 
 \begin_layout Section
-Why argumentation framework
+Perchè argumentation framework
 \end_layout
 
 \begin_layout Standard
@@ -407,7 +408,7 @@ justification state
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -2260,6 +2261,75 @@ Data la definizione fondamentale di ammissibilità nella sezione precedente
  In particolare: complete, grounded, stable, preferred, e ideal.
 \end_layout
 
+\begin_layout Standard
+La relazione tra tutte le semantiche
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Thimm12"
+
+\end_inset
+
+ che verranno descritte successivamente è illustrata in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Relationships-between-semantics"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename semantics.png
+	width 60col%
+	height 20col%
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+
+\lang english
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Relationships-between-semantics"
+
+\end_inset
+
+Relationships between semantics
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Semantica complete
 \end_layout
@@ -3117,7 +3187,7 @@ Nonostante la semantica grounded richieda la minimalità, la complessità
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $S'=initial\left(A,D\right)$
+\begin_inset Formula $S'=\mathcal{IN}\left(\left\langle A,D\right\rangle \right)$
 \end_inset
 
 
@@ -3185,6 +3255,30 @@ Esiste almeno una estensione complete per un AAF, di conseguenza esisterà
  formalismo.
 \end_layout
 
+\begin_layout Standard
+Inoltre, se 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mathcal{IN}\left\langle \mathcal{F}\right\rangle =\emptyset$
+\end_inset
+
+, dall'algoritmo di cui sopra segue che 
+\begin_inset Formula $GE\left(\mathcal{F}\right)=\emptyset$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Semantica stable
 \end_layout
@@ -3244,7 +3338,285 @@ Una estensione stabile
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Dato un AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, decidere se un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+ è una estensione stabile è un problema decisionale risolvibile in tempo
+ polinomiale, come mostrato nell'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:Decidere-stabile"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+An abstract argumentation framework
+\series bold
  
+\begin_inset Formula $AAF=\left(Arg,Def\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A set of arguments 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ not 
+\begin_inset Formula $CF\left(AAF,S\right)$
+\end_inset
+
+ 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+return
+\series default
+ false
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+if
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $\forall a\notin S$
+\end_inset
+
+ 
+\series bold
+do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+attacked = false
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $\forall b\in S$
+\end_inset
+
+ 
+\series bold
+do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ 
+\begin_inset Formula $\left\langle b,a\right\rangle \in Def$
+\end_inset
+
+ 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+attacked = true
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ not attacked 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+return
+\series default
+ false
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+return
+\series default
+ true
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Decidere-stabile"
+
+\end_inset
+
+Decidere se un insieme è stabile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3338,7 +3710,12 @@ key "Guid:2008:LPF:1428170.1428188"
 \end_layout
 
 \begin_layout Subsection
+Semantica preferred
+\end_layout
 
+\begin_layout Standard
+La semantica preferred rilassa il vincolo della semantica stabile di attaccare
+ tutto ciò che sia al di fuori dell'insieme di argomenti.
 \end_layout
 
 \begin_layout Definition
@@ -3366,15 +3743,10 @@ se e solo se
 \end_layout
 
 \begin_layout Standard
-La semantica preferred rilassa il requisito della semantica stabile di attaccare
- tutto ciò che sia al di fuori dell'insieme di argomenti.
- Un insieme preferred è un insieme ammissibile massimale, nel senso che
- è l'insieme massimale in grado di difendsi da attacchi esterni, ma non
+Un insieme preferred è un insieme ammissibile massimale, nel senso che è
+ l'insieme massimale in grado di difendersi da attacchi esterni, ma non
  necessariamente attacca tutti gli argomenti esterni.
-\end_layout
-
-\begin_layout Standard
-Per argomento 
+ Per argomento 
 \emph on
 esterno
 \emph default
@@ -3393,6 +3765,389 @@ esterno
 .
 \end_layout
 
+\begin_layout Standard
+Valgono le seguenti caratteristiche fondamentali per la semantica preferred:
+\end_layout
+
+\begin_layout Standard
+Ogni estensione preferred è anche complete, quindi come nel caso stable,
+ si ha 
+\begin_inset Formula $GE\left(\mathcal{F}\right)\subseteq E$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Una estensione preferred è una estensione completa massimale.
+ Di conseguenza, questo tipo di estensione è universalmente definito, cioè
+ esiste sempre una estensione preferred.
+\end_layout
+
+\begin_layout Itemize
+Una estensione stabile è anche una estensione preferred, ma non vale il
+ viceversa: 
+\begin_inset Formula $\mathcal{E}_{stable}\left(\mathcal{F}\right)\subseteq\mathcal{E}_{preferred}\left(\mathcal{F}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Si consideri l'esempio in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-estensione"
+
+\end_inset
+
+, dove ci sono due estensioni preferred 
+\begin_inset Formula $\left\{ a\right\} $
+\end_inset
+
+ e 
+\begin_inset Formula $\left\{ b\right\} $
+\end_inset
+
+, ma solo 
+\begin_inset Formula $\left\{ b\right\} $
+\end_inset
+
+ è stabile.
+ Infatti 
+\begin_inset Formula $a$
+\end_inset
+
+ non attacca 
+\begin_inset Formula $c$
+\end_inset
+
+ e quindi non può essere un singoletto stabile, mentre 
+\begin_inset Formula $b$
+\end_inset
+
+ è ammissibile ed attacca entrambi i rimanenti argomenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename prefstable.png
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Esempio-di-estensione"
+
+\end_inset
+
+Esempio di estensione preferred ma non stabile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'intuizione riguardo la semantica preferred ha corrispondenze con le semantiche
+ preferenziali dei programmi logici
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GÃ³mez03integratingdefeasible"
+
+\end_inset
+
+.
+ La semantica preferred è considerata una delle semantiche più soddisfacenti
+ nell'ambito degli argumentation framework.
+\end_layout
+
+\begin_layout Subsection
+Semantica stage e semi-stable
+\end_layout
+
+\begin_layout Standard
+Le semantiche stage
+\begin_inset CommandInset citation
+LatexCommand cite
+key "watson1999secrets"
+
+\end_inset
+
+ e semi-stable
+\begin_inset CommandInset citation
+LatexCommand cite
+key "orange"
+
+\end_inset
+
+, si basano sull'idea di introdurre il vincolo di massimalità non solo argli
+ argomenti dell'estensione ma anche a quelli attaccati dall'estensione stessa.
+\end_layout
+
+\begin_layout Standard
+Prima di definire cosa sia una estensione stage o semi-stable, introduciamo
+ il concetto di 
+\emph on
+range
+\emph default
+ di un insieme di argomenti.
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ e l'insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+, il
+\emph on
+ range
+\emph default
+ di 
+\begin_inset Formula $S$
+\end_inset
+
+ è definito come 
+\begin_inset Formula $S\cup S^{+}$
+\end_inset
+
+, dove 
+\begin_inset Formula $S^{+}=\left\{ a\mid b\in S\wedge\exists\left\langle b,a\right\rangle \in Def\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Quindi il range di un insieme include l'insieme stesso e tutti gli argomenti
+ attaccati da tale insieme.
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+ è una estensione 
+\emph on
+stage
+\emph default
+ se e solo se 
+\begin_inset Formula $S$
+\end_inset
+
+ è conflict-free ed ha range massimale (rispetto 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Definition
+Un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+ è una estensione 
+\emph on
+semi-stable
+\emph default
+ (semi-stabile) se e solo se 
+\begin_inset Formula $S$
+\end_inset
+
+ è una estensione complete con range massimale (rispetto 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+La differenza tra le due semantiche sta nel fatto che l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ in un caso è conflict-free, e nell'altro è completo.
+\end_layout
+
+\begin_layout Standard
+Entrambe le semantiche coincidono con la semantica stabile quando esiste
+ almeno una estensione stabile.
+ Infatti, una estensione stabile 
+\begin_inset Formula $E$
+\end_inset
+
+ ha range 
+\begin_inset Formula $E\cup E^{+}=Arg$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Si noti che una estensione stage potrebbe non essere ammissibile.
+\end_layout
+
+\begin_layout Standard
+Estendendo l'AAF da 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-estensione"
+
+\end_inset
+
+ a 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-discordanza"
+
+\end_inset
+
+, si verifica la seguente situazione:
+\end_layout
+
+\begin_layout Itemize
+Le semantiche stage e semi-stable coincidono con l'unica estensione 
+\begin_inset Formula $\left\{ b\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Non ci sono estensioni stabili, poiché gli unici insiemi conflict-free non
+ riescono ad attaccare l'argomento 
+\begin_inset Formula $d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Le estensioni preferred coincidono con quelle della figura 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-estensione"
+
+\end_inset
+
+, poiché 
+\begin_inset Formula $\left\{ d\right\} $
+\end_inset
+
+ non è ammissibile, e sono 
+\begin_inset Formula $\left\{ a\right\} $
+\end_inset
+
+ e 
+\begin_inset Formula $\left\{ b\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename stagesemi.png
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Esempio-di-discordanza"
+
+\end_inset
+
+Esempio di discordanza tra semi-stable, preferred e stable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Semantica ideal
+\end_layout
+
+\begin_layout Standard
+La semantica ideal
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jensen98multiplecomparisons"
+
+\end_inset
+
+, offre un approccio per accettare estensioni che siano possibilmente più
+ grandi dell'estensione grounded.
+\end_layout
+
 \begin_layout Definition
 Dato un AAF 
 \begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
@@ -3402,7 +4157,7 @@ Dato un AAF
 \begin_inset Formula $S\subseteq Arg$
 \end_inset
 
- è una estensione 
+ è 
 \emph on
 ideale 
 \emph default
@@ -3419,30 +4174,61 @@ ideale
 \end_inset
 
 .
+ 
+\emph on
+L'estensione
+\emph default
+ 
+\emph on
+ideale
+\emph default
+ è l'insieme ideale massimale (rispetto 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+), e è unica ed è espressa come 
+\begin_inset Formula $ID\left(\mathcal{F}\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-L'estensione grounded è un insieme ideale.
+L'estensione grounded è un insieme ideale poiché soddisfa entrambi vincoli
+ di ammissibilità, e di skeptical justifiation sotto la semantica preferred.
  Quindi insiemi ideali che sono strettamente più grandi dell'insieme grounded
  possono esistere.
 \end_layout
 
 \begin_layout Standard
-La relazione tra tutte le semantiche
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Thimm12"
+Infatti, considerando l'AAF in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-estensione-ideale"
 
 \end_inset
 
- descritte finora è illustrata in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:Relationships-between-semantics"
+, possiamo osservare che:
+\end_layout
 
+\begin_layout Itemize
+L'insieme delle estensioni preferred è 
+\begin_inset Formula $\left\{ \left\{ a,d\right\} ,\left\{ b,d\right\} \right\} $
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Itemize
+L'estensione grounded in questo caso è vuoto.
+\end_layout
+
+\begin_layout Itemize
+L'estensione ideale è 
+\begin_inset Formula $\left\{ d\right\} $
+\end_inset
+
+, poiché è l'unico argomento appartenente a tutte le estensioni preferred.
 \end_layout
 
 \begin_layout Standard
@@ -3458,9 +4244,7 @@ status collapsed
 
 
 \begin_inset Graphics
-	filename semantics.png
-	width 60col%
-	height 20col%
+	filename ideal.png
 
 \end_inset
 
@@ -3475,15 +4259,182 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-
-\lang english
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Relationships-between-semantics"
+name "fig:Esempio-di-estensione-ideale"
 
 \end_inset
 
-Relationships between semantics
+Esempio di estensione ideale
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Famiglia di semantiche prudent
+\end_layout
+
+\begin_layout Standard
+Nelle semantiche viste finora, le estensioni soddisfano la proprietà conflict-fr
+ee, ovvero che non ci siano defeat tra gli argomenti dell'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ Potrebbero però essere anche concetti alternativi a quello conflict-free.
+\end_layout
+
+\begin_layout Standard
+La famiglia delle semantiche prudent
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Miller1998"
+
+\end_inset
+
+ estendo la nozione di attacco delle semantiche tradizionali con l'attacco
+ 
+\emph on
+indiretto
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Un argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ attacca 
+\emph on
+indirettamente
+\emph default
+ un argomento 
+\begin_inset Formula $b$
+\end_inset
+
+ se esiste un path di lunghezza dispari da 
+\begin_inset Formula $a$
+\end_inset
+
+ e 
+\series bold
+
+\begin_inset Formula $b$
+\end_inset
+
+.
+ 
+\series default
+Per lunghezza dispari s'intende che il path deve attraversare un numero
+ di defeat dispari.
+ Il path non dev'essere necessariamente il più corto, ma può includere anche
+ cicli.
+\end_layout
+
+\begin_layout Standard
+In
+\series bold
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-attacchi"
+
+\end_inset
+
+ 
+\series default
+l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ attacca indirettamente l'argomento 
+\begin_inset Formula $d$
+\end_inset
+
+, ma non l'argomento 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ Nelle prime sezioni abbiamo definito intuitivamente quando un argomento
+ è giustificato.
+ Non essendo l'argomento 
+\begin_inset Formula $b$
+\end_inset
+
+ giustificato, poiché attaccato da 
+\begin_inset Formula $a$
+\end_inset
+
+, allora il suo attacco all'argomento 
+\begin_inset Formula $c$
+\end_inset
+
+ non è consistente.
+ L'argomento 
+\begin_inset Formula $c$
+\end_inset
+
+ invece è giustificato perché è difeso da 
+\begin_inset Formula $a$
+\end_inset
+
+, quindi l'attacco su 
+\begin_inset Formula $d$
+\end_inset
+
+ è consistente.
+ Questo è intuitivamente il motivo per il quale si fa riferimento a path
+ di lunghezza dispari.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename prudent.png
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Esempio-di-attacchi"
+
+\end_inset
+
+Esempio di attacchi indiretti
 \end_layout
 
 \end_inset
@@ -3494,6 +4445,337 @@ Relationships between semantics
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Definiamo quindi un insieme di argomenti indirect conflict-free come segue:
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, si definisce la relazione 
+\begin_inset Formula $IA\left(\mathcal{F}\right)\subseteq Arg\times Arg$
+\end_inset
+
+ l'insieme delle coppie di argomenti 
+\begin_inset Formula $\left\langle a,b\right\rangle $
+\end_inset
+
+ tali che 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+ 
+\emph on
+attacca
+\emph default
+ 
+\emph on
+indirettamente
+\emph default
+ 
+\begin_inset Formula $b\in Arg$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+ è 
+\emph on
+indirect
+\emph default
+ 
+\emph on
+conflict-free
+\emph default
+ se e solo se 
+\begin_inset Formula $\nexists a,b\in S$
+\end_inset
+
+ tale che 
+\begin_inset Formula $\left\langle a,b\right\rangle \in IA\left(\mathcal{F}\right)$
+\end_inset
+
+, e si esprime come 
+\begin_inset Formula $icf\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dalla definizione, un insieme è indirect conflict-free è anche conflict-free,
+ ma non viceversa: 
+\begin_inset Formula $\mathcal{E}_{icf}\left(\mathcal{F}\right)\subseteq\mathcal{E}_{cf}\left(\mathcal{F}\right)$
+\end_inset
+
+.
+ Ad esempio, in 
+\series bold
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-attacchi"
+
+\end_inset
+
+ 
+\series default
+l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ attacca indirettamente l'argomento 
+\begin_inset Formula $d$
+\end_inset
+
+, ma non direttamente.
+ Quindi 
+\begin_inset Formula $\left\{ a,d\right\} $
+\end_inset
+
+ è conflict-free, ma non indirect conflict-free.
+\end_layout
+
+\begin_layout Standard
+A partire da questa definizione, è possibile definire le nozioni di ammissibilit
+à e altri tipi di estensioni similmente a come è stato fatto per semantiche
+ tradizionali.
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+ è:
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+p(rudent)-admissibile
+\emph default
+ se e solo se 
+\begin_inset Formula $icf\left(S\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $\forall a\in Arg$
+\end_inset
+
+ allora 
+\begin_inset Formula $a$
+\end_inset
+
+ è accettabile rispetto ad 
+\begin_inset Formula $S$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Definition
+una estensione 
+\emph on
+p-complete
+\emph default
+ se e solo se 
+\begin_inset Formula $S$
+\end_inset
+
+ è p-ammissibile, e 
+\begin_inset Formula $\nexists a\in Arg\setminus S$
+\end_inset
+
+ tale che 
+\begin_inset Formula $a$
+\end_inset
+
+ sia accettabile rispetto ad 
+\begin_inset Formula $S$
+\end_inset
+
+ e 
+\begin_inset Formula $icf\left(S\cup\left\{ a\right\} \right)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Definition
+una estensione 
+\emph on
+p-grounded
+\emph default
+ se e solo se 
+\begin_inset Formula $S$
+\end_inset
+
+ è l'insieme p-complete minimale (rispetto 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+), e si esprime come 
+\begin_inset Formula $GPE\left(\mathcal{F}\right)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Definition
+una estensione 
+\emph on
+p-preferred
+\emph default
+ se e solo se 
+\begin_inset Formula $S$
+\end_inset
+
+ è un insieme p-ammissibile massimale (rispetto 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Definition
+una estensione 
+\emph on
+p-stable
+\emph default
+ se e solo se 
+\begin_inset Formula $icf\left(S\right)$
+\end_inset
+
+ è 
+\begin_inset Formula $\forall a\in Arg\setminus S$
+\end_inset
+
+ allora 
+\begin_inset Formula $\exists b\in S$
+\end_inset
+
+ tale che 
+\begin_inset Formula $\left\langle b,a\right\rangle \in Def$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Siccome 
+\begin_inset Formula $\mathcal{E}_{icf}\left(\mathcal{F}\right)\subseteq\mathcal{E}_{cf}\left(\mathcal{F}\right)$
+\end_inset
+
+, si può dire che l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ è p-admissibile se e solo se è ammissibile ed è indirect conflict-free.
+ Una caratteristica interessante per la semantica p-stable è che, quando
+ 
+\begin_inset Formula $\mathcal{E}_{p-stable}\left(\mathcal{F}\right)\neq\emptyset$
+\end_inset
+
+, si può osservare che 
+\begin_inset Formula $\mathcal{E}_{p-stable}\left(\mathcal{F}\right)\subsetneq\mathcal{E}_{stable}\left(\mathcal{F}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Un esempio di estensione stabile che non è p-stabile è in 
+\series bold
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-attacchi"
+
+\end_inset
+
+
+\series default
+,
+\series bold
+ 
+\series default
+dove
+\series bold
+ 
+\series default
+l'unica estensione stabile 
+\begin_inset Formula $\left\{ a,d,e\right\} $
+\end_inset
+
+ non è una estensione p-stabile, poiché 
+\begin_inset Formula $a$
+\end_inset
+
+ attacca indirettamente 
+\begin_inset Formula $d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Come per l'estensione grounded, l'estensione p-grounded può essere calcolata
+ incrementalmente partendo dall'insieme di argomenti 
+\emph on
+initial 
+\emph default
+che non sono attaccati.
+ Inoltre, si può osservare che l'estensione p-grounded è potenzialmente
+ un sottoinsieme stretto dell'estensione grounded.
+ Ad esempio, sempre in 
+\series bold
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-attacchi"
+
+\end_inset
+
+
+\series default
+,
+\series bold
+ 
+\begin_inset Formula $GPE\left(\mathcal{F}\right)=\left\{ a,e\right\} \subsetneq GE\left(\mathcal{F}\right)=\left\{ a,d,e\right\} $
+\end_inset
+
+
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Un effetto molto importante da considerare, sulle semantiche complete e
+ preferred, è che qualcuno degli argomenti initial potrebbe non essere presente
+ nell'estensione.
+ Ad esempio 
+\begin_inset Formula $\mathcal{E}_{complete}\left(\mathcal{F}\right)=\mathcal{E}_{preferred}\left(\mathcal{F}\right)=\left\{ \left\{ a,e\right\} ,\left\{ d,e\right\} \right\} $
+\end_inset
+
+, ma 
+\begin_inset Formula $a$
+\end_inset
+
+ è chiaramente un argomento initial.
 \end_layout
 
 \begin_layout Section
@@ -3515,7 +4797,7 @@ Le probabilità sono usato per introdurre incertezza in domini complessi.
 
 \begin_layout Standard
 L'approccio è molto semplice.
- Gli abstracta rgumentation framework alla Dung sono estesi introducendo
+ Gli abstractat rgumentation framework alla Dung sono estesi introducendo
  probabilità sugli argomenti e sui defeat
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3771,7 +5053,1993 @@ Il numero di possibili AAF inducibili da un PrAF cresce esponenzialmente
 \end_layout
 
 \begin_layout Section
-Monte Carlo simulation
+Complessità abstract argumentation framework
+\end_layout
+
+\begin_layout Standard
+In letteratura sono stati proposti diversi problemi nella teoria dell'argumentat
+ion framework.
+ Data una semantica ed un argumentation framework, molteplici sono i quesiti
+ che si possono porre: se un insieme di argomenti è una estensione, se un
+ argomento appartiene almeno ad una estensione, se esiste almeno una estensione,
+ ecc..
+ Questi problemi sono descritti più formalmente nella tabella 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:Problemi-decisionali-per"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problema
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Istanza
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Decisione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $VER_{\mathfrak{S}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{F}\left\langle A,D\right\rangle ;S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S\in\mathcal{E}_{\mathfrak{S}}\left(\mathcal{F}\right)$
+\end_inset
+
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $CA_{\mathfrak{S}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{F}\left\langle A,D\right\rangle ;S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\exists S\in\mathcal{E}_{\mathfrak{S}}\left(\mathcal{F}\right)$
+\end_inset
+
+ tale che 
+\begin_inset Formula $x\in S$
+\end_inset
+
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $SA_{\mathfrak{S}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{F}\left\langle A,D\right\rangle ;S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\forall S\in\mathcal{E}_{\mathfrak{S}}\left(\mathcal{F}\right)$
+\end_inset
+
+, 
+\begin_inset Formula $x\in S$
+\end_inset
+
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $EX_{\mathfrak{S}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{F}\left\langle A,D\right\rangle $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathcal{E}_{\mathfrak{S}}\left(\mathcal{F}\right)\neq\emptyset$
+\end_inset
+
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NE_{\mathfrak{S}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{F}\left\langle A,D\right\rangle $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\exists S\in\mathcal{E}_{\mathfrak{S}}\left(\mathcal{F}\right)$
+\end_inset
+
+ tale che 
+\begin_inset Formula $S\neq\emptyset$
+\end_inset
+
+?
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Problemi-decisionali-per"
+
+\end_inset
+
+Problemi decisionali per abstract argumentation framework
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come visto in precedenza, molti problemi per alcune semantiche sono polinomiali
+ rispetto al al numero di argomenti e defeat.
+ I risultati dei casi trattabili sono riassunti nel teorema seguente
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DunneWooldridge2009"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Theorem
+Per la semantica 
+\begin_inset Formula $\mathfrak{S}=grounded$
+\end_inset
+
+, tutti i problemi decisionali in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:Problemi-decisionali-per"
+
+\end_inset
+
+ sono in 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+.
+ Dato un AAF 
+\begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, l'unica estensione grounded 
+\begin_inset Formula $GE\left(\mathcal{F}\right)\in\mathcal{E}_{grounded}\left(\mathcal{F}\right)$
+\end_inset
+
+ può essere costruita in tempo polinomiale.
+\end_layout
+
+\begin_layout Theorem
+Dato un insieme 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+, i problemi 
+\begin_inset Formula $VER_{\mathfrak{\mathfrak{S}}}$
+\end_inset
+
+ di decidere se tale insieme è conflict-free, ammissibile o stabile, sono
+ tutti in 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+I risultati per i casi intrattabili di semantica preferred e stable sono
+ riassunti nella tabella 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Complessità-problemi-decisionali"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problema
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Complessità
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Riferimento
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $VER_{preferred}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{coNP}$
+\end_inset
+
+-complete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dimopoulos:1996:GTS:241025.241036"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $CA_{preferred}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{NP}$
+\end_inset
+
+-complete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dimopoulos:1996:GTS:241025.241036"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $SA_{preferred}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\prod_{2}^{\mathbf{P}}$
+\end_inset
+
+-complete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dunne:2002:CFA:604163.604172"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NE_{preferred}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{NP}$
+\end_inset
+
+-complete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dimopoulos:1996:GTS:241025.241036"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $CA_{stable}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{NP}$
+\end_inset
+
+-complete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dimopoulos:1996:GTS:241025.241036"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $SA_{stable}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{coNP}$
+\end_inset
+
+-complete/
+\begin_inset Formula $\mathbf{D^{P}}$
+\end_inset
+
+-complete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DunneWooldridge2009"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $EX_{stable}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{NP}$
+\end_inset
+
+-complete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dimopoulos:1996:GTS:241025.241036,Garey:1990:CIG:574848,Creignou95theclass"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Complessità-problemi-decisionali"
+
+\end_inset
+
+Complessità problemi decisionali intrattabili
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La complessità nel caso di probabilistic argumentation framework, in molti
+ di questi casi diventano 
+\begin_inset Formula $\mathbf{FP}^{\#P}$
+\end_inset
+
+-complete o 
+\begin_inset Formula $\mathbf{FP}^{\#NP}$
+\end_inset
+
+-complete.
+ Come vedremo in seguito, un risultato molto importante è che calcolare
+ la probabilità 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $P_{admissible}\left(S\right)$
+\end_inset
+
+ è un problema che sta in 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Altri tipi di argumentation framework e semantiche
+\end_layout
+
+\begin_layout Subsection
+Semantiche labelling-based
+\end_layout
+
+\begin_layout Standard
+Oltre all'approccio extension-based discusso finora, è stato proposto nella
+ letteratura della teoria dell'argomentazione anche l'approccio 
+\emph on
+labelling-based
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Caminada:2007:ACS:1462205.1462232,Caminada:2006:IRA:2090934.2090947"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nell'approccio labelling-based, la semantica definisce come derivare da
+ un argumentation framework un insieme di 
+\emph on
+labellings
+\emph default
+, dove un labelling 
+\begin_inset Formula $L$
+\end_inset
+
+ è la relazione di assegnamento ad ogni argomento 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+ di una label appartenente ad un insieme di label predefinito 
+\begin_inset Formula $\mathbb{L}$
+\end_inset
+
+.
+ Questo insieme predefinito di label, corrisponde a tutti i possibili stati
+ alternativi di un argomento, nel contesto di un singolo labelling.
+\end_layout
+
+\begin_layout Standard
+Più formalmente:
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ e un insieme di label 
+\begin_inset Formula $\mathbb{L}$
+\end_inset
+
+, un labelling per 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ è un mapping 
+\begin_inset Formula $L:Arg\rightarrow\mathbb{L}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A differenza delle semantiche extension-based, l'obiettivo non è cercare
+ un insieme di argomenti che soddisfano dei criteri, ma ricercare un labelling
+ per 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ che abbia determinati criteri.
+\end_layout
+
+\begin_layout Definition
+Dato un insieme di argomenti 
+\begin_inset Formula $Arg$
+\end_inset
+
+ e un insieme di label 
+\begin_inset Formula $\mathbb{L}$
+\end_inset
+
+, l'insieme di tutti i possibili labelling viene espresso come 
+\begin_inset Formula $\mathfrak{L}\left(Arg,\mathbb{L}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Questa definizione prescinde dall'AAF e dai defeat, poiché si tratta di
+ tutti i possibili mapping per un insieme di argomenti senza tenere conto
+ della semantica.
+ Questa definizione è utile per descrivere in maniera compatta l'insieme
+ dei labelling per un AAF rispetto ad una semantica 
+\begin_inset Formula $\mathfrak{S}$
+\end_inset
+
+ come di seguito:
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, un insieme di label 
+\begin_inset Formula $\mathbb{L}$
+\end_inset
+
+, e una semantica 
+\begin_inset Formula $\mathfrak{S}$
+\end_inset
+
+, l'insieme dei labelling prescritti da 
+\begin_inset Formula $\mathfrak{S}$
+\end_inset
+
+ viene espresso come 
+\begin_inset Formula $\mathfrak{L_{S}}\left(\mathcal{F}\right)\subseteq\mathfrak{L}\left(Arg,\mathbb{L}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In questo caso, banalmente, una semantica potrebbe (e deve) tenere in consideraz
+ione anche i defeat per determinare i labelling di un AAF, quindi 
+\begin_inset Formula $\mathfrak{L_{S}}$
+\end_inset
+
+ dipende anche da 
+\begin_inset Formula $Def$
+\end_inset
+
+ e non solo da 
+\begin_inset Formula $Arg$
+\end_inset
+
+.
+ In 
+\begin_inset Formula $\mathfrak{L_{S}}$
+\end_inset
+
+ viene per semplicità omesso l'insieme di label 
+\begin_inset Formula $\mathbb{L}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Come per le semantiche extension-based, anche per le labelling-based esiste
+ il concetto di 
+\emph on
+justification state
+\emph default
+ per gli argomenti.
+ Il concetto di justification state per una semantica labelling-based viene
+ definito in termini delle label assegnate ad un argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ rispetto ai vari elementi di 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mathfrak{L_{S}}\left(\mathcal{F}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Riferendoci al semplice AAF in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Argomenti-mutuamente-attaccati"
+
+\end_inset
+
+, possiamo costruire degli esempi per evidenziare le differenze tra le semantich
+e extension-based e labelling-based.
+ Sia 
+\begin_inset Formula $ext1$
+\end_inset
+
+ una ipotetica semantica extension-based le quali estensioni sono identificate
+ dagli insiemi conflict-free massimali, i quali argomenti rispondono agli
+ attacchi che ricevono.
+ Le estensioni di 
+\begin_inset Formula $ext1$
+\end_inset
+
+ sono intuitivamente 
+\begin_inset Formula $\mathcal{E}_{ext1}\left(\mathcal{F}\right)=\left\{ \left\{ a\right\} ,\left\{ a\right\} \right\} $
+\end_inset
+
+.
+ Sia 
+\begin_inset Formula $ext2$
+\end_inset
+
+ un'altra ipotetica semantica extension-based le quali estensioni sono identific
+ate dargli argomenti che non sono attaccati (ovvero gli argomenti initial,
+ 
+\begin_inset Formula $\mathcal{IN}$
+\end_inset
+
+).
+ Siccome nell'AAF in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Argomenti-mutuamente-attaccati"
+
+\end_inset
+
+ nessun argomento soddisfa questo requisito, otteniamo 
+\begin_inset Formula $\mathcal{E}_{ext2}\left(\mathcal{F}\right)=\left\{ \emptyset\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename mutual.png
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Argomenti-mutuamente-attaccati"
+
+\end_inset
+
+Argomenti mutuamente attaccati
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Adesso, vediamo l'aspetto di questi due principi nelle extension-based nel
+ caso labelling-based, usando le label 
+\begin_inset Formula $\mathbb{L}=\left\{ in,out,undecided\right\} $
+\end_inset
+
+.
+ Sia 
+\begin_inset Formula $lab1$
+\end_inset
+
+ una ipotetica semantica labelling-based che consiste nell'assegnare la
+ label 
+\begin_inset Formula $in$
+\end_inset
+
+ agli argomenti degli insiemi conflict-free massimali che rispondono agli
+ attacchi che ricevono, e la label 
+\begin_inset Formula $out$
+\end_inset
+
+ agli argomenti attaccati dagli argomenti labellati 
+\begin_inset Formula $in$
+\end_inset
+
+.
+ I labelling possibili per l'AAF in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Argomenti-mutuamente-attaccati"
+
+\end_inset
+
+ sono 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mathfrak{L}_{lab1}\left(\mathcal{F}\right)=\left\{ \left\{ \left(a,in\right),\left(b,out\right)\right\} ,\left\{ \left(a,out\right),\left(b,in\right)\right\} \right\} $
+\end_inset
+
+.
+ L'altra ipotetica semantica 
+\begin_inset Formula $lab2$
+\end_inset
+
+ invece assegna la label 
+\begin_inset Formula $in$
+\end_inset
+
+ solo agli argomenti non attaccati, e la label 
+\begin_inset Formula $out$
+\end_inset
+
+ agli argomenti attaccati dalla label 
+\begin_inset Formula $in$
+\end_inset
+
+, e la label 
+\begin_inset Formula $undecided$
+\end_inset
+
+ gli argomenti rimanenti.
+ Questa semantica ha solo un labelling per l'AAF 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Argomenti-mutuamente-attaccati"
+
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+: 
+\begin_inset Formula $\mathfrak{L}_{lab2}\left(\mathcal{F}\right)=\left\{ \left\{ \left(a,undecided\right),\left(b,undecided\right)\right\} \right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Le estensioni delle semantiche 
+\begin_inset Formula $ext1,ext2$
+\end_inset
+
+ mostrano chiaramente un'analogia con i labelling delle semantiche 
+\begin_inset Formula $lab1,lab2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Bisogna sottolineare che, come per le semantiche extension-based, può accadere
+ per una semantica labelling-based che 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mathfrak{L_{S}}\left(\mathcal{F}\right)=\emptyset$
+\end_inset
+
+, ovvero che la semantica 
+\begin_inset Formula $\mathfrak{S}$
+\end_inset
+
+ non è definita per 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+.
+ Si noti che non avere estensioni o labelling è diverso dall'avere una unica
+ estensione o labelling vuota 
+\begin_inset Formula $\mathcal{E}_{\mathfrak{S}}\left(\mathcal{F}\right)=\left\{ \emptyset\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Dato un AAF, una semantica extension-based o labelling-based che non ammette
+ estensioni o labelling è detta 
+\emph on
+undefined.
+ 
+\emph default
+Se
+\emph on
+ 
+\emph default
+ammette una sola estensione o labelling è detta 
+\emph on
+single-status
+\emph default
+.
+ Se ammette più estensioni o labelling è detta 
+\emph on
+multiple-status
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Per quanto riguarda la differenza di espressività tra semantiche expression-base
+d e labelling-based, si può immediatamente concludere che una qualsiasi
+ semantica ad estensioni può essere rappresentata con labelling, quando
+ si adottano due label (ad esempio 
+\begin_inset Formula $\mathbb{L}=\left\{ in,out\right\} $
+\end_inset
+
+) che corrispondono all'appartenenza o meno di un argomento ad una estensione.
+ In generale un labelling arbitrario non può essere formulato in termini
+ di estensioni.
+\end_layout
+
+\begin_layout Standard
+Nella letteratura comunque, nella maggior parte dei casi, si usa la label
+ 
+\begin_inset Formula $in$
+\end_inset
+
+ per indicare l'appartenenza degli argomenti ad un insieme, quindi in molti
+ casi si possono trovare formulazioni in termini di estensioni di molte
+ semantiche labelling-based.
+ Per questo prevalgono le semantiche extension-based per la loro semplicità
+ di utilizzo ed interpretazione.
+\end_layout
+
+\begin_layout Subsection
+Argument games
+\end_layout
+
+\begin_layout Standard
+Negli argument framework visti precedentemente, il ragionaomento è stato
+ fatto su un una struttura a grafo, su un insieme di argomenti e sulle estension
+i o labellings.
+ Un altro modo naturale di decidere se un argomento è giustificato, è pensare
+ che ci sia un propositore (PRO) che propone un argomento, ed un oppositore
+ (OPP) che si oppone all'argomento proposto.
+\end_layout
+
+\begin_layout Standard
+L'obiettivo del propositore è quello di trovare il modo di giustificare
+ l'argomento proposto.
+ L'obiettivo dell'oppositore invece è quello di opporsi alla giustificazione
+ dell'argomento proposto.
+\end_layout
+
+\begin_layout Standard
+Supponiamo che in un dato AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ l'argomento 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+ venga proposto dal propositore.
+ L'oppositore usa 
+\series bold
+tutti i modi 
+\series default
+per attaccare l'argomento del propositore, con gli arogmenti 
+\begin_inset Formula $b\in Arg$
+\end_inset
+
+ tali che 
+\begin_inset Formula $\left\langle b,a\right\rangle \in Def$
+\end_inset
+
+.
+ Se non esiste alcuno di questi argomenti, allora l'argomento iniziale 
+\begin_inset Formula $a$
+\end_inset
+
+ è giustificato.
+ Se almeno un argomento di attacco esiste, allora il propositore deve contrattac
+care.
+\end_layout
+
+\begin_layout Standard
+A differenza dell'oppositore, il propositore contrattacca 
+\series bold
+con un solo 
+\series default
+argomento 
+\begin_inset Formula $c\in Arg$
+\end_inset
+
+ tale che 
+\begin_inset Formula $\left\langle c,b\right\rangle \in Def$
+\end_inset
+
+.
+ Se non esiste, allora l'argomento proposto 
+\begin_inset Formula $a$
+\end_inset
+
+ non è giustificato.
+ Altrimenti si ripete la procedura finché non si arriva ad uno stato finale
+ per il quale si riesce a decidere il justification state dell'argomento
+ proposto.
+\end_layout
+
+\begin_layout Standard
+Le sequenze di attacco delle due controparti vengono denominate 
+\emph on
+dispute
+\emph default
+.
+ Una disputa che inizia con un argomento proposto dalla parte 
+\begin_inset Formula $P$
+\end_inset
+
+, e la controparte 
+\begin_inset Formula $\overline{P}$
+\end_inset
+
+ non riesce a contrattaccare, allora la disputa è vinta da 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ Se una disputa con argomento iniziale 
+\begin_inset Formula $x$
+\end_inset
+
+ è vinta dal propositore, allora la disputa viene chiamata 
+\emph on
+linea difensiva per x
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+La possibilità di contrattaccare, o di effettuare una mossa, da parte di
+ un giocatore (propositore o oppositore), deve sottostare a delle regole.
+ Le regole vengono definite dalla semantica di riferimento, per la quale
+ si vuole decidere il justification state di un argomento.
+ Se una mossa per un giocatore è illegale, allora si può fare il backtrack
+ per scegliere un'altra linea difensiva.
+\end_layout
+
+\begin_layout Standard
+Questo processo di attaccare, contrattaccare e fare backtrack sulle mosse
+ illegali, genera un 
+\emph on
+dispute tree
+\emph default
+, dove ogni sequenza di azioni dall'argomento iniziale fino allo stato finale
+ è una disputa.
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ e un argomento iniziale 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+, il 
+\emph on
+dispute tree
+\emph default
+ indotto da 
+\begin_inset Formula $a$
+\end_inset
+
+ su 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ è un albero 
+\begin_inset Formula $T$
+\end_inset
+
+ di argomenti, tale che la radice di 
+\begin_inset Formula $T$
+\end_inset
+
+ coincide con 
+\begin_inset Formula $a$
+\end_inset
+
+, e 
+\begin_inset Formula $\forall x,y\in Arg$
+\end_inset
+
+ allora 
+\begin_inset Formula $x$
+\end_inset
+
+ è un nodo figlio di 
+\begin_inset Formula $y$
+\end_inset
+
+ se e solo se 
+\begin_inset Formula $\left\langle x,y\right\rangle \in Def$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Affinché il propositore vinca una disputa, è necessario cheuna disputa termini
+ con un argomento mosso dal propositore.
+ In altre parole, la disputa dev'essere di lunghezza pari affinché sia vinta
+ dal propositore.
+\end_layout
+
+\begin_layout Standard
+È facilmente intuibile che da questo processo di generazione dell'albero,
+ si potrebbe verificare una disputa di lunghezza infinita causata da cicli
+ nell'AAF, come mostrato in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Esempio-di-dispute"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename game1.png
+	width 20col%
+	height 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+AAF con cicli
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename game2.png
+	width 40col%
+	height 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Albero dispute infinito
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename game3.png
+	width 25col%
+	height 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Dispute-tree-finito"
+
+\end_inset
+
+Albero dispute finito limitando i contrattacchi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Esempio-di-dispute"
+
+\end_inset
+
+Esempio di dispute tree con cicli
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo caso non si arriverebbe ad una conclusione per l'argomento proposto.
+ Per risolvere questo problema, un approccio è vincolare le possibili mosse
+ che propositore e oppositore possono effettuare.
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Dispute-tree-finito"
+
+\end_inset
+
+ ad esempio si evitano i cicli decidendo di limitare il numero di attacchi
+ dello stesso tipo da parte dell'oppositore ad una sola volta in una disputa.
+ Ovvero, 
+\begin_inset Formula $\left\langle b,a\right\rangle \in Def$
+\end_inset
+
+ appare più volte nell'albero, ma appare una sola volta nella disputa a
+ sinistra, e una sola volta nella disputa a destra.
+\end_layout
+
+\begin_layout Standard
+Per codificare le mosse legali per una semantica, si definisce la seguente
+ funzione:
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, il dispute tree 
+\begin_inset Formula $T$
+\end_inset
+
+ indotto da un argomento 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+ e l'insieme di tutte le dispute 
+\begin_inset Formula $D_{T}$
+\end_inset
+
+ di 
+\begin_inset Formula $T$
+\end_inset
+
+, si definisce 
+\emph on
+legal move function
+\emph default
+ la funzione 
+\begin_inset Formula $\phi:D_{T}\rightarrow2^{Arg}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La funzione 
+\begin_inset Formula $\phi$
+\end_inset
+
+ per una certa semantica definisce, data una disputa, i possibili argomenti
+ che possono essere mossi.
+ Questa funzione viene usata per fare il pruning dell'albero 
+\begin_inset Formula $T$
+\end_inset
+
+ rispetto alle mosse legali.
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ e il dispute tree 
+\begin_inset Formula $T$
+\end_inset
+
+ indotto da un argomento 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+, si definisce 
+\begin_inset Formula $\phi$
+\end_inset
+
+
+\emph on
+-tree
+\emph default
+ indotto da 
+\begin_inset Formula $a$
+\end_inset
+
+ il risultato del pruning dell'albero 
+\begin_inset Formula $T$
+\end_inset
+
+ che contiene solo le mosse legali rispetto alla funzione 
+\begin_inset Formula $\phi$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nel contesto dei giochi, si usa il concetto di 
+\emph on
+strategia vincente
+\emph default
+ per definire una sequenza di azioni che porta un giocatore a vincere il
+ gioco.
+ Nel caso di argument games, se il propositore muove gli argomenti secondo
+ la strategia vincente, detta 
+\begin_inset Formula $\phi$
+\end_inset
+
+
+\emph on
+-winning
+\emph default
+ 
+\emph on
+strategy
+\emph default
+, allora il propositore ha la garanzia di vincere.
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ e il 
+\begin_inset Formula $\phi$
+\end_inset
+
+-tree 
+\begin_inset Formula $T$
+\end_inset
+
+ indotto da un argomento 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+, allora il sotto albero 
+\begin_inset Formula $T'$
+\end_inset
+
+ si definisce 
+\begin_inset Formula $\phi$
+\end_inset
+
+
+\emph on
+-winning
+\emph default
+ 
+\emph on
+strategy 
+\emph default
+se e solo se entrambe le seguenti condizioni sono soddisfatte:
+\end_layout
+
+\begin_layout Itemize
+L'insieme 
+\begin_inset Formula $D_{T'}$
+\end_inset
+
+ di tutte le dispute di 
+\begin_inset Formula $T'$
+\end_inset
+
+ è un insieme finito non vuoto tale che 
+\begin_inset Formula $\forall d\in D_{T'}$
+\end_inset
+
+, la disputa 
+\begin_inset Formula $d$
+\end_inset
+
+ è finita ed è vinta dal propositore.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\forall d\in D_{T'}$
+\end_inset
+
+, 
+\begin_inset Formula $\forall d'$
+\end_inset
+
+ sotto-disputa di 
+\begin_inset Formula $d$
+\end_inset
+
+ con ultima mossa 
+\begin_inset Formula $x\in Arg$
+\end_inset
+
+ giocata da PRO, allora 
+\begin_inset Formula $\forall y\in Arg$
+\end_inset
+
+ tale che 
+\begin_inset Formula $\left\langle y,x\right\rangle \in Def$
+\end_inset
+
+ e 
+\begin_inset Formula $y\in\phi\left(d'\right)$
+\end_inset
+
+, 
+\begin_inset Formula $\exists d^{\prime\prime}\in D_{T'}$
+\end_inset
+
+ tale che 
+\begin_inset Formula $d'-y_{OPP}$
+\end_inset
+
+ è una una sotto-disputa di 
+\begin_inset Formula $d'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le restrizioni affinché questo avvenga, si ricorda, dipendono dalle mosse
+ legali dettate dalla funzione 
+\begin_inset Formula $\phi$
+\end_inset
+
+.
+ Nell'esempio in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Dispute-tree-finito"
+
+\end_inset
+
+, la funzione 
+\begin_inset Formula $\phi$
+\end_inset
+
+ vincola il giocatore OPP dal ripetere gli aromenti in una stessa disputa.
+ Sia 
+\begin_inset Formula $D_{T_{1}}=\left\{ d_{1}=a1-b2-a3-c5-c6\right\} $
+\end_inset
+
+ sia 
+\begin_inset Formula $D_{T_{2}}=\left\{ d_{2}=a1-c7-a8-b10-a11\right\} $
+\end_inset
+
+ sono strategie vincenti.
+ Nel caso di 
+\begin_inset Formula $D_{T_{1}}$
+\end_inset
+
+si consideri la sotto-disputa 
+\begin_inset Formula $d_{1}'=a1-b2-a3$
+\end_inset
+
+ di 
+\begin_inset Formula $d_{1}$
+\end_inset
+
+.
+ Il giocatore OPP può muovere legalmente 
+\begin_inset Formula $c$
+\end_inset
+
+ contro 
+\begin_inset Formula $a3$
+\end_inset
+
+, ma esiste una disputa 
+\begin_inset Formula $D_{T_{1}}$
+\end_inset
+
+ che estende 
+\begin_inset Formula $d_{1}'$
+\end_inset
+
+ (
+\begin_inset Formula $d_{1}$
+\end_inset
+
+) nella quale PRO contrattacca la mossa 
+\begin_inset Formula $c$
+\end_inset
+
+ di OPP.
+\end_layout
+
+\begin_layout Standard
+Si può legare il concetto di argument games alle nozioni tradizionali di
+ estensione, come ad esempio la proprietà di ammissibilità.
+ Una estensione 
+\begin_inset Formula $a$
+\end_inset
+
+ è ammissibile se e solo se esiste una 
+\begin_inset Formula $\phi$
+\end_inset
+
+
+\emph on
+-winning
+\emph default
+ 
+\emph on
+strategy 
+\emph default
+per
+\emph on
+ 
+\begin_inset Formula $a$
+\end_inset
+
+ 
+\emph default
+rispetto al
+\emph on
+ 
+\emph default
+
+\begin_inset Formula $\phi$
+\end_inset
+
+-tree indotto da 
+\begin_inset Formula $a$
+\end_inset
+
+, dove gli argomenti mossi da PRO nella strategia sono conflict-free.
+\end_layout
+
+\begin_layout Chapter
+Approssimazione probabilità in probabilistic argumentation frameworks
+\end_layout
+
+\begin_layout Section
+Simulazione Monte Carlo
 \end_layout
 
 \begin_layout Standard
@@ -4686,10 +7954,6 @@ Algoritmo per approssimare
 \end_layout
 
 \begin_layout Section
-Altri tipi di Argumentation Framework
-\end_layout
-
-\begin_layout Section
 Casi trattabili di 
 \begin_inset Formula $PrAF$
 \end_inset
@@ -4930,7 +8194,7 @@ L'argomento
 \end_layout
 
 \begin_layout Section
-Ottimizzazione di casi difficili
+Ottimizzazione di casi intrattabili
 \end_layout
 
 \begin_layout Subsection
@@ -6029,7 +9293,7 @@ Fissato
 \end_layout
 
 \begin_layout Chapter
-Valutazione casi intrattabili di probabilistic argumentation frameworks
+Sperimentazione delle ottimizzazioni per probabilistic argumentation frameworks
 \end_layout
 
 \begin_layout Section
@@ -6933,6 +10197,7 @@ Alcune istanze usate per il testing sono illustrate in FIX.
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -6941,11 +10206,12 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename instance10.png
+	width 30col%
 
 \end_inset
 
@@ -6986,6 +10252,7 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename instance15.png
+	width 60col%
 
 \end_inset
 
@@ -7018,6 +10285,10 @@ status collapsed
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -7026,6 +10297,7 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename instance20.png
+	width 80col%
 
 \end_inset
 
@@ -7382,8 +10654,11 @@ reference "fig:CompleteRelative005"
 \end_layout
 
 \begin_layout Standard
-Ciò non è vero per la semantica grounded, che corrisponde ad un problema
- di decisione più difficile di quella complete, come illustrato in 
+Per quanto riguarda la semantica grounded, possiamo osservare lo stesso
+ fenomeno.
+ Poiché decidere se un insieme di argomenti è grounded ha complessità polinomial
+e nel numero di argomenti e defeat, il tempo CPU è strettamente correlato
+ al numero di iterazioni, come illustrato in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:Grounded01"
@@ -7406,45 +10681,6 @@ reference "fig:Grounded005"
 \end_inset
 
 .
- D'altra parte possiamo notare un altro fenomeno interessante, il tempo
- CPU per la semantica grounded è strettamente correlato al numero di successi
- rispetto all'algoritmo naive.
- Uno dei motivi è che, in questi esperimenti, risulta 
-\begin_inset Formula $P_{grounded}\left(S\right)\cong P_{complete}\left(S\right)$
-\end_inset
-
-.
- Per 
-\begin_inset Formula $\left|A\right|=10$
-\end_inset
-
- abbiamo 
-\begin_inset Formula $P_{complete\mid CF}\left(S\right)\cong0.79$
-\end_inset
-
- e 
-\begin_inset Formula $P_{grounded\mid CF}\left(S\right)\cong0.74$
-\end_inset
-
-, mentre per 
-\begin_inset Formula $\left|A\right|=20$
-\end_inset
-
- abbiamo 
-\begin_inset Formula $P_{complete\mid CF}\left(S\right)\cong0.41$
-\end_inset
-
- e 
-\begin_inset Formula $P_{grounded\mid CF}\left(S\right)\cong0.39$
-\end_inset
-
-.
- Quindi l'insieme 
-\begin_inset Formula $S$
-\end_inset
-
- è improbabile che sia complete ma non grounded in un generico AAF indotto
- dal PrAF.
 \end_layout
 
 \begin_layout Standard
@@ -7701,16 +10937,88 @@ reference "fig:Preferred005"
 \end_inset
 
 .
- Infatti, 
-\begin_inset Formula $P_{admissible}\left(S\right)$
+ Infatti, il problema decisionale nel caso di semantica preferred ha complessità
+ 
+\begin_inset Formula $coNP$
 \end_inset
 
- e 
-\begin_inset Formula $P_{preferred\mid CF}\left(S\right)$
+, e non sussiste più il legame stretto tra numero di iterazioni a tempo
+ CPU.
+ L'elaborazione più costosa (esponenziale nel numero di argomenti) dipende
+ da:
+\end_layout
+
+\begin_layout Itemize
+Il numero di successi per i quali un insieme 
+\begin_inset Formula $S$
 \end_inset
 
- sono valori molto diversi.
- Per 
+ è effettivamente preferred, ovvero 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $N\cdot P_{preferred\mid\left(admissibile\mid CF\right)}\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Il numero di fallimenti per i quali un insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ non è preferred ma è ammissibile, ovvero 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P_{\neg preferred\mid\left(admissible\mid CF\right)}\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Invece i casi 
+\begin_inset Formula $preferred\mid\left(\neg admissible\mid CF\right)$
+\end_inset
+
+ sono banalmente decidibili in tempo polinomiale.
+\end_layout
+
+\begin_layout Standard
+Teoricamente, se 
+\begin_inset Formula $S$
+\end_inset
+
+ fosse preferred quando è anche ammissibile, ovvero 
+\begin_inset Formula $P_{preferred\mid CF}\left(S\right)\cong P_{admissible\mid CF}$
+\end_inset
+
+ allora, il numero di successi 
+\begin_inset Formula $X$
+\end_inset
+
+ sarebbe una buona stima per l'effettivo tempo CPU.
+ Nei nostri test però, per 
 \begin_inset Formula $\left|A\right|=10$
 \end_inset
 
@@ -7727,7 +11035,7 @@ reference "fig:Preferred005"
 \end_inset
 
  abbiamo 
-\begin_inset Formula $P_{admissible\mid}\left(S\right)\cong0.91$
+\begin_inset Formula $P_{admissible\mid CF}\left(S\right)\cong0.91$
 \end_inset
 
  e 
@@ -7739,8 +11047,8 @@ reference "fig:Preferred005"
 \begin_inset Formula $S$
 \end_inset
 
- sia ammissibile ma non preferred in un generico AAF indotto dal PrAF, a
- differenza del caso grounded.
+ sia ammissibile ma non preferred in un generico AAF indotto dal PrAF, per
+ cui questo fenomeno non è molto apprezzabile.
 \end_layout
 
 \begin_layout Standard
@@ -7857,7 +11165,7 @@ Confronto per la semantica preferred con
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -7867,7 +11175,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -7901,7 +11209,7 @@ Tempo e numero iterazioni
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -7966,14 +11274,872 @@ Come mostrato nei grafici, il nuovo algoritmo basato sull'idea di usare
  la probabilità condizionale conflict-free, che è possibile calcolare in
  tempo polinomiale, risulta essere in generale più efficiente dell'algoritmo
  naive.
- In particolare, ipotizzando che per la semantica complete il tempo CPU
- sia strettamente legato al numero di iterazioni, segue che il nuovo algoritmo
- è almeno 
+ In particolare, ipotizzando che per la semantica complete e grounded il
+ tempo CPU sia strettamente legato al numero di iterazioni, segue che il
+ nuovo algoritmo è almeno 
 \begin_inset Formula $1-P_{CF}\left(S\right)$
 \end_inset
 
- in percentuale più efficiente dell'algoritmo naive in percentuale, come
- ci aspettavamo dai risultati teorici.
+ in percentuale più efficiente dell'algoritmo naive, come ci aspettavamo
+ dai risultati teorici.
+\end_layout
+
+\begin_layout Standard
+Mostriamo infine come il campionamento dello spazio degli AAF conflict-free
+ non sia biased, confrontando l'errore relativo dei due approcci con il
+ valore di probabilità di una simulazione Monte Carlo naive con errore 
+\begin_inset Formula $\epsilon=0.001$
+\end_inset
+
+.
+ Ipotizziamo quindi che la probabilità restituita da questa simulazione
+ sia quella vera, al fine di calcolare l'errore di approssimazione.
+ Il test viene eseguito per la semantica grounded in FIX e preferred in
+ FIX con errore 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+L'errore relativo viene misurato come segue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\epsilon_{r}=\frac{\left|\hat{P}_{\mathfrak{S}}\left(S\right)-P_{\mathfrak{S}}\left(S\right)\right|}{P_{\mathfrak{S}}\left(S\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dove 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ è la probabilità ipotizzata vera, restituita dall'algoritmo Monte Carlo
+ naive con errore 
+\begin_inset Formula $\epsilon=0.001$
+\end_inset
+
+, mentre 
+\begin_inset Formula $\hat{P}_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ è la probabilità stimata dai due algoritmi 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename grounded_bias_01.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Semantica preferred
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename preferred_bias_01.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Semantica preferred
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Confronto errori relativi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Architettura e opzioni del simulatore per sviluppi futuri
+\end_layout
+
+\begin_layout Standard
+L'architettura del simulatore si componene di 5 entità:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Structures
+\series default
+: contiene
+\series bold
+ 
+\series default
+le strutture dati necessarie per la rappresentazione degli abstract argumentatio
+n framework, dei probabilistic argumentation frameworks e dei set di argomenti
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Montecarlo
+\series default
+: contiene gli algoritmi per la simulazione Monte Carlo su probabilistic
+ argumentation frameworks, nel caso di iterazioni fissate, tempo CPU fissato
+ e intervallo di confidenza fissato
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Semantics
+\series default
+: contiene le funzioni di valutazione semantica da usare nella simulazione
+ Monte Carlo
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Generator
+\series default
+: contiene strutture dati e algoritmi per la generazione di probabilistic
+ argumentation frameworks e set di argomenti 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Instance
+\series default
+: descrive una istanza 
+\begin_inset Formula $\left\langle PrAF,S\right\rangle $
+\end_inset
+
+ in maniera compatta per la serializzazione in vari formati testuali 
+\end_layout
+
+\begin_layout Standard
+Le relazioni di dipendenza tra i vari componenti sono illustratate in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Componenti-del-simulatore"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename simcomponents.png
+	width 90col%
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Componenti-del-simulatore"
+
+\end_inset
+
+Componenti del simulatore
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il componente Montecarlo invoca il componente Semantics proprio come, nella
+ caratterizzazione teorica, viene usata la funzione di valutazione semantica
+ per contare gli AAF indotti tali per cui l'insieme di argomenti 
+\begin_inset Formula $S$
+\end_inset
+
+ risulta essere estensione.
+\end_layout
+
+\begin_layout Standard
+Il generatore utilizza ovviamente il motore Montecarlo per calcolare le
+ probabilità e decidere quando una istanza 
+\begin_inset Formula $\left\langle PrAF,S\right\rangle $
+\end_inset
+
+ è migliore di un'altra.
+ Inoltre usa la componente Instance per serializzare  l'istanza ogni volta
+ che ne trova una migliore, facendo il flush su disco.
+ In questo modo il processo di generazione può essere interrotto in qualsiasi
+ momento e allo stesso tempo avere a disposizione una istanza da manipolare
+ manualmente.
+\end_layout
+
+\begin_layout Standard
+Tutti i componenti, banalmente, fanno uso delle strutture dati per rappresentare
+ PrAF e AAF, (PAF e DAF rispettivamente in Java).
+\end_layout
+
+\begin_layout Subsection
+Estensione con nuove semantiche e nuovi metodi Monte Carlo
+\end_layout
+
+\begin_layout Standard
+Le interfacce dei componenti descritti precedentemente sono molto semplici
+ nonché abbastanza flessibili.
+ È possibile con poco sforzo introdurre nuove semantiche o nuovi metodi
+ Monte Carlo, e le nuove classi saranno subito a disposizione per la simulazione
+ e il confronto tra algoritmi.
+\end_layout
+
+\begin_layout Paragraph*
+Interfaccia Montecarlo.
+\end_layout
+
+\begin_layout Standard
+I tipi di metodi Monte Carlo implementati sono i seguenti:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+MontecarloIter
+\series default
+: questo corrisponde al primo algoritmo Monte Carlo visto nel lavoro di
+ tesi, ovvero esegue la simulazione per un numero fissato di volte
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+MontecarloError
+\series default
+: questo invece è il metodo che esegue la simulazione rispettando un certo
+ intervallo di confidenza
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+MontecarloTime
+\series default
+: come MontecarloIter ma invece di fissare il numero di iterazioni, viene
+ fissato il tempo in millisecondi
+\end_layout
+
+\begin_layout Standard
+Per implementare una nuova modalità di simulazione Monte Carlo, si può semplicem
+ente implementare il seguente metodo:
+\end_layout
+
+\begin_layout LyX-Code
+abstract Rational 
+\series bold
+run
+\series default
+ (Semantics semantic, PAF paf, ArgSet set);
+\end_layout
+
+\begin_layout Standard
+Il metodo dovrà simulare il processo di approssimazione della distribuzione
+ secondo dei parametri passati al costruttore, dato una certa semantica,
+ un PrAF (che in Java viene denominato PAF), e un insieme di argomenti.
+ Il risultato sarà un Rational, che non è altro che il rapporto tra il numero
+ di successi e il numero di tentativi.
+\end_layout
+
+\begin_layout Paragraph*
+Interfaccia Semantics.
+\end_layout
+
+\begin_layout Standard
+Con Semantics è possibile aggiungere nuove semantiche.
+ I metodi da implementare sono i seguenti:
+\end_layout
+
+\begin_layout LyX-Code
+abstract boolean 
+\series bold
+evaluate
+\series default
+ (DAF daf, ArgSet set);
+\end_layout
+
+\begin_layout LyX-Code
+DAF 
+\series bold
+montecarloSample
+\series default
+ (PAF paf, ArgSet set);
+\end_layout
+
+\begin_layout LyX-Code
+double 
+\series bold
+conditional
+\series default
+ (PAF paf, ArgSet set);
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\emph on
+evaluate()
+\emph default
+ corrisponde alla funzione di valutazione semantica.
+ Dato un AAF (DAF in Java), decide se il dato insieme di argomenti soddisfa
+ i criteri della semantica implementata.
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\emph on
+montecarloSample()
+\emph default
+ induce in maniera random e non biased un AAF a partire da un PrAF.
+ Di default, il campionamento fatto è quello dell'algoritmo naive.
+\end_layout
+
+\begin_layout Standard
+Il metodo 
+\emph on
+conditional()
+\emph default
+ calcola la probabilità condizionata, che di default è 1 per l'algoritmo
+ naive.
+\end_layout
+
+\begin_layout Standard
+Ad esempio, CompleteSemantics estende Semantics facendo l'ovverride solo
+ del metodo evaluate() per valutare se l'insieme di argomenti è una estensione
+ complete del dato AAF.
+\end_layout
+
+\begin_layout Standard
+CompleteGivenConflictFreeSemantics invece è il nuovo algoritmo proposto:
+\end_layout
+
+\begin_layout Itemize
+Fa l'override di montecarloSample in modo da generare solo AAF tali che
+ l'insieme di argomenti sia conflict-free.
+\end_layout
+
+\begin_layout Itemize
+Fa l'override di conditional restituendo 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In questo modo, si separa efficacemente l'interfaccia Monte Carlo dalla
+ semantica, e quindi è possibile implementare nuove semantiche in maniera
+ indipendente.
+\end_layout
+
+\begin_layout Standard
+È importante notare che, la classe Montecarlo restituisce 
+\begin_inset Formula $X/N$
+\end_inset
+
+ (successi su tentativi) senza considerare la probabilità condizionata.
+ La probabilità condizionata viene usata solo nel processo iterativo per
+ stimare il numero di tentativi limite.
+\end_layout
+
+\begin_layout Standard
+Ad esempio, nel caso di CompleteGivenConflictFreeSemantics, viene restituita
+ la stima di 
+\begin_inset Formula $P_{complete\mid CF}\left(S\right)$
+\end_inset
+
+.
+ È compito poi del caller moltiplicare questa quantità per 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+ in modo da ottenere 
+\begin_inset Formula $P_{complete}\left(S\right)$
+\end_inset
+
+.
+ Questo perché è utile conoscere il numero di successi e tentativi ai fini
+ di ottenere statistiche più ricche per gli algoritmi.
+\end_layout
+
+\begin_layout Standard
+La configurazione del simulatore ha la sintassi di un file properties di
+ Java, una sequenza di linee in forma chiave = valore.
+\end_layout
+
+\begin_layout Standard
+Di default, il file di configurazione ha il nome 
+\begin_inset Quotes eld
+\end_inset
+
+paftest.txt
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Questo default può essere cambiato passando il nome del file come primo
+ argomento da linea di comando.
+\end_layout
+
+\begin_layout Standard
+Le modalità di funzionamento del simulatore sono tre:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+compare
+\series default
+: avvia una serie di simulazioni descritte nella configurazione stessa per
+ confrontare due algoritmi.
+ L'output sarà un file .csv per ogni simulazione nella directory 
+\emph on
+csvdir
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+describe
+\series default
+: genera un file instance_descriptions.csv descrivendo le caratteristiche
+ delle istanze usate nelle simulazioni
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+generate
+\series default
+: genera una coppia 
+\begin_inset Formula $\left\langle PrAF,S\right\rangle $
+\end_inset
+
+ in modo da avere 
+\begin_inset Formula $P_{CF}\left(S\right)>0.6$
+\end_inset
+
+ e massimizzare la probabilità della semantica specificata.
+ Questa modalità necessita del binario 
+\emph on
+glpsol
+\emph default
+ per la risoluzione di problemi di programmazione lineare, che si trova
+ nel software GLPK (GNU Linear Programming Toolkit)
+\end_layout
+
+\begin_layout Standard
+Le opzioni relative alle tre modalità vengono specificate con le chiavi
+ compare.
+\emph on
+opzione
+\emph default
+, describe.
+\emph on
+opzione
+\emph default
+ o generate.
+\emph on
+opzione
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Le modalità del simulatore generano dei file di output leggibili e consultabili
+ in due directory:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+csvdir
+\emph default
+: per i file generati con estensione .csv
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+dotdir
+\emph default
+: per i file di tipo .dot, utilizzabili con il software Graphviz per disegnare
+ grafi
+\end_layout
+
+\begin_layout Standard
+Le istanze usate come input per le simulazioni invece sono dei file .txt
+ nella directory 
+\emph on
+inputdir
+\emph default
+.
+ Questi file hanno un formato testuale molto semplice, e rappresentano istanze
+ 
+\begin_inset Formula $\left\langle PrAF,S\right\rangle $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La prima riga di un file istanza.txt contiene i nomi degli argomenti e le
+ probabilità, ad esempio: 
+\begin_inset Quotes eld
+\end_inset
+
+a,0.7 b,0.9 c,0.5
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La seconda riga contiene i defeat, ad esempio: 
+\begin_inset Quotes eld
+\end_inset
+
+a,b,0.1 b,c,0.8
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La terza riga contiene i nomi degli argomenti nel set da verificare, ad
+ esempio: 
+\begin_inset Quotes eld
+\end_inset
+
+a b
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Modalità compare.
+\end_layout
+
+\begin_layout Standard
+Nella chiave 
+\emph on
+compare
+\emph default
+ si fa una lista di simulazioni da avviare, ad esempio compare = sim1 sim2
+ ...
+ .
+ Ogni simulazione sarà descritta con le chiavi compare.sim1, compare.sim2,
+ ...
+ .
+ monte
+\end_layout
+
+\begin_layout Standard
+Le chiavi possibili per descrivere una simulazione, ad esempio compare.sim,
+ sono le seguenti:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+first
+\emph default
+ e 
+\emph on
+second
+\emph default
+ sono rispettivamente la semantica da usare per il primo e il secondo algoritmo
+ da confrontare.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+mode
+\emph default
+ è la modalità con la quale viene eseguito Monte Carlo per i due algoritmi
+ (es.
+ MontecarloError 1.96 0.001 userà Monte Carlo con livello di confidenza 
+\begin_inset Formula $z_{1-\alpha/2}=1.96$
+\end_inset
+
+ e 
+\begin_inset Formula $\epsilon=0.001$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+exact
+\emph default
+ è la semantica da usare per calcolare il valore 
+\begin_inset Quotes eld
+\end_inset
+
+esatto
+\begin_inset Quotes erd
+\end_inset
+
+ con Monte Carlo, se è null non verrà calcolato.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+exactmode
+\emph default
+ è la modalità con la quale viene calcolato il valore 
+\begin_inset Quotes eld
+\end_inset
+
+esatto
+\begin_inset Quotes erd
+\end_inset
+
+ con Monte Carlo, con lo stesso formato di 
+\emph on
+mode
+\end_layout
+
+\begin_layout Standard
+Il nome della semantica da usare, e la modalità Monte Carlo, sono nomi di
+ classi in Java.
+ Gli argomenti per le modalità vengono direttamente passati al costruttore
+ Java, e devono essere dei numeri.
+\end_layout
+
+\begin_layout Paragraph*
+Modalità describe e generate.
+\end_layout
+
+\begin_layout Standard
+Le chiavi 
+\emph on
+describe
+\emph default
+.
+\emph on
+from
+\emph default
+ e 
+\emph on
+describe
+\emph default
+.
+\emph on
+to
+\emph default
+ indicano il range in termini di numero di argomenti del PrAF delle istanze
+ da descrivere.
+\end_layout
+
+\begin_layout Standard
+Le chiavi 
+\emph on
+generate
+\emph default
+.
+\emph on
+argument
+\emph default
+_
+\emph on
+probability
+\emph default
+, 
+\emph on
+generate
+\emph default
+.
+\emph on
+argument
+\emph default
+_
+\emph on
+outdegree
+\emph default
+ e 
+\emph on
+generate
+\emph default
+.
+\emph on
+defeat
+\emph default
+_
+\emph on
+probability
+\emph default
+ sono le distribuzioni di probabilità usate per la generazione dell'istanza.
+ La sintassi è 
+\emph on
+realizzazione
+\emph default
+1: 
+\emph on
+probabilità1, realizzazione2: probabilità2, ...
+ 
+\emph default
+.
+ La somma delle probabilità dev'essere pari ad 1 e le realizzazioni devono
+ essere diverse tra loro, e sia realizzazioni che probabilità devono essere
+ dei numeri.
+\end_layout
+
+\begin_layout Standard
+La chiave 
+\emph on
+generate
+\emph default
+.
+\emph on
+maximize
+\emph default
+ serve a specificare la semantica per la quale bisogna massimizzare la probabili
+tà dell'insieme di argomenti, e 
+\emph on
+generate
+\emph default
+.
+\emph on
+arguments
+\emph default
+ è il numero di argomenti nel PrAF generato.
+\end_layout
+
+\begin_layout Standard
+Il simulatore genererà ripetutamente delle istanze 
+\begin_inset Formula $\left\langle PrAF,S\right\rangle $
+\end_inset
+
+ e aggiornare il file di output con l'istanza migliore trovata fino a quel
+ momento.
+ Con 
+\emph on
+generate
+\emph default
+.
+\emph on
+iterations 
+\emph default
+si può specificare il massimo numero di istanze generate prima che il processo
+ di generazione si fermi automaticamente.
 \end_layout
 
 \begin_layout Chapter
@@ -8007,7 +12173,7 @@ ee o ammissibile in tempo polinomiale rispetto al numero di argomenti e
 Infine, è stato illustrato il risultato degli esperimenti per confrontare
  l'efficienza computazionale in termini di tempo CPU, successi ed iterazioni
  Monte Carlo e di come il nuovo algoritmo sia in genere più efficiente di
- quello naive, specialmente nel caso di semantica complete.
+ quello naive, specialmente nel caso di semantica complete e grounded.
 \end_layout
 
 \begin_layout Standard
