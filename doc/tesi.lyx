@@ -10831,23 +10831,13 @@ reference "fig:Grounded005"
 \end_layout
 
 \begin_layout Standard
-Uno stesso AAF può essere indotto più volte per via del metodo Monte Carlo,
- in base alla probabilità 
-\begin_inset Formula $P_{PrAF}\left(\mathcal{AAF}\right)$
-\end_inset
-
-.
- Un approccio per velocizzare il tempo di calcolo sarebbe quello di avere
- una cache 
-\begin_inset Formula $LRU:2^{\mathcal{AAF}}\rightarrow\left\{ true,false\right\} $
-\end_inset
-
-, con lo scopo di memorizzare il risultato della funzione di valutazione
- semantica 
-\begin_inset Formula $\mathcal{E}_{\mathfrak{S}}\left(\mathcal{AAF},S\right)$
-\end_inset
-
- per AAF indotti più ricorrenti.
+Con la semantica grounded, osserviamo che il tempo CPU in percentuale non
+ è vicino alla stessa maniera che con la semantica complete.
+ Questo perché il procedimento di costruzione della estensione grounded
+ è più complesso di controllare se una estensione è complete.
+ Ad ogni modo, il fattore importante è che la relazione tra numero di iterazioni
+ e tempo CPU non sia variabile, ma dipenda solo da un fattore costante dovuto
+ al dettaglio implementativo.
 \end_layout
 
 \begin_layout Standard
@@ -11069,6 +11059,280 @@ Confronto per la semantica grounded con
 \end_layout
 
 \begin_layout Standard
+Per confermare ulteriormente l'intuizione che il numero di iterazioni è
+ strettamente legato al tempo CPU impiegato per la simulazione, facciamo
+ riferimento ai grafici per la semantica stable.
+ Come per le semantiche complete e grounded, si può decidere in tempo polinomial
+e se un insieme di argomenti è una estensione stabile.
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Stable01"
+
+\end_inset
+
+ con 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+ e in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Stable005"
+
+\end_inset
+
+ 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+ ribadiamo questo risultato che ci permette di affermare che l'efficienza
+ in termini di tempo CPU ha un upperbound in percentuale rispetto all'algoritmo
+ naive che dipende dalla probabilità condizionata 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+ per come ci aspettavamo dai risultati teorici.
+ Si può apprezzare specialmente in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Stable005"
+
+\end_inset
+
+ quando l'errore è 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+, che il tempo CPU in percentuale è quasi coincidente con il numero di iterazion
+i in percentuale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename stable_absolute_01.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tempo e numero iterazioni
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename stable_relative_01.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Stable01"
+
+\end_inset
+
+Confronto per la semantica stable con 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename stable_absolute_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tempo e numero iterazioni
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename stable_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PercentualeStable005"
+
+\end_inset
+
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Stable005"
+
+\end_inset
+
+Confronto per la semantica stable con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Diversi sono i risultati per la semantica preferred, come mostrato in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -11086,10 +11350,10 @@ reference "fig:Preferred005"
 .
  Infatti, il problema decisionale nel caso di semantica preferred ha complessità
  
-\begin_inset Formula $coNP$
+\begin_inset Formula $\mathbf{coNP}$
 \end_inset
 
-, e non sussiste più il legame stretto tra numero di iterazioni a tempo
+, e non sussiste più il legame stretto tra numero di iterazioni e tempo
  CPU.
  L'elaborazione più costosa (esponenziale nel numero di argomenti) dipende
  da:
@@ -11312,7 +11576,7 @@ Confronto per la semantica preferred con
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -11429,6 +11693,26 @@ Come mostrato nei grafici, il nuovo algoritmo basato sull'idea di usare
 
  in percentuale più efficiente dell'algoritmo naive, come ci aspettavamo
  dai risultati teorici.
+\end_layout
+
+\begin_layout Standard
+Uno stesso AAF può essere indotto più volte per via del metodo Monte Carlo,
+ in base alla probabilità 
+\begin_inset Formula $P_{PrAF}\left(\mathcal{AAF}\right)$
+\end_inset
+
+.
+ Un approccio più pratico per velocizzare il tempo di calcolo sarebbe quello
+ di avere una cache 
+\begin_inset Formula $LRU:2^{\mathcal{AAF}}\rightarrow\left\{ true,false\right\} $
+\end_inset
+
+, con lo scopo di memorizzare il risultato della funzione di valutazione
+ semantica 
+\begin_inset Formula $\mathcal{E}_{\mathfrak{S}}\left(\mathcal{AAF},S\right)$
+\end_inset
+
+ per AAF indotti più ricorrenti.
 \end_layout
 
 \begin_layout Standard
