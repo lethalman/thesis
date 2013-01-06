@@ -344,7 +344,7 @@ class DAF {
 	return conflictFree (set) && admissibleGivenConflictFree (set);
     }
 
-    public boolean stable (ArgSet set) {
+    public boolean stableGivenConflictFree (ArgSet set) {
 	for (String a: args) {
 	    if (!set.contains (a)) {
 		boolean defeated = false;
@@ -359,7 +359,7 @@ class DAF {
 		}
 	    }
 	}
-	return conflictFree (set);
+	return true;
     }
 
     public boolean completeGivenConflictFree (ArgSet set) {
@@ -384,6 +384,10 @@ class DAF {
 
     public boolean complete (ArgSet set) {
 	return conflictFree (set) && completeGivenConflictFree (set);
+    }
+
+    public boolean stable (ArgSet set) {
+	return conflictFree (set) && stableGivenConflictFree (set);
     }
 
     private boolean preferredHelper (ArgSet set, String curArg) {

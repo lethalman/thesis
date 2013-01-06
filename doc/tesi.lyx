@@ -276,38 +276,185 @@ PrAF
 \emph default
 ), e di analizzare e ottimizzare degli algoritmi approssimati per risolvere
  i problemi decisionali legati ai probabilistic argumentation framework.
- Quindi verrà analizzato un approccio esistente basato sulla simulazione
- Monte Carlo per calcolare un'approssimazione alla probabilità che un certo
- insieme di argumenti di un PrAF sia giustificato rispetto ad una generica
- semantica.
 \end_layout
 
 \begin_layout Standard
-Verrà mostrato successivamente come la probabilità di alcune proprietà di
- questo framework possa essere calcolato in tempo polinomiale.
+Gli argumentation framework che verranno studiati principalmente sono gli
+ abstract argumentation framework e i probabilistic argumentation framework,
+ con semantica extension-based.
+ La semantica labelling-based e gli argument games verranno altresì studiati
+ per completezza per avere una panoramica più ad amio spettro sulle varie
+ interpretazioni degli argumentation framework e su come questi abbiano
+ aspetti in comune con altri formalismi.
+\end_layout
+
+\begin_layout Standard
+Verrà analizzato un approccio esistente basato sulla simulazione Monte Carlo
+ per calcolare un'approssimazione della probabilità che un certo insieme
+ di argomenti di un probabilistic argumentation framework sia giustificato
+ rispetto ad una generica semantica.
+\end_layout
+
+\begin_layout Standard
+In generale, il problema di calcolare tale probabilità è nella classe di
+ complessità 
+\begin_inset Formula $\mathbf{FP^{\#P}}$
+\end_inset
+
+ o 
+\begin_inset Formula $\mathbf{FP^{\#NP}}$
+\end_inset
+
+, in dipendenza dalla semantica adottata.
+ Per alcuni alcuni casi particolari, specificatamente per la proprietà conflict-
+free, admissible e stable, verrà mostrato come la probabilità di queste
+ proprietà per un dato probabilistic argumentation framework possano essere
+ calcolate in tempo polinomiale.
 \end_layout
 
 \begin_layout Standard
 In base a questi casi trattabili, l'approccio esistente verrà esteso per
- ottimizzare la risoluzione di problemi più difficili.
- Si mostrerà che il nuovo algoritmo è in genere più efficiente in confronto
- all'algoritmo naive esistente, specialmente nel caso di semantica 
-\begin_inset Quotes eld
-\end_inset
+ ottimizzare la risoluzione dei problemi intrattabili.
+ Le semantiche che saranno usate per il confronto dei due algoritmi sono
+ la semantica complete, grounded e preferred.
+ Queste semantiche tradizionali sono quelle più comunemente adottate nella
+ letteratura della teoria dell'argumentation framework.
+\end_layout
 
-complete
-\begin_inset Quotes erd
-\end_inset
-
-.
+\begin_layout Standard
+Verrà mostrato infine come il nuovo algoritmo è in genere più efficiente
+ rispetto all'algoritmo naive esistente, specialmente nel caso di semantica
+ complete, grounded e stable.
 \end_layout
 
 \begin_layout Section
 Contributo della tesi
 \end_layout
 
+\begin_layout Standard
+La tesi si propone di descrivere in maniera riassuntiva e concisa le motivazioni
+ del formalismo degli argumentation framework, e le varie interpretazioni
+ di argumentation framework.
+ Verranno descritti in più dettaglio gli abstract argumentation framework,
+ i probabilistic argumentation framework, e le semantiche extension-based
+ tradizionalmente usate nella letteratura della teoria degli argumentation
+ framework.
+\end_layout
+
+\begin_layout Standard
+Assieme alle definizioni di tali concetti di argumentation framework, sono
+ stati inoltre riassunti i risultati per le complessità computazionali dei
+ vari problemi decisionali per gli abstract argumentation framework, e delle
+ complessità di calcolo delle probabilità per i probabilistic argumentation
+ framework.
+ In genere, muoversi da un contesto di certezza ad un contesto di incertezza
+ con le probabilità introduce uno livello ulteriore di complessità.
+ Molti problemi decisionali che stanno in 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+ o 
+\begin_inset Formula $\mathbf{NP}$
+\end_inset
+
+, diventano rispettivamente 
+\begin_inset Formula $\mathbf{FP^{\#P}}$
+\end_inset
+
+ e 
+\begin_inset Formula $\mathbf{FP^{\#NP}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Per quanto riguarda quest'ultime complessità, verrà mostrato come è possibile
+ calcolare la probabilità che un insieme di argomenti sia conflict-free,
+ ammissibile o stabile in tempo polinomiale.
+ Questo importante risultato, oltre a dimostrare che passare da un contesto
+ deterministico ad un contesto incerto rappresentato con probabilità non
+ necessariamente comporta un ulteriore livello di complessità per tutti
+ in problemi, è fondamentale per applicare delle ottimizzazioni nel calcolo
+ delle probabilità dei casi intrattabili.
+\end_layout
+
+\begin_layout Standard
+Infatti, in questo lavoro di tesi verrà proposto un algoritmo basato sul
+ metodo Monte Carlo per approssimare la probabilità che un insieme di argomenti
+ sia consistente rispetto ad una determinata semantica, ottimizzato in base
+ al fatto che è possibile calcolare una probabilità condizionata in maniera
+ esatta.
+ Questo permette di campionare uno spazio più ridotto rispetto a quello
+ originale.
+ I risultati teorici in questa tesi mostreranno che esiste un upperbound
+ al numero di iterazioni della simulazione Monte Carlo ottimizzata rispetto
+ a quella naive, che dipende dalla probabilità condizionata calcolata in
+ tempo polinomiale.
+\end_layout
+
+\begin_layout Standard
+I risultati sperimentali, costituiti da una serie di test per confrontare
+ l'efficienza dell'algoritmo ottimizzato rispetto a quello naive, contribuiranno
+ a:
+\end_layout
+
+\begin_layout Itemize
+Osservare come nel caso di semantica complete, grounded e stabile (o in
+ generale per qualsiasi problema decisionale per abstract argumentation
+ framework calcolabile in tempo polinomiale), il numero di iterazioni della
+ simulazione è strettamente legato al tempo CPU impiegato dalla simulazione.
+\end_layout
+
+\begin_layout Itemize
+In base all'oservazione di cui sopra, e al risultato teorico che determina
+ un upperbound sul numero di iterazioni della simulazione, concludere che
+ l'algoritmo ottimizzato risulta avere lo stesso upperbound sul tempo CPU
+ rispetto all'algoritmo naive.
+\end_layout
+
 \begin_layout Section
 Organizzazione della tesi
+\end_layout
+
+\begin_layout Standard
+Nel seguito di questo lavoro di tesi, il capitolo 2 descriverà in maniera
+ concisa ed esemplificativa i motivi e le varie interpretazioni del formalismo
+ argumentation framework.
+ Saranno trattati in dettaglio gli abstract argumentation framework e probabilis
+tic argumentation framework, le semantiche extension-based e la complessità
+ dei problemi decisionali legati a questi formalismi.
+ Verranno inoltre descritte per completezza, ma che non saranno oggetto
+ delle sperimentazioni, le semantiche labelling-based e gli argument games.
+\end_layout
+
+\begin_layout Standard
+Nel capitolo 3 verrà descritto un metodo esistente per il calcolo approssimato
+ delle probabilità nei probabilistic argumentation framework.
+ Verrà inoltre mostrato come la complessità di calcolare tale probabilità
+ in alcuni casi è un problema risolvibile in tempo polinomiale, e della
+ caratterizzazione teorica di come questo risultato possa essere usato per
+ ottimizzare i casi intrattabili di probabilistic argumentation framework.
+\end_layout
+
+\begin_layout Standard
+Nel capitolo 4 verranno mostrati i risultati sperimentali del confronto
+ tra il nuovo algoritmo ottimizzato proposto e l'algoritmo naive esistente,
+ e il setting con il quale sono stati ottenuti questi risultati.
+\end_layout
+
+\begin_layout Standard
+Nel capitolo 5 verranno tratte le conclusioni sul lavoro di tesi svolto,
+ a partire dallo studio e dall'analisi della letteratura sulla teoria dell'argom
+entazione a finire ai risultati teorici e pratici ottenuti mediante l'introduzio
+ne di ottimizzazioni nel calcolo delle probabilità di casi intrattabili
+ di probabilistic argumentation framework.
+\end_layout
+
+\begin_layout Standard
+Nell'appendice A, al fine di estendere questo lavoro di tesi per sviluppi
+ futuri, verrà documentato più in dettaglio l'architettura e il formato
+ di configurazione del sistema usato per le simulazioni.
 \end_layout
 
 \begin_layout Chapter
@@ -2053,7 +2200,7 @@ Proprietà di ammissibilità
 \end_layout
 
 \begin_layout Section
-Semantica abstract argumentation framework
+Semantiche per abstract argumentation framework
 \end_layout
 
 \begin_layout Standard
@@ -6947,7 +7094,7 @@ reference "fig:Dispute-tree-finito"
 \begin_inset Formula $D_{T_{1}}=\left\{ d_{1}=a1-b2-a3-c5-c6\right\} $
 \end_inset
 
- sia 
+ che 
 \begin_inset Formula $D_{T_{2}}=\left\{ d_{2}=a1-c7-a8-b10-a11\right\} $
 \end_inset
 
@@ -11434,8 +11581,56 @@ Confronto errori relativi
 
 \end_layout
 
+\begin_layout Chapter
+Conclusioni e sviluppi futuri
+\end_layout
+
+\begin_layout Standard
+In questo lavoro di tesi è stato inizialmente descritto il concetto di argumenta
+tion framework o argument systems, e sono state studiate varie varianti
+ tra cui abstract argumentation frameworks e probabilistic argumentation
+ frameworks.
+ Per i probabilistic argumentation frameworks è stato analizzato e implementato
+ un algoritmo basato sul metodo Monte Carlo per calcolare la probabilità
+ che un insieme di argomenti sia consisente o giustificato rispetto ad una
+ qualche semantica.
+ I particolare, in questo lavoro ci si è concentrati sulle semantiche complete,
+ grounded e preferred.
+\end_layout
+
+\begin_layout Standard
+È stato mostrato come sia possibile, dato un probabilistic argumentation
+ framework, calcolare la probabilità che un insieme di argomenti sia conflict-fr
+ee o ammissibile in tempo polinomiale rispetto al numero di argomenti e
+ defeat.
+ In base a questo risultato, è stato proposto un nuovo approccio che estende
+ quello naive che sfrutti la probabilità conflict-free per calcolare la
+ probabilità di problemi decisionali più difficili in maniera più efficiente.
+\end_layout
+
+\begin_layout Standard
+Infine, è stato illustrato il risultato degli esperimenti per confrontare
+ l'efficienza computazionale in termini di tempo CPU, successi ed iterazioni
+ Monte Carlo e di come il nuovo algoritmo sia in genere più efficiente di
+ quello naive, specialmente nel caso di semantica complete e grounded.
+\end_layout
+
+\begin_layout Standard
+Questo lavoro può essere esteso al caso dell'ammissibilità, dove la probabilità
+ che un insieme di argomenti sia ammissibile può essere calcolata anche
+ in tempo polinomiale.
+ In questo caso, il problema del campionamento dello spazio degli AAF ammissibil
+i che possono essere indotti dal PrAF non è semplice come nel caso degli
+ AAF conflict-free.
+\end_layout
+
+\begin_layout Chapter
+\start_of_appendix
+Documentazione del simulatore
+\end_layout
+
 \begin_layout Section
-Architettura e opzioni del simulatore per sviluppi futuri
+Architettura e descrizione delle interfacce
 \end_layout
 
 \begin_layout Standard
@@ -11583,7 +11778,7 @@ Tutti i componenti, banalmente, fanno uso delle strutture dati per rappresentare
  PrAF e AAF, (PAF e DAF rispettivamente in Java).
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Estensione con nuove semantiche e nuovi metodi Monte Carlo
 \end_layout
 
@@ -11769,6 +11964,10 @@ Ad esempio, nel caso di CompleteGivenConflictFreeSemantics, viene restituita
 .
  Questo perché è utile conoscere il numero di successi e tentativi ai fini
  di ottenere statistiche più ricche per gli algoritmi.
+\end_layout
+
+\begin_layout Section
+Configurazione del simulatore
 \end_layout
 
 \begin_layout Standard
@@ -12140,49 +12339,6 @@ iterations
 \emph default
 si può specificare il massimo numero di istanze generate prima che il processo
  di generazione si fermi automaticamente.
-\end_layout
-
-\begin_layout Chapter
-Conclusioni e sviluppi futuri
-\end_layout
-
-\begin_layout Standard
-In questo lavoro di tesi è stato inizialmente descritto il concetto di argumenta
-tion framework o argument systems, e sono state studiate varie varianti
- tra cui abstract argumentation frameworks e probabilistic argumentation
- frameworks.
- Per i probabilistic argumentation frameworks è stato analizzato e implementato
- un algoritmo basato sul metodo Monte Carlo per calcolare la probabilità
- che un insieme di argomenti sia consisente o giustificato rispetto ad una
- qualche semantica.
- I particolare, in questo lavoro ci si è concentrati sulle semantiche complete,
- grounded e preferred.
-\end_layout
-
-\begin_layout Standard
-È stato mostrato come sia possibile, dato un probabilistic argumentation
- framework, calcolare la probabilità che un insieme di argomenti sia conflict-fr
-ee o ammissibile in tempo polinomiale rispetto al numero di argomenti e
- defeat.
- In base a questo risultato, è stato proposto un nuovo approccio che estende
- quello naive che sfrutti la probabilità conflict-free per calcolare la
- probabilità di problemi decisionali più difficili in maniera più efficiente.
-\end_layout
-
-\begin_layout Standard
-Infine, è stato illustrato il risultato degli esperimenti per confrontare
- l'efficienza computazionale in termini di tempo CPU, successi ed iterazioni
- Monte Carlo e di come il nuovo algoritmo sia in genere più efficiente di
- quello naive, specialmente nel caso di semantica complete e grounded.
-\end_layout
-
-\begin_layout Standard
-Questo lavoro può essere esteso al caso dell'ammissibilità, dove la probabilità
- che un insieme di argomenti sia ammissibile può essere calcolata anche
- in tempo polinomiale.
- In questo caso, il problema del campionamento dello spazio degli AAF ammissibil
-i che possono essere indotti dal PrAF non è semplice come nel caso degli
- AAF conflict-free.
 \end_layout
 
 \begin_layout Standard

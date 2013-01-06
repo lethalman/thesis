@@ -283,3 +283,10 @@ class GroundedGivenAdmissibleSemantics extends GivenAdmissibleSemantics {
 	return daf.groundedGivenAdmissible (set);
     }
 }
+
+class StableGivenConflictFreeSemantics extends GivenConflictFreeSemantics {
+    @Override
+    public boolean evaluate (DAF daf, ArgSet set) {
+	return daf.stableGivenConflictFree (set);
+    }
+}
