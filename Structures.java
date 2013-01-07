@@ -128,14 +128,13 @@ class PAF {
             if (!set.contains (d)) {
                 double p31 = 1-args.get(d);
                 double p32 = 1;
-                for (String e: getDefeats(d).keySet()) {
+                for (String e: getDefeatedBy(d).keySet()) {
                     if (set.contains (e)) {
-                        p32 *= 1-defeats.get(d).get(e);
+                        p32 *= 1-defeats.get(e).get(d);
                     }
                 }
-                p32 *= args.get(d);
+                p32 = args.get(d)*(1-p32);
                 p3 *= p31+p32;
-                System.out.println(p3+" "+p31+" "+p32);
             }
         }
         return conflictFree(set)*p3;

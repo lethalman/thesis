@@ -400,10 +400,10 @@ I risultati sperimentali, costituiti da una serie di test per confrontare
 \end_layout
 
 \begin_layout Itemize
-Osservare come nel caso di semantica complete, grounded e stabile (o in
- generale per qualsiasi problema decisionale per abstract argumentation
- framework calcolabile in tempo polinomiale), il numero di iterazioni della
- simulazione è strettamente legato al tempo CPU impiegato dalla simulazione.
+Osservare come nel caso di semantica complete e grounded (o in generale
+ per qualsiasi problema decisionale per abstract argumentation framework
+ calcolabile in tempo polinomiale), il numero di iterazioni della simulazione
+ è strettamente legato al tempo CPU impiegato dalla simulazione.
 \end_layout
 
 \begin_layout Itemize
@@ -6682,7 +6682,7 @@ reference "fig:Esempio-di-dispute"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -7179,6 +7179,554 @@ rispetto al
 \end_inset
 
 , dove gli argomenti mossi da PRO nella strategia sono conflict-free.
+\end_layout
+
+\begin_layout Subsection
+Value-based argumentation frameworks
+\end_layout
+
+\begin_layout Standard
+Negli abstract argumentation framework, si fa riferimento ad un'unica struttura
+ 
+\begin_inset Formula $Def\subseteq Arg\times Arg$
+\end_inset
+
+ che determina quando un argomento attacca (sconfigge) un altro argomento.
+ Si può decidere se uno statement può essere coerentemente affermato in
+ un contesto, in termini di argomenti conflict-free.
+ Ad esempio, se un argomento è parte di tutte le estensioni preferred, allora
+ si può concludere che quell'argomento è accettabile.
+ Il requisito che le estensioni ammissibili siano conflict-free è un concetto
+ intuitivo e fondamentale in qualsiasi semantica.
+\end_layout
+
+\begin_layout Standard
+In molti casi però questa struttura potrebbe essere restrittiva.
+ Esistono delle situazioni in cui due argomenti sono in conflitto ma potrebbero
+ essere entrambi accettati.
+ Ad esempio, si supponga che due persone A e B debbano fare un viaggio.
+ La persona A argomenta che 
+\begin_inset Quotes eld
+\end_inset
+
+bisogna viaggare con l'aereo perché è più rapido
+\begin_inset Quotes erd
+\end_inset
+
+.
+ La persona B argomenta che 
+\begin_inset Quotes eld
+\end_inset
+
+bisogna viaggiare con il treno perché è più comodo
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Le due persone continueranno a non essere d'accordo sui due argomenti,
+ ma l'uno non può negare l'altro, ovvero sono in conflitto ma entrambi accettabi
+li.
+ La conclusione tra queste due persone dovrà essere qualcosa di simile a
+ 
+\begin_inset Quotes eld
+\end_inset
+
+dobbiamo viaggiare con il treno perché è più comodo, anche se con l'aereo
+ è più rapido
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Le persone hanno diversi interessi e preferenze, quindi la persona A può
+ razionalmente scegliere di viaggiare in aereo, il ché non può evitare a
+ B di scegliere razionalmente di viaggiare con il treno.
+\end_layout
+
+\begin_layout Standard
+Un approccio per risolvere questo problema negli abstract argumentation
+ frameworks, è quello di richiedere accettabilità skeptical per argomenti
+ epistemici, ma credulous per argomenti pratici.
+ Questo modello l'esistenza di una scelta rispetto ad argomenti pratici,
+ ma non motiva la scelta fatta, e non permette di prevedere le future scelte
+ sulla base di quelle fatte in passato.
+\end_layout
+
+\begin_layout Standard
+In generale le persone attribuiscono diversi valori agli argomenti.
+ Questo concetto di molteplice attribuzione di diversi valori agli argomenti
+ in base al contesto viene chiamato 
+\emph on
+audience
+\emph default
+, e permette di descrivere quanto un argomento sia più forte o preferito
+ o 
+\emph on
+persuasivo
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "citeulike:164781"
+
+\end_inset
+
+ rispetto ad un altro.
+ Questi valori dipendono dalla persona, dal contesto sociale e non devono
+ essere confusi con dei valori numerici di certezza o di probabilità.
+ Per valore s'intende un desiderio, una preferenza di una persona nella
+ maniera più generale.
+ Anche non essendo misurabili, i valori tra diversi argomenti possono però
+ essere confrontabili.
+ Ovvero il valore associato ad un argomento, può essere più intenso rispetto
+ al valore associato ad un altro argomento.
+\end_layout
+
+\begin_layout Standard
+Nell'esempio di prima, in cui due persone devono scegliere di viaggiare
+ con uno dei due mezzi, i valori in questione sono 
+\begin_inset Quotes eld
+\end_inset
+
+velocità
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+comodità
+\begin_inset Quotes erd
+\end_inset
+
+.
+ La scelta di uno dei due argomenti dipende dal valore attribuito a ciascuno
+ di essi.
+ Gli agenti decidono indipendentemente la scelta da fare, se la persona
+ A attribuisce più valore velocità sceglierà l'aereo, se la persona B attribuisc
+e più valore alla comodità sceglierà il treno.
+ Queste due differenti attribuzioni di valore costituiscono due audience.
+\end_layout
+
+\begin_layout Standard
+Il fatto che un valore attribuito ad un argomento sia confrontabile con
+ un altro valore, stabilisce un ordine tra i valori.
+ Quindi ci saranno tanti audience quanti sono i possibili ordininamenti
+ tra i valori.
+ L'idea di base dei value-based argumentation frameworks, è di associare
+ un valore a degli argomenti pratici, e di formalizzare l'audience come
+ i possibili ordinamenti totali tra i valori attribuiti agli argomenti.
+\end_layout
+
+\begin_layout Standard
+I value-based frameworks
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bench-capon02value-basedargumentation,Bench-capon03persuasionin"
+
+\end_inset
+
+ sono una estensione dei Dung's abstract argumentation frameworks, e sono
+ definiti come segue:
+\end_layout
+
+\begin_layout Definition
+Un value-based framework (VAF) è una 5-tupla 
+\begin_inset Formula $\left\langle A,D,V,val,P\right\rangle $
+\end_inset
+
+ dove 
+\begin_inset Formula $\left\langle A,D\right\rangle $
+\end_inset
+
+ è un abstract argumentation framework, 
+\begin_inset Formula $V$
+\end_inset
+
+ è un insieme di valori non vuoto, 
+\begin_inset Formula $val$
+\end_inset
+
+ è una funzione da 
+\begin_inset Formula $A$
+\end_inset
+
+ in 
+\begin_inset Formula $V$
+\end_inset
+
+, e 
+\begin_inset Formula $P$
+\end_inset
+
+ è l'insieme dei possibili audience (ordinamenti totali su 
+\begin_inset Formula $V$
+\end_inset
+
+).
+ Un argomento 
+\begin_inset Formula $a\in A$
+\end_inset
+
+ difende o promuove il valore 
+\begin_inset Formula $v\in V$
+\end_inset
+
+ se per un audience 
+\begin_inset Formula $val\left(a\right)=v$
+\end_inset
+
+.
+ Vale quindi che 
+\begin_inset Formula $\forall a\in A$
+\end_inset
+
+, 
+\begin_inset Formula $val\left(a\right)\in V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Fissato l'audience, si ottiene un framework specifico per quell'audience,
+ denominato Audience Specific VAF (AVAF) e definito come segue:
+\end_layout
+
+\begin_layout Definition
+Un audience specific value-based framework (AVAF) è una 5-tupla 
+\begin_inset Formula $\left\langle A,D,V,val,Valpref_{a}\right\rangle $
+\end_inset
+
+, dove 
+\begin_inset Formula $A,D,V,val$
+\end_inset
+
+ sono le relazioni del VAF originario, 
+\begin_inset Formula $p\in P$
+\end_inset
+
+ è un audience, e 
+\begin_inset Formula $Valpref_{p}\subseteq V\times V$
+\end_inset
+
+ è una relazione di preferenza derivabile dell'audience 
+\begin_inset Formula $p$
+\end_inset
+
+ tale che se 
+\begin_inset Formula $\left\langle v1,v2\right\rangle \in Valpref_{p}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Da questa relazione di preferenza, adesso bisogna definire in che modo un
+ argomento a cui viene attribuito un certo valore è più 
+\begin_inset Quotes eld
+\end_inset
+
+persuasivo
+\begin_inset Quotes erd
+\end_inset
+
+ rispetto ad un altro.
+ Questo concetto è più formalmente definito come un argomento che attacca
+ un altro argomento, considerato un certo audience.
+\end_layout
+
+\begin_layout Definition
+Dato un AVAF 
+\begin_inset Formula $\left\langle A,D,V,val,Valpref_{p}\right\rangle $
+\end_inset
+
+, un argomento 
+\begin_inset Formula $a\in A$
+\end_inset
+
+ 
+\begin_inset Formula $defeats_{a}$
+\end_inset
+
+ un argomento 
+\begin_inset Formula $b\in A$
+\end_inset
+
+ se e solo se 
+\begin_inset Formula $\left\langle a,b\right\rangle \in Def$
+\end_inset
+
+ e 
+\begin_inset Formula $\nexists\left\langle val\left(b\right),val\left(a\right)\right\rangle \in Valpref_{p}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Adesso è possibile definire ulteriori concetti simili a quelli per gli abstract
+ argumentation framework.
+\end_layout
+
+\begin_layout Definition
+Dato un AVAF 
+\begin_inset Formula $\left\langle A,D,V,val,Valpref_{p}\right\rangle $
+\end_inset
+
+, un argomento 
+\begin_inset Formula $a\in A$
+\end_inset
+
+ è detto 
+\emph on
+acceptable-to-audience-p
+\emph default
+ (
+\begin_inset Formula $acceptable_{p}$
+\end_inset
+
+) rispetto ad un insieme di argomenti 
+\begin_inset Formula $S$
+\end_inset
+
+ (
+\begin_inset Formula $acceptable_{p}\left(S,a\right)$
+\end_inset
+
+) se 
+\begin_inset Formula $\forall b\in A$
+\end_inset
+
+ tale che 
+\begin_inset Formula $defeats_{p}\left(b,a\right)$
+\end_inset
+
+, allora 
+\begin_inset Formula $\exists c\in S$
+\end_inset
+
+ tale che 
+\begin_inset Formula $defeats_{p}\left(c,b\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La definizione di accettabilità di un argomento è assolutamente analoga
+ a quella degli abstract argumentation framework, con la differenza che
+ si fa riferimento all'ordinamento 
+\begin_inset Formula $Valpref_{p}$
+\end_inset
+
+.
+ Più interessante invece è la definizione di insieme conflict-free rispetto
+ ad un audience:
+\end_layout
+
+\begin_layout Definition
+Dato un AVAF 
+\begin_inset Formula $\left\langle A,D,V,val,Valpref_{p}\right\rangle $
+\end_inset
+
+, un insieme di argomenti 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+ è 
+\emph on
+conflict-free-for-audience-p
+\emph default
+ (
+\begin_inset Formula $cf_{p}$
+\end_inset
+
+) se 
+\begin_inset Formula $\forall x,y\in S$
+\end_inset
+
+ deve valere 
+\begin_inset Formula $\left\langle x,y\right\rangle \notin D$
+\end_inset
+
+ oppure 
+\begin_inset Formula $\left\langle val\left(x\right),val\left(y\right)\right\rangle \in Valpref_{p}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ciò che permette di ragionare nei termini discussi prima, è il fatto che
+ in questa definizione anche se esiste un conflitto tra due argomenti, l'insieme
+ può ancora essere conflict-free se esiste un ordinamento di valori per
+ quei due argomenti.
+\end_layout
+
+\begin_layout Standard
+Analogamente alla definizione di ammissibilità abbiamo anche la seguente
+ per i value-based argumentation frameworks:
+\end_layout
+
+\begin_layout Definition
+Dato un AVAF 
+\begin_inset Formula $\left\langle A,D,V,val,Valpref_{p}\right\rangle $
+\end_inset
+
+, un insieme di argomenti 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+ è 
+\emph on
+admissible-for-audience-p
+\emph default
+ se 
+\begin_inset Formula $cf_{p}\left(S\right)$
+\end_inset
+
+ e se 
+\begin_inset Formula $\forall x\in S$
+\end_inset
+
+ allora 
+\begin_inset Formula $acceptable_{p}\left(S,x\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A partire da queste proprietà, come per gli abstract argumentation framework,
+ si possono definire diverse semantiche per AVAF, come ad esempio la preferred:
+\end_layout
+
+\begin_layout Definition
+Dato un AVAF 
+\begin_inset Formula $\left\langle A,D,V,val,Valpref_{p}\right\rangle $
+\end_inset
+
+, un insieme di argomenti 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+ è una estensione 
+\emph on
+preferred
+\emph default
+ 
+\emph on
+for-audience-p
+\emph default
+ se è l'insieme 
+\emph on
+admissible-for-audience-p 
+\emph default
+massimale (rispetto 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Le definizioni di cui sopra sono tutte rispetto ad un fissato audience 
+\begin_inset Formula $p\in P$
+\end_inset
+
+, ovvero rispetto ad un AVAF.
+ L'obiettivo però è trarre delle conclusioni su un insieme di argomenti
+ rispetto all'originale VAF.
+ Siccome per ogni ordinamento 
+\begin_inset Formula $p\in P$
+\end_inset
+
+ si possono indurre più AVAF a partire da un VAF, ne consegue che si possono
+ avere più definizioni di accettabilità di un insieme di argomenti.
+ Quelle proposte in letteratura, per singoli argomenti, sono le seguenti:
+\end_layout
+
+\begin_layout Definition
+Dato un VAF 
+\begin_inset Formula $\left\langle A,D,V,val,P\right\rangle $
+\end_inset
+
+, un argomento 
+\begin_inset Formula $a\in A$
+\end_inset
+
+ è 
+\emph on
+objectively
+\emph default
+ 
+\emph on
+acceptable
+\emph default
+ (oggettivamente accettabile) se e solo se 
+\begin_inset Formula $\forall p\in P$
+\end_inset
+
+ allora 
+\begin_inset Formula $a$
+\end_inset
+
+ è in ogni estensione 
+\begin_inset Formula $preferred_{p}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Un argomento 
+\begin_inset Formula $a\in A$
+\end_inset
+
+ è 
+\emph on
+subjectively
+\emph default
+ 
+\emph on
+acceptable
+\emph default
+ (soggettivamente accettabile) se e solo se 
+\begin_inset Formula $\forall p\in P$
+\end_inset
+
+ allora 
+\begin_inset Formula $a$
+\end_inset
+
+ è in almeno una estensione 
+\begin_inset Formula $preferred_{p}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Un argomento 
+\begin_inset Formula $a\in A$
+\end_inset
+
+ è 
+\emph on
+indifensible
+\emph default
+ se non è nè oggettivamente nè soggettivamente accettabile.
+\end_layout
+
+\begin_layout Standard
+Questo concetto di accettabilità oggettiva o soggettiva di un argomento,
+ permette di modellare il fatto che per ogni audience (ad esempio persona)
+ un argomento sia accettabile, oppure che lo sia solo per alcune persone,
+ nonostante tale argomento possa essere in conflitto con altri.
 \end_layout
 
 \begin_layout Chapter
@@ -10831,8 +11379,8 @@ reference "fig:Grounded005"
 \end_layout
 
 \begin_layout Standard
-Con la semantica grounded, osserviamo che il tempo CPU in percentuale non
- è vicino alla stessa maniera che con la semantica complete.
+Possiamo osservare che il tempo CPU in percentuale non è vicino alla stessa
+ maniera che con la semantica complete.
  Questo perché il procedimento di costruzione della estensione grounded
  è più complesso di controllare se una estensione è complete.
  Ad ogni modo, il fattore importante è che la relazione tra numero di iterazioni
@@ -11042,280 +11590,6 @@ name "fig:Grounded005"
 \end_inset
 
 Confronto per la semantica grounded con 
-\begin_inset Formula $\epsilon=0.005$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Per confermare ulteriormente l'intuizione che il numero di iterazioni è
- strettamente legato al tempo CPU impiegato per la simulazione, facciamo
- riferimento ai grafici per la semantica stable.
- Come per le semantiche complete e grounded, si può decidere in tempo polinomial
-e se un insieme di argomenti è una estensione stabile.
- In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:Stable01"
-
-\end_inset
-
- con 
-\begin_inset Formula $\epsilon=0.01$
-\end_inset
-
- e in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:Stable005"
-
-\end_inset
-
- 
-\begin_inset Formula $\epsilon=0.005$
-\end_inset
-
- ribadiamo questo risultato che ci permette di affermare che l'efficienza
- in termini di tempo CPU ha un upperbound in percentuale rispetto all'algoritmo
- naive che dipende dalla probabilità condizionata 
-\begin_inset Formula $P_{CF}\left(S\right)$
-\end_inset
-
- per come ci aspettavamo dai risultati teorici.
- Si può apprezzare specialmente in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:Stable005"
-
-\end_inset
-
- quando l'errore è 
-\begin_inset Formula $\epsilon=0.005$
-\end_inset
-
-, che il tempo CPU in percentuale è quasi coincidente con il numero di iterazion
-i in percentuale.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename stable_absolute_01.png
-	width 50col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Tempo e numero iterazioni
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename stable_relative_01.png
-	width 50col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Percentuale tempo, iterazioni e successi
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Stable01"
-
-\end_inset
-
-Confronto per la semantica stable con 
-\begin_inset Formula $\epsilon=0.01$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename stable_absolute_005.png
-	width 50col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Tempo e numero iterazioni
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename stable_relative_005.png
-	width 50col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:PercentualeStable005"
-
-\end_inset
-
-Percentuale tempo, iterazioni e successi
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hspace*{\fill}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Stable005"
-
-\end_inset
-
-Confronto per la semantica stable con 
 \begin_inset Formula $\epsilon=0.005$
 \end_inset
 
@@ -11870,42 +12144,110 @@ Conclusioni e sviluppi futuri
 \end_layout
 
 \begin_layout Standard
-In questo lavoro di tesi è stato inizialmente descritto il concetto di argumenta
-tion framework o argument systems, e sono state studiate varie varianti
- tra cui abstract argumentation frameworks e probabilistic argumentation
- frameworks.
- Per i probabilistic argumentation frameworks è stato analizzato e implementato
- un algoritmo basato sul metodo Monte Carlo per calcolare la probabilità
- che un insieme di argomenti sia consisente o giustificato rispetto ad una
- qualche semantica.
- I particolare, in questo lavoro ci si è concentrati sulle semantiche complete,
- grounded e preferred.
+In questo lavoro di tesi è stato inizialmente descritto il concetto di argomenta
+zione, di argomenti e di argumentation framework o argument systems.
+ L'argumentation ha radici storiche, ed ha problemi complementari a quelli
+ di altri formalismi come la logica proposizionale.
+ In letteratura sono stati analizzati vari tipi di interpretazioni per l'argomen
+tazione, e per il significato di argomento stesso.
 \end_layout
 
 \begin_layout Standard
-È stato mostrato come sia possibile, dato un probabilistic argumentation
- framework, calcolare la probabilità che un insieme di argomenti sia conflict-fr
-ee o ammissibile in tempo polinomiale rispetto al numero di argomenti e
- defeat.
- In base a questo risultato, è stato proposto un nuovo approccio che estende
- quello naive che sfrutti la probabilità conflict-free per calcolare la
- probabilità di problemi decisionali più difficili in maniera più efficiente.
+Tra queste interpretazioni, sono state descritte nei primi capitali quelle
+ tradizionalmente usate nella letteratura della teoria dell'argomentazione.
+ L'abstract argumentation framework è un formalismo con il quale è possibile
+ rappresentare argumentation framework astraendosi dal significato di argomento
+ che assume in un certo contesto.
+ Assieme alle definizioni base dell'abstract argumentation framework, sono
+ state riassunte le semantiche extension-based, quali complete, grounded,
+ stable, preferred, ideal, stage e semi-stable, e semantiche prudent.
+ Per alcune di queste semantiche si sono descritti gli algoritmi per risolvere
+ il problema di decidere se un insieme di argomenti fosse una estensione.
+ Questi algoritmi sono stati implementati direttamente per la costruzione
+ del simulatore usato per gli esperimenti.
 \end_layout
 
 \begin_layout Standard
-Infine, è stato illustrato il risultato degli esperimenti per confrontare
- l'efficienza computazionale in termini di tempo CPU, successi ed iterazioni
- Monte Carlo e di come il nuovo algoritmo sia in genere più efficiente di
- quello naive, specialmente nel caso di semantica complete e grounded.
+Sono stati descritti i probabilistic argumentation framework, che sono stati
+ primariamente oggetto di questo lavoro di tesi, come estensione per gli
+ abstract argumentation framework con lo scopo di aggiungere incertezza
+ sull'esistenza degli argomenti e delle relazioni tra di essi.
+ Il problema di decidere se un insieme di argomenti è una estensione in
+ un abstract argumentation framework, diventa il problema di calcolare con
+ che probabilità lo stesso insieme di argomenti è una estensione in un probabili
+stic argumentation framework.
 \end_layout
 
 \begin_layout Standard
-Questo lavoro può essere esteso al caso dell'ammissibilità, dove la probabilità
- che un insieme di argomenti sia ammissibile può essere calcolata anche
- in tempo polinomiale.
- In questo caso, il problema del campionamento dello spazio degli AAF ammissibil
-i che possono essere indotti dal PrAF non è semplice come nel caso degli
- AAF conflict-free.
+Dopo aver introdotto le definizioni e le semantiche di questi formalismi,
+ sono stati mostrati i risultati ottenuti per la teoria dell'argomentazione
+ per la risoluzione dei problemi decisionali dei quali ci siamo siamo occupati
+ in questo lavoro di tesi.
+ In particolare, l'introduzione dell'incertezza per alcune semantiche ha
+ avuto l'effetto di aumentare di un livello la complessità del corrispettivo
+ problema decisionale.
+\end_layout
+
+\begin_layout Standard
+Oltre agli abstract e ai probabilistic argumentation framework, sono state
+ introdotte brevemente le semantiche labelling-based, gli argument games
+ e i value-based argumentation framework.
+\end_layout
+
+\begin_layout Standard
+Nel secondo capitolo, è stato mostrato un approccio per il calcolare un'approssi
+mazione alla probabilità che una estensione soddisfi i criteri di una certa
+ semantica per i probabilistic argumentation framework, basato sul metodo
+ Monte Carlo.
+ È stato inoltre mostrato, come per alcuni problemi polinomiali per l'abstract
+ argumentation framework, la complessità non sia aumentata ma è rimasta
+ polinomiale.
+ Questo risultato è molto importante, poiché permette di calcolare la probabilit
+à conflict-free e admissible in tempo polinomiale rispetto al numero di
+ argomenti e defeat, che sono proprietà fondamentali per gli argumentation
+ framework.
+\end_layout
+
+\begin_layout Standard
+Sulla base di questo nuovo importante risultato, è stato esteso l'approccio
+ naive basato su Monte Carlo sfruttando la probabilità conflict-free calcolabile
+ in tempo polinomiale come probabilità condizionata, con l'obiettivo di
+ ridurre lo spazio di campionamento e migliorare l'efficienza dell'algoritmo.
+ La caratterizzazione teorica di questo nuovo approccio mostra i vantaggi
+ in termini di efficienza del nuovo algoritmo.
+ Sotto determinate ipotesi, è possibile concludere che l'efficienza del
+ nuovo algoritmo è direttamente collegata in proporzione alla probabilità
+ condizionata calcolata in tempo polinomiale rispetto al numero di iterazioni
+ dell'algoritmo originale.
+ Inoltre, questo approccio, come quello originario, è assolutamente generale
+ poiché tutte i tipi di estensione in letteratura richiedono la proprietà
+ conflict-free.
+ 
+\end_layout
+
+\begin_layout Standard
+Infine, sono stati illustrati i risultati degli esperimenti per confrontare
+ l'efficienza computazione dei due algoritmi in termini di tempo CPU, successi
+ e numeri di iterazioni Monte Carlo.
+ L'algoritmo risulta essere in genere più efficiente di quello naive, specialmen
+te nel caso di semantica complete e grounded (e in generale di quei problemi
+ decisionali che hanno complessità polinomiale per gli abstract argumentation
+ framework).
+ Nel capitolo viene altresì specificato il setting usato per le simulazioni
+ e i processi di costruzione delle istanze usate nei test.
+\end_layout
+
+\begin_layout Standard
+Il lavoro in questa tesi è stato focalizzato sul calcolare la probabilità
+ che un insieme di argomenti sia una estensione posto che sia conflict-free.
+ Come mostrato però, anche la probabilità admissible può essere calcolata
+ in tempo polinomiale, e solitamente tale probabilità è inferiore a quella
+ conflict-free.
+ Quindi lo spazio di campionamento sarebbe ancora più ridotto rispetto allo
+ spazio delle istanze conflict-free, ottenendo ulteriori miglioramenti in
+ efficienza.
+ Il problema rimane però costruire un algoritmo di campionamento che non
+ sia biased, che non è un problema semplice come nel caso conflict-free.
 \end_layout
 
 \begin_layout Chapter

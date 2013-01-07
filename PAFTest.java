@@ -19,21 +19,9 @@ public class PAFTest {
 	    runDescribe (props);
 	} else if (mode.equals ("generate")) {
 	    Generator.generateInstance (props);
+	} else if (mode.equals ("test")) {
+	    runTest ();
 	}
-
-	//optTestArgsSameError ("Complete", "complete_same_error_01.csv", 1.96, 0.01, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
-	// optTestArgsSameError ("Complete", "complete_same_error_005.csv", 1.96, 0.005, new CompleteSemantics(), new CompleteGivenConflictFreeSemantics());
-	//optTestArgsSameError ("Grounded", "grounded_same_error_01.csv", 1.96, 0.01, new GroundedSemantics(), new GroundedGivenConflictFreeSemantics());
-	//optTestArgsSameError ("Grounded", "grounded_same_error_005.csv", 1.96, 0.005, new GroundedSemantics(), new GroundedGivenConflictFreeSemantics());
-
-	//testAdmissible ();
-	//profOptimization ();
-	//paperExamples ();
-	//profExamples ();
-
-        //testGenerator ();
-        //testGraph ();
-	//describeInstances ();
     }
 
     static void runCompare (Properties props) throws IOException {
@@ -124,42 +112,29 @@ public class PAFTest {
 	pw.close ();
     }
 
-    static void testAdmissible () {
+    static void runTest () {
 	PAF paf = new PAF();
 	paf.addArgs ("a", 1.0,
 		     "b", 2/3.0,
-		     "c", 2/3.0,
-		     "d", 1.0);
+		     "c", 2/3.0);
 	paf.addDefeats ("a", "b", 2/3.0,
 			"b", "c", 2/3.0);
-	ArgSet s = new ArgSet ("a", "c", "d");
-	Montecarlo m = new MontecarloError (1.96, 0.005);
+	ArgSet s = new ArgSet ("a", "c");
+	Montecarlo m = new MontecarloError (1.96, 0.001);
 	Semantics compl = new CompleteSemantics();
 	Semantics complGA = new CompleteGivenAdmissibleSemantics();
-	System.out.println("exact cf: "+paf.conflictFree (s));
-	System.out.println("exact compl: "+paf.depthFirst (compl, s));
-	System.out.println("exact adm: "+paf.depthFirst (new AdmissibleSemantics(), s));
-	System.out.println("exact compl|A: "+paf.depthFirst (complGA, s));
-	System.out.println("mc compl: "+m.run(compl, paf, s).toDouble());
+	System.out.println("exact admissible: "+paf.depthFirst (new AdmissibleSemantics(), s));
+	System.out.println("exact admissible (formula): "+paf.admissible (s));
+	System.out.println("exact complete: "+paf.depthFirst (compl, s));
+	System.out.println("exact complete|admissible: "+paf.depthFirst (complGA, s));
+	System.out.println("mc complete: "+m.run(compl, paf, s).toDouble());
 	double p = m.run(complGA, paf, s).toDouble();
-	System.out.println("mc compl|A: "+p);
-	System.out.println("mc compl|A*A: "+complGA.conditional(paf, s)*p);
+	System.out.println("mc complete|admissible: "+p);
+	System.out.println("mc complete|admissible*admissible: "+complGA.conditional(paf, s)*p);
     }
 
     /*
-    static void profOptimization () {
-	PAF paf = new PAF();
-	paf.addArgs ("a", 1.0,
-		     "b", 2/3.0,
-		     "c", 2/3.0,
-		     "d", 1.0);
-	paf.addDefeats ("a", "b", 2/3.0,
-			"b", "c", 2/3.0);
-	ArgSet s = new ArgSet ("a", "c", "d");
-        //compareOptimization (paf, s);
-    }
-
-    public static void profExamples () {
+    public static void testCorrectness () {
 	PAF paf = new PAF();
 	paf.addArgs ("a", 1.0,
 		     "b", 2/3.0,
@@ -168,8 +143,9 @@ public class PAFTest {
 	paf.addDefeats ("a", "b", 2/3.0,
 			"b", "c", 2/3.0);
 	ArgSet s = new ArgSet ("c");
-	System.out.println (paf.montecarlo (new AdmissibleSemantics(), s, 1.96, 0.01));
+	MontecarloError m = new MontecarloError (1.96, 0.01);
 	System.out.println (paf.depthFirst (new AdmissibleSemantics(), s)); // 0.37
+	System.out.println (m.runs (new AdmissibleSemantics(), s, 1.96, 0.01));
         System.out.println (paf.admissible (s));
         System.out.println ();
 
@@ -184,14 +160,6 @@ public class PAFTest {
 	System.out.println (paf.depthFirst (new AdmissibleSemantics(), s)); // 0.5679
         System.out.println (paf.admissible (s));
         System.out.println ();
-
-	DAF daf = new DAF();
-	daf.addArgs ("a", "b");
-	daf.addDefeats ("a", "b",
-			"b", "a");
-	System.out.println (daf.complete (new ArgSet())+" "+daf.preferred (new ArgSet ()));
-	System.out.println (daf.complete (new ArgSet("a"))+" "+daf.preferred (new ArgSet ("a")));
-	System.out.println (daf.complete (new ArgSet("a", "b"))+" "+daf.preferred (new ArgSet ("a", "b")));
     }
 
     public static void paperExamples () {

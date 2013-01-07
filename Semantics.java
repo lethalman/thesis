@@ -136,14 +136,11 @@ abstract class GivenAdmissibleSemantics1 extends Semantics {
 		    daf.addArg (a);
 		}
 	    }
+	    // generate defeats that do not attack S
 	    for (String a: daf.args) {
 		for (String b: paf.getDefeats(a).keySet()) {
-		    if (set.contains(a) && set.contains(b)) {
-			// conflict
-			continue;
-		    }
 		    if (set.contains (b)) {
-			// can't be handled here because it would be incorrect, do it later
+			// do it later
 			continue;
 		    }
 		    if (daf.args.contains (b) && Math.random () <= paf.defeats.get(a).get(b)) {
@@ -151,10 +148,15 @@ abstract class GivenAdmissibleSemantics1 extends Semantics {
 		    }
 		}
 	    }
+	    // generate defeats that attack S
 	    for (String a: set) {
 		for (String b: paf.getDefeatedBy(a).keySet()) {
+		    if (set.contains (b)) {
+			// conflict
+			continue;
+		    }
 		    if (daf.args.contains (b) && !set.contains (b)) {
-			// "a" must be defended from "b"
+			// "a" must be defended from "b" in the induced DAF
 			boolean defended = false;
 			for (String c: daf.getDefeatedBy(b)) {
 			    if (set.contains (c)) {
@@ -197,32 +199,35 @@ abstract class GivenAdmissibleSemantics extends Semantics {
 		    daf.addArg (a);
 		}
 	    }
-	    // first generate defeats toward S
+	    // generate defeats that attack S with one defender
 	    for (String a: set) {
 		for (String b: paf.getDefeatedBy(a).keySet()) {
 		    if (set.contains (b)) {
 			// conflict
 			continue;
 		    }
-		    if (daf.args.contains (b) && Math.random() <= paf.defeats.get(b).get(a)) {
+		    if (daf.args.contains (b)) {
 			// generate one defender
-			boolean hasDefender = false;
+			String defender = null;
 			for (String c: paf.getDefeatedBy(b).keySet()) {
 			    if (set.contains (c)) {
-				daf.addDefeat (c, b);
-				hasDefender = true;
+				defender = c;
+				break;
 			    }
 			}
-			if (hasDefender) {
+			if (defender != null && Math.random() <= paf.defeats.get(b).get(a)) {
 			    daf.addDefeat (b, a);
+			    if (!daf.getDefeats(defender).contains (b)) {
+				daf.addDefeat (defender, b);
+			    }
 			}
 		    }
 		}
 	    }
-	    // generate everything else
+	    // generate defeats that do not attack S and that are not already in the DAF
 	    for (String a: daf.args) {
 		for (String b: paf.getDefeats(a).keySet()) {
-		    if (set.contains (a) || set.contains (b)) {
+		    if (set.contains (b)) {
 			// already considered
 			continue;
 		    }
@@ -248,7 +253,7 @@ class CompleteGivenConflictFreeSemantics extends GivenConflictFreeSemantics {
     }
 }
 
-class CompleteGivenAdmissibleSemantics extends GivenAdmissibleSemantics {
+class CompleteGivenAdmissibleSemantics extends GivenAdmissibleSemantics1 {
     @Override
     public boolean evaluate (DAF daf, ArgSet set) {
 	return daf.completeGivenAdmissible (set);
