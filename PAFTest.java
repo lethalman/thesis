@@ -131,6 +131,9 @@ public class PAFTest {
 	double p = m.run(complGA, paf, s).toDouble();
 	System.out.println("mc complete|admissible: "+p);
 	System.out.println("mc complete|admissible*admissible: "+complGA.conditional(paf, s)*p);
+
+	System.out.println("exact stable: "+paf.depthFirst (new StableSemantics(), s));
+	System.out.println("exact stable (formula): "+paf.stable (s));
     }
 
     /*

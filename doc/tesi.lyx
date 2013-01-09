@@ -8776,21 +8776,21 @@ Dato
 \end_layout
 
 \begin_layout Lemma
-\begin_inset Formula $P_{3}\left(S\right)={\displaystyle \prod_{a\in A\setminus S}\left(P_{31}\left(S,a\right)+P_{32}\left(S,a\right)+P_{33}\left(S,a\right)\right)}$
+\begin_inset Formula $P_{3}\left(S\right)={\displaystyle \prod_{a\in A\setminus S}\left(P_{31}\left(a\right)+P_{32}\left(S,a\right)+P_{33}\left(S,a\right)\right)}$
 \end_inset
 
 ,
 \end_layout
 
 \begin_layout Lemma
-\begin_inset Formula $P_{31}\left(S,a\right)=1-P_{A}\left(a\right)$
+\begin_inset Formula $P_{31}\left(a\right)=1-P_{A}\left(a\right)$
 \end_inset
 
 ,
 \end_layout
 
 \begin_layout Lemma
-\begin_inset Formula $P_{32}\left(S,a\right)=P_{A}\left(d\right)\cdot{\displaystyle \prod_{\begin{subarray}{c}
+\begin_inset Formula $P_{32}\left(S,a\right)=P_{A}\left(a\right)\cdot{\displaystyle \prod_{\begin{subarray}{c}
 \left\langle a,b\right\rangle \in D\\
 \wedge b\in S
 \end{subarray}}\left(1-P_{D}\left(\left\langle a,b\right\rangle \right)\right)}$
@@ -8800,7 +8800,7 @@ Dato
 \end_layout
 
 \begin_layout Lemma
-\begin_inset Formula $P_{33}\left(S,a\right)=P_{A}\left(d\right)\cdot\left(1-{\displaystyle \prod_{\begin{subarray}{c}
+\begin_inset Formula $P_{33}\left(S,a\right)=P_{A}\left(a\right)\cdot\left(1-{\displaystyle \prod_{\begin{subarray}{c}
 \left\langle a,b\right\rangle \in D\\
 \wedge b\in S
 \end{subarray}}\left(1-P_{D}\left(\left\langle a,b\right\rangle \right)\right)}\right)\cdot\left(1-{\displaystyle \prod_{\begin{subarray}{c}
@@ -8837,8 +8837,8 @@ reference "lem:Pcf"
 \begin_inset Formula $S$
 \end_inset
 
-, e cioè che per ogni argomento 
-\begin_inset Formula $a\notin A\setminus S$
+, e cioè che  
+\begin_inset Formula $\forall a\notin A\setminus S$
 \end_inset
 
  uno dei seguenti eventi indipendenti deve accadere:
@@ -8886,6 +8886,126 @@ L'argomento
 \end_inset
 
  è in grado di difendersi.
+\end_layout
+
+\begin_layout Standard
+La proprietà conflict-free è richiesta per ogni semantica, mentre l'admissible
+ non sempre, come nel caso di semantica stable.
+ In entrambi i casi, nella letteratura queste sono delle caratteristiche
+ di un insieme di argomenti importanti, ma che non definisco un tipo di
+ estensione come complete, stable, preferred, grounded, ecc..
+ Come introdotto nei capitali introduttivi e come vedremo in seguito, calcolare
+ la probabilità che un insieme di argomenti sia conflict-free permetterà
+ di ottimizzare il calcolo della probabilità per casi più difficili.
+\end_layout
+
+\begin_layout Standard
+Oltre a conflict-free e admissible, un risultato molto importante è che
+ è possibile calcolare la probabilità che un insieme sia una estensione
+ stabile in tempo polinomiale, con lo stesso approccio delle probabilità
+ di cui sopra.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:Pstable"
+
+\end_inset
+
+Dato un 
+\begin_inset Formula $PrAF=\left\langle A,P_{A},D,P_{D}\right\rangle $
+\end_inset
+
+ e un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+, 
+\begin_inset Formula $P_{stable}\left(S\right)=P_{CF}\left(S\right)\cdot P_{3}$
+\end_inset
+
+, dove:
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $P_{3}\left(S\right)={\displaystyle \prod_{a\in A\setminus S}\left(P_{31}\left(a\right)+P_{32}\left(S,a\right)\right)}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $P_{31}\left(a\right)=1-P_{A}\left(a\right)$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $P_{32}\left(S,a\right)=P_{A}\left(a\right)\cdot\left(1-{\displaystyle \prod_{\begin{subarray}{c}
+\left\langle b,a\right\rangle \in D\\
+\wedge b\in S
+\end{subarray}}\left(1-P_{D}\left(\left\langle b,a\right\rangle \right)\right)}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Come per il caso di 
+\begin_inset Formula $P_{admissible}\left(S\right)$
+\end_inset
+
+, il 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "lem:Pstable"
+
+\end_inset
+
+ estende il 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "lem:Pcf"
+
+\end_inset
+
+ al caso di estensioni stabili.
+ In questo casi si aggiunge l'evento congiunto che tutti gli argomenti esterni
+ ad 
+\begin_inset Formula $S$
+\end_inset
+
+ siano attaccati da 
+\begin_inset Formula $S$
+\end_inset
+
+, cioè che 
+\begin_inset Formula $\forall a\notin A\setminus S$
+\end_inset
+
+ uno dei seguenti eventi indipendenti deve accadere:
+\end_layout
+
+\begin_layout Itemize
+L'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ non è presente;
+\end_layout
+
+\begin_layout Itemize
+L'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ viene attaccato da almeno un argomento 
+\begin_inset Formula $b\in S$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
