@@ -1,0 +1,841 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Indice
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A Probabilistic Argumentation Framework
+\series bold
+ 
+\begin_inset Formula $PrAF=\left(A,PA,D,PD\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A set of arguments 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $Arg=S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $Def=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall a\in A\setminus S$
+\end_inset
+
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P_{A}\left(a\right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Arg=Arg\cup\left\{ a\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate defeats that attack S with one defender
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall\left\langle b,a\right\rangle \in D$
+\end_inset
+
+ 
+\series default
+such that
+\series bold
+ 
+\begin_inset Formula $a\in S\wedge b\in Arg\setminus S$
+\end_inset
+
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $defender=c\in S$
+\end_inset
+
+ such that 
+\begin_inset Formula $\left\langle c,b\right\rangle \in D$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ 
+\begin_inset Formula $\exists defender$
+\end_inset
+
+ 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P_{D}\left(\left\langle b,a\right\rangle \right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Def=Def\cup\left\{ \left\langle defender,b\right\rangle ,\left\langle b,a\right\rangle \right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate defeats that do not attack S and are not already in the AAF
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall\left\langle a,b\right\rangle \in D$
+\end_inset
+
+ 
+\series default
+such that 
+\begin_inset Formula $a\in Arg\wedge b\in Arg\setminus S\wedge\left\langle a,b\right\rangle \notin Def$
+\end_inset
+
+
+\series bold
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P_{D}\left(\left\langle a,b\right\rangle \right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Def=Def\cup\left\{ \left\langle a,b\right\rangle \right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+return
+\series default
+ 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Test 1 - prima gli attacchi ad S con difensori
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A Probabilistic Argumentation Framework
+\series bold
+ 
+\begin_inset Formula $PrAF=\left(A,PA,D,PD\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A set of arguments 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $Arg=S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $Def=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall a\in A\setminus S$
+\end_inset
+
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P_{A}\left(a\right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Arg=Arg\cup\left\{ a\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate defeats that do not attack S
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall\left\langle a,b\right\rangle \in D$
+\end_inset
+
+ 
+\series default
+such that 
+\begin_inset Formula $a\in Arg,b\in Arg\setminus S$
+\end_inset
+
+
+\series bold
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P_{D}\left(\left\langle a,b\right\rangle \right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Def=Def\cup\left\{ \left\langle a,b\right\rangle \right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end for
+\end_layout
+
+\begin_layout LyX-Code
+
+\family roman
+\size footnotesize
+Generate defeats that attack S
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall\left\langle b,a\right\rangle \in D$
+\end_inset
+
+ 
+\series default
+such that
+\series bold
+ 
+\begin_inset Formula $a\in S\wedge b\in Arg\setminus S$
+\end_inset
+
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+defended = 
+\begin_inset Formula $\exists c\in S$
+\end_inset
+
+ such that 
+\begin_inset Formula $\left\langle c,b\right\rangle \in Def$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ defended 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P_{D}\left(\left\langle b,a\right\rangle \right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Def=Def\cup\left\{ \left\langle b,a\right\rangle \right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+return
+\series default
+ 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Algoritmo-per-approssimare-1-1"
+
+\end_inset
+
+Test 2 - Attacchi verso S generati dopo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

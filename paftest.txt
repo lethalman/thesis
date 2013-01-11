@@ -1,5 +1,5 @@
 # mode can be one of: describe, generate, compare
-mode = test
+mode = compare
 inputdir = ./instances
 csvdir = ./csv
 dotdir = ./dot
@@ -27,7 +27,7 @@ generate.output = generated.txt
 
 # COMPARE mode runs comparison tests between two algorithms and output csv files, 20 runs for each instance
 #compare = complete_error_01 complete_error_005 grounded_error_01 grounded_error_005 preferred_error_01 preferred_error_005
-#compare = grounded_error_exact_01 preferred_error_exact_01
+compare = preferred_error_cache_005
 
 compare.complete_error_01.first = CompleteSemantics
 compare.complete_error_01.second = CompleteGivenConflictFreeSemantics
@@ -53,12 +53,17 @@ compare.grounded_error_005.mode = MontecarloError 1.96 0.005
 
 compare.preferred_error_01.first = PreferredSemantics
 compare.preferred_error_01.second = PreferredGivenConflictFreeSemantics
-compare.preferred_error_01.exact = null
+compare.preferred_error_01.exact = PreferredSemantics
 compare.preferred_error_01.exactmode = MontecarloError 1.96 0.001
 compare.preferred_error_01.mode = MontecarloError 1.96 0.01
 
 compare.preferred_error_005.first = PreferredSemantics
 compare.preferred_error_005.second = PreferredGivenConflictFreeSemantics
-compare.preferred_error_005.exact = PreferredSemantics
-compare.preferred_error_005.exactmode = MontecarloError 1.96 0.001
+compare.preferred_error_005.exact = null
 compare.preferred_error_005.mode = MontecarloError 1.96 0.005
+
+compare.preferred_error_cache_005.first = PreferredGivenConflictFreeSemantics
+compare.preferred_error_cache_005.second = PreferredGivenConflictFreeSemantics 10000
+compare.preferred_error_cache_005.exact = null
+compare.preferred_error_cache_005.exactmode = MontecarloError 1.96 0.001
+compare.preferred_error_cache_005.mode = MontecarloError 1.96 0.005

@@ -231,6 +231,17 @@ class DAF {
 
     ArrayList<String> argsList = new ArrayList<String> ();
 
+    @Override
+    public boolean equals (Object o) {
+	DAF daf = (DAF) o;
+	return args.equals (daf.args) && defeats.equals (daf.defeats);
+    }
+
+    @Override
+    public int hashCode () {
+	return (args.hashCode() << 32) + defeats.hashCode ();
+    }
+
     public void addArg (String name) {
 	args.add (name);
 	argsList.add (name);

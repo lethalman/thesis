@@ -263,7 +263,7 @@ Obiettivo della tesi
 
 \begin_layout Standard
 L'obiettivo di questo lavoro di tesi è quello di studiare gli argumentation
- framework e le sue varianti
+ framework e le sue varianti 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Li:2011:PAF:2238189.2238191,Rienstra12,Thimm12"
@@ -409,8 +409,13 @@ Osservare come nel caso di semantica complete e grounded (o in generale
 \begin_layout Itemize
 In base all'oservazione di cui sopra, e al risultato teorico che determina
  un upperbound sul numero di iterazioni della simulazione, concludere che
- l'algoritmo ottimizzato risulta avere lo stesso upperbound sul tempo CPU
- rispetto all'algoritmo naive.
+ l'algoritmo ottimizzato risulta un upperbound sul tempo CPU rispetto all'algori
+tmo naive che dipende dalla probabilità conflict-free.
+\end_layout
+
+\begin_layout Standard
+Il simulatore per gli esperimenti è stato sviluppato in Java e può essere
+ usato per scopi pratici o esteso per sviluppi futuri.
 \end_layout
 
 \begin_layout Section
@@ -510,6 +515,26 @@ In contrasto, l'approccio argomentativo tiene in considerazione entrambi
  altro, vengono rivelate le debolezze di ogni singolo argomento rispetto
  agli altri, e quindi è possibile decidere quali tra due argomenti è il
  più forte.
+\end_layout
+
+\begin_layout Standard
+Uno degli ambiti nei quali i formalismi di argumentation framework sono
+ applicati è quello legale.
+ L'utilizzo di sistemi classici di intelligenza artificiale non fanno altro
+ che dedurre delle conseguenze a partire da un insieme di fatti e regole
+ ben preciso.
+ Questi approcci meccanici non sembrano interessarsi degli aspetti più important
+i che dovrebbero costituire il legal reasoning.
+ In un caso legale entrano in gioco molti argomenti con pro e contro, che
+ interagiscono con altri argomenti di un determinato contesto e framework
+ legale.
+ Per un caso ci possono essere più interpretazioni e problemi legati all'aspetto
+ legale, che devono essere valutati e che introducono a loro volta altri
+ argomenti.
+ In questo ambito quindi l'argomentazione serve a mettere in discussione
+ quali argomenti sono validi rispetto al framework legale per soddisfare
+ le esigenze di un cliente, piuttosto che determinare le conseguenze delle
+ azioni.
 \end_layout
 
 \begin_layout Section
@@ -3086,6 +3111,7 @@ reference "alg:Completezza-di-un"
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
 status collapsed
@@ -3307,7 +3333,14 @@ di
 Nonostante la semantica grounded richieda la minimalità, la complessità
  per costruire l'unico insieme grounded è polinomiale nel numero di argomenti
  e defeat di un AAF.
- Infatti, il seguente algoritmo costruisce l'insieme grounded 
+ Infatti, l'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:EstensioneGrounded"
+
+\end_inset
+
+ costruisce l'insieme grounded 
 \begin_inset Formula $S$
 \end_inset
 
@@ -3315,76 +3348,230 @@ Nonostante la semantica grounded richieda la minimalità, la complessità
 \begin_inset Formula $\mathcal{F}=\left\langle Arg,Def\right\rangle $
 \end_inset
 
-:
+ a partire da 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mathcal{IN}\left(\left\langle Arg,Def\right\rangle \right)$
+\end_inset
+
+, che è l'insieme minimo necessario affinché un insieme sia complete.
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+\noindent
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+An abstract argumentation framework
+\series bold
+ 
+\begin_inset Formula $\mathcal{F}=\left(Arg,Def\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
 \begin_inset Formula $S=\emptyset$
 \end_inset
 
-, 
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
 \begin_inset Formula $A=Arg$
 \end_inset
 
-, 
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
 \begin_inset Formula $D=Def$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+loop
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
 \begin_inset Formula $S'=\mathcal{IN}\left(\left\langle A,D\right\rangle \right)$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Enumerate
-Se 
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ 
 \begin_inset Formula $S=S'$
 \end_inset
 
-, allora 
-\begin_inset Formula $S$
-\end_inset
-
- è l'estensione grounded 
-\begin_inset Formula $GE\left(\mathcal{F}\right)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-Altrimenti, si sopprimono i nodi attaccati da 
-\begin_inset Formula $S':$
-\end_inset
-
-
+ 
+\series bold
+then
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-\begin_inset Formula $A=A\setminus\left\{ a\mid b\in S'\wedge\exists\left\langle b,a\right\rangle \in D\right\} $
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+return
+\series default
+ 
+\begin_inset Formula $S$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $D=D\cap\left(A\times A\right)$
+ as 
+\begin_inset Formula $GE\left(\mathcal{F}\right)$
 \end_inset
 
 
 \end_layout
 
 \end_deeper
-\begin_layout Enumerate
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+if
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $A=A\setminus\left\{ a\mid b\in S'\wedge\exists\left\langle b,a\right\rangle \in D\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $D=D\cap\left(A\times A\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
 \begin_inset Formula $S=S'$
 \end_inset
 
- e goto 2
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\series bold
+end
+\series default
+ 
+\series bold
+loop
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:EstensioneGrounded"
+
+\end_inset
+
+Calcolo dell'estensione grounded
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Una volta generata l'unica estensione grounded, verificare che un dato insieme
+ di argomenti sia l'estensione 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+ è un problema banale.
 \end_layout
 
 \begin_layout Proposition
@@ -3844,7 +4031,7 @@ patologiche
  in certo senso, è stato mostrato
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Guid:2008:LPF:1428170.1428188"
+key "Dung95onthe"
 
 \end_inset
 
@@ -4027,7 +4214,7 @@ L'intuizione riguardo la semantica preferred ha corrispondenze con le semantiche
  preferenziali dei programmi logici
 \begin_inset CommandInset citation
 LatexCommand cite
-key "GÃ³mez03integratingdefeasible"
+key "_anabductive"
 
 \end_inset
 
@@ -4044,14 +4231,14 @@ Semantica stage e semi-stable
 Le semantiche stage
 \begin_inset CommandInset citation
 LatexCommand cite
-key "watson1999secrets"
+key "Verheij96twoapproaches"
 
 \end_inset
 
  e semi-stable
 \begin_inset CommandInset citation
 LatexCommand cite
-key "orange"
+key "Caminada14092011"
 
 \end_inset
 
@@ -4287,7 +4474,7 @@ Semantica ideal
 La semantica ideal
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Jensen98multiplecomparisons"
+key "Dung:2006:DPS:1565233.1565251"
 
 \end_inset
 
@@ -4447,7 +4634,7 @@ ee, ovvero che non ci siano defeat tra gli argomenti dell'insieme
 La famiglia delle semantiche prudent
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Miller1998"
+key "Coste-marquis_prudentsemantics"
 
 \end_inset
 
@@ -5010,11 +5197,11 @@ Un AAF
 \begin_inset Formula $\left\langle Arg,Def\right\rangle $
 \end_inset
 
- (o possible world) is said to be 
+ (o possible world) si dice 
 \emph on
-induced
+indotto 
 \emph default
- da un PrAF 
+da un PrAF 
 \begin_inset Formula $\left\langle A,P_{A},D,P_{D}\right\rangle $
 \end_inset
 
@@ -5056,6 +5243,10 @@ induced
 
  tale che 
 \begin_inset Formula $P_{D}\left(f,t\right)=1$
+\end_inset
+
+ e 
+\begin_inset Formula $f,t\in Arg$
 \end_inset
 
 , 
@@ -5131,9 +5322,9 @@ La probabilità
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-P_{PrAF}\left(\mathcal{F}\right)={\displaystyle \prod_{a\in Arg}P_{A}\left(a\right)}\cdot{\displaystyle \prod_{a\in Arg\setminus A}}\left(1-P_{A}\left(a\right)\right)\cdot{\displaystyle \prod_{d\in Def}P_{D}\left(d\right)\cdot}{\displaystyle \prod_{d\in DefA\setminus Def}\left(1-P_{D}\left(d\right)\right)}
-\]
+\begin{equation}
+P_{PrAF}\left(\mathcal{F}\right)={\displaystyle \prod_{a\in Arg}P_{A}\left(a\right)}\cdot{\displaystyle \prod_{a\in Arg\setminus A}}\left(1-P_{A}\left(a\right)\right)\cdot{\displaystyle \prod_{d\in Def}P_{D}\left(d\right)\cdot}{\displaystyle \prod_{d\in DefA\setminus Def}\left(1-P_{D}\left(d\right)\right)}\label{eq:Paaf}
+\end{equation}
 
 \end_inset
 
@@ -5185,9 +5376,9 @@ Adesso è possibile definire la probabilità alla quale siamo interessati.
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-P_{\mathfrak{S}}\left(S\right)={\displaystyle \sum_{\mathcal{F}}P_{PrAF}\left(\mathcal{F}\right)}\,\, where\,\,\xi_{\mathfrak{S}}\left(\mathcal{F},S\right)=true
-\]
+\begin{equation}
+P_{\mathfrak{S}}\left(S\right)={\displaystyle \sum_{\mathcal{F}}P_{PrAF}\left(\mathcal{F}\right)}\,\, where\,\,\xi_{\mathfrak{S}}\left(\mathcal{F},S\right)=true\label{eq:Psemantic}
+\end{equation}
 
 \end_inset
 
@@ -5197,6 +5388,117 @@ P_{\mathfrak{S}}\left(S\right)={\displaystyle \sum_{\mathcal{F}}P_{PrAF}\left(\m
 \begin_layout Standard
 Il numero di possibili AAF inducibili da un PrAF cresce esponenzialmente
  rispetto al numero di argomenti e defeat del PrAF.
+\end_layout
+
+\begin_layout Standard
+Dopo aver definito la distribuzione 
+\begin_inset Formula $P_{PrAF}\left(\mathcal{F}\right)$
+\end_inset
+
+, le probabilità sugli argomenti e sui defeat possono essere riscritte come
+ segue:
+\end_layout
+
+\begin_layout Itemize
+La probabilità 
+\begin_inset Formula $P_{A}\left(a\right)$
+\end_inset
+
+ è pari alla somma delle probabilità 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P_{PrAF}\left(\mathcal{F}\right)$
+\end_inset
+
+ dove l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ è presente in 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+:
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $\forall a\in A,\, P_{A}\left(a\right)={\displaystyle \sum_{\begin{subarray}{c}
+\mathcal{F}=\left\langle Arg.Def\right\rangle \wedge\\
+a\in Arg
+\end{subarray}}}P_{PrAF}\left(\mathcal{F}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+La probabilità 
+\begin_inset Formula $P_{D}\left(d\right)$
+\end_inset
+
+ è pari alla somma delle probabilità 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P_{PrAF}\left(\mathcal{F}\right)$
+\end_inset
+
+ dove il defeat 
+\begin_inset Formula $d$
+\end_inset
+
+ è presente in 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+: 
+\begin_inset Formula $\forall d\in D,\, P_{D}\left(d\right)={\displaystyle \sum_{\begin{subarray}{c}
+\mathcal{F}=\left\langle Arg.Def\right\rangle \wedge\\
+d\in Def
+\end{subarray}}}P_{PrAF}\left(\mathcal{F}\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -7895,7 +8197,7 @@ L'errore nell'approssimazione di
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -8397,7 +8699,7 @@ N=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}-z_{1-\al
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -8649,20 +8951,12 @@ Algoritmo per approssimare
 \end_layout
 
 \begin_layout Section
-Casi trattabili di 
-\begin_inset Formula $PrAF$
-\end_inset
-
-
+Casi trattabili in probabilistic argumentation framework
 \end_layout
 
 \begin_layout Standard
-Il 
-\emph on
-numero
-\emph default
- di AAF che può essere indotto da un PrAF è certamente esponenziale nel
- numero di argomenti e defeat, ma ci sono casi in cui il 
+Il numero di AAF che può essere indotto da un PrAF è certamente esponenziale
+ nel numero di argomenti e defeat, ma ci sono casi in cui il 
 \emph on
 calcolo
 \emph default
@@ -9008,6 +9302,259 @@ L'argomento
 .
 \end_layout
 
+\begin_layout Standard
+Mostriamo per un semplice esempio l'utilizzo di queste formule per calcolare
+ le probabilità che un insieme di argomenti sia conflict-free, admissible
+ o stable.
+ In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Calcolo-probabilità-polinomiale"
+
+\end_inset
+
+ l'insieme di argomenti del PrAF 
+\begin_inset Formula $\left\langle A,P_{A},D,P_{D}\right\rangle $
+\end_inset
+
+ è 
+\begin_inset Formula $A=\left\{ a,b,c\right\} $
+\end_inset
+
+ e l'insieme di argomenti 
+\begin_inset Formula $S=\left\{ a,c\right\} $
+\end_inset
+
+ per il quale valutare le varie probabilità descritte precedentemente.
+ I possible world di questo PrAF sono i seguenti:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{ll}
+w1=\left\langle \left\{ a\right\} ,\emptyset\right\rangle  & w5=\left\langle \left\{ a,b,c\right\} ,\emptyset\right\rangle \\
+w2=\left\langle \left\{ a,b\right\} ,\emptyset\right\rangle  & w6=\left\langle \left\{ a,b,c\right\} ,\left\{ \left(a,b\right)\right\} \right\rangle \\
+w3=\left\langle \left\{ a,b\right\} ,\left\{ \left(a,b\right)\right\} \right\rangle  & w7=\left\langle \left\{ a,b,c\right\} ,\left\{ \left(b,c\right)\right\} \right\rangle \\
+w4=\left\langle \left\{ a,c\right\} ,\emptyset\right\rangle  & w8=\left\langle \left\{ a,b,c\right\} ,\left\{ \left(a,b\right),\left(b,c\right)\right\} \right\rangle 
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename polynomial.png
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Calcolo-probabilità-polinomiale"
+
+\end_inset
+
+Calcolo probabilità polinomiale
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le probabilità per ogni possible world, calcolate secondo 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:Paaf"
+
+\end_inset
+
+, sono le seguenti:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{ll}
+P\left(w1\right)=9/81 & P\left(w5\right)=4/81\\
+P\left(w2\right)=6/81 & P\left(w6\right)=8/81\\
+P\left(w3\right)=12/81 & P\left(w7\right)=8/81\\
+P\left(w4\right)=18/81 & P\left(w8\right)=16/81
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Verifichiamo la correttezza osservando che la somma 
+\begin_inset Formula ${\displaystyle \sum_{i=1}^{8}P\left(w_{i}\right)=1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Per calcolare la probabilità che l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ sia conflict-free in maniera esatta, admissible o stable, usiamo 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:Psemantic"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P_{CF}\left(S\right)=P\left(w4\right)+P\left(w5\right)+P\left(w6\right)+P\left(w7\right)+P\left(w8\right)=54/81$
+\end_inset
+
+, ovvero la somma delle probabilità di tutti i possible world che presentano
+ gli argomenti 
+\begin_inset Formula $a$
+\end_inset
+
+ e 
+\begin_inset Formula $c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P_{admissible}\left(S\right)=P\left(w4\right)+P\left(w5\right)+P\left(w6\right)+P\left(w8\right)=46/81$
+\end_inset
+
+, similmente alla conflict-free, ma 
+\begin_inset Formula $S$
+\end_inset
+
+ non è ammissibile per 
+\begin_inset Formula $w7$
+\end_inset
+
+ in quanto l'argomento 
+\begin_inset Formula $c$
+\end_inset
+
+ non è accettabile rispetto ad 
+\begin_inset Formula $S$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P_{stable}\left(S\right)=P\left(w4\right)+P\left(w6\right)+P\left(w8\right)=42/81$
+\end_inset
+
+, similmente alla admissible, ma 
+\begin_inset Formula $S$
+\end_inset
+
+ non è una estensione stabile per 
+\begin_inset Formula $w5$
+\end_inset
+
+ in quanto l'argomento 
+\begin_inset Formula $b$
+\end_inset
+
+ non è attaccato da 
+\begin_inset Formula $S$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Con 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:Psemantic"
+
+\end_inset
+
+ è necessario enumerare tutti i possible world per calcolare le tre probabilità
+ di cui sopra.
+ Con le formule descritte precedentemente invece, otteniamo lo stesso risultato
+ visitando direttamente il PrAF senza enumerare i possible world:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P_{CF}\left(S\right)=P_{A}\left(a\right)\cdot P_{A}\left(c\right)=2/3=54/81$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P_{admissible}\left(S\right)=P_{CF}\left(S\right)\cdot\left(\left(1-P_{A}\left(b\right)\right)+P_{A}\left(b\right)\cdot\left(1-P_{D}\left(b,c\right)\right)+P_{A}\left(b\right)\cdot P_{D}\left(a,b\right)\cdot P_{D}\left(b,c\right)\right)$
+\end_inset
+
+
+\begin_inset Formula $=P_{CF}\left(S\right)\cdot\left(1/3+2/3\cdot1/3+\left(2/3\right)^{3}\right)$
+\end_inset
+
+
+\begin_inset Formula $=P_{CF}\left(S\right)\cdot23/27=46/81$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P_{stable}\left(S\right)=P_{CF}\left(S\right)\cdot\left(\left(1-P_{A}\left(b\right)\right)+P_{A}\left(b\right)\cdot P_{D}\left(a,b\right)\right)$
+\end_inset
+
+
+\begin_inset Formula $=P_{CF}\left(S\right)\cdot\left(1/3+\left(2/3\right)^{2}\right)$
+\end_inset
+
+
+\begin_inset Formula $=P_{CF}\left(S\right)\cdot7/9=42/81$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 Ottimizzazione di casi intrattabili
 \end_layout
@@ -9115,8 +9662,14 @@ N=\frac{z_{1-\alpha/2}^{2}\cdot p\left(1-p\right)}{\epsilon^{2}}\cdot P_{CF}^{2}
 \end_layout
 
 \begin_layout Standard
-Nuovamente, usando l'intervallo di Agresti-Coull, la stima del numero di
- iterazioni posto che 
+Usando l'intervallo di Agresti-Coull
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:AgrestiCoull"
+
+\end_inset
+
+, la stima del numero di iterazioni posto che 
 \begin_inset Formula $S$
 \end_inset
 
@@ -9150,7 +9703,7 @@ reference "alg:AlgoErr"
 \end_layout
 
 \begin_layout Standard
-Intuitivamente, per 
+Banalmente, per 
 \begin_inset Formula $P_{CF}\left(S\right)\rightarrow1$
 \end_inset
 
@@ -9162,8 +9715,8 @@ A parità di iterazioni e per
 \begin_inset Formula $P_{CF}\left(S\right)\ll1$
 \end_inset
 
- il nuovo algoritmo è più lento, poiché la funzione di valutazione semantica
- 
+ il nuovo algoritmo è più lento, poiché intuitivamente la funzione di valutazion
+e semantica 
 \begin_inset Formula $\xi$
 \end_inset
 
@@ -9176,7 +9729,15 @@ A parità di errore e per
 \end_inset
 
  il nuovo algoritmo risulta essere generalmente più veloce di quello naive,
- specialmente nel caso di semantica complete come mostrato di seguito.
+ specialmente nel caso di semantica complete e grounded sotto determinate
+ ipotesi come descritto in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:Efficienza-teorica-del"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -9237,8 +9798,15 @@ Un AAF
 \end_layout
 
 \begin_layout Standard
-L'algoritmo di base rimane lo stesso di quello FIX, tranne che per la generazion
-e che deve soddisfare i vincoli sopra descritti.
+L'algoritmo di base rimane lo stesso di quello 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:Algoritmo-per-approssimare"
+
+\end_inset
+
+, tranne che per la generazione dell'AAF indotto che deve soddisfare i vincoli
+ sopra descritti.
 \end_layout
 
 \begin_layout Standard
@@ -9558,13 +10126,23 @@ end for
 \end_layout
 
 \begin_layout LyX-Code
-Continue as in algorithm FIX
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Continue as in algorithm 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:AlgoErr"
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -9597,15 +10175,11 @@ return
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "alg:Algoritmo-per-approssimare-1"
+name "alg:CampionamentoConflictfree"
 
 \end_inset
 
-Algoritmo per approssimare 
-\begin_inset Formula $P_{PrAF}\left(X\right)$
-\end_inset
-
-
+Compionamento AAF conflict-free
 \end_layout
 
 \end_inset
@@ -9619,7 +10193,17 @@ Algoritmo per approssimare
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Efficienza-teorica-del"
+
+\end_inset
+
 Efficienza teorica del nuovo algoritmo.
+\end_layout
+
+\begin_layout Standard
+Intuitivamente
 \end_layout
 
 \begin_layout Standard
@@ -9647,7 +10231,7 @@ Dato
 Per semplicità, richiamiamo il numero di iterazioni da 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "eq:NaiveIters"
+reference "eq:NaiveTrials"
 
 \end_inset
 
@@ -9887,8 +10471,22 @@ Osserviamo che
 \end_layout
 
 \begin_layout Standard
-Si noti, come mostrato nell'algoritmo FIX, che decidere se un insieme di
- argomenti è complete è polinomiale nel numero di argomenti e defeat.
+Si noti, come mostrato negli algoritmi 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:Completezza-di-un"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:EstensioneGrounded"
+
+\end_inset
+
+, che decidere se un insieme di argomenti è rispettivamente complete o grounded
+ è polinomiale nel numero di argomenti e defeat.
  Quindi, ipotizzando che tale relazione sussista, il tempo CPU è strettamente
  legato al numero di iterazioni piuttosto che al numero di successi.
  Infatti, come vedremo dai risultati sperimentali, il nuovo algoritmo è
@@ -10777,15 +11375,15 @@ Questo procedimento genera un
 \begin_inset Formula $S$
 \end_inset
 
- e si generano degli insiemi nell'intorno di 
-\begin_inset Formula $S$
-\end_inset
-
- (
+ e si genera un insieme 
 \begin_inset Formula $N_{S}$
 \end_inset
 
-) come segue:
+ di vicini nell'intorno di 
+\begin_inset Formula $S$
+\end_inset
+
+ come segue:
 \end_layout
 
 \begin_layout Standard
@@ -11001,7 +11599,14 @@ Characteristics of chosen problem instances
 \end_layout
 
 \begin_layout Standard
-Alcune istanze usate per il testing sono illustrate in FIX.
+Alcune istanze usate per il testing sono illustrate in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:IstanzeTest"
+
+\end_inset
+
+.
  I nodi rettangolari sono gli argomenti contenuti in 
 \begin_inset Formula $S$
 \end_inset
@@ -11015,7 +11620,7 @@ Alcune istanze usate per il testing sono illustrate in FIX.
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -11151,6 +11756,12 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:IstanzeTest"
+
+\end_inset
+
 Istanze 
 \begin_inset Formula $\left\langle PrAF,S\right\rangle $
 \end_inset
@@ -12107,6 +12718,13 @@ Uno stesso AAF può essere indotto più volte per via del metodo Monte Carlo,
 \end_inset
 
  per AAF indotti più ricorrenti.
+ Questo avrebbe degli effetti positivi per quanto riguarda l'efficienza
+ per PrAF con pochi argomenti e defeat, dove la probabilità di generare
+ uno stesso AAF è molto maggiore rispetto al caso di un PrAF con molti argomenti
+ e defeat, altrimenti il costo di aggiornare e consultare la cache sorpasserebbe
+ i benefici dell'usare la cache stessa.
+ Alcuni testi sono stati effettuati in Java usando una LinkedHashMap come
+ cache LRU, e la maggiorparte del tempo viene impiegata dal garbage collector.
 \end_layout
 
 \begin_layout Standard
@@ -12119,8 +12737,21 @@ Mostriamo infine come il campionamento dello spazio degli AAF conflict-free
 .
  Ipotizziamo quindi che la probabilità restituita da questa simulazione
  sia quella vera, al fine di calcolare l'errore di approssimazione.
- Il test viene eseguito per la semantica grounded in FIX e preferred in
- FIX con errore 
+ Il test viene eseguito per la semantica grounded in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:ErroreGrounded"
+
+\end_inset
+
+ e preferred in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:ErrorePreferred"
+
+\end_inset
+
+ on errore 
 \begin_inset Formula $\epsilon=0.01$
 \end_inset
 
@@ -12156,7 +12787,7 @@ dove
 \begin_inset Formula $\hat{P}_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- è la probabilità stimata dai due algoritmi 
+ è la probabilità stimata dai due algoritmi con errore 
 \begin_inset Formula $\epsilon=0.01$
 \end_inset
 
@@ -12165,6 +12796,7 @@ dove
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status collapsed
@@ -12192,7 +12824,13 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Semantica preferred
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ErroreGrounded"
+
+\end_inset
+
+Semantica grounded
 \end_layout
 
 \end_inset
@@ -12210,7 +12848,7 @@ Semantica preferred
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -12225,6 +12863,12 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ErrorePreferred"
+
+\end_inset
+
 Semantica preferred
 \end_layout
 

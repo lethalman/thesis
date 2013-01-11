@@ -123,6 +123,7 @@ public class PAFTest {
 	Montecarlo m = new MontecarloError (1.96, 0.001);
 	Semantics compl = new CompleteSemantics();
 	Semantics complGA = new CompleteGivenAdmissibleSemantics();
+	System.out.println("exact cf: "+paf.depthFirst (new ConflictFreeSemantics(), s));
 	System.out.println("exact admissible: "+paf.depthFirst (new AdmissibleSemantics(), s));
 	System.out.println("exact admissible (formula): "+paf.admissible (s));
 	System.out.println("exact complete: "+paf.depthFirst (compl, s));

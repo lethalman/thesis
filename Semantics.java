@@ -1,3 +1,5 @@
+import java.util.*;
+
 abstract class Semantics {
     public abstract boolean evaluate (DAF daf, ArgSet set);
 
@@ -33,8 +35,18 @@ abstract class Semantics {
 	if (name.equals ("null")) {
 	    return null;
 	}
+	String[] split = name.split (" ");
+	String className = split[0];
+	int cacheSize = 0;
+	if (split.length > 1) {
+	    cacheSize = Integer.parseInt (split[1]);
+	}
 	try {
-	    return (Semantics) Class.forName(name).newInstance ();
+	    Semantics sem = (Semantics) Class.forName(className).newInstance ();
+	    if (cacheSize > 0) {
+		sem = new CachedSemantics (sem, cacheSize);
+	    }
+	    return sem;
 	} catch (Exception e) {
 	    throw new RuntimeException (e);
 	}
@@ -294,4 +306,47 @@ class StableGivenConflictFreeSemantics extends GivenConflictFreeSemantics {
     public boolean evaluate (DAF daf, ArgSet set) {
 	return daf.stableGivenConflictFree (set);
     }
+}
+
+class CachedSemantics extends Semantics {
+    private int cacheSize;
+    private ArgSet cacheSet; // cache only for this set of arguments
+    private Semantics realSemantics;
+    private LinkedHashMap<DAF, Boolean> cache = new LinkedHashMap<DAF, Boolean> () {
+	protected boolean removeEldestEntry (Map.Entry eldest) {
+	    return size() > cacheSize;
+	}
+    };
+
+    public CachedSemantics (Semantics realSemantics, int cacheSize) {
+	this.realSemantics = realSemantics;
+	this.cacheSet = cacheSet;
+	this.cacheSize = cacheSize;
+    }
+
+    public boolean evaluate (DAF daf, ArgSet set) {
+	if (!set.equals (cacheSet)) {
+	    cache.clear ();
+	    cacheSet = set;
+	}
+	Boolean b = cache.get (daf);
+	if (b != null) {
+	    return b;
+	}
+	b = realSemantics.evaluate (daf, set);
+	cache.put (daf, b);
+	return b;
+    }	
+
+    public DAF montecarloSample (PAF paf, ArgSet set) {
+	return realSemantics.montecarloSample (paf, set);
+    }
+
+    public boolean filterSample (DAF daf, ArgSet set) {
+        return realSemantics.filterSample (daf, set);
+    }
+
+    public double conditional (PAF paf, ArgSet set) {
+        return realSemantics.conditional (paf, set);
+    }    
 }
