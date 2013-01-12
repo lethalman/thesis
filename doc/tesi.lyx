@@ -3142,7 +3142,7 @@ Supponiamo per assurdo che
 \end_inset
 
 .
- Possono accadere tre casi:
+ Possono accadere due casi:
 \end_layout
 
 \begin_layout Itemize
@@ -3159,11 +3159,19 @@ L'argomento
 \begin_inset Formula $a$
 \end_inset
 
- non viene attaccato ma attacca solo argomenti al di fuori di 
+ attacca argomenti che non stanno in 
 \begin_inset Formula $S$
 \end_inset
 
-, e quindi è accettabile rispetto ad 
+, 
+\begin_inset Formula $a$
+\end_inset
+
+ non è attaccato, e quindi 
+\begin_inset Formula $a$
+\end_inset
+
+ è accettabile rispetto ad 
 \begin_inset Formula $S$
 \end_inset
 
@@ -3220,15 +3228,15 @@ Se
 \begin_inset Formula $Arg=S$
 \end_inset
 
- allora 
-\begin_inset Formula $S$
+ allora l'insieme di tutti gli argomenti 
+\begin_inset Formula $Arg$
 \end_inset
 
- è l'unico insieme complete dell'AAF.
+ è l'unica estensione complete per l'AAF.
 \end_layout
 
 \begin_layout Enumerate
-Si seleziona un argomento 
+Altrimenti, si seleziona un argomento 
 \begin_inset Formula $a\in Arg\setminus S$
 \end_inset
 
@@ -3241,7 +3249,7 @@ Si seleziona un argomento
 \begin_inset Formula $S$
 \end_inset
 
- è completo.
+ è una estensione complete per l'AAF.
 \end_layout
 
 \begin_layout Enumerate
@@ -3259,11 +3267,11 @@ Questo algoritmo trova sempre una estensione complete di un dato AAF, tra
 
 \begin_layout Standard
 Per quanto concerne la complessità del problema decisionale, è facile notare
- che decidere se un insieme di argomenti è complete rispetto un AAF è un
- problema risolvibile in tempo polinomiale rispetto al numero di argomenti
- e defeat, come mostrato nell'algoritmo 
+ che decidere se un insieme di argomenti è una estensione complete dato
+ un AAF è un problema risolvibile in tempo polinomiale rispetto al numero
+ di argomenti e defeat, come mostrato nell'algoritmo 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "alg:Completezza-di-un"
 
 \end_inset
@@ -3280,7 +3288,6 @@ status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -3298,7 +3305,6 @@ An abstract argumentation framework
 
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -3315,12 +3321,13 @@ A set of arguments
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 if
 \series default
- not 
-\begin_inset Formula $admissible\left(AAF,S\right)$
+ 
+\begin_inset Formula $\neg admissible\left(S\right)$
 \end_inset
 
  
@@ -3332,6 +3339,7 @@ then
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 return
@@ -3343,6 +3351,7 @@ return
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -3355,6 +3364,7 @@ if
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \size footnotesize
 \begin_inset Formula $\forall a\notin S$
 \end_inset
@@ -3368,12 +3378,13 @@ do
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 if
 \series default
  
-\begin_inset Formula $acceptable\left(AAF,S,a\right)$
+\begin_inset Formula $acceptable\left(S,a\right)$
 \end_inset
 
  
@@ -3385,6 +3396,7 @@ then
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 return
@@ -3396,6 +3408,7 @@ return
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -3409,6 +3422,7 @@ if
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -3421,6 +3435,7 @@ for
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 return
@@ -3497,7 +3512,7 @@ Nonostante la semantica grounded richieda la minimalità, la complessità
  e defeat di un AAF.
  Infatti, l'algoritmo 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "alg:EstensioneGrounded"
 
 \end_inset
@@ -3534,7 +3549,7 @@ reference "alg:EstensioneGrounded"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -3768,7 +3783,38 @@ Inoltre, se
 \begin_inset Formula $\mathcal{IN}\left\langle \mathcal{F}\right\rangle =\emptyset$
 \end_inset
 
-, dall'algoritmo di cui sopra segue che 
+, dall'algoritmo 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:EstensioneGrounded"
+
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ segue che 
 \begin_inset Formula $GE\left(\mathcal{F}\right)=\emptyset$
 \end_inset
 
@@ -3848,7 +3894,7 @@ Dato un AAF
  è una estensione stabile è un problema decisionale risolvibile in tempo
  polinomiale, come mostrato nell'algoritmo 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "alg:Decidere-stabile"
 
 \end_inset
@@ -3858,13 +3904,13 @@ reference "alg:Decidere-stabile"
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -3903,8 +3949,8 @@ A set of arguments
 \size footnotesize
 if
 \series default
- not 
-\begin_inset Formula $CF\left(AAF,S\right)$
+ 
+\begin_inset Formula $\neg CF\left(S\right)$
 \end_inset
 
  
@@ -3957,7 +4003,10 @@ do
 
 \family roman
 \size footnotesize
-attacked = false
+\begin_inset Formula $attacked=false$
+\end_inset
+
+
 \end_layout
 
 \begin_layout LyX-Code
@@ -3997,7 +4046,19 @@ then
 
 \family roman
 \size footnotesize
-attacked = true
+\begin_inset Formula $attacked=true$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+break
 \end_layout
 
 \end_deeper
@@ -4036,7 +4097,11 @@ for
 \size footnotesize
 if
 \series default
- not attacked 
+ 
+\begin_inset Formula $\neg attacked$
+\end_inset
+
+ 
 \series bold
 then
 \end_layout
@@ -4119,22 +4184,23 @@ Decidere se un insieme è stabile
 Il problema fondamentale di questa semantica è che non è universalmente
  definita come la complete e la grounded.
  Possono esistere degli AAF per i quali non esistono estensioni stabili.
- Un esempio è illustrato in 
+ Un esempio è illustrato in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:AAF-senza-estensioni"
 
 \end_inset
 
 , dove non esiste un insieme di argomenti conflict-free che attacchi il
- resto degli arogmenti.
+ resto degli argomenti.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -4143,6 +4209,7 @@ status collapsed
 
 \begin_inset Graphics
 	filename nostable.png
+	width 15col%
 
 \end_inset
 
@@ -4211,7 +4278,7 @@ Semantica preferred
 
 \begin_layout Standard
 La semantica preferred rilassa il vincolo della semantica stabile di attaccare
- tutto ciò che sia al di fuori dell'insieme di argomenti.
+ tutto ciò che sia al di fuori dell'estensione.
 \end_layout
 
 \begin_layout Definition
@@ -4251,11 +4318,7 @@ esterno
 \end_inset
 
  si intende un argomento 
-\begin_inset Formula $a\in Arg$
-\end_inset
-
- tale che 
-\begin_inset Formula $a\notin S$
+\begin_inset Formula $a\in Arg\setminus S$
 \end_inset
 
 .
@@ -4265,7 +4328,7 @@ esterno
 Valgono le seguenti caratteristiche fondamentali per la semantica preferred:
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Ogni estensione preferred è anche complete, quindi come nel caso stable,
  si ha 
 \begin_inset Formula $GE\left(\mathcal{F}\right)\subseteq E$
@@ -4290,9 +4353,9 @@ Una estensione stabile è anche una estensione preferred, ma non vale il
 \end_layout
 
 \begin_layout Standard
-Si consideri l'esempio in 
+Si consideri l'esempio in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-estensione"
 
 \end_inset
@@ -4327,9 +4390,10 @@ reference "fig:Esempio-di-estensione"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -4338,6 +4402,7 @@ status collapsed
 
 \begin_inset Graphics
 	filename prefstable.png
+	width 25col%
 
 \end_inset
 
@@ -4404,7 +4469,7 @@ key "Caminada14092011"
 
 \end_inset
 
-, si basano sull'idea di introdurre il vincolo di massimalità non solo argli
+, si basano sull'idea di introdurre il vincolo di massimalità non solo agli
  argomenti dell'estensione ma anche a quelli attaccati dall'estensione stessa.
 \end_layout
 
@@ -4447,7 +4512,7 @@ Dato un AAF
 
 \begin_layout Standard
 Quindi il range di un insieme include l'insieme stesso e tutti gli argomenti
- attaccati da tale insieme.
+ attaccati direttamente da tale insieme.
 \end_layout
 
 \begin_layout Definition
@@ -4521,16 +4586,16 @@ Si noti che una estensione stage potrebbe non essere ammissibile.
 \end_layout
 
 \begin_layout Standard
-Estendendo l'AAF da 
+Estendendo l'AAF da quello in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-estensione"
 
 \end_inset
 
- a 
+ a quello in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-discordanza"
 
 \end_inset
@@ -4556,9 +4621,9 @@ Non ci sono estensioni stabili, poiché gli unici insiemi conflict-free non
 \end_layout
 
 \begin_layout Itemize
-Le estensioni preferred coincidono con quelle della figura 
+Le estensioni preferred coincidono con quelle dell'AAF in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-estensione"
 
 \end_inset
@@ -4580,9 +4645,10 @@ reference "fig:Esempio-di-estensione"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -4591,6 +4657,7 @@ status collapsed
 
 \begin_inset Graphics
 	filename stagesemi.png
+	width 35col%
 
 \end_inset
 
@@ -4682,7 +4749,7 @@ ideale
 \begin_inset Formula $\subseteq$
 \end_inset
 
-), e è unica ed è espressa come 
+), è unica ed è espressa come 
 \begin_inset Formula $ID\left(\mathcal{F}\right)$
 \end_inset
 
@@ -4690,16 +4757,16 @@ ideale
 \end_layout
 
 \begin_layout Standard
-L'estensione grounded è un insieme ideale poiché soddisfa entrambi vincoli
+L'estensione grounded è un insieme ideale poiché soddisfa entrambi i vincoli
  di ammissibilità, e di skeptical justifiation sotto la semantica preferred.
  Quindi insiemi ideali che sono strettamente più grandi dell'insieme grounded
  possono esistere.
 \end_layout
 
 \begin_layout Standard
-Infatti, considerando l'AAF in 
+Infatti, considerando l'AAF in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-estensione-ideale"
 
 \end_inset
@@ -4732,7 +4799,7 @@ L'estensione ideale è
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -4741,6 +4808,7 @@ status collapsed
 
 \begin_inset Graphics
 	filename ideal.png
+	width 25col%
 
 \end_inset
 
@@ -4789,7 +4857,8 @@ ee, ovvero che non ci siano defeat tra gli argomenti dell'insieme
 \end_inset
 
 .
- Potrebbero però essere anche concetti alternativi a quello conflict-free.
+ Potrebbero però formulati concetti alternativi a quello di insieme conflict-fre
+e.
 \end_layout
 
 \begin_layout Standard
@@ -4800,7 +4869,7 @@ key "Coste-marquis_prudentsemantics"
 
 \end_inset
 
- estendo la nozione di attacco delle semantiche tradizionali con l'attacco
+ estendono la nozione di attacco delle semantiche tradizionali con l'attacco
  
 \emph on
 indiretto
@@ -4844,12 +4913,16 @@ Per lunghezza dispari s'intende che il path deve attraversare un numero
 In
 \series bold
  
+\series default
+figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-attacchi"
 
 \end_inset
 
+
+\series bold
  
 \series default
 l'argomento 
@@ -4899,6 +4972,7 @@ l'argomento
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status collapsed
@@ -4910,6 +4984,7 @@ status collapsed
 
 \begin_inset Graphics
 	filename prudent.png
+	width 30col%
 
 \end_inset
 
@@ -5008,21 +5083,21 @@ conflict-free
 \end_layout
 
 \begin_layout Standard
-Dalla definizione, un insieme è indirect conflict-free è anche conflict-free,
+Dalla definizione, un insieme indirect conflict-free è anche conflict-free,
  ma non viceversa: 
 \begin_inset Formula $\mathcal{E}_{icf}\left(\mathcal{F}\right)\subseteq\mathcal{E}_{cf}\left(\mathcal{F}\right)$
 \end_inset
 
 .
- Ad esempio, in 
-\series bold
-
+ Ad esempio, in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-attacchi"
 
 \end_inset
 
+
+\series bold
  
 \series default
 l'argomento 
@@ -5194,17 +5269,14 @@ Siccome
 \end_layout
 
 \begin_layout Standard
-Un esempio di estensione stabile che non è p-stabile è in 
-\series bold
-
+Un esempio di estensione stabile che non è p-stabile è mostrata in figura
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-attacchi"
 
 \end_inset
 
-
-\series default
 ,
 \series bold
  
@@ -5230,24 +5302,21 @@ l'unica estensione stabile
 
 \begin_layout Standard
 Come per l'estensione grounded, l'estensione p-grounded può essere calcolata
- incrementalmente partendo dall'insieme di argomenti 
+ in tempo polinomiale incrementalmente partendo dall'insieme di argomenti
+ 
 \emph on
 initial 
 \emph default
 che non sono attaccati.
  Inoltre, si può osservare che l'estensione p-grounded è potenzialmente
  un sottoinsieme stretto dell'estensione grounded.
- Ad esempio, sempre in 
-\series bold
-
+ Ad esempio, sempre in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-attacchi"
 
 \end_inset
 
-
-\series default
 ,
 \series bold
  
@@ -5268,10 +5337,10 @@ Un effetto molto importante da considerare, sulle semantiche complete e
 \end_inset
 
 , ma 
-\begin_inset Formula $a$
+\begin_inset Formula $a\notin\left\{ d,e\right\} $
 \end_inset
 
- è chiaramente un argomento initial.
+ nonostante sia chiaramente un argomento initial.
 \end_layout
 
 \begin_layout Section
@@ -13711,7 +13780,6 @@ compare
  Ogni simulazione sarà descritta con le chiavi compare.sim1, compare.sim2,
  ...
  .
- monte
 \end_layout
 
 \begin_layout Standard
