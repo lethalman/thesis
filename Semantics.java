@@ -148,6 +148,68 @@ abstract class GivenAdmissibleSemantics1 extends Semantics {
 		    daf.addArg (a);
 		}
 	    }
+	    // generate defeats that attack S with one defender
+	    for (String a: set) {
+		for (String b: paf.getDefeatedBy(a).keySet()) {
+		    if (set.contains (b)) {
+			// conflict
+			continue;
+		    }
+		    if (daf.args.contains (b)) {
+			// generate one defender
+			String defender = null;
+			for (String c: paf.getDefeatedBy(b).keySet()) {
+			    if (set.contains (c)) {
+				defender = c;
+				break;
+			    }
+			}
+			if (defender != null && Math.random() <= paf.defeats.get(b).get(a)) {
+			    daf.addDefeat (b, a);
+			    if (!daf.getDefeats(defender).contains (b)) {
+				daf.addDefeat (defender, b);
+			    }
+			}
+		    }
+		}
+	    }
+	    // generate defeats that do not attack S and that are not already in the DAF
+	    for (String a: daf.args) {
+		for (String b: paf.getDefeats(a).keySet()) {
+		    if (set.contains (b)) {
+			// already considered
+			continue;
+		    }
+		    if (daf.args.contains (b) && !daf.getDefeats(a).contains(b) && Math.random () <= paf.defeats.get(a).get(b)) {
+			daf.addDefeat (a, b);
+		    }
+		}
+	    }
+	} while (filterSample (daf, set));
+        return daf;
+    }
+
+    @Override
+    public double conditional (PAF paf, ArgSet set) {
+	return paf.admissible (set);
+    }
+}
+
+abstract class GivenAdmissibleSemantics2 extends Semantics {
+    @Override
+    public DAF montecarloSample (PAF paf, ArgSet set) {
+        DAF daf;
+	do {
+	    daf = new DAF();
+	    for (String a: set) {
+		// args must be in daf for set to be admissible
+		daf.addArg (a);
+	    }
+	    for (String a: paf.argsList) {
+		if (!set.contains(a) && Math.random () <= paf.args.get(a)) {
+		    daf.addArg (a);
+		}
+	    }
 	    // generate defeats that do not attack S
 	    for (String a: daf.args) {
 		for (String b: paf.getDefeats(a).keySet()) {
@@ -196,68 +258,6 @@ abstract class GivenAdmissibleSemantics1 extends Semantics {
     }
 }
 
-abstract class GivenAdmissibleSemantics extends Semantics {
-    @Override
-    public DAF montecarloSample (PAF paf, ArgSet set) {
-        DAF daf;
-	do {
-	    daf = new DAF();
-	    for (String a: set) {
-		// args must be in daf for set to be admissible
-		daf.addArg (a);
-	    }
-	    for (String a: paf.argsList) {
-		if (!set.contains(a) && Math.random () <= paf.args.get(a)) {
-		    daf.addArg (a);
-		}
-	    }
-	    // generate defeats that attack S with one defender
-	    for (String a: set) {
-		for (String b: paf.getDefeatedBy(a).keySet()) {
-		    if (set.contains (b)) {
-			// conflict
-			continue;
-		    }
-		    if (daf.args.contains (b)) {
-			// generate one defender
-			String defender = null;
-			for (String c: paf.getDefeatedBy(b).keySet()) {
-			    if (set.contains (c)) {
-				defender = c;
-				break;
-			    }
-			}
-			if (defender != null && Math.random() <= paf.defeats.get(b).get(a)) {
-			    daf.addDefeat (b, a);
-			    if (!daf.getDefeats(defender).contains (b)) {
-				daf.addDefeat (defender, b);
-			    }
-			}
-		    }
-		}
-	    }
-	    // generate defeats that do not attack S and that are not already in the DAF
-	    for (String a: daf.args) {
-		for (String b: paf.getDefeats(a).keySet()) {
-		    if (set.contains (b)) {
-			// already considered
-			continue;
-		    }
-		    if (daf.args.contains (b) && !daf.getDefeats(a).contains(b) && Math.random () <= paf.defeats.get(a).get(b)) {
-			daf.addDefeat (a, b);
-		    }
-		}
-	    }
-	} while (filterSample (daf, set));
-        return daf;
-    }
-
-    @Override
-    public double conditional (PAF paf, ArgSet set) {
-	return paf.admissible (set);
-    }
-}
-
 class CompleteGivenConflictFreeSemantics extends GivenConflictFreeSemantics {
     @Override
     public boolean evaluate (DAF daf, ArgSet set) {
@@ -265,7 +265,14 @@ class CompleteGivenConflictFreeSemantics extends GivenConflictFreeSemantics {
     }
 }
 
-class CompleteGivenAdmissibleSemantics extends GivenAdmissibleSemantics1 {
+class CompleteGivenAdmissibleSemantics1 extends GivenAdmissibleSemantics1 {
+    @Override
+    public boolean evaluate (DAF daf, ArgSet set) {
+	return daf.completeGivenAdmissible (set);
+    }
+}
+
+class CompleteGivenAdmissibleSemantics2 extends GivenAdmissibleSemantics2 {
     @Override
     public boolean evaluate (DAF daf, ArgSet set) {
 	return daf.completeGivenAdmissible (set);
@@ -280,24 +287,10 @@ class PreferredGivenConflictFreeSemantics extends GivenConflictFreeSemantics {
     }
 }
 
-class PreferredGivenAdmissibleSemantics extends GivenAdmissibleSemantics {
-    @Override
-    public boolean evaluate (DAF daf, ArgSet set) {
-	return daf.preferredGivenAdmissible (set);
-    }
-}
-
 class GroundedGivenConflictFreeSemantics extends GivenConflictFreeSemantics {
     @Override
     public boolean evaluate (DAF daf, ArgSet set) {
 	return daf.groundedGivenConflictFree (set);
-    }
-}
-
-class GroundedGivenAdmissibleSemantics extends GivenAdmissibleSemantics {
-    @Override
-    public boolean evaluate (DAF daf, ArgSet set) {
-	return daf.groundedGivenAdmissible (set);
     }
 }
 

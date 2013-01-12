@@ -1,5 +1,5 @@
-# mode can be one of: describe, generate, compare
-mode = compare
+# mode can be one of: describe, generate, compare, test
+mode = test
 inputdir = ./instances
 csvdir = ./csv
 dotdir = ./dot

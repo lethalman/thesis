@@ -274,18 +274,19 @@ key "Li:2011:PAF:2238189.2238191,Rienstra12,Thimm12"
 \emph on
 PrAF
 \emph default
-), e di analizzare e ottimizzare degli algoritmi approssimati per risolvere
- i problemi decisionali legati ai probabilistic argumentation framework.
+), e di analizzare e ottimizzare degli algoritmi per risolvere i problemi
+ decisionali legati ai probabilistic argumentation framework in maniera
+ approssimata.
 \end_layout
 
 \begin_layout Standard
 Gli argumentation framework che verranno studiati principalmente sono gli
  abstract argumentation framework e i probabilistic argumentation framework,
- con semantica extension-based.
- La semantica labelling-based e gli argument games verranno altresì studiati
- per completezza per avere una panoramica più ad amio spettro sulle varie
- interpretazioni degli argumentation framework e su come questi abbiano
- aspetti in comune con altri formalismi.
+ e le semantiche extension-based.
+ Verranno altresì introdotte le semantiche labelling-based, gli argument
+ games e i value-based framework per avere una panoramica più ad ampio spettro
+ sulle varie interpretazioni degli argumentation framework e su come questi
+ abbiano aspetti in comune con altri formalismi.
 \end_layout
 
 \begin_layout Standard
@@ -335,7 +336,7 @@ Contributo della tesi
 La tesi si propone di descrivere in maniera riassuntiva e concisa le motivazioni
  del formalismo degli argumentation framework, e le varie interpretazioni
  di argumentation framework.
- Verranno descritti in più dettaglio gli abstract argumentation framework,
+ Verranno descritti più in dettaglio gli abstract argumentation framework,
  i probabilistic argumentation framework, e le semantiche extension-based
  tradizionalmente usate nella letteratura della teoria degli argumentation
  framework.
@@ -374,7 +375,7 @@ Per quanto riguarda quest'ultime complessità, verrà mostrato come è possibile
  ammissibile o stabile in tempo polinomiale.
  Questo importante risultato, oltre a dimostrare che passare da un contesto
  deterministico ad un contesto incerto rappresentato con probabilità non
- necessariamente comporta un ulteriore livello di complessità per tutti
+ necessariamente introduce un ulteriore livello di complessità per tutti
  in problemi, è fondamentale per applicare delle ottimizzazioni nel calcolo
  delle probabilità dei casi intrattabili.
 \end_layout
@@ -386,7 +387,7 @@ Infatti, in questo lavoro di tesi verrà proposto un algoritmo basato sul
  al fatto che è possibile calcolare una probabilità condizionata in maniera
  esatta.
  Questo permette di campionare uno spazio più ridotto rispetto a quello
- originale.
+ originario.
  I risultati teorici in questa tesi mostreranno che esiste un upperbound
  al numero di iterazioni della simulazione Monte Carlo ottimizzata rispetto
  a quella naive, che dipende dalla probabilità condizionata calcolata in
@@ -409,8 +410,8 @@ Osservare come nel caso di semantica complete e grounded (o in generale
 \begin_layout Itemize
 In base all'oservazione di cui sopra, e al risultato teorico che determina
  un upperbound sul numero di iterazioni della simulazione, concludere che
- l'algoritmo ottimizzato risulta un upperbound sul tempo CPU rispetto all'algori
-tmo naive che dipende dalla probabilità conflict-free.
+ l'algoritmo ottimizzato risulta avere un upperbound sul tempo CPU rispetto
+ all'algoritmo naive che dipende dalla probabilità conflict-free.
 \end_layout
 
 \begin_layout Standard
@@ -424,28 +425,30 @@ Organizzazione della tesi
 
 \begin_layout Standard
 Nel seguito di questo lavoro di tesi, il capitolo 2 descriverà in maniera
- concisa ed esemplificativa i motivi e le varie interpretazioni del formalismo
- argumentation framework.
+ concisa ed esemplificativa le motivazioni e le varianti di argumentation
+ framework.
  Saranno trattati in dettaglio gli abstract argumentation framework e probabilis
 tic argumentation framework, le semantiche extension-based e la complessità
  dei problemi decisionali legati a questi formalismi.
  Verranno inoltre descritte per completezza, ma che non saranno oggetto
- delle sperimentazioni, le semantiche labelling-based e gli argument games.
+ delle sperimentazioni, le semantiche labelling-based, gli argument games
+ e i value-based framework.
 \end_layout
 
 \begin_layout Standard
 Nel capitolo 3 verrà descritto un metodo esistente per il calcolo approssimato
  delle probabilità nei probabilistic argumentation framework.
  Verrà inoltre mostrato come la complessità di calcolare tale probabilità
- in alcuni casi è un problema risolvibile in tempo polinomiale, e della
- caratterizzazione teorica di come questo risultato possa essere usato per
- ottimizzare i casi intrattabili di probabilistic argumentation framework.
+ in alcuni casi è un problema risolvibile in tempo polinomiale, e la caratterizz
+azione teorica di come questo risultato possa essere usato per migliorare
+ l'efficienza nel calcolo delle probabilità dei casi intrattabili di probabilist
+ic argumentation framework.
 \end_layout
 
 \begin_layout Standard
 Nel capitolo 4 verranno mostrati i risultati sperimentali del confronto
  tra il nuovo algoritmo ottimizzato proposto e l'algoritmo naive esistente,
- e il setting con il quale sono stati ottenuti questi risultati.
+ e il setting con il quale sono stati ottenuti i risultati.
 \end_layout
 
 \begin_layout Standard
@@ -491,8 +494,8 @@ Non c'è una definizione unica nella letteratura della teoria dell'argomentazion
  su come definire un argomento.
  Alcune definizioni sono più o meno minimali di altre.
  Una definizione minimale può essere la seguente: un argomento è un insieme
- di proposizioni, fatte da una conclusione e un insieme di premesse, ed
- un metodo di inferenza che va dalle premesse alla conclusione.
+ di proposizioni, composte da un insieme di premesse e da una conclusione,
+ ed un metodo di inferenza che va dalle premesse alla conclusione.
  Un argomento può essere supportato da altri argomenti, o può essere attaccato
  da altri argomenti.
 \end_layout
@@ -519,7 +522,14 @@ In contrasto, l'approccio argomentativo tiene in considerazione entrambi
 
 \begin_layout Standard
 Uno degli ambiti nei quali i formalismi di argumentation framework sono
- applicati è quello legale.
+ applicati è quello legale
+\begin_inset CommandInset citation
+LatexCommand cite
+key "lodder2010information"
+
+\end_inset
+
+.
  L'utilizzo di sistemi classici di intelligenza artificiale non fanno altro
  che dedurre delle conseguenze a partire da un insieme di fatti e regole
  ben preciso.
@@ -766,11 +776,7 @@ reference "fig:Argomento-a-difeso"
 \emph on
 a
 \emph default
- è giustificato nonostante 
-\emph on
-a
-\emph default
- sia attaccato da 
+ è giustificato nonostante sia attaccato da 
 \emph on
 b
 \emph default
@@ -827,15 +833,16 @@ Un Dung's abstract argumentation framework (AAF) è una coppia
 Oltre a verificare il justification state di un singolo argomento in un
  framework, è interessante verificare se un insieme di argomenti è giustificato
  rispetto a un qualche criterio.
- Ancora più interessante, è trovare l'insieme di tutti questi argomenti
- che rispettano un determinato criterio.
+ Ancora più interessante, è trovare gli insiemi di argomenti che collettivamente
+ soddisfano un determinato criterio.
 \end_layout
 
 \begin_layout Standard
 Per questo, una modalità di attribuire semantica agli argumentation framework
  è tramite il concetto di estensioni.
- Una estensione è un insieme di argomenti che soddisfa determina proprietà.
- Dato una semantica, un argument system può avere quindi più estensioni.
+ Una estensione è un insieme di argomenti che soddisfa delle proprietà.
+ Data una semantica, un argument system in genere può avere nessuna, una
+ o più estensioni.
 \end_layout
 
 \begin_layout Standard
@@ -878,13 +885,13 @@ conflict-free
 \end_layout
 
 \begin_layout Standard
-Ad esempio, dato riferendoci sempre al semplice AAF 
+Ad esempio, riferendoci sempre al semplice AAF 
 \begin_inset Formula $\left\langle \left\{ a,b\right\} ,\left\{ \left\langle b,a\right\rangle \right\} \right\rangle $
 \end_inset
 
- raffigurato in 
+ illustrato in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:L'argomento-b-attacca"
 
 \end_inset
@@ -894,9 +901,9 @@ reference "fig:L'argomento-b-attacca"
 \end_inset
 
 .
- In 
+ In figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Argomento-a-difeso"
 
 \end_inset
@@ -927,21 +934,30 @@ Alternativamente, un insieme
 \end_inset
 
  non ha defeat.
+ L'insieme vuoto e tutti i singoletti sono sempre conflict-free.
 \end_layout
 
 \begin_layout Standard
-L'insieme vuoto e tutti i singoletti sono sempre conflict-free.
+L'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Proprietà-conflict-free"
+
+\end_inset
+
+ è molto semplice e serve a verificare se un insieme di argomenti è conflict-fre
+e.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -959,7 +975,6 @@ An abstract argumentation framework
 
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -976,6 +991,7 @@ A set of arguments
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \size footnotesize
 \begin_inset Formula $\forall a\in S$
 \end_inset
@@ -989,6 +1005,7 @@ do
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \size footnotesize
 \begin_inset Formula $\forall\left\langle a,b\right\rangle \in Def$
 \end_inset
@@ -1000,6 +1017,7 @@ do
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 if
@@ -1017,6 +1035,7 @@ then
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 return
@@ -1028,6 +1047,7 @@ return
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -1041,6 +1061,7 @@ if
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -1054,6 +1075,7 @@ for
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -1066,6 +1088,7 @@ for
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 return
@@ -1077,6 +1100,12 @@ return
 \begin_inset Caption
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Proprietà-conflict-free"
+
+\end_inset
+
 Proprietà conflict-free
 \end_layout
 
@@ -1374,13 +1403,11 @@ Più semplicemente un argomento
 \end_layout
 
 \begin_layout Standard
-Un argomento non attaccato è sempre accettabile rispetto qualsiasi insieme
- di argomenti.
-\end_layout
+Una definizione più formale di 
+\begin_inset Formula $S$
+\end_inset
 
-\begin_layout Standard
-Più formalmente possiamo definire quando un insieme di argomenti attacca
- o viene attaccato come segue:
+ che attacca o viene attaccato da un altro argomento è la seguente:
 \end_layout
 
 \begin_layout Definition
@@ -1428,10 +1455,15 @@ Viceversa, l'insieme
 \end_layout
 
 \begin_layout Standard
+Un argomento non attaccato è sempre accettabile rispetto qualsiasi insieme
+ di argomenti.
+\end_layout
+
+\begin_layout Standard
 Alcuni casi di accettabilità e non accettabilità che si possono verificare
- sono illustrati in 
+ sono illustrati in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Accettabilità-argomenti-rispetto"
 
 \end_inset
@@ -1446,14 +1478,68 @@ reference "fig:Accettabilità-argomenti-rispetto"
 \end_layout
 
 \begin_layout Standard
+L'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Proprietà-di-accettabilità"
+
+\end_inset
+
+ mostra un modo per verificare l'accettabilità di un argomento 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+ rispetto ad un insieme 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ Per ogni relazione di attacco 
+\begin_inset Formula $\left\langle b,a\right\rangle \in Def$
+\end_inset
+
+, si verifica se tra tutti i defeat 
+\begin_inset Formula $\left\langle c,b\right\rangle \in Def$
+\end_inset
+
+ ne esiste uno tale che 
+\begin_inset Formula $c\in S$
+\end_inset
+
+.
+ In tal caso, il flag 
+\begin_inset Formula $defended$
+\end_inset
+
+ viene impostato a 
+\begin_inset Formula $true$
+\end_inset
+
+.
+ Se non viene trovato tale argomento 
+\begin_inset Formula $c$
+\end_inset
+
+, allora significa che 
+\begin_inset Formula $a$
+\end_inset
+
+ non è difeso dall'attacco di 
+\begin_inset Formula $b$
+\end_inset
+
+ e quindi non è accettabile.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
 status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -1471,7 +1557,6 @@ An abstract argumentation framework
 
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -1487,7 +1572,6 @@ A set of arguments
 
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -1504,6 +1588,7 @@ A an argument
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \size footnotesize
 \begin_inset Formula $\forall\left\langle b,a\right\rangle \in Def$
 \end_inset
@@ -1517,13 +1602,18 @@ do
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \size footnotesize
-defended = false
+\begin_inset Formula $defended=false$
+\end_inset
+
+
 \end_layout
 
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \size footnotesize
 \begin_inset Formula $\forall\left\langle c,b\right\rangle \in Def$
 \end_inset
@@ -1537,6 +1627,7 @@ do
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 if
@@ -1554,22 +1645,28 @@ then
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \size footnotesize
-defended
+\begin_inset Formula $defended=true$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
 \series bold
- 
-\series default
-=
-\series bold
- 
-\series default
-True
+\size footnotesize
+break
 \end_layout
 
 \end_deeper
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -1583,6 +1680,7 @@ if
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -1595,17 +1693,23 @@ for
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 if
 \series default
- not defended
+ 
+\begin_inset Formula $\neg defended$
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 return
@@ -1617,6 +1721,7 @@ return
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -1630,6 +1735,7 @@ if
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 end
@@ -1642,6 +1748,7 @@ for
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
 \size footnotesize
 return
@@ -1653,6 +1760,12 @@ return
 \begin_inset Caption
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Proprietà-di-accettabilità"
+
+\end_inset
+
 Proprietà di accettabilità di un argomento
 \end_layout
 
@@ -1667,8 +1780,8 @@ Proprietà di accettabilità di un argomento
 \end_layout
 
 \begin_layout Standard
-Dopo la definizione di accettatabilità di un argomento possiamo definire
- l'ammissibilità di un insieme di argomenti come segue:
+Dopo la definizione di accettabilità di un argomento possiamo definire l'ammissi
+bilità di un insieme di argomenti come segue:
 \end_layout
 
 \begin_layout Definition
@@ -1714,9 +1827,9 @@ Intuitivamente, ciò significa che
 \end_inset
 
 .
- Per chiarezza, si faccia riferimento ai casi in 
+ Per chiarezza, si faccia riferimento ai casi in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Ammissibilità-di"
 
 \end_inset
@@ -1827,7 +1940,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1864,7 +1977,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1901,7 +2014,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1962,9 +2075,10 @@ Ammissibilità di
 \end_layout
 
 \begin_layout Standard
-Un altro caso interessante riguarda argomenti mutuamente attaccati in 
+Un altro caso interessante riguarda argomenti mutuamente attaccati in figura
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Due-casi-di"
 
 \end_inset
@@ -2053,7 +2167,40 @@ Due casi di argomenti mutuamente attaccati
 \end_layout
 
 \begin_layout Standard
+L'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Proprietà-di-ammissibilità"
+
+\end_inset
+
+ verifica l'ammissibilità di un insieme di argomenti in maniera molto aderente
+ alla definizione stessa di ammissibilità.
+ Innanzitutto, con l'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Proprietà-conflict-free"
+
+\end_inset
+
+ si verifica se l'insieme è conflict-free.
+ Successivamente si verifica che ogni argomento 
+\begin_inset Formula $a\in S$
+\end_inset
+
+ sia accettabile rispetto all'insieme con l'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Proprietà-di-accettabilità"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float algorithm
+placement h
 wide false
 sideways false
 status collapsed
@@ -2098,8 +2245,8 @@ A set of arguments
 \size footnotesize
 if
 \series default
- not 
-\begin_inset Formula $CF\left(AAF,S\right)$
+ 
+\begin_inset Formula $\neg CF\left(S\right)$
 \end_inset
 
  
@@ -2151,8 +2298,8 @@ do
 \size footnotesize
 if
 \series default
- not 
-\begin_inset Formula $acceptable\left(AAF,S,a\right)$
+ 
+\begin_inset Formula $\neg acceptable\left(S,a\right)$
 \end_inset
 
  
@@ -2211,6 +2358,12 @@ return
 \begin_inset Caption
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Proprietà-di-ammissibilità"
+
+\end_inset
+
 Proprietà di ammissibilità
 \end_layout
 
@@ -2288,13 +2441,13 @@ Non esiste una semantica unica per un argumentation framework.
 \begin_layout Standard
 È importante sottolineare che, mentre le definizioni delle semantiche di
  seguito sono formulate esclusivamente nel contesto degli abstract argumentation
- framework, le intuizioni di fondo hanno un legame in comune altri formalismi
- in altri contesti specifici.
+ framework, le intuizioni di fondo hanno un legame in comune con altri formalism
+i in altri contesti specifici.
  Infatti, uno dei principali risultati del lavoro di Dung, mostra che gli
  abstract argumentation framework sono in grado di catturare le proprietà
  di una varietà di formalismi più specifici.
- Ciò significa che è possibile definire un mapping da definite in altri
- formalismi verso l'argumentation framework.
+ Ciò significa che è possibile definire un mapping che va da altri formalismi
+ verso l'argumentation framework.
 \end_layout
 
 \begin_layout Standard
@@ -2319,7 +2472,11 @@ funzione di valutazione semantica
 \begin_inset Formula $\xi_{\mathfrak{S}}\left(\mathcal{F},E\right)$
 \end_inset
 
- restituisce true se e solo se l'insieme di argomenti 
+ restituisce 
+\emph on
+true
+\emph default
+ se e solo se l'insieme di argomenti 
 \begin_inset Formula $E\subseteq Arg$
 \end_inset
 
@@ -2364,7 +2521,7 @@ L'insieme di tutte le estensioni per
 \end_layout
 
 \begin_layout Standard
-Per chiarezza e completezza, formalizziamo la nozione di 
+Formalizziamo anche la nozione di 
 \emph on
 justification state
 \emph default
@@ -2401,7 +2558,11 @@ giustificato
 \end_layout
 
 \begin_layout Standard
-La definizione di cui sopra è detta skeptical o 
+La definizione di cui sopra è detta 
+\emph on
+skeptical
+\emph default
+ o 
 \emph on
 cautious
 \emph default
@@ -2410,7 +2571,11 @@ cautious
 tutte
 \emph default
  le estensioni.
- L'alternativa al cautious reasoning è il credulous o 
+ L'alternativa al cautious reasoning è il 
+\emph on
+credulous
+\emph default
+ o 
 \emph on
 brave
 \emph default
@@ -2430,7 +2595,8 @@ brave
 Data la definizione fondamentale di ammissibilità nella sezione precedente
  e di estensione immediatamente sopra, definiamo una serie di semantiche
  usate tradizionalmente nel contesto degli argumentation framework.
- In particolare: complete, grounded, stable, preferred, e ideal.
+ In particolare: complete, grounded, stable, preferred, ideal, stage e semi-stab
+le, e la famiglia di semantiche prudent.
 \end_layout
 
 \begin_layout Standard
@@ -2441,9 +2607,9 @@ key "Thimm12"
 
 \end_inset
 
- che verranno descritte successivamente è illustrata in 
+ che verranno descritte successivamente è illustrata in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Relationships-between-semantics"
 
 \end_inset
@@ -2517,7 +2683,7 @@ Dato un AAF
 
  è una estensione 
 \emph on
-completo 
+completa 
 \emph default
 (complete) se e solo se 
 \begin_inset Formula $S$
@@ -2569,13 +2735,9 @@ In altre parole,
 \begin_layout Standard
 A differenza della proprietà di ammissibilità, è facile intuire che l'insieme
  vuoto non sempre è un insieme completo, anzi.
- Una caratteristica molto importante della semantica complete è la seguente
-\end_layout
-
-\begin_layout Standard
-Prendiamo in considerazione gli esempi in 
+ Prendiamo in considerazione gli esempi in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Complete"
 
 \end_inset
@@ -2617,7 +2779,7 @@ status open
 \begin_inset Formula $S$
 \end_inset
 
- complete
+ completo
 \end_layout
 
 \end_inset
@@ -2691,7 +2853,7 @@ status open
 \begin_inset Formula $S$
 \end_inset
 
- non complete
+ non completo
 \end_layout
 
 \end_inset
@@ -13426,6 +13588,22 @@ glpsol
  nel software GLPK (GNU Linear Programming Toolkit)
 \end_layout
 
+\begin_layout Itemize
+
+\series bold
+test
+\series default
+:
+\series bold
+ 
+\series default
+esegue il metodo runTest() sull'istanza 
+\emph on
+inputdir
+\emph default
+/test.txt per effettuare dei test personalizzati.
+\end_layout
+
 \begin_layout Standard
 Le opzioni relative alle tre modalità vengono specificate con le chiavi
  compare.
@@ -13614,11 +13792,34 @@ Il nome della semantica da usare, e la modalità Monte Carlo, sono nomi di
 \end_layout
 
 \begin_layout Paragraph*
-Modalità describe e generate.
+Modalità describe, generate e test.
 \end_layout
 
 \begin_layout Standard
-Le chiavi 
+La modalità 
+\emph on
+test
+\emph default
+ serve a eseguire dei test personalizzati modificando direttamente il codice
+ sorgente.
+ Il metodo runTest() viene eseguito sull'istanza 
+\emph on
+inputdir
+\emph default
+/test.txt .
+\end_layout
+
+\begin_layout Standard
+La modalità 
+\emph on
+describe 
+\emph default
+serve a descrivere le istanze in 
+\emph on
+inputdir
+\emph default
+.
+ Le chiavi 
 \emph on
 describe
 \emph default
@@ -13639,7 +13840,16 @@ to
 \end_layout
 
 \begin_layout Standard
-Le chiavi 
+La modalità 
+\emph on
+generate
+\emph default
+ serve a generare una istanza 
+\begin_inset Formula $\left\langle PrAF,S\right\rangle $
+\end_inset
+
+.
+ Le chiavi 
 \emph on
 generate
 \emph default

@@ -20,7 +20,7 @@ public class PAFTest {
 	} else if (mode.equals ("generate")) {
 	    Generator.generateInstance (props);
 	} else if (mode.equals ("test")) {
-	    runTest ();
+	    runTest (props);
 	}
     }
 
@@ -112,29 +112,32 @@ public class PAFTest {
 	pw.close ();
     }
 
-    static void runTest () {
-	PAF paf = new PAF();
-	paf.addArgs ("a", 1.0,
-		     "b", 2/3.0,
-		     "c", 2/3.0);
-	paf.addDefeats ("a", "b", 2/3.0,
-			"b", "c", 2/3.0);
-	ArgSet s = new ArgSet ("a", "c");
-	Montecarlo m = new MontecarloError (1.96, 0.001);
-	Semantics compl = new CompleteSemantics();
-	Semantics complGA = new CompleteGivenAdmissibleSemantics();
-	System.out.println("exact cf: "+paf.depthFirst (new ConflictFreeSemantics(), s));
-	System.out.println("exact admissible: "+paf.depthFirst (new AdmissibleSemantics(), s));
-	System.out.println("exact admissible (formula): "+paf.admissible (s));
-	System.out.println("exact complete: "+paf.depthFirst (compl, s));
-	System.out.println("exact complete|admissible: "+paf.depthFirst (complGA, s));
-	System.out.println("mc complete: "+m.run(compl, paf, s).toDouble());
-	double p = m.run(complGA, paf, s).toDouble();
-	System.out.println("mc complete|admissible: "+p);
-	System.out.println("mc complete|admissible*admissible: "+complGA.conditional(paf, s)*p);
+    static void runTest (Properties props) throws IOException {
+	String inputdir = props.getProperty ("inputdir");
+	Instance pair = new Instance (inputdir+"/test.txt");
+	PAF paf = pair.paf;
+	ArgSet set = pair.set;
 
-	System.out.println("exact stable: "+paf.depthFirst (new StableSemantics(), s));
-	System.out.println("exact stable (formula): "+paf.stable (s));
+	Montecarlo m = new MontecarloIter (100000);
+	Semantics compl = new CompleteSemantics();
+	System.out.println("exact cf: "+paf.depthFirst (new ConflictFreeSemantics(), set));
+	double padm = paf.depthFirst (new AdmissibleSemantics(), set);
+	System.out.println("exact admissible: "+padm);
+	System.out.println("exact admissible (formula): "+paf.admissible (set));
+	double pcomp = paf.depthFirst (compl, set);
+	System.out.println("exact complete: "+pcomp);
+	System.out.println("exact complete|admissible: "+(pcomp/padm));
+
+	System.out.println("mc complete: "+m.run(compl, paf, set).toDouble());
+
+	Semantics complGA1 = new CompleteGivenAdmissibleSemantics1();
+	Semantics complGA2 = new CompleteGivenAdmissibleSemantics2();
+	for (Semantics sem: new Semantics[]{complGA1, complGA2}) {
+	    System.out.println ("");
+	    double p = m.run(sem, paf, set).toDouble();
+	    System.out.println("mc complete|admissible: "+p);
+	    System.out.println("mc complete|admissible*admissible: "+sem.conditional(paf, set)*p);
+	}
     }
 
     /*
