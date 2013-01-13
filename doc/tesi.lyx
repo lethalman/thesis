@@ -5348,21 +5348,22 @@ Probabilistic argumentation framework
 \end_layout
 
 \begin_layout Standard
-Le probabilità sono usato per introdurre incertezza in domini complessi.
+Le probabilità sono usate per introdurre incertezza in domini complessi.
  Nel caso di argumentation frameworks, l'incertezza influenza le interazioni
  tra gli argomenti e le conclusioni.
  La semantica per le argomentazioni definisce un metodo con il quale è possibile
  dedurre un insieme di argomenti giustificati rispetto a un argument system.
  Quindi una semantica produce in output un insieme di argomenti giustificati
- a partire da un argumentation framework come base di conoscenza.
+ a partire da un argumentation framework usato come base di conoscenza.
  Il problema affrontato dai probabilistic argumentation framework è quello
  di introdurre questa incertezza negli argumentation framework e di identificare
- gli effetti delle probabilità nel processo giustificazione degli argomenti.
+ gli effetti che hanno le probabilità sul processo di giustificazione degli
+ argomenti.
 \end_layout
 
 \begin_layout Standard
 L'approccio è molto semplice.
- Gli abstractat rgumentation framework alla Dung sono estesi introducendo
+ Gli abstract argumentation framework alla Dung sono estesi introducendo
  probabilità sugli argomenti e sui defeat
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -5376,7 +5377,7 @@ key "Li:2011:PAF:2238189.2238191"
 \end_layout
 
 \begin_layout Standard
-Un probabilistic argumentation framework (PrAF) rappresenta quindi un interno
+Un probabilistic argumentation framework (PrAF) rappresenta quindi un intero
  insieme di AAF che possono potenzialmente esistere.
  Uno specifico AAF ha una certa probabilità di essere 
 \emph on
@@ -5418,9 +5419,9 @@ Il processo di creazione degli AAF che possono essere indotti da un PrAF
 induzione 
 \emph default
 di un AAF dal PrAF.
- Tutti gli argomenti e defeat con probabilità 1 saranno presenti negli AAF
- indotti, e saranno presenti anche altri argomenti e defeat secondo la definizio
-ne seguente:
+ Tutti gli argomenti e defeat con probabilità 1 saranno presenti in tutti
+ gli AAF indotti, e saranno presenti anche altri argomenti e defeat secondo
+ la definizione seguente:
 \end_layout
 
 \begin_layout Definition
@@ -5512,7 +5513,7 @@ La relazione
 
  associa delle probabilità su ogni defeat condizionate dall'esistenza degli
  argomenti incidenti.
- Più formalmente, per una qualche coppia di argomenti 
+ Più formalmente, per coppie di argomenti 
 \begin_inset Formula $a,b\in A$
 \end_inset
 
@@ -5578,7 +5579,7 @@ dove
 \begin_layout Standard
 L'insieme di tutti i possibili AAF che possono essere indotti da un PrAF
  formano uno spazio di eventi partizionato per il quale vale 
-\begin_inset Formula ${\displaystyle \sum_{AAF}}P_{\mathcal{F}}\left(AAF\right)=1$
+\begin_inset Formula ${\displaystyle \sum_{\mathcal{F}}}P_{PrAF}\left(\mathcal{F}\right)=1$
 \end_inset
 
 .
@@ -5598,7 +5599,7 @@ Adesso è possibile definire la probabilità alla quale siamo interessati.
 \begin_inset Formula $S$
 \end_inset
 
- sia giustificato rispetto alla 
+ sia giustificato rispetto alla semantica 
 \begin_inset Formula $\mathfrak{S}$
 \end_inset
 
@@ -5745,7 +5746,7 @@ ion framework.
  ecc..
  Questi problemi sono descritti più formalmente nella tabella 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:Problemi-decisionali-per"
 
 \end_inset
@@ -5755,7 +5756,7 @@ reference "tab:Problemi-decisionali-per"
 
 \begin_layout Standard
 \begin_inset Float table
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -6070,9 +6071,9 @@ Per la semantica
 \begin_inset Formula $\mathfrak{S}=grounded$
 \end_inset
 
-, tutti i problemi decisionali in 
+, tutti i problemi decisionali nella tabella 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "tab:Problemi-decisionali-per"
 
 \end_inset
@@ -6114,8 +6115,8 @@ Dato un insieme
 I risultati per i casi intrattabili di semantica preferred e stable sono
  riassunti nella tabella 
 \begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:Complessità-problemi-decisionali"
+LatexCommand ref
+reference "tab:Complessità-problemi-decisionali"
 
 \end_inset
 
@@ -6123,10 +6124,11 @@ reference "fig:Complessità-problemi-decisionali"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
+\begin_inset Float table
+placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -6476,7 +6478,7 @@ key "Dimopoulos:1996:GTS:241025.241036,Garey:1990:CIG:574848,Creignou95theclass"
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:Complessità-problemi-decisionali"
+name "tab:Complessità-problemi-decisionali"
 
 \end_inset
 
@@ -6494,34 +6496,301 @@ Complessità problemi decisionali intrattabili
 \end_layout
 
 \begin_layout Standard
-La complessità nel caso di probabilistic argumentation framework, in molti
- di questi casi diventano 
+Per i probabilistic argumentation framework, ci focalizziamo sul problema
+ di calcolare la probabilità che un insieme sia una estensione rispetto
+ ad una certa semantica, ovvero la probabilità 
+\begin_inset Formula $VER_{\mathfrak{S}}$
+\end_inset
+
+.
+ In genere la complessità di questi problemi per ogni semantica 
+\begin_inset Formula $\mathfrak{S}$
+\end_inset
+
+ diventa 
 \begin_inset Formula $\mathbf{FP}^{\#P}$
 \end_inset
 
--complete o 
+ o 
 \begin_inset Formula $\mathbf{FP}^{\#NP}$
 \end_inset
 
--complete.
- Come vedremo in seguito, un risultato molto importante è che calcolare
- la probabilità 
-\begin_inset Formula $P_{CF}\left(S\right)$
+, rispettivamente se il problema originario 
+\begin_inset Formula $VER_{\mathfrak{S}}$
 \end_inset
 
- e 
-\begin_inset Formula $P_{admissible}\left(S\right)$
-\end_inset
-
- è un problema che sta in 
+ è in 
 \begin_inset Formula $\mathbf{P}$
+\end_inset
+
+ o in 
+\begin_inset Formula $\mathbf{NP}$
+\end_inset
+
+, come mostrato nella tabella 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Complessità-praf"
+
 \end_inset
 
 .
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Semantica
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Complessità
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+admissible
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{PTIME}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+stable
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{PTIME}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+complete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{FP}^{\#P}$
+\end_inset
+
+-complete
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+grounded
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{FP}^{\#P}$
+\end_inset
+
+-complete
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+preferred
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{FP}^{\#P}$
+\end_inset
+
+-hard e 
+\begin_inset Formula $\mathbf{FP}^{\#NP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ideal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbf{FP}^{\#P}$
+\end_inset
+
+-hard e 
+\begin_inset Formula $\mathbf{FP}^{\#NP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Complessità-praf"
+
+\end_inset
+
+Complessità calcolo probabilità 
+\begin_inset Formula $VER_{\mathfrak{S}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il risultato per la semantica admissible e stable (e quindi anche per conflict-f
+ree) è molto importante, perché significa che l'introduzione dell'incertezza
+ non ha aggiunto un livello in più di complessità nel calcolo della probabilità
+ come per le semantiche complete e grounded.
+\end_layout
+
+\begin_layout Standard
+A dimostrazione di questo risultato, nella sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Casi-trattabili"
+
+\end_inset
+
+ verrà mostrato come è possibile calcolare le probabilità 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+, 
+\begin_inset Formula $P_{admissible}\left(S\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $P_{stable}\left(S\right)$
+\end_inset
+
+ in tempo polinomiale, e come si può sfruttare questa caratteristica per
+ ottimizzare il calcolo delle probabilità.
+\end_layout
+
 \begin_layout Section
-Altri tipi di argumentation framework e semantiche
+Altri tipi di argumentation frameworks e semantiche
 \end_layout
 
 \begin_layout Subsection
@@ -6529,8 +6798,9 @@ Semantiche labelling-based
 \end_layout
 
 \begin_layout Standard
-Oltre all'approccio extension-based discusso finora, è stato proposto nella
- letteratura della teoria dell'argomentazione anche l'approccio 
+Oltre all'approccio extension-based discusso finora per attribuire semantica
+ agli argumentation frameworks, è stato proposto nella letteratura della
+ teoria dell'argomentazione anche l'approccio 
 \emph on
 labelling-based
 \emph default
@@ -6711,9 +6981,9 @@ justification state
 \end_layout
 
 \begin_layout Standard
-Riferendoci al semplice AAF in 
+Riferendoci al semplice AAF in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Argomenti-mutuamente-attaccati"
 
 \end_inset
@@ -6732,7 +7002,7 @@ e extension-based e labelling-based.
 \end_inset
 
  sono intuitivamente 
-\begin_inset Formula $\mathcal{E}_{ext1}\left(\mathcal{F}\right)=\left\{ \left\{ a\right\} ,\left\{ a\right\} \right\} $
+\begin_inset Formula $\mathcal{E}_{ext1}\left(\mathcal{F}\right)=\left\{ \left\{ a\right\} ,\left\{ b\right\} \right\} $
 \end_inset
 
 .
@@ -6747,9 +7017,9 @@ ate dargli argomenti che non sono attaccati (ovvero gli argomenti initial,
 \end_inset
 
 ).
- Siccome nell'AAF in 
+ Siccome nell'AAF in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Argomenti-mutuamente-attaccati"
 
 \end_inset
@@ -6766,7 +7036,7 @@ reference "fig:Argomenti-mutuamente-attaccati"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -6775,6 +7045,7 @@ status collapsed
 
 \begin_inset Graphics
 	filename mutual.png
+	width 15col%
 
 \end_inset
 
@@ -6834,9 +7105,9 @@ Adesso, vediamo l'aspetto di questi due principi nelle extension-based nel
 \end_inset
 
 .
- I labelling possibili per l'AAF in 
+ I labelling possibili per l'AAF in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Argomenti-mutuamente-attaccati"
 
 \end_inset
@@ -6891,9 +7162,9 @@ reference "fig:Argomenti-mutuamente-attaccati"
 \uwave default
 \noun default
 \color inherit
-in 
+in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Argomenti-mutuamente-attaccati"
 
 \end_inset
@@ -6988,10 +7259,10 @@ multiple-status
 \end_layout
 
 \begin_layout Standard
-Per quanto riguarda la differenza di espressività tra semantiche expression-base
-d e labelling-based, si può immediatamente concludere che una qualsiasi
- semantica ad estensioni può essere rappresentata con labelling, quando
- si adottano due label (ad esempio 
+Per quanto riguarda la differenza di espressività tra semantiche extension-based
+ e labelling-based, si può immediatamente concludere che una qualsiasi semantica
+ ad estensioni può essere rappresentata con labelling, quando si adottano
+ due label (ad esempio 
 \begin_inset Formula $\mathbb{L}=\left\{ in,out\right\} $
 \end_inset
 
@@ -7006,9 +7277,8 @@ Nella letteratura comunque, nella maggior parte dei casi, si usa la label
 \begin_inset Formula $in$
 \end_inset
 
- per indicare l'appartenenza degli argomenti ad un insieme, quindi in molti
- casi si possono trovare formulazioni in termini di estensioni di molte
- semantiche labelling-based.
+ per indicare l'appartenenza degli argomenti ad un insieme, quindi si trovano
+ formulazioni in termini di estensioni di molte semantiche labelling-based.
  Per questo prevalgono le semantiche extension-based per la loro semplicità
  di utilizzo ed interpretazione.
 \end_layout
@@ -7018,9 +7288,9 @@ Argument games
 \end_layout
 
 \begin_layout Standard
-Negli argument framework visti precedentemente, il ragionaomento è stato
- fatto su un una struttura a grafo, su un insieme di argomenti e sulle estension
-i o labellings.
+Negli argument framework visti precedentemente, il ragionamento è stato
+ fatto su una struttura a grafo, su un insieme di argomenti e sulle estensioni
+ o labellings.
  Un altro modo naturale di decidere se un argomento è giustificato, è pensare
  che ci sia un propositore (PRO) che propone un argomento, ed un oppositore
  (OPP) che si oppone all'argomento proposto.
@@ -7047,7 +7317,7 @@ Supponiamo che in un dato AAF
 \series bold
 tutti i modi 
 \series default
-per attaccare l'argomento del propositore, con gli arogmenti 
+per attaccare l'argomento del propositore, con gli argomenti 
 \begin_inset Formula $b\in Arg$
 \end_inset
 
@@ -7191,8 +7461,8 @@ dispute tree
 \end_layout
 
 \begin_layout Standard
-Affinché il propositore vinca una disputa, è necessario cheuna disputa termini
- con un argomento mosso dal propositore.
+Affinché il propositore vinca una disputa, è necessario che una disputa
+ termini con un argomento mosso dal propositore.
  In altre parole, la disputa dev'essere di lunghezza pari affinché sia vinta
  dal propositore.
 \end_layout
@@ -7200,9 +7470,9 @@ Affinché il propositore vinca una disputa, è necessario cheuna disputa termini
 \begin_layout Standard
 È facilmente intuibile che da questo processo di generazione dell'albero,
  si potrebbe verificare una disputa di lunghezza infinita causata da cicli
- nell'AAF, come mostrato in 
+ nell'AAF, come mostrato in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Esempio-di-dispute"
 
 \end_inset
@@ -7378,9 +7648,9 @@ Esempio di dispute tree con cicli
 In questo caso non si arriverebbe ad una conclusione per l'argomento proposto.
  Per risolvere questo problema, un approccio è vincolare le possibili mosse
  che propositore e oppositore possono effettuare.
- In 
+ In figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Dispute-tree-finito"
 
 \end_inset
@@ -7611,9 +7881,9 @@ Le restrizioni affinché questo avvenga, si ricorda, dipendono dalle mosse
 \end_inset
 
 .
- Nell'esempio in 
+ Nell'esempio in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Dispute-tree-finito"
 
 \end_inset
@@ -7764,8 +8034,8 @@ li.
 \begin_inset Quotes eld
 \end_inset
 
-dobbiamo viaggiare con il treno perché è più comodo, anche se con l'aereo
- è più rapido
+dobbiamo viaggiare con il treno perché è più comodo, anche se l'aereo è
+ più rapido
 \begin_inset Quotes erd
 \end_inset
 
@@ -7839,8 +8109,8 @@ comodità
  La scelta di uno dei due argomenti dipende dal valore attribuito a ciascuno
  di essi.
  Gli agenti decidono indipendentemente la scelta da fare, se la persona
- A attribuisce più valore velocità sceglierà l'aereo, se la persona B attribuisc
-e più valore alla comodità sceglierà il treno.
+ A attribuisce più valore all velocità sceglierà l'aereo, se la persona
+ B attribuisce più valore alla comodità sceglierà il treno.
  Queste due differenti attribuzioni di valore costituiscono due audience.
 \end_layout
 
@@ -7851,7 +8121,11 @@ Il fatto che un valore attribuito ad un argomento sia confrontabile con
  tra i valori.
  L'idea di base dei value-based argumentation frameworks, è di associare
  un valore a degli argomenti pratici, e di formalizzare l'audience come
- i possibili ordinamenti totali tra i valori attribuiti agli argomenti.
+ i possibili ordinamenti 
+\emph on
+totali
+\emph default
+ tra i valori attribuiti agli argomenti.
 \end_layout
 
 \begin_layout Standard
@@ -7867,7 +8141,7 @@ key "Bench-capon02value-basedargumentation,Bench-capon03persuasionin"
 \end_layout
 
 \begin_layout Definition
-Un value-based framework (VAF) è una 5-tupla 
+Un value-based framework (VAF) è una tupla 
 \begin_inset Formula $\left\langle A,D,V,val,P\right\rangle $
 \end_inset
 
@@ -7930,7 +8204,7 @@ Fissato l'audience, si ottiene un framework specifico per quell'audience,
 \end_layout
 
 \begin_layout Definition
-Un audience specific value-based framework (AVAF) è una 5-tupla 
+Un audience specific value-based framework (AVAF) è una tupla 
 \begin_inset Formula $\left\langle A,D,V,val,Valpref_{a}\right\rangle $
 \end_inset
 
@@ -7952,6 +8226,14 @@ Un audience specific value-based framework (AVAF) è una 5-tupla
 
  tale che se 
 \begin_inset Formula $\left\langle v1,v2\right\rangle \in Valpref_{p}$
+\end_inset
+
+ allora il valore 
+\begin_inset Formula $v1$
+\end_inset
+
+ è preferito su 
+\begin_inset Formula $v2$
 \end_inset
 
 .
@@ -7982,7 +8264,7 @@ Dato un AVAF
 \end_inset
 
  
-\begin_inset Formula $defeats_{a}$
+\begin_inset Formula $defeats_{p}$
 \end_inset
 
  un argomento 
@@ -8082,12 +8364,12 @@ conflict-free-for-audience-p
 \begin_inset Formula $\forall x,y\in S$
 \end_inset
 
- deve valere 
+ vale 
 \begin_inset Formula $\left\langle x,y\right\rangle \notin D$
 \end_inset
 
  oppure 
-\begin_inset Formula $\left\langle val\left(x\right),val\left(y\right)\right\rangle \in Valpref_{p}$
+\begin_inset Formula $\left\langle val\left(y\right),val\left(x\right)\right\rangle \in Valpref_{p}$
 \end_inset
 
 .
@@ -8178,8 +8460,8 @@ Le definizioni di cui sopra sono tutte rispetto ad un fissato audience
 \begin_inset Formula $p\in P$
 \end_inset
 
- si possono indurre più AVAF a partire da un VAF, ne consegue che si possono
- avere più definizioni di accettabilità di un insieme di argomenti.
+ si induce un AVAF a partire da un VAF, ne consegue che si possono avere
+ più definizioni di accettabilità di un insieme di argomenti.
  Quelle proposte in letteratura, per singoli argomenti, sono le seguenti:
 \end_layout
 
@@ -8264,9 +8546,25 @@ Questo concetto di accettabilità oggettiva o soggettiva di un argomento,
 
 \begin_layout Chapter
 Approssimazione probabilità in probabilistic argumentation frameworks
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Approssimazione probabilità per PrAF
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Simulazione-Monte-Carlo"
+
+\end_inset
+
 Simulazione Monte Carlo
 \end_layout
 
@@ -8280,16 +8578,25 @@ In questa sezione verrà descritto l'approccio basato sul metodo Monte Carlo
 \begin_inset Formula $\mathfrak{S}$
 \end_inset
 
- è una semantica generica per la quale una funzione di valutazione 
+ è una semantica generica per la quale esiste una funzione di valutazione
+ 
 \begin_inset Formula $\xi_{\mathfrak{S}}$
 \end_inset
 
- esiste tale che, se l'insieme 
-\begin_inset Formula $S\in\mathcal{E}_{\mathfrak{S}}\left(PrAF\right)$
+ tale che, dato un 
+\begin_inset Formula $AAF$
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ se l'insieme 
+\begin_inset Formula $S\in\mathcal{E}_{\mathfrak{S}}\left(\mathcal{F}\right)$
 \end_inset
 
  allora 
-\begin_inset Formula $\xi_{\mathfrak{S}}\left(PrAF,S\right)=true$
+\begin_inset Formula $\xi_{\mathfrak{S}}\left(\mathcal{F},S\right)=true$
 \end_inset
 
 .
@@ -8312,26 +8619,26 @@ Si ripetono i due step precedenti ripetutamente al fine di aggregare i risultati
 \end_layout
 
 \begin_layout Standard
-Questo approccio ha una storia lunga nella computer science, è stato applicato
- ad una varietà di problemi computazionalmente difficili, incluso inferenza
+Questo approccio è stato applicato ad una varietà di problemi computazionalmente
+ difficili nella storia della computer science, come ad esempio per l'inferenza
  in reti bayesiane
 \begin_inset CommandInset citation
 LatexCommand cite
-key "MaxwellChickering:1997:EAM:274158.274163"
+key "mitchell:machine-learning"
 
 \end_inset
 
 , reinforcement learning
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Peters:2006:RLA:1227505.1227515"
+key "citeulike:112017"
 
 \end_inset
 
- e game playing
+ e computer game playing
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Gelly:2012:GCC:2093548.2093574"
+key "Coulom:2006:ESB:1777826.1777833"
 
 \end_inset
 
@@ -8345,16 +8652,16 @@ e di probabilità degli AAF inducibili.
 \begin_layout Standard
 L'algoritmo 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "alg:Algoritmo-per-approssimare"
 
 \end_inset
 
- campiona 
+ campiona un numero 
 \begin_inset Formula $N$
 \end_inset
 
- AAF dall'insieme dei possibili AAF inducibili.
+ di AAF dall'insieme dei possibili AAF inducibili.
  Un AAF viene generato in maniera random selezionando argomenti e defeat
  in base alle loro probabilità.
  Quindi la funzione 
@@ -8370,10 +8677,10 @@ reference "alg:Algoritmo-per-approssimare"
 \noun off
 \color none
 
-\begin_inset Formula $\xi_{\mathfrak{S}}\left(PrAF,S\right)$
+\begin_inset Formula $\xi_{\mathfrak{S}}\left(AAF,S\right)$
 \end_inset
 
- viene valutato per determinare se 
+ viene valutata per determinare se 
 \begin_inset Formula $S$
 \end_inset
 
@@ -8416,7 +8723,7 @@ reference "alg:Algoritmo-per-approssimare"
 \end_layout
 
 \begin_layout Standard
-L'errore nell'approssimazione di 
+Per la legge dei grandi numeri, l'errore nell'approssimazione di 
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
@@ -8428,7 +8735,7 @@ L'errore nell'approssimazione di
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -8873,9 +9180,10 @@ key "agresti_1998"
 \end_inset
 
 .
- La forma generale per questo intervallo è uguale a quello in 
+ La forma generale per questo intervallo è uguale a quella nell'equazione
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "eq:CI"
 
 \end_inset
@@ -8906,7 +9214,7 @@ N'=N+z_{1-\alpha/2}^{2}\,\qquad p'=\frac{X+\left(z_{1-\alpha/2}^{2}/2\right)}{N'
 da questo possiamo derivare la nuova stima per il numero di tentativi da
  usare nell'algoritmo 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "alg:AlgoErr"
 
 \end_inset
@@ -8930,7 +9238,7 @@ N=\frac{z_{1-\alpha/2}^{2}\cdot p'\cdot\left(1-p'\right)}{\epsilon^{2}}-z_{1-\al
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -9182,16 +9490,19 @@ Algoritmo per approssimare
 \end_layout
 
 \begin_layout Section
-Casi trattabili in probabilistic argumentation framework
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Casi-trattabili"
+
+\end_inset
+
+Casi trattabili in probabilistic argumentation frameworks
 \end_layout
 
 \begin_layout Standard
 Il numero di AAF che può essere indotto da un PrAF è certamente esponenziale
- nel numero di argomenti e defeat, ma ci sono casi in cui il 
-\emph on
-calcolo
-\emph default
- della probabilità per alcune proprietà non richiede l'esplorazione dell'intero
+ nel numero di argomenti e defeat, ma ci sono casi in cui il calcolo della
+ probabilità per alcune proprietà non richiede l'esplorazione dell'intero
  spazio degli AAF indotti.
  Infatti, come vedremo di seguito, la probabilità che un insieme di argomenti
  sia conflict-free o ammissibile può essere valutata in tempo polinomiale
@@ -9214,7 +9525,7 @@ Dato
 \end_inset
 
 , 
-\begin_inset Formula $P_{CF}\left(S\right)=P_{1}\left(S\right)\cdot P_{2}\left(S\right)\cdot P_{3}\left(S\right)$
+\begin_inset Formula $P_{CF}\left(S\right)=P_{1}\left(S\right)\cdot P_{2}\left(S\right)$
 \end_inset
 
 , dove:
@@ -9238,9 +9549,9 @@ Dato
 \end_layout
 
 \begin_layout Standard
-Il 
+Il lemma 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "lem:Pcf"
 
 \end_inset
@@ -9249,7 +9560,7 @@ reference "lem:Pcf"
 \begin_inset Formula $CF\left(S\right)$
 \end_inset
 
- possa essere espresso come un evento probabilistico 
+ può essere espresso come un evento probabilistico 
 \begin_inset Formula $E_{CF}=e_{1}\wedge e_{2}$
 \end_inset
 
@@ -9338,16 +9649,16 @@ Dato
 \end_layout
 
 \begin_layout Standard
-Il 
+Il lemma 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "lem:Padmissible"
 
 \end_inset
 
- estende il 
+ estende il lemma 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "lem:Pcf"
 
 \end_inset
@@ -9414,12 +9725,11 @@ L'argomento
 \end_layout
 
 \begin_layout Standard
-La proprietà conflict-free è richiesta per ogni semantica, mentre l'admissible
- non sempre, come nel caso di semantica stable.
- In entrambi i casi, nella letteratura queste sono delle caratteristiche
- di un insieme di argomenti importanti, ma che non definisco un tipo di
- estensione come complete, stable, preferred, grounded, ecc..
- Come introdotto nei capitali introduttivi e come vedremo in seguito, calcolare
+Le proprietà conflict-free e admissible sono richieste per tutte le semantiche
+ tradizionali (per la stage si richiede solo conflict-free), quindi sono
+ molto importanti nella letteratura, anche se da sole non definiscono un
+ tipo di estensione come complete, grounded, preferred, ecc..
+ Come introdotto nei capitoli introduttivi e come vedremo in seguito, calcolare
  la probabilità che un insieme di argomenti sia conflict-free permetterà
  di ottimizzare il calcolo della probabilità per casi più difficili.
 \end_layout
@@ -9482,22 +9792,22 @@ Come per il caso di
 \begin_inset Formula $P_{admissible}\left(S\right)$
 \end_inset
 
-, il 
+, il lemma 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "lem:Pstable"
 
 \end_inset
 
- estende il 
+ estende il lemma 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "lem:Pcf"
 
 \end_inset
 
  al caso di estensioni stabili.
- In questo casi si aggiunge l'evento congiunto che tutti gli argomenti esterni
+ In questo caso si aggiunge l'evento congiunto che tutti gli argomenti esterni
  ad 
 \begin_inset Formula $S$
 \end_inset
@@ -9534,12 +9844,12 @@ L'argomento
 \end_layout
 
 \begin_layout Standard
-Mostriamo per un semplice esempio l'utilizzo di queste formule per calcolare
+Mostriamo, per un semplice AAF, l'utilizzo di queste formule per calcolare
  le probabilità che un insieme di argomenti sia conflict-free, admissible
  o stable.
- In 
+ In  figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Calcolo-probabilità-polinomiale"
 
 \end_inset
@@ -9552,11 +9862,12 @@ reference "fig:Calcolo-probabilità-polinomiale"
 \begin_inset Formula $A=\left\{ a,b,c\right\} $
 \end_inset
 
- e l'insieme di argomenti 
+ e l'insieme di argomenti per il quale valutare le varie probabilità descritte
+ precedentemente è 
 \begin_inset Formula $S=\left\{ a,c\right\} $
 \end_inset
 
- per il quale valutare le varie probabilità descritte precedentemente.
+.
  I possible world di questo PrAF sono i seguenti:
 \end_layout
 
@@ -9590,6 +9901,7 @@ status collapsed
 
 \begin_inset Graphics
 	filename polynomial.png
+	width 23col%
 
 \end_inset
 
@@ -9610,7 +9922,7 @@ name "fig:Calcolo-probabilità-polinomiale"
 
 \end_inset
 
-Calcolo probabilità polinomiale
+PrAF di esempio per calcolare le probabilità
 \end_layout
 
 \end_inset
@@ -9624,9 +9936,9 @@ Calcolo probabilità polinomiale
 \end_layout
 
 \begin_layout Standard
-Le probabilità per ogni possible world, calcolate secondo 
+Le probabilità per ogni possible world, calcolate secondo la formula 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "eq:Paaf"
 
 \end_inset
@@ -9663,9 +9975,10 @@ Per calcolare la probabilità che l'insieme
 \begin_inset Formula $S$
 \end_inset
 
- sia conflict-free in maniera esatta, admissible o stable, usiamo 
+ sia conflict-free in maniera esatta, admissible o stable, usiamo la formula
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "eq:Psemantic"
 
 \end_inset
@@ -9736,9 +10049,9 @@ reference "eq:Psemantic"
 \end_layout
 
 \begin_layout Standard
-Con 
+Con la formula 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "eq:Psemantic"
 
 \end_inset
@@ -9800,10 +10113,14 @@ La possibilità di calcolare
 \end_inset
 
  in tempo polinomiale permette di calcolare 
-\begin_inset Formula $P_{\xi}\left(S\right)$
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- in maniera più efficiente.
+, per una qualsiasi semantica 
+\begin_inset Formula $\mathfrak{S}$
+\end_inset
+
+, in maniera più efficiente.
 \end_layout
 
 \begin_layout Standard
@@ -9835,7 +10152,14 @@ Osserviamo che
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- come nell'algoritmo naive.
+ come nell'algoritmo naive descritto nella sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Simulazione-Monte-Carlo"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -9893,9 +10217,9 @@ N=\frac{z_{1-\alpha/2}^{2}\cdot p\left(1-p\right)}{\epsilon^{2}}\cdot P_{CF}^{2}
 \end_layout
 
 \begin_layout Standard
-Usando l'intervallo di Agresti-Coull
+Applicando l'intervallo di Agresti-Coull 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand eqref
 reference "eq:AgrestiCoull"
 
 \end_inset
@@ -9961,9 +10285,9 @@ A parità di errore e per
 
  il nuovo algoritmo risulta essere generalmente più veloce di quello naive,
  specialmente nel caso di semantica complete e grounded sotto determinate
- ipotesi come descritto in 
+ ipotesi come descritto più avanti 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand eqref
 reference "sub:Efficienza-teorica-del"
 
 \end_inset
@@ -10029,9 +10353,9 @@ Un AAF
 \end_layout
 
 \begin_layout Standard
-L'algoritmo di base rimane lo stesso di quello 
+L'algoritmo di base rimane lo stesso di quello originario 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand eqref
 reference "alg:Algoritmo-per-approssimare"
 
 \end_inset
@@ -10434,10 +10758,6 @@ Efficienza teorica del nuovo algoritmo.
 \end_layout
 
 \begin_layout Standard
-Intuitivamente
-\end_layout
-
-\begin_layout Standard
 Dato 
 \begin_inset Formula $\hat{N}$
 \end_inset
@@ -10459,14 +10779,14 @@ Dato
 \end_layout
 
 \begin_layout Standard
-Per semplicità, richiamiamo il numero di iterazioni da 
+Richiamiamo il numero di iterazioni dall'equazione 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "eq:NaiveTrials"
 
 \end_inset
 
- senza le perturbazioni di Agresti-Coull:
+ (per semplicità senza le perturbazioni di Agresti-Coull):
 \end_layout
 
 \begin_layout Standard
@@ -10584,12 +10904,6 @@ Oltre alla relazione con il numero di iterazioni, vogliamo anche determinare
 \end_inset
 
  dell'algoritmo naive.
- Come vedremo negli esperimenti, questa misura è molto interessante per
- la semantica grounded quando 
-\begin_inset Formula $P_{complete}\left(S\right)\cong P_{grounded}\left(S\right)$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
@@ -10609,9 +10923,9 @@ In base alle stesse assunzioni fatte precedentemente e alle leggi base della
 \end_layout
 
 \begin_layout Standard
-Sostituendo 
+Sostituendo l'equzione 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "eq:NewTrials"
 
 \end_inset
@@ -10635,7 +10949,7 @@ Anche qui, siccome
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)=P_{\mathfrak{S}\mid CF}\left(S\right)\cdot P_{CF}\left(S\right)$
 \end_inset
 
- the following holds:
+ vale quanto segue:
 \end_layout
 
 \begin_layout Standard
@@ -10664,7 +10978,7 @@ Infine, sostituendo
 
  (in aggiunta al numero di iterazioni da 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "eq:NewTrials"
 
 \end_inset
@@ -10730,7 +11044,8 @@ reference "alg:EstensioneGrounded"
 \begin_inset Formula $P_{CF}\left(S\right)$
 \end_inset
 
- in percentuale del tempo dell'algoritmo naive nel caso di semantica complete.
+ in percentuale rispetto al tempo impiegato dall'algoritmo naive nel caso
+ di semantica complete e grounded.
 \end_layout
 
 \begin_layout Standard
@@ -10766,7 +11081,7 @@ Per comprendere meglio il comportamento di
 
 , facciamo riferimento ai due casi in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Comportamento-di"
 
 \end_inset
@@ -10779,7 +11094,7 @@ reference "fig:Comportamento-di"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -10789,11 +11104,12 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename fixedcond.png
+	width 40col%
 
 \end_inset
 
@@ -10833,11 +11149,12 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename fixedcf.png
+	width 40col%
 
 \end_inset
 
@@ -10938,6 +11255,16 @@ Fissato
 
 \begin_layout Chapter
 Sperimentazione delle ottimizzazioni per probabilistic argumentation frameworks
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Sperimentazione delle ottimizzazioni
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -10984,8 +11311,8 @@ Come prima cosa c'è la necessità di trovare delle istanze
 \end_layout
 
 \begin_layout Standard
-Si genera in maniera random un PrAF di 15 o 20 argomenti a partire da tre
- distribuzioni di probabilità:
+Si genera in maniera random un PrAF di 15 (o 20) argomenti a partire da
+ tre distribuzioni di probabilità:
 \end_layout
 
 \begin_layout Itemize
@@ -11085,7 +11412,7 @@ Per effettuare i test abbiamo bisogno di istanze del problema
 \end_inset
 
 .
- Nella prima fase ci concentriamo nella generazione di grafi PrAF adatti
+ Nella prima fase ci concentriamo sulla generazione di grafi PrAF adatti
  per avere successivamente delle probabilità 
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
@@ -11099,9 +11426,10 @@ La generazione di un grafo
 \end_inset
 
  avviene mediante la scelta random, secondo le distribuzioni di probabilità
- di argomenti, grado in uscita e probabilità defeat illustrate in 
+ di argomenti, grado in uscita e probabilità defeat illustrate in figura
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Probability-distributions-for"
 
 \end_inset
@@ -11247,7 +11575,7 @@ Vengono usate probabilità alte per gli argomenti in modo da aumentare
 \begin_inset Formula $P_{CF}\left(S\right)=\left(0.95\right)^{8}\cong0.66$
 \end_inset
 
- che già molto vicino al lowerbound dei vincoli precedentemente stabiliti.
+ che è già molto vicino al lowerbound dei vincoli precedentemente stabiliti.
 \end_layout
 
 \begin_layout Standard
@@ -11270,7 +11598,7 @@ Il grado in uscita degli argomenti invece è basso poiché, al contrario,
 
 \begin_layout Standard
 Per quanto concerne le probabilità sui defeat, potrebbe sembrare controintuitivo
- avere delle probabilità alta, ma è necessario per avere una probabilità
+ avere delle probabilità alte, ma è necessario per avere una probabilità
  
 \begin_inset Formula $P_{complete}\left(S\right)$
 \end_inset
@@ -11280,9 +11608,9 @@ Per quanto concerne le probabilità sui defeat, potrebbe sembrare controintuitiv
 \end_inset
 
  più alta, nel caso di semantiche complete e grounded.
- Ad esempio, in 
+ Ad esempio, in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:LowerPx"
 
 \end_inset
@@ -11297,9 +11625,9 @@ reference "fig:LowerPx"
 \end_inset
 
  sarebbe accettabile.
- In 
+ In figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:HigherPx"
 
 \end_inset
@@ -11320,7 +11648,7 @@ reference "fig:HigherPx"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -11354,15 +11682,13 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-
-\lang english
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:LowerPx"
 
 \end_inset
 
-Lower 
+Valore basso di 
 \begin_inset Formula $P_{complete}\left(S\right)$
 \end_inset
 
@@ -11408,15 +11734,13 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-
-\lang english
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:HigherPx"
 
 \end_inset
 
-Higher 
+Valore alto di 
 \begin_inset Formula $P_{complete}\left(S\right)$
 \end_inset
 
@@ -11441,9 +11765,7 @@ Higher
 \begin_inset Caption
 
 \begin_layout Plain Layout
-
-\lang english
-Example of probabilities over defeats
+Esempio di probabilità sui defeat
 \end_layout
 
 \end_inset
@@ -11469,14 +11791,14 @@ Per ogni grafo viene determinato un insieme
  Questo è un problema molto difficile, che appartiene ad una classe di complessi
 tà superiore ai problemi visti in precedenza.
  Le istanze dei problemi visti finora erano delle coppie 
-\begin_inset Formula $\left\langle AF,S\right\rangle $
+\begin_inset Formula $\left\langle PrAF,S\right\rangle $
 \end_inset
 
- per le quali bisognava determinare se il set 
+ per le quali bisognava determinare la probabilità che il set 
 \begin_inset Formula $S$
 \end_inset
 
- soddisfava delle proprietà nel DAF dato.
+ fosse una estensione.
  In questo caso il set 
 \begin_inset Formula $S$
 \end_inset
@@ -11485,12 +11807,12 @@ tà superiore ai problemi visti in precedenza.
 \end_layout
 
 \begin_layout Standard
-Per questo sono stati utilizzati degli approcci approssimativi per generare
- un insieme di argomenti 
+Per questo sono stati utilizzati degli approcci approssimativi per trovare
+ un buon insieme di argomenti 
 \begin_inset Formula $S$
 \end_inset
 
- per ogni grafo generato usato negli esperimenti.
+ dal PrAF generato al passo precedente.
 \end_layout
 
 \begin_layout Standard
@@ -11554,7 +11876,7 @@ ne lineare, si può approssimare la produttoria con una sommatoria, e per
 \begin_inset Formula $a$
 \end_inset
 
- appartiene o meno in 
+ appartiene o meno ad 
 \begin_inset Formula $S$
 \end_inset
 
@@ -11656,9 +11978,9 @@ Nelle sezioni precedenti abbiamo visto come avviene il processo di generazione
 \end_layout
 
 \begin_layout Standard
-I grafici in 
+I grafici in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Characteristics-of-chosen"
 
 \end_inset
@@ -11707,7 +12029,7 @@ Per 10 argomenti abbiamo inoltre che
 \begin_inset Formula $P_{CF}\left(S\right)=0.69$
 \end_inset
 
- mentre for 20 argomenti 
+ mentre per 20 argomenti 
 \begin_inset Formula $P_{CF}\left(S\right)=0.62$
 \end_inset
 
@@ -11830,9 +12152,9 @@ Characteristics of chosen problem instances
 \end_layout
 
 \begin_layout Standard
-Alcune istanze usate per il testing sono illustrate in 
+Alcune delle istanze usate per il testing sono illustrate in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:IstanzeTest"
 
 \end_inset
@@ -11851,7 +12173,7 @@ reference "fig:IstanzeTest"
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -12011,7 +12333,7 @@ Istanze
 \end_layout
 
 \begin_layout Standard
-Gli esperimenti sono stato eseguiti per le semantiche complete, grounded
+Gli esperimenti sono stati eseguiti per le semantiche complete, grounded
  e preferred.
  Per ogni istanza del problema e per ogni semantica sono stati eseguiti
  entrambi gli algoritmi 20 volte (20 runs), con livello di confidenza pari
@@ -12030,21 +12352,21 @@ Gli esperimenti sono stato eseguiti per le semantiche complete, grounded
 \end_layout
 
 \begin_layout Standard
-In 
+Nel grafico 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Complete01"
 
 \end_inset
 
- troviamo il confronto tra i due algoritmi per la semantica complete con
+ vengono confrontati i due algoritmi rispetto alla semantica complete con
  errore 
 \begin_inset Formula $\epsilon=0.01$
 \end_inset
 
- e in 
+ e nel grafico 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Complete005"
 
 \end_inset
@@ -12295,14 +12617,14 @@ Confronto per la semantica complete con
 \end_layout
 
 \begin_layout Standard
-Il problema di decidere se in insieme di argomenti è complete rispetto ad
- un AAF è risolvibile in tempo polinomial rispetto al numero di argomenti
+Il problema di decidere se un insieme di argomenti è complete rispetto ad
+ un AAF è risolvibile in tempo polinomiale rispetto al numero di argomenti
  e defeat.
  Per questo motivo, si può notare che c'è una relazione costante tra il
  numero di iterazioni e il tempo CPU in percentuale per la semantica complete,
- che è particolarmente apprezzabile in 
+ che è particolarmente apprezzabile nel grafico 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:CompleteRelative005"
 
 \end_inset
@@ -12315,9 +12637,9 @@ Per quanto riguarda la semantica grounded, possiamo osservare lo stesso
  fenomeno.
  Poiché decidere se un insieme di argomenti è grounded ha complessità polinomial
 e nel numero di argomenti e defeat, il tempo CPU è strettamente correlato
- al numero di iterazioni, come illustrato in 
+ al numero di iterazioni, come illustrato nel grafico 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Grounded01"
 
 \end_inset
@@ -12326,9 +12648,9 @@ reference "fig:Grounded01"
 \begin_inset Formula $\epsilon=0.01$
 \end_inset
 
- e in 
+ e nel grafico 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Grounded005"
 
 \end_inset
@@ -12341,10 +12663,10 @@ reference "fig:Grounded005"
 \end_layout
 
 \begin_layout Standard
-Possiamo osservare che il tempo CPU in percentuale non è vicino alla stessa
- maniera che con la semantica complete.
- Questo perché il procedimento di costruzione della estensione grounded
- è più complesso di controllare se una estensione è complete.
+Il tempo CPU in percentuale per la grounded non è vicino alla stessa maniera
+ che con la semantica complete, perché il procedimento di costruzione della
+ estensione grounded è più complesso di controllare se una estensione è
+ complete.
  Ad ogni modo, il fattore importante è che la relazione tra numero di iterazioni
  e tempo CPU non sia variabile, ma dipenda solo da un fattore costante dovuto
  al dettaglio implementativo.
@@ -12569,16 +12891,17 @@ Confronto per la semantica grounded con
 \end_layout
 
 \begin_layout Standard
-Diversi sono i risultati per la semantica preferred, come mostrato in 
+Diversi sono i risultati per la semantica preferred, come mostrato nei grafici
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Preferred01"
 
 \end_inset
 
  e 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Preferred005"
 
 \end_inset
@@ -12812,7 +13135,7 @@ Confronto per la semantica preferred con
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -12822,7 +13145,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -12948,14 +13271,14 @@ Uno stesso AAF può essere indotto più volte per via del metodo Monte Carlo,
 \begin_inset Formula $\mathcal{E}_{\mathfrak{S}}\left(\mathcal{AAF},S\right)$
 \end_inset
 
- per AAF indotti più ricorrenti.
+ per gli AAF indotti più ricorrenti.
  Questo avrebbe degli effetti positivi per quanto riguarda l'efficienza
  per PrAF con pochi argomenti e defeat, dove la probabilità di generare
  uno stesso AAF è molto maggiore rispetto al caso di un PrAF con molti argomenti
  e defeat, altrimenti il costo di aggiornare e consultare la cache sorpasserebbe
  i benefici dell'usare la cache stessa.
- Alcuni testi sono stati effettuati in Java usando una LinkedHashMap come
- cache LRU, e la maggiorparte del tempo viene impiegata dal garbage collector.
+ Alcuni test sono stati effettuati in Java usando una LinkedHashMap come
+ cache LRU, e la maggiorparte del tempo viene spesa per fare garbage collection.
 \end_layout
 
 \begin_layout Standard
@@ -12968,16 +13291,16 @@ Mostriamo infine come il campionamento dello spazio degli AAF conflict-free
 .
  Ipotizziamo quindi che la probabilità restituita da questa simulazione
  sia quella vera, al fine di calcolare l'errore di approssimazione.
- Il test viene eseguito per la semantica grounded in 
+ Il test viene eseguito per la semantica grounded nel grafico 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:ErroreGrounded"
 
 \end_inset
 
  e preferred in 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:ErrorePreferred"
 
 \end_inset
@@ -13040,11 +13363,12 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename grounded_bias_01.png
+	width 50col%
 
 \end_inset
 
@@ -13084,6 +13408,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename preferred_bias_01.png
+	width 50col%
 
 \end_inset
 
@@ -13142,13 +13467,13 @@ Conclusioni e sviluppi futuri
 In questo lavoro di tesi è stato inizialmente descritto il concetto di argomenta
 zione, di argomenti e di argumentation framework o argument systems.
  L'argumentation ha radici storiche, ed ha problemi complementari a quelli
- di altri formalismi come la logica proposizionale.
+ di altri formalismi che riguardano la deduzione logica.
  In letteratura sono stati analizzati vari tipi di interpretazioni per l'argomen
 tazione, e per il significato di argomento stesso.
 \end_layout
 
 \begin_layout Standard
-Tra queste interpretazioni, sono state descritte nei primi capitali quelle
+Tra queste interpretazioni, sono state descritte nei primi capitoli quelle
  tradizionalmente usate nella letteratura della teoria dell'argomentazione.
  L'abstract argumentation framework è un formalismo con il quale è possibile
  rappresentare argumentation framework astraendosi dal significato di argomento
@@ -13156,17 +13481,18 @@ Tra queste interpretazioni, sono state descritte nei primi capitali quelle
  Assieme alle definizioni base dell'abstract argumentation framework, sono
  state riassunte le semantiche extension-based, quali complete, grounded,
  stable, preferred, ideal, stage e semi-stable, e semantiche prudent.
- Per alcune di queste semantiche si sono descritti gli algoritmi per risolvere
- il problema di decidere se un insieme di argomenti fosse una estensione.
+ Per alcune di queste semantiche sono stati descritti gli algoritmi per
+ risolvere il problema di decidere se un insieme di argomenti fosse una
+ estensione.
  Questi algoritmi sono stati implementati direttamente per la costruzione
  del simulatore usato per gli esperimenti.
 \end_layout
 
 \begin_layout Standard
-Sono stati descritti i probabilistic argumentation framework, che sono stati
- primariamente oggetto di questo lavoro di tesi, come estensione per gli
- abstract argumentation framework con lo scopo di aggiungere incertezza
- sull'esistenza degli argomenti e delle relazioni tra di essi.
+Sono stati descritti i probabilistic argumentation framework, oggetto di
+ questo lavoro di tesi, come estensione per gli abstract argumentation framework
+ con lo scopo di aggiungere incertezza sull'esistenza degli argomenti e
+ delle relazioni tra di essi.
  Il problema di decidere se un insieme di argomenti è una estensione in
  un abstract argumentation framework, diventa il problema di calcolare con
  che probabilità lo stesso insieme di argomenti è una estensione in un probabili
@@ -13190,17 +13516,17 @@ Oltre agli abstract e ai probabilistic argumentation framework, sono state
 \end_layout
 
 \begin_layout Standard
-Nel secondo capitolo, è stato mostrato un approccio per il calcolare un'approssi
-mazione alla probabilità che una estensione soddisfi i criteri di una certa
- semantica per i probabilistic argumentation framework, basato sul metodo
- Monte Carlo.
+Nel terzo capitolo, è stato mostrato un approccio per calcolare un'approssimazio
+ne alla probabilità che un insieme di argomenti soddisfi criteri di una
+ certa semantica per i probabilistic argumentation framework, basato sul
+ metodo Monte Carlo.
  È stato inoltre mostrato, come per alcuni problemi polinomiali per l'abstract
- argumentation framework, la complessità non sia aumentata ma è rimasta
+ argumentation framework, la complessità non sia aumentata ma sia rimasta
  polinomiale.
- Questo risultato è molto importante, poiché permette di calcolare la probabilit
-à conflict-free e admissible in tempo polinomiale rispetto al numero di
- argomenti e defeat, che sono proprietà fondamentali per gli argumentation
- framework.
+ In particolare, è possibile calcolare la probabilità che un insieme di
+ argomenti sia conflict-free, admissible o stabile in tempo polinomiale
+ rispetto al numero di argomenti e defeat, che sono proprietà fondamentali
+ per gli argumentation framework.
 \end_layout
 
 \begin_layout Standard
@@ -13211,11 +13537,11 @@ Sulla base di questo nuovo importante risultato, è stato esteso l'approccio
  La caratterizzazione teorica di questo nuovo approccio mostra i vantaggi
  in termini di efficienza del nuovo algoritmo.
  Sotto determinate ipotesi, è possibile concludere che l'efficienza del
- nuovo algoritmo è direttamente collegata in proporzione alla probabilità
- condizionata calcolata in tempo polinomiale rispetto al numero di iterazioni
- dell'algoritmo originale.
+ nuovo algoritmo è direttamente proporzionale alla probabilità condizionata
+ calcolata in tempo polinomiale rispetto al numero di iterazioni dell'algoritmo
+ originale.
  Inoltre, questo approccio, come quello originario, è assolutamente generale
- poiché tutte i tipi di estensione in letteratura richiedono la proprietà
+ poiché tutti i tipi di estensione in letteratura richiedono la proprietà
  conflict-free.
  
 \end_layout
@@ -13312,9 +13638,10 @@ Instance
 \end_layout
 
 \begin_layout Standard
-Le relazioni di dipendenza tra i vari componenti sono illustratate in 
+Le relazioni di dipendenza tra i vari componenti sono illustratate nel diagramma
+ 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Componenti-del-simulatore"
 
 \end_inset
@@ -13324,10 +13651,10 @@ reference "fig:Componenti-del-simulatore"
 
 \begin_layout Standard
 \begin_inset Float figure
-placement H
+placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -13337,6 +13664,7 @@ status collapsed
 \begin_inset Graphics
 	filename simcomponents.png
 	width 90col%
+	height 30col%
 
 \end_inset
 
@@ -13783,8 +14111,8 @@ compare
 \end_layout
 
 \begin_layout Standard
-Le chiavi possibili per descrivere una simulazione, ad esempio compare.sim,
- sono le seguenti:
+Le chiavi possibili per descrivere una simulazione, ad esempio compare.sim.opzione
+, sono le seguenti:
 \end_layout
 
 \begin_layout Itemize
@@ -13995,7 +14323,7 @@ Il simulatore genererà ripetutamente delle istanze
 \begin_inset Formula $\left\langle PrAF,S\right\rangle $
 \end_inset
 
- e aggiornare il file di output con l'istanza migliore trovata fino a quel
+ e aggiornarà il file di output con l'istanza migliore trovata fino a quel
  momento.
  Con 
 \emph on
