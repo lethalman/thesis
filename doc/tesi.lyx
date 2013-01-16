@@ -270,13 +270,13 @@ key "Li:2011:PAF:2238189.2238191,Rienstra12,Thimm12"
 
 \end_inset
 
-, in particulare i probabilistic argumentation framework (
+, in particolare i probabilistic argumentation framework (
 \emph on
 PrAF
 \emph default
-), e di analizzare e ottimizzare degli algoritmi per risolvere i problemi
- decisionali legati ai probabilistic argumentation framework in maniera
- approssimata.
+), e di analizzare e ottimizzare degli algoritmi esistenti per calcolare
+ la probabilità nei probabilistic argumentation framework in maniera approssimat
+a.
 \end_layout
 
 \begin_layout Standard
@@ -291,7 +291,7 @@ Gli argumentation framework che verranno studiati principalmente sono gli
 
 \begin_layout Standard
 Verrà analizzato un approccio esistente basato sulla simulazione Monte Carlo
- per calcolare un'approssimazione della probabilità che un certo insieme
+ per calcolare un'approssimazione sulla probabilità che un certo insieme
  di argomenti di un probabilistic argumentation framework sia giustificato
  rispetto ad una generica semantica.
 \end_layout
@@ -307,15 +307,14 @@ In generale, il problema di calcolare tale probabilità è nella classe di
 \end_inset
 
 , in dipendenza dalla semantica adottata.
- Per alcuni alcuni casi particolari, specificatamente per la proprietà conflict-
-free, admissible e stable, verrà mostrato come la probabilità di queste
- proprietà per un dato probabilistic argumentation framework possano essere
- calcolate in tempo polinomiale.
+ Per alcuni alcuni casi particolari però, specificatamente per le proprietà
+ conflict-free, admissible e stable, verrà mostrato come la probabilità
+ di quest'ultime possa essere calcolata in tempo polinomiale.
 \end_layout
 
 \begin_layout Standard
-In base a questi casi trattabili, l'approccio esistente verrà esteso per
- ottimizzare la risoluzione dei problemi intrattabili.
+Sulla base di questi casi trattabili, l'approccio esistente verrà esteso
+ per ottimizzare la risoluzione dei problemi intrattabili.
  Le semantiche che saranno usate per il confronto dei due algoritmi sono
  la semantica complete, grounded e preferred.
  Queste semantiche tradizionali sono quelle più comunemente adottate nella
@@ -325,7 +324,7 @@ In base a questi casi trattabili, l'approccio esistente verrà esteso per
 \begin_layout Standard
 Verrà mostrato infine come il nuovo algoritmo è in genere più efficiente
  rispetto all'algoritmo naive esistente, specialmente nel caso di semantica
- complete, grounded e stable.
+ complete e grounded.
 \end_layout
 
 \begin_layout Section
@@ -334,8 +333,8 @@ Contributo della tesi
 
 \begin_layout Standard
 La tesi si propone di descrivere in maniera riassuntiva e concisa le motivazioni
- del formalismo degli argumentation framework, e le varie interpretazioni
- di argumentation framework.
+ dell'adozione del formalismo degli argumentation framework, e le possibili
+ varianti di argumentation framework.
  Verranno descritti più in dettaglio gli abstract argumentation framework,
  i probabilistic argumentation framework, e le semantiche extension-based
  tradizionalmente usate nella letteratura della teoria degli argumentation
@@ -343,14 +342,14 @@ La tesi si propone di descrivere in maniera riassuntiva e concisa le motivazioni
 \end_layout
 
 \begin_layout Standard
-Assieme alle definizioni di tali concetti di argumentation framework, sono
- stati inoltre riassunti i risultati per le complessità computazionali dei
- vari problemi decisionali per gli abstract argumentation framework, e delle
- complessità di calcolo delle probabilità per i probabilistic argumentation
- framework.
- In genere, muoversi da un contesto di certezza ad un contesto di incertezza
- con le probabilità introduce uno livello ulteriore di complessità.
- Molti problemi decisionali che stanno in 
+Assieme alle definizioni dei concetti legati agli argumentation framework,
+ sono stati riassunti i risultati riguardo le complessità computazionali
+ dei vari problemi decisionali per gli abstract argumentation framework,
+ e delle complessità di calcolo delle probabilità per i probabilistic argumentat
+ion framework.
+ In genere, introdurre incertezza con le probabilità aumenta di un livello
+ la complessità dei problemi.
+ Molti problemi decisionali trattabili che stanno in 
 \begin_inset Formula $\mathbf{P}$
 \end_inset
 
@@ -358,7 +357,8 @@ Assieme alle definizioni di tali concetti di argumentation framework, sono
 \begin_inset Formula $\mathbf{NP}$
 \end_inset
 
-, diventano rispettivamente 
+ per gli abstract argumentation frameworks, diventano intrattabili con complessi
+tà rispettivamente 
 \begin_inset Formula $\mathbf{FP^{\#P}}$
 \end_inset
 
@@ -366,13 +366,13 @@ Assieme alle definizioni di tali concetti di argumentation framework, sono
 \begin_inset Formula $\mathbf{FP^{\#NP}}$
 \end_inset
 
-.
+ nei probabilistic argumentation frameworks.
 \end_layout
 
 \begin_layout Standard
-Per quanto riguarda quest'ultime complessità, verrà mostrato come è possibile
- calcolare la probabilità che un insieme di argomenti sia conflict-free,
- ammissibile o stabile in tempo polinomiale.
+Questo però non è vero per tutti i problemi, infatti verrà mostrato come
+ è possibile calcolare la probabilità che un insieme di argomenti sia conflict-f
+ree, ammissibile o stabile in tempo polinomiale.
  Questo importante risultato, oltre a dimostrare che passare da un contesto
  deterministico ad un contesto incerto rappresentato con probabilità non
  necessariamente introduce un ulteriore livello di complessità per tutti
@@ -381,13 +381,11 @@ Per quanto riguarda quest'ultime complessità, verrà mostrato come è possibile
 \end_layout
 
 \begin_layout Standard
-Infatti, in questo lavoro di tesi verrà proposto un algoritmo basato sul
- metodo Monte Carlo per approssimare la probabilità che un insieme di argomenti
- sia consistente rispetto ad una determinata semantica, ottimizzato in base
- al fatto che è possibile calcolare una probabilità condizionata in maniera
- esatta.
- Questo permette di campionare uno spazio più ridotto rispetto a quello
- originario.
+In questo lavoro di tesi verrà proposto un algoritmo basato sul metodo Monte
+ Carlo per approssimare la probabilità che un insieme di argomenti sia consisten
+te rispetto ad una determinata semantica, ottimizzato in base al fatto che
+ è possibile calcolare una probabilità condizionata in maniera esatta.
+ Ciò permette di campionare uno spazio più ridotto rispetto a quello originario.
  I risultati teorici in questa tesi mostreranno che esiste un upperbound
  al numero di iterazioni della simulazione Monte Carlo ottimizzata rispetto
  a quella naive, che dipende dalla probabilità condizionata calcolata in
@@ -403,7 +401,7 @@ I risultati sperimentali, costituiti da una serie di test per confrontare
 \begin_layout Itemize
 Osservare come nel caso di semantica complete e grounded (o in generale
  per qualsiasi problema decisionale per abstract argumentation framework
- calcolabile in tempo polinomiale), il numero di iterazioni della simulazione
+ risolvibile in tempo polinomiale), il numero di iterazioni della simulazione
  è strettamente legato al tempo CPU impiegato dalla simulazione.
 \end_layout
 
@@ -416,7 +414,7 @@ In base all'oservazione di cui sopra, e al risultato teorico che determina
 
 \begin_layout Standard
 Il simulatore per gli esperimenti è stato sviluppato in Java e può essere
- usato per scopi pratici o esteso per sviluppi futuri.
+ usato per scopi pratici o facilmente esteso per sviluppi futuri.
 \end_layout
 
 \begin_layout Section
@@ -425,14 +423,14 @@ Organizzazione della tesi
 
 \begin_layout Standard
 Nel seguito di questo lavoro di tesi, il capitolo 2 descriverà in maniera
- concisa ed esemplificativa le motivazioni e le varianti di argumentation
+ concisa ed esemplificativa le varianti del formalismo degli argumentation
  framework.
- Saranno trattati in dettaglio gli abstract argumentation framework e probabilis
-tic argumentation framework, le semantiche extension-based e la complessità
- dei problemi decisionali legati a questi formalismi.
+ Saranno trattati in dettaglio gli abstract argumentation framework e i
+ probabilistic argumentation framework, le semantiche extension-based e
+ la complessità dei problemi decisionali legati a questi formalismi.
  Verranno inoltre descritte per completezza, ma che non saranno oggetto
  delle sperimentazioni, le semantiche labelling-based, gli argument games
- e i value-based framework.
+ e i value-based frameworks.
 \end_layout
 
 \begin_layout Standard
@@ -460,9 +458,9 @@ ne di ottimizzazioni nel calcolo delle probabilità di casi intrattabili
 \end_layout
 
 \begin_layout Standard
-Nell'appendice A, al fine di estendere questo lavoro di tesi per sviluppi
- futuri, verrà documentato più in dettaglio l'architettura e il formato
- di configurazione del sistema usato per le simulazioni.
+Nell'appendice A, al fine di estendere questo lavoro di tesi, verrà documentato
+ più in dettaglio l'architettura e il formato di configurazione del sistema
+ usato per le simulazioni.
 \end_layout
 
 \begin_layout Chapter
@@ -474,9 +472,9 @@ Perchè argumentation framework
 \end_layout
 
 \begin_layout Standard
-La motivazione dell'argomentazione è quella di ricercare quei requisiti
- che rendono un argomento corretto, esaminando gli errori nel processo di
- reasoning quando si prova ad usare gli argomenti stessi
+Lo scopo dell'argomentazione è quella di ricercare quei requisiti che rendono
+ un argomento corretto, esaminando gli errori che si fanno durante il processo
+ di reasoning, mediante il quale si prova ad usare gli argomenti stessi
 \begin_inset CommandInset citation
 LatexCommand cite
 key "DunneWooldridge2009"
@@ -3549,11 +3547,10 @@ reference "alg:EstensioneGrounded"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout LyX-Code
 \paragraph_spacing single
-\noindent
 
 \family roman
 \series bold
@@ -3711,7 +3708,9 @@ if
 \begin_layout LyX-Code
 \paragraph_spacing single
 
+\family roman
 \series bold
+\size footnotesize
 end
 \series default
  
@@ -3744,11 +3743,11 @@ Calcolo dell'estensione grounded
 
 \begin_layout Standard
 Una volta generata l'unica estensione grounded, verificare che un dato insieme
- di argomenti sia l'estensione 
+ di argomenti 
 \begin_inset Formula $S\subseteq Arg$
 \end_inset
 
- è un problema banale.
+ sia l'estensione grounded è un problema banale.
 \end_layout
 
 \begin_layout Proposition
@@ -3819,6 +3818,87 @@ reference "alg:EstensioneGrounded"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Un esempio classico di AAF dove un insieme di argomenti è complete ma non
+ grounded è illustrato in figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Insieme-complete-grounded"
+
+\end_inset
+
+.
+ Gli insiemi 
+\begin_inset Formula $\left\{ a\right\} $
+\end_inset
+
+ e 
+\begin_inset Formula $\left\{ b\right\} $
+\end_inset
+
+ sono complete, poiché ongi singoletto è in grado di difendersi dall'attacco
+ dell'altro argomento.
+ Ma questi insiemi non sono grounded, poiché l'insieme minimo complete è
+ l'insieme vuoto.
+ Infatti, l'insieme vuoto è completo in quanto è ammissibile e sia 
+\begin_inset Formula $a$
+\end_inset
+
+ che 
+\begin_inset Formula $b$
+\end_inset
+
+ non sono accettabili rispetto all'insieme vuoto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename grounded.png
+	width 17col%
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Insieme-complete-grounded"
+
+\end_inset
+
+Insieme complete ma non grounded
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
