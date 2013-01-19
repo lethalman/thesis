@@ -3547,7 +3547,7 @@ reference "alg:EstensioneGrounded"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -3838,7 +3838,7 @@ reference "fig:Insieme-complete-grounded"
 \begin_inset Formula $\left\{ b\right\} $
 \end_inset
 
- sono complete, poiché ongi singoletto è in grado di difendersi dall'attacco
+ sono complete, poiché ogni singoletto è in grado di difendersi dall'attacco
  dell'altro argomento.
  Ma questi insiemi non sono grounded, poiché l'insieme minimo complete è
  l'insieme vuoto.
@@ -10180,11 +10180,11 @@ reference "eq:Psemantic"
 \end_layout
 
 \begin_layout Section
-Ottimizzazione di casi intrattabili
+Ottimizzazione di casi intrattabili con la probabilità conflict-free
 \end_layout
 
 \begin_layout Subsection
-Caratterizzazione teorica
+Intervallo di confidenza
 \end_layout
 
 \begin_layout Standard
@@ -10328,9 +10328,9 @@ reference "alg:AlgoErr"
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p\cdot\left(1-p\right)}{\epsilon^{2}}\cdot P_{CF}\left(S\right)-z_{1-\alpha/2}^{2}
-\]
+\begin{equation}
+\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p\cdot\left(1-p\right)}{\epsilon^{2}}\cdot P_{CF}\left(S\right)-z_{1-\alpha/2}^{2}\label{eq:IterazioniCF}
+\end{equation}
 
 \end_inset
 
@@ -10376,6 +10376,12 @@ reference "sub:Efficienza-teorica-del"
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Sampling-CF"
+
+\end_inset
+
 Sampling dello spazio degli AAF conflict-free indotti
 \end_layout
 
@@ -10834,7 +10840,7 @@ name "sub:Efficienza-teorica-del"
 
 \end_inset
 
-Efficienza teorica del nuovo algoritmo.
+Efficienza teorica del nuovo algoritmo
 \end_layout
 
 \begin_layout Standard
@@ -11174,7 +11180,7 @@ reference "fig:Comportamento-di"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -11331,6 +11337,1331 @@ Fissato
 \end_inset
 
  e più piccolo è il numero di successi rispetto all'algoritmo naive.
+\end_layout
+
+\begin_layout Section
+Ottimizzazione di casi intrattabili con la probabilità admissible
+\end_layout
+
+\begin_layout Subsection
+Intervallo di confidenza
+\end_layout
+
+\begin_layout Standard
+Come abbiamo visto nella sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Casi-trattabili"
+
+\end_inset
+
+, anche la probabilità 
+\begin_inset Formula $P_{admissible}\left(S\right)$
+\end_inset
+
+ (
+\begin_inset Formula $P_{adm}\left(S\right)$
+\end_inset
+
+ per semplicità) è calcolabile in tempo polinomiale, e le semantiche viste
+ finora richiedono l'ammissibilità oltre che la non conflittualità.
+ Il procedimento è analogo al caso conflict-free, poiché vale la seguente
+ equazione per l'intervallo di confidenza:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{\mathfrak{S}}\left(S\right)=P_{\mathfrak{S}\cap CF}\left(S\right)=P_{adm}\left(S\right)\cdot P_{\mathfrak{S}\mid adm}\left(S\right)=P_{adm}\left(S\right)\cdot\left(p\pm z_{1-\alpha/2}\cdot\sqrt{\frac{p\left(1-p\right)}{N}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dove 
+\begin_inset Formula $p=X/N$
+\end_inset
+
+ è la media osservata, 
+\begin_inset Formula $X$
+\end_inset
+
+ è il numero di successi e 
+\begin_inset Formula $N$
+\end_inset
+
+ è il numero di tentativi.
+\end_layout
+
+\begin_layout Standard
+Analogamente al caso conflict-free (equazione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:IterazioniCF"
+
+\end_inset
+
+), la stima del numeri di iterazioni posto che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia ammissibile per ogni 
+\begin_inset Formula $AAF$
+\end_inset
+
+ campionato indotto dal 
+\begin_inset Formula $PrAF$
+\end_inset
+
+, da sostituire nell'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:AlgoErr"
+
+\end_inset
+
+, è la seguente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{N}=\frac{z_{1-\alpha/2}^{2}\cdot p\cdot\left(1-p\right)}{\epsilon^{2}}\cdot P_{adm}\left(S\right)-z_{1-\alpha/2}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Anche qui, banalmente, per 
+\begin_inset Formula $P_{CF}\left(S\right)\rightarrow1$
+\end_inset
+
+ i due algoritmi coincidono.
+ Le conclusioni sull'efficienza dell'algoritmo però non equivalgono a quelle
+ del caso conflict-free, perché il campionamento degli AAF ammissibili è
+ più complicato di quello degli AAF conflict-free come vedremo nella sezione
+ successiva.
+\end_layout
+
+\begin_layout Subsection
+Sampling dello spazio degli AAF ammissibili indotti
+\end_layout
+
+\begin_layout Standard
+Come abbiamo visto nella sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Sampling-CF"
+
+\end_inset
+
+, campionare lo spazio degli AAF conflict-free è semplice, poiché basta
+ non generare i defeat conflittuali.
+ Il fatto di non generare questi defeat, non comporta alcun bias dovutamente
+ al fatto che non c'è interdipendenza tra questa scelta e l'esistenza di
+ altri defeat o argomenti.
+ Ciò non vale per gli AAF ammissibili.
+ L'ammissibilità dell'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ dipende dalla scelta degli argomenti e defeat generati.
+\end_layout
+
+\begin_layout Standard
+Un AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+ campionato dal PrAF 
+\begin_inset Formula $\left\langle A,D,P_{A},P_{D}\right\rangle $
+\end_inset
+
+ deve soddisfare le seguenti proprietà:
+\end_layout
+
+\begin_layout Itemize
+Deve contenere almeno l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ affinché 
+\begin_inset Formula $S$
+\end_inset
+
+ sia conflict-free, ovvero 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+L'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ dev'essere conflict-free rispetto all'AAF generato, ovvero 
+\begin_inset Formula $\forall a,b\in S$
+\end_inset
+
+ allora 
+\begin_inset Formula $\nexists\left\langle a,b\right\rangle \in Def$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Per ogni argomento 
+\begin_inset Formula $a\in A\setminus S$
+\end_inset
+
+ deve valere una delle seguenti affinché l'AAF campionato sia ammissibile:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $P_{A}\left(a\right)<1$
+\end_inset
+
+ e 
+\begin_inset Formula $a\notin Arg$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+oppure 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+ e:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+se 
+\begin_inset Formula $\exists\left\langle a,b\right\rangle \in D$
+\end_inset
+
+ tale che 
+\begin_inset Formula $b\in S$
+\end_inset
+
+ e 
+\begin_inset Formula $P_{D}\left(a,b\right)=1$
+\end_inset
+
+ oppure si decide di generare almeno un defeat 
+\begin_inset Formula $\left\langle a,b\right\rangle $
+\end_inset
+
+, allora deve essere generato almeno un defeat 
+\begin_inset Formula $\left\langle c,a\right\rangle \in D$
+\end_inset
+
+ tale che 
+\begin_inset Formula $c\in Def$
+\end_inset
+
+, in modo che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia difeso dall'argomento 
+\begin_inset Formula $b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+altrimenti significa che 
+\begin_inset Formula $\nexists\left\langle a,b\right\rangle \in Def$
+\end_inset
+
+ tale che 
+\begin_inset Formula $b\in S$
+\end_inset
+
+, ovvero l'argomento 
+\begin_inset Formula $b$
+\end_inset
+
+ non attacca 
+\begin_inset Formula $S$
+\end_inset
+
+ e quindi non c'è pericolo di inammissibilità.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+L'algoritmo di campionamento proposto (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:CampionamentoAdmissible"
+
+\end_inset
+
+) infatti è più complesso rispetto al caso conflict-free, poiché la scelta
+ di generare un argomento 
+\begin_inset Formula $a\in A\setminus S$
+\end_inset
+
+ e almeno un defeat 
+\begin_inset Formula $\left\langle a,b\right\rangle \in D$
+\end_inset
+
+ tale che 
+\begin_inset Formula $b\in S$
+\end_inset
+
+, comporta l'esistenza di almeno un defeat 
+\begin_inset Formula $\left\langle c,a\right\rangle \in D$
+\end_inset
+
+ tale che 
+\begin_inset Formula $c\in S$
+\end_inset
+
+, in modo tale che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia ammissibile.
+\end_layout
+
+\begin_layout Standard
+Per il resto l'algoritmo di base rimane lo stesso di quello originario 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "alg:Algoritmo-per-approssimare"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Di seguito vengono riportate le formule di probabilità usate nell'algoritmo
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:CampionamentoAdmissible"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(a\, attacks\, S\right)=1-{\displaystyle \prod_{\begin{subarray}{c}
+\left\langle a,b\right\rangle \in D\\
+b\in S
+\end{subarray}}\left(1-P_{D}\left(a,b\right)\right)}$
+\end_inset
+
+, è la probabilità che ci sia almeno un attacco da 
+\begin_inset Formula $a$
+\end_inset
+
+ verso un argomento in 
+\begin_inset Formula $S$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(S\, attacks\, a\right)=1-{\displaystyle \prod_{\begin{subarray}{c}
+\left\langle b,a\right\rangle \in D\\
+b\in S
+\end{subarray}}\left(1-P_{D}\left(b,a\right)\right)}$
+\end_inset
+
+, è la probabilità che ci sia almeno un attacco da un argomento in 
+\begin_inset Formula $S$
+\end_inset
+
+ verso 
+\begin_inset Formula $a$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(a\, attacks\, S\wedge S\, attacks\, a\right)=P\left(a\, attacks\, S\right)\cdot P\left(S\, attacks\, a\right)$
+\end_inset
+
+, è la probabilità che ci sia un attacco da 
+\begin_inset Formula $S$
+\end_inset
+
+ verso 
+\begin_inset Formula $a$
+\end_inset
+
+ e da 
+\begin_inset Formula $a$
+\end_inset
+
+ verso 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ Le due probabilità sono indipendenti.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(locadm\mid a\in Arg\right)=P\left(\neg a\, attacks\, S\vee\left(a\, attacks\, S\wedge S\, attacks\, a\right)\right)=$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $=\left(1-P\left(a\, attacks\, S\right)\right)+P\left(a\, attacks\, S\wedge S\, attacks\, a\right)$
+\end_inset
+
+, è la probabilità che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia localmente ammissibile posto che l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ sia presente; ovvero 
+\begin_inset Formula $a$
+\end_inset
+
+ non attacca 
+\begin_inset Formula $S$
+\end_inset
+
+, oppure 
+\begin_inset Formula $a$
+\end_inset
+
+ attacca 
+\begin_inset Formula $S$
+\end_inset
+
+ ed 
+\begin_inset Formula $S$
+\end_inset
+
+ si difende da 
+\begin_inset Formula $a$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $P\left(locadm\mid a\notin Arg\right)=1$
+\end_inset
+
+, è banalmente la probabilità che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia localmente ammissibile posto che 
+\begin_inset Formula $a$
+\end_inset
+
+ non sia presente.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(locadm\right)=P\left(locadm\mid a\in Arg\right)\cdot P_{A}\left(a\right)+P\left(locadm\mid a\notin Arg\right)\cdot\left(1-P_{A}\left(a\right)\right)$
+\end_inset
+
+, è la probabilità che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia localmente ammissibile rispetto ad 
+\begin_inset Formula $a$
+\end_inset
+
+, secondo la formula della probabilità totale.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(a\in Arg\mid locadm\right)=\frac{P\left(locadm\mid a\in Arg\right)\cdot P_{A}\left(a\right)}{P\left(locadm\right)}$
+\end_inset
+
+, è la probabilità con cui verrà scelto l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ Si noti che 
+\begin_inset Formula $P\left(a\in Arg\mid locadm\right)=1$
+\end_inset
+
+ se 
+\begin_inset Formula $P_{A}\left(a\right)=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Per 
+\emph on
+localmente
+\emph default
+ 
+\emph on
+ammissibile
+\emph default
+ rispetto ad 
+\begin_inset Formula $a\in A\setminus S$
+\end_inset
+
+, s'intende il fatto che l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ sia ammissibile posto che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia ammissibile rispetto a tutti gli altri argomenti 
+\begin_inset Formula $b\in Arg\setminus S$
+\end_inset
+
+ con 
+\begin_inset Formula $a\neq b$
+\end_inset
+
+.
+ Ovvero, la scelta di generare l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ dipende esclusivamente dalla relazione che l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ ha con 
+\begin_inset Formula $S$
+\end_inset
+
+, indipendentemente dagli altri argomenti.
+ In altre parole, si assume che gli altri argomenti e defeat (elaborati
+ successivamente) non vadano in conflitto con la proprietà di ammissibilità.
+\end_layout
+
+\begin_layout Standard
+A differenza degli algoritmi di campionamento precedenti, si sceglie di
+ generare l'argomento 
+\begin_inset Formula $a\in A\setminus S$
+\end_inset
+
+ con probabilità 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P\left(a\in Arg\mid locadm\right)$
+\end_inset
+
+ piuttosto che 
+\begin_inset Formula $P_{A}\left(a\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A Probabilistic Argumentation Framework
+\series bold
+ 
+\begin_inset Formula $PrAF=\left(A,P_{A},D,P_{D}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A set of arguments 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Arg=S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $Def=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $attackedByS=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $\forall a\in A\setminus S$
+\end_inset
+
+ do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ 
+\begin_inset Formula $P_{A}\left(a\right)=1$
+\end_inset
+
+ 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Arg=Arg\cup\left\{ a\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P\left(a\, attacks\, S\wedge S\, attacks\, a\right)/P\left(locadm\mid a\in Arg\right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $Def=Def\cup genAtLeastOneAttackAndDefend\left(PrAF,\left\langle Arg,Def\right\rangle ,S,a\right)$
+\end_inset
+
+ 
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:GeneraAlmenoUnDefeat"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $attackedByS=attackedByS\cup\left\{ a\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+else
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P\left(a\in Arg\mid locadm\right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Arg=Arg\cup\left\{ a\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ 
+\begin_inset Formula $r>\left(1-P\left(a\, attacks\, S\right)\right)\cdot P_{A}\left(a\right)/P\left(locadm\right)$
+\end_inset
+
+ 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $Def=Def\cup genAtLeastOneAttackAndDefend\left(PrAF,\left\langle Arg,Def\right\rangle ,S,a\right)$
+\end_inset
+
+ 
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:GeneraAlmenoUnDefeat"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $attackedByS=attackedByS\cup\left\{ a\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Continue as in algorithm 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "alg:AlgoErr"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+while 
+\begin_inset Formula $N\leq\hat{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+return 
+\begin_inset Formula $X/N$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:CampionamentoAdmissible"
+
+\end_inset
+
+Compionamento AAF ammissibile
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A Probabilistic Argumentation Framework
+\series bold
+ 
+\begin_inset Formula $PrAF=\left(A,P_{A},D,P_{D}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+An Abstract Argumentation Framework
+\series bold
+ 
+\begin_inset Formula $\mathcal{F}=\left(Arg,Def\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+A set of arguments 
+\begin_inset Formula $S\subseteq A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+Require: 
+\series default
+An argument 
+\begin_inset Formula $a\in Arg\setminus S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $NewDef=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $offset=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,P\left(a\, attacks\, S\right)\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $\forall\left\langle a,b\right\rangle \in D$
+\end_inset
+
+ such that 
+\begin_inset Formula $b\in S$
+\end_inset
+
+ 
+\series bold
+do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ 
+\begin_inset Formula $r\leq offset+P_{D}\left(a,b\right)$
+\end_inset
+
+ 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $NewDef=NewDef\cup\left\{ \left\langle a,b\right\rangle \right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+else
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $offset=offset+\left(1-offset\right)\cdot P_{D}\left(a,b\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $offset=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,P\left(S\, attacks\, a\right)\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $\forall\left\langle b,a\right\rangle \in D$
+\end_inset
+
+ such that 
+\begin_inset Formula $b\in S$
+\end_inset
+
+ 
+\series bold
+do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if
+\series default
+ 
+\begin_inset Formula $r\leq offset+P_{D}\left(b,a\right)$
+\end_inset
+
+ 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $NewDef=NewDef\cup\left\{ \left\langle b,a\right\rangle \right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+else
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+\begin_inset Formula $offset=offset+\left(1-offset\right)\cdot P_{D}\left(b,a\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+return 
+\begin_inset Formula $NewDef$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:GeneraAlmenoUnDefeat"
+
+\end_inset
+
+Generazione di almeno un defeat verso 
+\begin_inset Formula $S$
+\end_inset
+
+ e verso 
+\begin_inset Formula $a$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
