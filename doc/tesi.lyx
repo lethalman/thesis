@@ -11914,7 +11914,7 @@ A differenza degli algoritmi di campionamento precedenti, si sceglie di
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -12324,7 +12324,7 @@ Compionamento AAF ammissibile
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -12664,10 +12664,401 @@ Generazione di almeno un defeat verso
 
 \end_layout
 
+\begin_layout Standard
+Nell'algoritmo 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:GeneraAlmenoUnDefeat"
+
+\end_inset
+
+ viene generato almeno un defeat da 
+\begin_inset Formula $a$
+\end_inset
+
+ verso 
+\begin_inset Formula $S$
+\end_inset
+
+, e almeno un defeat da 
+\begin_inset Formula $S$
+\end_inset
+
+ verso 
+\begin_inset Formula $a$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Per spiegare l'approccio usato per generare almeno un defeat, supponiamo
+ di avere (senza perdita di generalità) un insieme di oggetti 
+\begin_inset Formula $O=\left\{ a,b,c\right\} $
+\end_inset
+
+ rispettivamente con probabilità indipendenti 
+\begin_inset Formula $P\left(a\right)=0.1,P\left(b\right)=0.2,P\left(c\right)=0.3$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Definiamo la variabile aleatoria 
+\begin_inset Formula $X\subseteq O$
+\end_inset
+
+ che rappresenta lo spazio degli eventi di tutte le combinazioni degli oggetti
+ in 
+\begin_inset Formula $O$
+\end_inset
+
+ che possono occorrere, tale che 
+\begin_inset Formula $P\left(X\right)={\displaystyle \prod_{x\in X}}P\left(x\right)\cdot{\displaystyle \prod_{x\notin X}}\left(1-P\left(x\right)\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La probabilità che almeno uno dei tre oggetti occorra è 
+\begin_inset Formula $P\left(X\neq\emptyset\right)=1-{\displaystyle \prod_{o\in O}}\left(1-P\left(o\right)\right)=0.496$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Un approccio naive potrebbe calcolare la distribuzione 
+\begin_inset Formula $P\left(X=x\mid x\neq\emptyset\right)=\frac{P\left(X\right)}{P\left(X\neq\emptyset\right)}$
+\end_inset
+
+ 
+\begin_inset Formula $\forall x\in2^{O}\setminus\emptyset$
+\end_inset
+
+, e in base ad un numero random scegliere una tra queste combinazioni, risultand
+o in un algoritmo con complessità 
+\begin_inset Formula $\mathcal{O}\left(2^{\left|O\right|}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Un altro approccio parte dall'osservazione che le possibili combinazioni
+ di 
+\begin_inset Formula $O$
+\end_inset
+
+ tali che hanno almeno un oggetto possono essere rappresentate con un albero,
+ meglio illustrato in figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Albero-delle-combinazioni"
+
+\end_inset
+
+.
+ Nell'albero, ogni foglia rappresenta una realizzazione di 
+\begin_inset Formula $X$
+\end_inset
+
+ non vuota.
+ Infatti, si noti come nell'albero non sia presente la combinazione vuota
+ 
+\begin_inset Formula $\neg a,\neg b,\neg c$
+\end_inset
+
+.
+ Si noti anche che le probabilità nei nodi non sono moltiplicate per 
+\begin_inset Formula $P\left(X\neq\emptyset\right)$
+\end_inset
+
+ esclusivamente per semplicità di esposizione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Graphics
+	filename probone_tree.png
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Albero-delle-combinazioni"
+
+\end_inset
+
+Albero delle combinazioni in cui occorre almeno un oggetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'approccio esponenziale descritto precedentemente non fa altro che generare
+ le foglie di quest'albero, e scegliere tra una di queste foglie.
+ Ad esempio, sia 
+\begin_inset Formula $r$
+\end_inset
+
+ un numero random uniformemente distribuito in 
+\begin_inset Formula $\left[0,P\left(X\neq\emptyset\right)\right]$
+\end_inset
+
+ e sia 
+\begin_inset Formula $offset=P\left(a,b,c\right)+P\left(a,b,\neg c\right)+P\left(a,\neg b,c,\right)+P\left(a,\neg b,\neg c\right)$
+\end_inset
+
+ la somma delle probabilità delle foglie del sottoalbero indotto dalla scelta
+ di 
+\begin_inset Formula $a$
+\end_inset
+
+, per scegliere la foglia determinata dal path 
+\begin_inset Formula $\neg a,b,c$
+\end_inset
+
+ deve accadere che 
+\begin_inset Formula $offset<r\leq offset+P\left(\neg a,b,c\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+L'intuizione per l'algoritmo proposto è che la somma delle foglie di un
+ sottoalbero è pari alla probabilità della radice del sottoalbero stesso.
+ Nell'esempio di prima si 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ha proprio che 
+\begin_inset Formula $offset=P\left(a\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ad esempio, per scegliere la foglia indotta dal path 
+\begin_inset Formula $\neg a,\neg b,c$
+\end_inset
+
+, si ha 
+\begin_inset Formula $offset<r\leq offset+P\left(\neg a,\neg b,c\right)$
+\end_inset
+
+ con 
+\begin_inset Formula $offset=P\left(a\right)+\left(1-P\left(a\right)\right)\cdot P\left(b\right)$
+\end_inset
+
+, perché al punto di scelta 
+\begin_inset Formula $\neg a$
+\end_inset
+
+ si è scelto 
+\begin_inset Formula $\neg b$
+\end_inset
+
+.
+ Più in generale, scegliere 
+\begin_inset Formula $\neg o$
+\end_inset
+
+ in un certo punto dell'albero significa aggiornare l'offset con 
+\begin_inset Formula $offset=offset+\left(1-offset\right)\cdot P\left(o\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+L'algoritmo parte dalla radice e arriva ad una delle foglie, passando per
+ ogni oggetto 
+\begin_inset Formula $o\in O$
+\end_inset
+
+ come descritto di seguito:
+\end_layout
+
+\begin_layout Enumerate
+Siano 
+\begin_inset Formula $offset=0,O'=O,X=\emptyset$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Genero un numero random uniformemente distribuito 
+\begin_inset Formula $r\in\left[0,P\left(X\neq\emptyset\right)\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Se 
+\begin_inset Formula $O'=\emptyset$
+\end_inset
+
+ allora termino restituendo 
+\begin_inset Formula $X$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Scelgo un qualsiasi oggetto 
+\begin_inset Formula $o\in O'$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Se 
+\begin_inset Formula $r\leq offset+P\left(o\right)$
+\end_inset
+
+, allora scelgo l'oggetto 
+\begin_inset Formula $o.$
+\end_inset
+
+ Quindi aggiorno 
+\begin_inset Formula $X=X\cup\left\{ o\right\} $
+\end_inset
+
+, continuando nel sottoalbero indotto dalla scelta 
+\begin_inset Formula $o$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Altrimenti aggiorno 
+\begin_inset Formula $offset=offset+\left(1-offset\right)\cdot P\left(o\right)$
+\end_inset
+
+, continuando nel sottoalbero indotto dalla scelta di 
+\begin_inset Formula $\neg o$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Aggiorno 
+\begin_inset Formula $O'=O'\setminus\left\{ o\right\} $
+\end_inset
+
+ e goto 3.
+\end_layout
+
+\begin_layout Standard
+È facile verificare che quest'algoritmo ha una complessità 
+\begin_inset Formula $\mathcal{O}\left(\left|O\right|\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Questo è esattamente l'approccio usato nell'algoritmo 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:GeneraAlmenoUnDefeat"
+
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+, dove l'insieme di oggetti in questione sono dei defeat uscenti o entranti
+ di un dato argomento.
+\end_layout
+
 \begin_layout Chapter
 Sperimentazione delle ottimizzazioni per probabilistic argumentation frameworks
 \begin_inset Argument
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Sperimentazione delle ottimizzazioni

@@ -1,0 +1,25 @@
+digraph {
+	node [shape=rect,label="..."];
+	a1 [label="P(X≠∅)"];
+	b1 [label="0.1"];
+	a1 -> b1 [label="a"];
+		c1 [label="0.1·0.2"];
+		b1 -> c1 [label="b"];
+			d1 [label="0.1·0.2·0.3"];
+			c1 -> d1 [label="c"];
+			d2 [label="0.1·0.2·0.7"];
+			c1 -> d2 [label="¬c"];
+		c2 [label="0.1·0.8"];
+		b1 -> c2 [label="¬b"];
+			d3 [label="0.1·0.8·0.3"];
+			c2 -> d3 [label="c"];
+			d4 [label="0.1·0.8·0.7"];
+			c2 -> d4 [label="¬c"];
+	b2 [label="0.9"];
+	a1 -> b2 [label="¬a"];
+		b2 -> c3 [label="b"];
+			c3 -> d5 [label="c"];
+			c3 -> d6 [label="¬c"];
+		b2 -> c4 [label="¬b"];
+			c4 -> d7 [label="c"];
+}
