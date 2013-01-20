@@ -11999,128 +11999,6 @@ A set of arguments
 \paragraph_spacing single
 
 \family roman
-\series bold
-\size footnotesize
-if
-\series default
- 
-\begin_inset Formula $P_{A}\left(a\right)=1$
-\end_inset
-
- 
-\series bold
-then
-\end_layout
-
-\begin_deeper
-\begin_layout LyX-Code
-\paragraph_spacing single
-
-\family roman
-\series bold
-\size footnotesize
-\begin_inset Formula $Arg=Arg\cup\left\{ a\right\} $
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-\paragraph_spacing single
-
-\family roman
-\size footnotesize
-Generate a random number
-\series bold
- 
-\begin_inset Formula $r\in\left[0,1\right]$
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-\paragraph_spacing single
-
-\family roman
-\size footnotesize
-if 
-\begin_inset Formula $r\leq P\left(a\, attacks\, S\wedge S\, attacks\, a\right)/P\left(locadm\mid a\in Arg\right)$
-\end_inset
-
- then
-\end_layout
-
-\begin_deeper
-\begin_layout LyX-Code
-\paragraph_spacing single
-
-\family roman
-\size footnotesize
-\begin_inset Formula $Def=Def\cup genAtLeastOneAttackAndDefend\left(PrAF,\left\langle Arg,Def\right\rangle ,S,a\right)$
-\end_inset
-
- 
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-(
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "alg:GeneraAlmenoUnDefeat"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_layout LyX-Code
-\paragraph_spacing single
-
-\family roman
-\size footnotesize
-\begin_inset Formula $attackedByS=attackedByS\cup\left\{ a\right\} $
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout LyX-Code
-\paragraph_spacing single
-
-\family roman
-\series bold
-\size footnotesize
-end
-\series default
- 
-\series bold
-if
-\end_layout
-
-\end_deeper
-\begin_layout LyX-Code
-\paragraph_spacing single
-
-\family roman
-\series bold
-\size footnotesize
-else
-\end_layout
-
-\begin_deeper
-\begin_layout LyX-Code
-\paragraph_spacing single
-
-\family roman
 \size footnotesize
 Generate a random number
 \series bold
@@ -12241,16 +12119,6 @@ end
  
 \series bold
 if
-\end_layout
-
-\end_deeper
-\begin_layout LyX-Code
-\paragraph_spacing single
-
-\family roman
-\series bold
-\size footnotesize
-end if
 \end_layout
 
 \begin_layout LyX-Code
@@ -12718,16 +12586,16 @@ Per spiegare l'approccio usato per generare almeno un defeat, supponiamo
 
 \begin_layout Standard
 Definiamo la variabile aleatoria 
-\begin_inset Formula $X\subseteq O$
+\begin_inset Formula $X$
 \end_inset
 
- che rappresenta lo spazio degli eventi di tutte le combinazioni degli oggetti
- in 
+ tali che le realizzazioni costituiscono lo spazio degli eventi di tutte
+ le combinazioni degli oggetti in 
 \begin_inset Formula $O$
 \end_inset
 
- che possono occorrere, tale che 
-\begin_inset Formula $P\left(X\right)={\displaystyle \prod_{x\in X}}P\left(x\right)\cdot{\displaystyle \prod_{x\notin X}}\left(1-P\left(x\right)\right)$
+ che possono occorrere, ovvero tale che 
+\begin_inset Formula $\forall x\subseteq O,P\left(X=x\right)={\displaystyle \prod_{o\in x}}P\left(o\right)\cdot{\displaystyle \prod_{o\notin x}}\left(1-P\left(o\right)\right)$
 \end_inset
 
 .
@@ -12742,16 +12610,17 @@ La probabilità che almeno uno dei tre oggetti occorra è
 \end_layout
 
 \begin_layout Standard
-Un approccio naive potrebbe calcolare la distribuzione 
-\begin_inset Formula $P\left(X=x\mid x\neq\emptyset\right)=\frac{P\left(X\right)}{P\left(X\neq\emptyset\right)}$
+Un approccio naive potrebbe generare tutte le combinazioni 
+\begin_inset Formula $x\in2^{O}\setminus\emptyset$
 \end_inset
 
- 
-\begin_inset Formula $\forall x\in2^{O}\setminus\emptyset$
+ e calcolare la distribuzione 
+\begin_inset Formula $P\left(X=x\mid x\neq\emptyset\right)=\frac{P\left(X=x\right)}{P\left(X\neq\emptyset\right)}$
 \end_inset
 
-, e in base ad un numero random scegliere una tra queste combinazioni, risultand
-o in un algoritmo con complessità 
+.
+ Successivamente, in base ad un numero random, scegliere una tra queste
+ combinazioni, risultando in un algoritmo con complessità 
 \begin_inset Formula $\mathcal{O}\left(2^{\left|O\right|}\right)$
 \end_inset
 
@@ -12784,11 +12653,37 @@ reference "fig:Albero-delle-combinazioni"
 \end_inset
 
 .
- Si noti anche che le probabilità nei nodi non sono moltiplicate per 
+ Si noti anche che le probabilità nei nodi non sono normalizzate rispetto
+ a 
 \begin_inset Formula $P\left(X\neq\emptyset\right)$
 \end_inset
 
  esclusivamente per semplicità di esposizione.
+ Infatti, d'ora in poi faremo riferimento a numeri random 
+\begin_inset Formula $r\in\left[0,P\left(X\neq\emptyset\right)\right]$
+\end_inset
+
+ generati come 
+\begin_inset Formula $r=r'\cdot P\left(X\neq\emptyset\right)$
+\end_inset
+
+ dove 
+\begin_inset Formula $r'$
+\end_inset
+
+ è numero random 
+\begin_inset Formula $r'\in\left[0,1\right]$
+\end_inset
+
+, in modo da esprimere tutte le espressioni del tipo 
+\begin_inset Formula $r'\leq\frac{P\left(X\right)}{P\left(X\neq\emptyset\right)}$
+\end_inset
+
+ come 
+\begin_inset Formula $r\leq P\left(X\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -12805,6 +12700,7 @@ status collapsed
 
 \begin_inset Graphics
 	filename probone_tree.png
+	width 100col%
 
 \end_inset
 
@@ -12839,7 +12735,7 @@ Albero delle combinazioni in cui occorre almeno un oggetto
 \end_layout
 
 \begin_layout Standard
-L'approccio esponenziale descritto precedentemente non fa altro che generare
+L'algoritmo esponenziale descritto precedentemente non fa altro che generare
  le foglie di quest'albero, e scegliere tra una di queste foglie.
  Ad esempio, sia 
 \begin_inset Formula $r$
@@ -12858,7 +12754,8 @@ L'approccio esponenziale descritto precedentemente non fa altro che generare
 \begin_inset Formula $a$
 \end_inset
 
-, per scegliere la foglia determinata dal path 
+.
+ Per scegliere la foglia determinata dal path 
 \begin_inset Formula $\neg a,b,c$
 \end_inset
 
@@ -12926,12 +12823,12 @@ Ad esempio, per scegliere la foglia indotta dal path
 \end_layout
 
 \begin_layout Standard
-L'algoritmo parte dalla radice e arriva ad una delle foglie, passando per
- ogni oggetto 
+L'algoritmo descritto di seguito parte dalla radice e arriva ad una delle
+ foglie, passando per ogni oggetto 
 \begin_inset Formula $o\in O$
 \end_inset
 
- come descritto di seguito:
+:
 \end_layout
 
 \begin_layout Enumerate
@@ -12943,7 +12840,7 @@ Siano
 \end_layout
 
 \begin_layout Enumerate
-Genero un numero random uniformemente distribuito 
+Si genera un numero random uniformemente distribuito 
 \begin_inset Formula $r\in\left[0,P\left(X\neq\emptyset\right)\right]$
 \end_inset
 
@@ -12963,7 +12860,7 @@ Se
 \end_layout
 
 \begin_layout Enumerate
-Scelgo un qualsiasi oggetto 
+Si sceglie un qualsiasi oggetto 
 \begin_inset Formula $o\in O'$
 \end_inset
 
@@ -12976,11 +12873,11 @@ Se
 \begin_inset Formula $r\leq offset+P\left(o\right)$
 \end_inset
 
-, allora scelgo l'oggetto 
+, allora si sceglie l'oggetto 
 \begin_inset Formula $o.$
 \end_inset
 
- Quindi aggiorno 
+ Quindi si aggiorna 
 \begin_inset Formula $X=X\cup\left\{ o\right\} $
 \end_inset
 
@@ -12992,7 +12889,7 @@ Se
 \begin_inset Newline newline
 \end_inset
 
-Altrimenti aggiorno 
+Altrimenti si aggiorna 
 \begin_inset Formula $offset=offset+\left(1-offset\right)\cdot P\left(o\right)$
 \end_inset
 
@@ -13004,7 +12901,7 @@ Altrimenti aggiorno
 \end_layout
 
 \begin_layout Enumerate
-Aggiorno 
+Si aggiorna 
 \begin_inset Formula $O'=O'\setminus\left\{ o\right\} $
 \end_inset
 
@@ -13012,7 +12909,7 @@ Aggiorno
 \end_layout
 
 \begin_layout Standard
-È facile verificare che quest'algoritmo ha una complessità 
+È facile verificare che quest'algoritmo ha complessità 
 \begin_inset Formula $\mathcal{O}\left(\left|O\right|\right)$
 \end_inset
 
@@ -13450,7 +13347,7 @@ reference "fig:HigherPx"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -13581,7 +13478,7 @@ Esempio di probabilità sui defeat
 \end_layout
 
 \begin_layout Section
-Ricerca di un insieme di argomenti completo
+Ricerca di un insieme di argomenti
 \end_layout
 
 \begin_layout Standard
@@ -14153,6 +14050,10 @@ Gli esperimenti sono stati eseguiti per le semantiche complete, grounded
  naive.
 \end_layout
 
+\begin_layout Subsection
+Esperimenti con probabilità condizionata conflict-free
+\end_layout
+
 \begin_layout Standard
 Nel grafico 
 \begin_inset CommandInset ref
@@ -14489,7 +14390,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -14523,7 +14424,7 @@ Tempo e numero iterazioni
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -14937,7 +14838,7 @@ Confronto per la semantica preferred con
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -15249,6 +15150,361 @@ Semantica preferred
 
 \begin_layout Plain Layout
 Confronto errori relativi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Esperimenti con probabilità condizionata admissible
+\end_layout
+
+\begin_layout Standard
+Complete con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename complete_adm_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename complete_adm_bias_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Errore assoluto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CompleteAdm005"
+
+\end_inset
+
+Confronto per la semantica complete con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Grounded con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename grounded_adm_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename grounded_adm_bias_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Errore assoluto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GroundedAdm005"
+
+\end_inset
+
+Confronto per la semantica grounded con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Preferred con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename preferred_adm_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename preferred_adm_bias_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Errore assoluto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PreferredAdm005"
+
+\end_inset
+
+Confronto per la semantica preferred con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
 \end_layout
 
 \end_inset
