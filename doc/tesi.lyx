@@ -11340,6 +11340,12 @@ Fissato
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:OttimizzazioneAdmissible"
+
+\end_inset
+
 Ottimizzazione di casi intrattabili con la probabilità admissible
 \end_layout
 
@@ -13966,11 +13972,7 @@ Il terzo tipo di generazione di
 \end_layout
 
 \begin_layout Section
-Risultati degli esperimenti
-\end_layout
-
-\begin_layout Subsection
-Esperimenti con probabilità condizionata conflict-free
+Risultati algoritmo conflict-free based
 \end_layout
 
 \begin_layout Standard
@@ -15363,7 +15365,7 @@ Semantica grounded
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -15419,20 +15421,373 @@ Confronto errori relativi
 
 \end_layout
 
-\begin_layout Subsection
-Esperimenti con probabilità condizionata admissible
+\begin_layout Section
+Risultati algoritmo admissible based
 \end_layout
 
 \begin_layout Standard
-I grafici che seguono sono il risultato degli esperimenti eseguiti sulle
- istanze viste precedentemente.
- Al fine di verificare la correttezza in pratica dell'algoritmo admissible
- based, non essendo il campionamento un processo semplice come nel caso
- conflict-free, verranno mostrati anche i grafici dell'errore assoluto.
+Gli esperimenti per confrontare l'algoritmo admissible based proposto nella
+ sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:OttimizzazioneAdmissible"
+
+\end_inset
+
+ con l'algoritmo naive e l'algoritmo conflict-free, sono stati effettuati
+ con le stesse istanze viste precedentemente.
+ Al fine di verificare la correttezza pratica dell'algoritmo, non essendo
+ il campionamento un processo semplice come nel caso conflict-free, per
+ ogni test verranno mostrati anche i grafici dell'errore assoluto.
+ Nelle figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CompleteAdm005-1-1"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GroundedAdm005-1-1"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PreferredAdm005-1-1"
+
+\end_inset
+
+ sono illustrati i confronti tra l'algoritmo admissible based e quello naive.
 \end_layout
 
 \begin_layout Standard
-FIX FIX FIX FIX .
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename complete_adm3_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename complete_adm3_bias_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Errore assoluto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CompleteAdm005-1-1"
+
+\end_inset
+
+Confronto per la semantica complete con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename grounded_adm3_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename grounded_adm3_bias_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Errore assoluto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GroundedAdm005-1-1"
+
+\end_inset
+
+Confronto per la semantica grounded con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename preferred_adm3_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename preferred_adm3_bias_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Errore assoluto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PreferredAdm005-1-1"
+
+\end_inset
+
+Confronto per la semantica preferred con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -15440,11 +15795,13 @@ Dai grafici appena osservati si può concludere che, a differenza dell'algoritmo
  CF based che è legato al numero di iterazioni per le semantiche polinomiali
  come complete e grounded, l'algoritmo admissible based è legato al numero
  di successi.
- Questo è un risultato a sfavore dell'approccio admissible based.
+ Questo è un risultato a sfavore dell'approccio admissible based rispetto
+ a quello conflict-free based.
 \end_layout
 
 \begin_layout Standard
-I grafici presentati in figura 
+Per osservare meglio la differenza in efficienza tra i due nuovi approcci,
+ presentiamo in figura 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:CompleteAdm005"
@@ -15465,12 +15822,12 @@ reference "fig:PreferredAdm005"
 
 \end_inset
 
- sono rispettivamente i risultati dei confronti tra l'algoritmo conflict-free
- based e admissible based con errore 
+ i grafici per confrontare l'algoritmo conflict-free based e admissible
+ based con errore 
 \begin_inset Formula $\epsilon=0.005$
 \end_inset
 
- rispettivamente per la semantica complete, grounded e preferred.
+, rispettivamente per la semantica complete, grounded e preferred.
 \end_layout
 
 \begin_layout Standard
@@ -15801,8 +16158,8 @@ Confronto per la semantica preferred con
 \end_layout
 
 \begin_layout Standard
-In tutti e tre i casi, ci ritroviamo con il risultato teorico che l'algoritmo
- admissible based è più efficiente quando vale 
+In tutti e tre i casi, ci ritroviamo con il risultato teorico per il quale
+ l'algoritmo admissible based è più efficiente quando vale 
 \begin_inset Formula $P_{adm}\left(S\right)\geq\frac{P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
 \end_inset
 
@@ -15818,10 +16175,12 @@ In tutti e tre i casi, ci ritroviamo con il risultato teorico che l'algoritmo
 
 ), e il tempo CPU impiegato dall'algoritmo admissible based è effettivamente
  inferiore a quello dell'algoritmo CF based.
+ Negli altri casi, l'approccio admissible based è meno inefficiente, ma
+ questo dipende dalle istanze che abbiamo scelto.
 \end_layout
 
 \begin_layout Standard
-Queste istanze hanno una probabilità 
+Infatti, le istanze del problema hanno una probabilità 
 \begin_inset Formula $P_{CF}\left(S\right)$
 \end_inset
 
@@ -15829,7 +16188,7 @@ Queste istanze hanno una probabilità
 \begin_inset Formula $P_{admissible}\left(S\right)$
 \end_inset
 
-, penalizzando l'algoritmo admissible based.
+, il che penalizza l'algoritmo admissible based.
  Per dimostrare che in molti altri casi l'approccio admissible based è più
  efficiente di quello conflict-free, possiamo manipolare le istanze usate
  finora in modo da aumentare la differenza tra le due probabilità.
@@ -15849,7 +16208,7 @@ La dimensione delle istanze (numero argomenti e defeat del PrAF, e numero
 \begin_inset Formula $P_{admissible}\left(S\right)$
 \end_inset
 
- e delle semantiche complete, grounded e preferred sono illustrate in figura
+ e delle semantiche complete, grounded e preferred sono descritte nel grafico
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -15901,13 +16260,39 @@ Probabilità semantiche per ogni istanza
 \end_layout
 
 \begin_layout Standard
-La diseguaglianza per queste istanze vale sempre, e l'algoritmo admissible
- based risulta essere effettivamente più efficiente.
+La diseguaglianza 
+\begin_inset Formula $P_{adm}\left(S\right)\geq\frac{P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
+\end_inset
+
+ per queste istanze vale sempre, e infatti l'algoritmo admissible based
+ risulta essere effettivamente più efficiente come mostrato nelle figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CompleteAdm005-1"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GroundedAdm005-1"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PreferredAdm005-1"
+
+\end_inset
+
+.
  Generalmente, nei casi in cui 
 \begin_inset Formula $P_{adm}\left(S\right)\ll P_{CF}\left(S\right)$
 \end_inset
 
- 
+ ci si può aspettare questo risultato.
 \end_layout
 
 \begin_layout Standard
@@ -16143,7 +16528,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -16177,7 +16562,7 @@ Percentuale tempo, iterazioni e successi
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -16235,6 +16620,81 @@ Confronto per la semantica preferred con
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+In conclusione, possiamo risolvere il problema di calcolare la probabilità
+ 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ come segue:
+\end_layout
+
+\begin_layout Enumerate
+Se la dimensione dell'istanza (
+\begin_inset Formula $2^{\left|A\right|}\cdot2^{\left|D\right|})$
+\end_inset
+
+ è al di sotto di una certa soglia 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, calcolare la probabilità in maniera esatta.
+ Il numero di iterazioni Monte Carlo potrebbero essere superiori alla cardinalit
+à dello spazio di ricerca.
+\end_layout
+
+\begin_layout Enumerate
+Altrimenti calcolare una approssimazione 
+\begin_inset Formula $P'$
+\end_inset
+
+ di 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ con errore 
+\begin_inset Formula $\epsilon=0.1$
+\end_inset
+
+.
+ Se 
+\begin_inset Formula $P_{adm}\left(S\right)\ll P_{CF}\left(S\right)$
+\end_inset
+
+, usare l'algoritmo admissible based per calcolare 
+\begin_inset Formula $P'$
+\end_inset
+
+ altrimenti quello conflict-free based.
+\end_layout
+
+\begin_layout Enumerate
+Resituire un'approssimazione di 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ con errore 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+.
+ Se vale 
+\begin_inset Formula $P'\geq\frac{P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
+\end_inset
+
+, calcolare tale approssimazione con l'algoritmo admissible based, altrimenti
+ con quello conflict-free based.
+\end_layout
+
+\begin_layout Standard
+La soglia 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ dipende dal sistema di elaborazione e può essere facilmente stimato empiricamen
+te.
 \end_layout
 
 \begin_layout Chapter
