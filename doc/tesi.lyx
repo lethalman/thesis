@@ -13969,6 +13969,10 @@ Il terzo tipo di generazione di
 Risultati degli esperimenti
 \end_layout
 
+\begin_layout Subsection
+Esperimenti con probabilità condizionata conflict-free
+\end_layout
+
 \begin_layout Standard
 Nelle sezioni precedenti abbiamo visto come avviene il processo di generazione
  delle istanze 
@@ -14259,51 +14263,6 @@ status collapsed
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename instance20.png
-	width 80col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset Formula $\left|A\right|=20$
-\end_inset
-
-,
-\begin_inset Formula $\left|D\right|=28$
-\end_inset
-
-,
-\begin_inset Formula $\left|S\right|=8$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Plain Layout
@@ -14316,11 +14275,11 @@ name "fig:IstanzeTest"
 
 \end_inset
 
-Istanze 
+Due delle iistanze 
 \begin_inset Formula $\left\langle PrAF,S\right\rangle $
 \end_inset
 
- per il testing
+ usate per il testing
 \end_layout
 
 \end_inset
@@ -14350,10 +14309,6 @@ Gli esperimenti sono stati eseguiti per le semantiche complete, grounded
  Per ogni batteria di 20 runs, viene calcolata la media del tempo CPU e
  la percentuale di iterazioni e successi di Monte Carlo rispetto all'algoritmo
  naive.
-\end_layout
-
-\begin_layout Subsection
-Esperimenti con probabilità condizionata conflict-free
 \end_layout
 
 \begin_layout Standard
@@ -14972,8 +14927,8 @@ Il numero di fallimenti per i quali un insieme
 \end_layout
 
 \begin_layout Standard
-Invece i casi 
-\begin_inset Formula $preferred\mid\left(\neg admissible\mid CF\right)$
+Invece tutti i casi 
+\begin_inset Formula $\neg admissible\mid CF$
 \end_inset
 
  sono banalmente decidibili in tempo polinomiale.
@@ -15471,20 +15426,21 @@ Esperimenti con probabilità condizionata admissible
 \begin_layout Standard
 I grafici che seguono sono il risultato degli esperimenti eseguiti sulle
  istanze viste precedentemente.
- Essendo l'algoritmo conflict-free based più efficiente di quello naive,
- i test di seguito sono stati fatti confrontando direttamente i due nuovi
- algoritmi senza considerare la versione originaria.
+ Al fine di verificare la correttezza in pratica dell'algoritmo admissible
+ based, non essendo il campionamento un processo semplice come nel caso
+ conflict-free, verranno mostrati anche i grafici dell'errore assoluto.
 \end_layout
 
 \begin_layout Standard
-FIX FIX FIX FIX.
+FIX FIX FIX FIX .
 \end_layout
 
 \begin_layout Standard
-Dai risultati appena osservati si può concludere che, a differenza dell'algoritm
-o CF based che è legato al numero di iterazioni per le semantiche polinomiali
+Dai grafici appena osservati si può concludere che, a differenza dell'algoritmo
+ CF based che è legato al numero di iterazioni per le semantiche polinomiali
  come complete e grounded, l'algoritmo admissible based è legato al numero
  di successi.
+ Questo è un risultato a sfavore dell'approccio admissible based.
 \end_layout
 
 \begin_layout Standard
@@ -15874,11 +15830,410 @@ Queste istanze hanno una probabilità
 \end_inset
 
 , penalizzando l'algoritmo admissible based.
- Possiamo però manipolare le istanze usate finora in modo da aumentare la
- differenza tra le due probabilità.
+ Per dimostrare che in molti altri casi l'approccio admissible based è più
+ efficiente di quello conflict-free, possiamo manipolare le istanze usate
+ finora in modo da aumentare la differenza tra le due probabilità.
 \end_layout
 
 \begin_layout Standard
+La dimensione delle istanze (numero argomenti e defeat del PrAF, e numero
+ argomenti dell'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+) rimane invariata, mentre le nuove probabilità 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+, 
+\begin_inset Formula $P_{admissible}\left(S\right)$
+\end_inset
+
+ e delle semantiche complete, grounded e preferred sono illustrate in figura
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:InstancesAdm"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename instance_adm_probs.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:InstancesAdm"
+
+\end_inset
+
+Probabilità semantiche per ogni istanza
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La diseguaglianza per queste istanze vale sempre, e l'algoritmo admissible
+ based risulta essere effettivamente più efficiente.
+ Generalmente, nei casi in cui 
+\begin_inset Formula $P_{adm}\left(S\right)\ll P_{CF}\left(S\right)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename complete_adm2_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename complete_adm2_bias_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Errore assoluto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:CompleteAdm005-1"
+
+\end_inset
+
+Confronto per la semantica complete con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename grounded_adm2_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename grounded_adm2_bias_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Errore assoluto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GroundedAdm005-1"
+
+\end_inset
+
+Confronto per la semantica grounded con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename preferred_adm2_relative_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Percentuale tempo, iterazioni e successi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename preferred_adm2_bias_005.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Errore assoluto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PreferredAdm005-1"
+
+\end_inset
+
+Confronto per la semantica preferred con 
+\begin_inset Formula $\epsilon=0.005$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
