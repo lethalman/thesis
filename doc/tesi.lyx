@@ -13059,17 +13059,9 @@ Sostituendo le equazioni di cui sopra otteniamo:
 \end_layout
 
 \begin_layout Standard
-A questo punto sostituiamo 
-\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)=P_{\mathfrak{S}\mid adm}\left(S\right)\cdot\frac{P_{adm}\left(S\right)}{P_{CF}\left(S\right)}$
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-1-P_{\mathfrak{S}\mid adm}\left(S\right)\leq\left(1-P_{\mathfrak{S}\mid adm}\left(S\right)\cdot\frac{P_{adm}\left(S\right)}{P_{CF}\left(S\right)}\right)\cdot P_{CF}\left(S\right)
+1-P_{\mathfrak{S}\mid adm}\left(S\right)\leq P_{CF}\left(S\right)-P_{\mathfrak{S}}\left(S\right)
 \]
 
 \end_inset
@@ -13080,7 +13072,7 @@ A questo punto sostituiamo
 \begin_layout Standard
 \begin_inset Formula 
 \[
-1-P_{\mathfrak{S}\mid adm}\left(S\right)\leq P_{CF}\left(s\right)-P_{\mathfrak{S}\mid adm}\left(S\right)\cdot P_{adm}\left(S\right)
+1-\frac{P_{\mathfrak{S}}\left(S\right)}{P_{adm}\left(S\right)}\leq P_{CF}\left(S\right)-P_{\mathfrak{S}}\left(S\right)
 \]
 
 \end_inset
@@ -13091,7 +13083,7 @@ A questo punto sostituiamo
 \begin_layout Standard
 \begin_inset Formula 
 \[
-P_{\mathfrak{S}\mid adm}\left(S\right)\leq\frac{1-P_{CF}\left(S\right)}{1-P_{adm}\left(S\right)}
+P_{adm}\left(S\right)-P_{\mathfrak{S}}\left(S\right)\leq P_{CF}\left(S\right)\cdot P_{adm}\left(S\right)-P_{\mathfrak{S}}\left(S\right)\cdot P_{adm}\left(S\right)
 \]
 
 \end_inset
@@ -13100,7 +13092,45 @@ P_{\mathfrak{S}\mid adm}\left(S\right)\leq\frac{1-P_{CF}\left(S\right)}{1-P_{adm
 \end_layout
 
 \begin_layout Standard
-Questo ci aiuta poco in quanto non conosciamo il valore di 
+\begin_inset Formula 
+\[
+P_{\mathfrak{S}}\left(S\right)\cdot\left(P_{adm}\left(S\right)-1\right)\leq P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Essendo 
+\begin_inset Formula $P_{adm}\left(S\right)-1\leq0$
+\end_inset
+
+, isolando 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ si cambia segno della diseguaglianza, derivando infine che l'algoritmo
+ admissible based è più efficiente (sotto le ipotesi descritte precedentemente)
+ rispetto a quello conflict-free based se vale quanto segue:
+\begin_inset Formula 
+\[
+P_{\mathfrak{S}}\left(S\right)\geq\frac{P_{adm}\left(S\right)\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si noti che questa è una condizione sufficiente ma non necessaria affinché
+ l'algoritmo admissible based sia più efficiente.
+\end_layout
+
+\begin_layout Standard
+Questo ci aiuta poco in quanto non conosciamo il valore 
 \family roman
 \series medium
 \shape up
@@ -13113,36 +13143,98 @@ Questo ci aiuta poco in quanto non conosciamo il valore di
 \noun off
 \color none
 
-\begin_inset Formula $P_{\mathfrak{S}\mid adm}\left(S\right)$
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+; lo scopo della tesi è proprio calcolare 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
 .
- Una possibilità sarebbe quella di calcolare una approssimazione di 
-\begin_inset Formula $P_{\mathfrak{S}\mid adm}\left(S\right)$
+ Nella pratica, sul risultato di 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- con errore 
-\begin_inset Formula $\epsilon=0.1$
+ potremmo volere un errore 
+\begin_inset Formula $\epsilon=0.005$
 \end_inset
 
  o 
+\begin_inset Formula $\epsilon=0.01$
+\end_inset
+
+, che corrisponderà ad un certo numero di iterazioni.
+ Supponendo di voler trovare un'approssimazione per 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ nella diseguaglianza di cui sopra, si può pensare di usare un errore 
 \begin_inset Formula $\epsilon=0.05$
 \end_inset
 
+ o 
+\begin_inset Formula $\epsilon=0.1$
+\end_inset
+
 .
- Il calcolo sarebbe molto veloce e si potrebbe decidere quale dei due algoritmi
- usare.
+ Il numero di iterazioni in questo caso sarebbe molto inferiore.
 \end_layout
 
 \begin_layout Standard
-Altrimenti bisogna sostituire quella quantità in qualche modo.
- Un'idea sarebbe riscrivere la diseguaglianza come segue:
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Quindi una possibilità sarebbe quella di calcolare 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ in maniera più efficiente ma più approssimata rispetto al calcolo che faremmo
+ normalmente, in modo da decidere quale dei due algoritmi usare per il calcolo
+ più accurato di 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+Un'altra possibilità sarebbe quella di trovare una minorazione 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)\leq k$
+\end_inset
+
+.
+ In questo caso si può immediatamente osservare che 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)\leq P_{adm}\left(S\right)\leq P_{CF}\left(S\right)$
+\end_inset
+
+, quindi:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-P_{adm}\left(S\right)\leq\frac{1-P_{CF}\left(S\right)}{P_{\mathfrak{S}\mid adm}\left(S\right)}+1
+P_{adm}\left(S\right)\geq\frac{P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}
 \]
 
 \end_inset
@@ -13151,30 +13243,15 @@ P_{adm}\left(S\right)\leq\frac{1-P_{CF}\left(S\right)}{P_{\mathfrak{S}\mid adm}\
 \end_layout
 
 \begin_layout Standard
-e dalla minorazione 
-\begin_inset Formula $P_{\mathfrak{S}\mid adm}\left(S\right)\leq\frac{P_{CF}\left(S\right)}{P_{adm}\left(S\right)}$
+dalla quale si deriva 
+\begin_inset Formula $P_{CF}\left(S\right)\leq P_{adm}\left(S\right)$
 \end_inset
 
- deriviamo la seguente:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-P_{adm}\left(S\right)\leq\frac{1-P_{CF}\left(S\right)}{P_{CF}\left(S\right)}P_{adm}\left(S\right)+1
-\]
-
+ che vale solo per 
+\begin_inset Formula $P_{CF}\left(S\right)=P_{adm}\left(S\right)$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-che ci porta purtroppo alla tautologia 
-\begin_inset Formula $\frac{P_{adm}\left(S\right)}{P_{CF}\left(S\right)}\leq1$
-\end_inset
-
-.
+, che è un risultato inutile.
 \end_layout
 
 \begin_layout Chapter
@@ -15394,15 +15471,50 @@ Esperimenti con probabilità condizionata admissible
 \begin_layout Standard
 I grafici che seguono sono il risultato degli esperimenti eseguiti sulle
  istanze viste precedentemente.
- 
+ Essendo l'algoritmo conflict-free based più efficiente di quello naive,
+ i test di seguito sono stati fatti confrontando direttamente i due nuovi
+ algoritmi senza considerare la versione originaria.
 \end_layout
 
 \begin_layout Standard
-Complete con 
+FIX FIX FIX FIX.
+\end_layout
+
+\begin_layout Standard
+Dai risultati appena osservati si può concludere che, a differenza dell'algoritm
+o CF based che è legato al numero di iterazioni per le semantiche polinomiali
+ come complete e grounded, l'algoritmo admissible based è legato al numero
+ di successi.
+\end_layout
+
+\begin_layout Standard
+I grafici presentati in figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:CompleteAdm005"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GroundedAdm005"
+
+\end_inset
+
+ e 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PreferredAdm005"
+
+\end_inset
+
+ sono rispettivamente i risultati dei confronti tra l'algoritmo conflict-free
+ based e admissible based con errore 
 \begin_inset Formula $\epsilon=0.005$
 \end_inset
 
-.
+ rispettivamente per la semantica complete, grounded e preferred.
 \end_layout
 
 \begin_layout Standard
@@ -15454,7 +15566,7 @@ Percentuale tempo, iterazioni e successi
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -15512,14 +15624,6 @@ Confronto per la semantica complete con
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Grounded con 
-\begin_inset Formula $\epsilon=0.005$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
@@ -15632,14 +15736,6 @@ Confronto per la semantica grounded con
 \end_layout
 
 \begin_layout Standard
-Preferred con 
-\begin_inset Formula $\epsilon=0.005$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -15654,7 +15750,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -15688,7 +15784,7 @@ Percentuale tempo, iterazioni e successi
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -15749,86 +15845,41 @@ Confronto per la semantica preferred con
 \end_layout
 
 \begin_layout Standard
-Come si vede, rispetto alle percentuali del tempo CPU impiegato nel caso
- conflict-free, questo nuovo algoritmo sembra peggiorare la situazione in
- termini di efficienza.
- In effetti, il campionamento di AAF ammissibili è più complesso, e la probabili
-tà 
-\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)<P_{\mathfrak{S}\mid adm}\left(S\right)$
-\end_inset
-
- quindi le istanze 
-\begin_inset Formula $\left\langle AAF,S\right\rangle $
-\end_inset
-
- da verificare sono più difficili.
- Dai grafici si può altresì osservare, a differenza del caso conflict-free,
- che per le semantiche complete e grounded il tempo CPU non segue il numero
- di iterazioni ma il numero di successi.
-\end_layout
-
-\begin_layout Standard
-Come abbiamo visto nella caratterizzazione teorica, non c'è un upper bound
- ovvio al numero di successi come per il numero di iterazioni, quindi la
- situazione non è delle migliori.
-\end_layout
-
-\begin_layout Standard
-Vogliamo però trovare dei casi pratici in cui calcolare 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset Formula $P_{\mathfrak{S}\mid adm}\left(S\right)$
-\end_inset
-
- sia più efficiente di 
-\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)$
+In tutti e tre i casi, ci ritroviamo con il risultato teorico che l'algoritmo
+ admissible based è più efficiente quando vale 
+\begin_inset Formula $P_{adm}\left(S\right)\geq\frac{P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
 \end_inset
 
 .
- Un esempio banale è quando la probabilità 
-\begin_inset Formula $P_{CF}\left(S\right)=1$
+ Per queste istanze infatti, sia per la semantica complete che grounded
+ che preferred, la diseguaglianza vale per le prime due istanze (
+\begin_inset Formula $|A|=10$
 \end_inset
 
  e 
-\begin_inset Formula $P_{adm}\left(S\right)<1$
+\begin_inset Formula $|A|=11$
 \end_inset
 
-.
- Si noti che per 
-\begin_inset Formula $P_{CF}\left(S\right)=1$
-\end_inset
-
- l'algoritmo conflict-free based equivale all'algoritmo naive.
- In questo caso, posto che dai risultati teorici il numero di successi di
- Monte Carlo per calcolare 
-\begin_inset Formula $P_{\mathfrak{S}\mid adm}\left(S\right)$
-\end_inset
-
- siano sempre inferiori rispetto all'algoritmo naive e ipotizzando sulla
- base dei grafici che il tempo CPU sia strettamente legato al numero di
- successi, allora si può concludere che calcolare 
-\begin_inset Formula $P_{\mathfrak{S}\mid adm}\left(S\right)$
-\end_inset
-
- sia più efficiente di calcolare 
-\begin_inset Formula $P_{\mathfrak{S}\mid CF}\left(S\right)$
-\end_inset
-
-.
+), e il tempo CPU impiegato dall'algoritmo admissible based è effettivamente
+ inferiore a quello dell'algoritmo CF based.
 \end_layout
 
 \begin_layout Standard
-In tutti gli altri casi, dipende da 
+Queste istanze hanno una probabilità 
+\begin_inset Formula $P_{CF}\left(S\right)$
+\end_inset
+
+ molto vicina a 
+\begin_inset Formula $P_{admissible}\left(S\right)$
+\end_inset
+
+, penalizzando l'algoritmo admissible based.
+ Possiamo però manipolare le istanze usate finora in modo da aumentare la
+ differenza tra le due probabilità.
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Chapter
