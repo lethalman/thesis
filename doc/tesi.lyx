@@ -17425,6 +17425,41 @@ Il nome della semantica da usare, e la modalità Monte Carlo, sono nomi di
  Java, e devono essere dei numeri.
 \end_layout
 
+\begin_layout Standard
+La chiave 
+\emph on
+compare
+\emph default
+.
+\emph on
+runs 
+\emph default
+indica il numero di run per ogni istanza.
+ Le chiavi 
+\emph on
+compare.from
+\emph default
+ e 
+\emph on
+compare.to
+\emph default
+ indicano il range delle istanze da usare nella 
+\emph on
+inputdir
+\emph default
+.
+ Ad esempio, con from=12 e to=15 verranno usate per il test le istanze 
+\emph on
+inputdir
+\emph default
+/instance12.txt ...
+ fino a 
+\emph on
+inputdir
+\emph default
+/instance15.txt.
+\end_layout
+
 \begin_layout Paragraph*
 Modalità describe, generate e test.
 \end_layout
