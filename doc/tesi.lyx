@@ -41,7 +41,7 @@ figs-within-sections
 \pdf_bookmarksopenlevel 1
 \pdf_breaklinks false
 \pdf_pdfborder true
-\pdf_colorlinks true
+\pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
 \papersize default
@@ -307,25 +307,25 @@ In generale, il problema di calcolare tale probabilità è nella classe di
 \end_inset
 
 , in dipendenza dalla semantica adottata.
- Per alcuni alcuni casi particolari però, specificatamente per le proprietà
- conflict-free, admissible e stable, verrà mostrato come la probabilità
- di quest'ultime possa essere calcolata in tempo polinomiale.
+ Per alcuni casi particolari però, specificatamente per le proprietà conflict-fr
+ee, admissible e stable, verrà mostrato come la probabilità di quest'ultime
+ possa essere calcolata in tempo polinomiale.
 \end_layout
 
 \begin_layout Standard
 Sulla base di questi casi trattabili, l'approccio esistente verrà esteso
  per ottimizzare la risoluzione dei problemi intrattabili.
- Le semantiche che saranno usate per il confronto dei due algoritmi sono
- la semantica complete, grounded e preferred.
+ Le semantiche che saranno usate per il confronto all'atto sperimentale
+ sono la semantica complete, grounded e preferred.
  Queste semantiche tradizionali sono quelle più comunemente adottate nella
- letteratura della teoria dell'argumentation framework.
+ letteratura della teoria dell'argumentation framework.pr
 \end_layout
 
 \begin_layout Standard
-Verranno proposti due algoritmi, conflict-free based e admissible based,
- e infine verrà mostrato come quest'ultimi sono in genere più efficienti
- rispetto all'algoritmo naive, e rispetto a quali basi teoriche e pratiche
- scegliere l'uno rispetto all'altro.
+Verranno proposti due algoritmi, basati rispettivamente sulla probabilità
+ conflict-free e admissible, e infine verrà mostrato come quest'ultimi sono
+ in genere più efficienti rispetto all'algoritmo naive, e su quali basi
+ teoriche e sperimentali scegliere tra i due algoritmi ai fini pratici.
 \end_layout
 
 \begin_layout Section
@@ -467,14 +467,14 @@ azione teorica di come questo risultato possa essere usato per migliorare
  l'efficienza nel calcolo delle probabilità dei casi intrattabili di probabilist
 ic argumentation framework.
  Sulla base di questo risultato, verranno proposti due algoritmi per il
- calcolo delle probabilità e su quali basi teoriche questi risultano essere
- più efficienti rispetto all'algoritmo naive esistente.
+ calcolo delle probabilità e su quali basi teoriche questi risultino essere
+ più efficienti rispetto all'algoritmo naive.
 \end_layout
 
 \begin_layout Standard
 Nel capitolo 4 verranno mostrati i risultati sperimentali del confronto
- tra i due nuovi algoritmo proposti e l'algoritmo naive esistente, e i diversi
- setting usati per i test.
+ tra i due nuovi algoritmo proposti e l'algoritmo naive, e i diversi setting
+ usati per i test.
 \end_layout
 
 \begin_layout Standard
@@ -502,7 +502,7 @@ Perchè argumentation framework
 \begin_layout Standard
 Lo scopo dell'argomentazione è quella di ricercare quei requisiti che rendono
  un argomento corretto, esaminando gli errori che si fanno durante il processo
- di reasoning, mediante il quale si prova ad usare gli argomenti stessi
+ di reasoning, mediante il quale si usano gli argomenti stessi
 \begin_inset CommandInset citation
 LatexCommand cite
 key "DunneWooldridge2009"
@@ -537,14 +537,14 @@ un argomento è un insieme di proposizioni, composte da un insieme di premesse
 \begin_layout Standard
 L'approccio generale, o la metodologia, dell'argomentazione è diversa da
  quella tradizionale della logica deduttiva.
- Logica deduttiva si concentra su un singolo path inferenziale, dove le
- premesse e le conclusioni sono predeterminate, e alla quale si applicano
+ La logica deduttiva si concentra su un singolo path inferenziale, dove
+ le premesse e le conclusioni sono predeterminate, e alla quale si applicano
  modelli formali come calcolo proposizionale e la teoria della quantificazione
  per determinare se una certa conclusione segue un insieme di premesse.
 \end_layout
 
 \begin_layout Standard
-In contrasto, l'approccio argomentativo tiene in considerazione entrambi
+Differentemente, l'approccio argomentativo tiene in considerazione entrambi
  gli aspetti di un argomento, i pro ed i contro, per esaminare come gli
  argomenti stessi interagiscono tra di loro.
  Mediante questo processo di esaminazione di un argomento rispetto ad un
@@ -827,7 +827,6 @@ b
 a
 \emph default
  non ha validità.
- Ci si riferisce
 \end_layout
 
 \begin_layout Standard
@@ -919,7 +918,7 @@ conflict-free
 \end_layout
 
 \begin_layout Standard
-Ad esempio, riferendoci sempre al semplice AAF 
+Ad esempio, riferendoci al semplice AAF 
 \begin_inset Formula $\left\langle \left\{ a,b\right\} ,\left\{ \left\langle b,a\right\rangle \right\} \right\rangle $
 \end_inset
 
@@ -2526,7 +2525,11 @@ true
 \begin_inset Formula $E$
 \end_inset
 
- è una estensione per 
+ è una 
+\emph on
+estensione
+\emph default
+ per 
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
@@ -2547,7 +2550,7 @@ L'insieme di tutte le estensioni per
 \begin_inset Formula $\mathfrak{S}$
 \end_inset
 
- è definitico come 
+ è definito come 
 \begin_inset Formula $\mathcal{E}_{\mathfrak{S}}\left(\mathcal{F}\right)\subseteq2^{Arg}$
 \end_inset
 
@@ -2630,7 +2633,7 @@ Data la definizione fondamentale di ammissibilità nella sezione precedente
  e di estensione immediatamente sopra, definiamo una serie di semantiche
  usate tradizionalmente nel contesto degli argumentation framework.
  In particolare: complete, grounded, stable, preferred, ideal, stage e semi-stab
-le, e la famiglia di semantiche prudent.
+le, e la famiglia delle semantiche prudent.
 \end_layout
 
 \begin_layout Standard
@@ -3055,7 +3058,7 @@ Mentre nel terzo caso
 \end_inset
 
 , se 
-\begin_inset Formula $\exists a\notin S$
+\begin_inset Formula $\exists a\in S$
 \end_inset
 
  tale che 
@@ -3070,8 +3073,8 @@ Mentre nel terzo caso
 \end_layout
 
 \begin_layout Standard
-Questo comporta delle proprietà interessanti per le estensioni complete,
- che descriveremo introducendo il concetto di 
+Questo comporta delle proprietà interessanti per le estensioni complete.
+ Introduciamo prima il concetto di 
 \emph on
 initial arguments 
 \emph default
@@ -3104,8 +3107,8 @@ Ovvero,
 \end_layout
 
 \begin_layout Standard
-Altre due caratteristiche fondamentali della semantica complete sono le
- seguenti:
+Alcune delle caratteristiche fondamentali della semantica complete sono
+ le seguenti:
 \end_layout
 
 \begin_layout Itemize
@@ -4023,7 +4026,7 @@ reference "alg:Decidere-stabile"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -4316,7 +4319,7 @@ reference "fig:AAF-senza-estensioni"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -4394,7 +4397,7 @@ Semantica preferred
 
 \begin_layout Standard
 La semantica preferred rilassa il vincolo della semantica stabile di attaccare
- tutto ciò che sia al di fuori dell'estensione.
+ tutto ciò che sta al di fuori dell'estensione.
 \end_layout
 
 \begin_layout Definition
@@ -4698,7 +4701,8 @@ Entrambe le semantiche coincidono con la semantica stabile quando esiste
 \end_layout
 
 \begin_layout Standard
-Si noti che una estensione stage potrebbe non essere ammissibile.
+Si noti che per definizione, una estensione stage potrebbe essere conflict-free
+ ma non ammissibile.
 \end_layout
 
 \begin_layout Standard
@@ -4874,40 +4878,9 @@ ideale
 
 \begin_layout Standard
 L'estensione grounded è un insieme ideale poiché soddisfa entrambi i vincoli
- di ammissibilità, e di skeptical justifiation sotto la semantica preferred.
+ di ammissibilità, e di skeptical justification sotto la semantica preferred.
  Quindi insiemi ideali che sono strettamente più grandi dell'insieme grounded
  possono esistere.
-\end_layout
-
-\begin_layout Standard
-Infatti, considerando l'AAF in figura 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Esempio-di-estensione-ideale"
-
-\end_inset
-
-, possiamo osservare che:
-\end_layout
-
-\begin_layout Itemize
-L'insieme delle estensioni preferred è 
-\begin_inset Formula $\left\{ \left\{ a,d\right\} ,\left\{ b,d\right\} \right\} $
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-L'estensione grounded in questo caso è vuoto.
-\end_layout
-
-\begin_layout Itemize
-L'estensione ideale è 
-\begin_inset Formula $\left\{ d\right\} $
-\end_inset
-
-, poiché è l'unico argomento appartenente a tutte le estensioni preferred.
 \end_layout
 
 \begin_layout Standard
@@ -4915,7 +4888,7 @@ L'estensione ideale è
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset space \hspace*{\fill}
@@ -4953,13 +4926,44 @@ Esempio di estensione ideale
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Infatti, considerando l'AAF in figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Esempio-di-estensione-ideale"
+
+\end_inset
+
+, possiamo osservare che:
+\end_layout
+
+\begin_layout Itemize
+L'insieme delle estensioni preferred è 
+\begin_inset Formula $\left\{ \left\{ a,d\right\} ,\left\{ b,d\right\} \right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+L'estensione grounded in questo caso è vuoto.
+\end_layout
+
+\begin_layout Itemize
+L'estensione ideale è 
+\begin_inset Formula $\left\{ d\right\} $
+\end_inset
+
+, poiché 
+\begin_inset Formula $d$
+\end_inset
+
+ è l'unico argomento appartenente a tutte le estensioni preferred.
 \end_layout
 
 \begin_layout Subsection
@@ -4973,8 +4977,8 @@ ee, ovvero che non ci siano defeat tra gli argomenti dell'insieme
 \end_inset
 
 .
- Potrebbero però formulati concetti alternativi a quello di insieme conflict-fre
-e.
+ Potrebbero però essere formulati concetti alternativi a quello di insieme
+ conflict-free.
 \end_layout
 
 \begin_layout Standard
@@ -5010,7 +5014,7 @@ indirettamente
 \begin_inset Formula $a$
 \end_inset
 
- e 
+ verso 
 \series bold
 
 \begin_inset Formula $b$
@@ -5054,7 +5058,7 @@ l'argomento
 \end_inset
 
 .
- Nelle prime sezioni abbiamo definito intuitivamente quando un argomento
+ Nelle prime sezioni abbiamo definito informalmente quando un argomento
  è giustificato.
  Non essendo l'argomento 
 \begin_inset Formula $b$
@@ -9477,7 +9481,7 @@ Generate
 
  as in algorithm 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "alg:Algoritmo-per-approssimare"
 
 \end_inset
@@ -10728,7 +10732,7 @@ such that
 if
 \series default
  
-\begin_inset Formula $a\notin S\wedge b\notin S$
+\begin_inset Formula $a\notin S\vee b\notin S$
 \end_inset
 
  
@@ -11499,7 +11503,7 @@ reference "alg:AlgoErr"
 
 \begin_layout Standard
 Anche qui, banalmente, per 
-\begin_inset Formula $P_{CF}\left(S\right)\rightarrow1$
+\begin_inset Formula $P_{adm}\left(S\right)\rightarrow1$
 \end_inset
 
  i due algoritmi coincidono.
@@ -12004,6 +12008,23 @@ b\in S
 \end_layout
 
 \begin_layout Standard
+L'idea alla base dell'algoritmo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:CampionamentoAdmissible"
+
+\end_inset
+
+ è quella di generare prima i defeat verso 
+\begin_inset Formula $S$
+\end_inset
+
+, e gli eventuali defeat in difesa.
+ Successivamente vengono generati tutti gli altri defeat, tranne quelli
+ già considerati.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float algorithm
 placement h
 wide false
@@ -12220,9 +12241,91 @@ if
 
 \family roman
 \size footnotesize
+\begin_inset Formula $\forall\left\langle a,b\right\rangle \in D$
+\end_inset
+
+ such that 
+\begin_inset Formula $a,b\in Arg\wedge b\notin S\wedge\neg\left(a\in S\wedge b\in attackedByS\right)$
+\end_inset
+
+ 
+\series bold
+do
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
+Generate a random number
+\series bold
+ 
+\begin_inset Formula $r\in\left[0,1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+if 
+\begin_inset Formula $r\leq P_{D}\left(\left\langle a,b\right\rangle \right)$
+\end_inset
+
+ then
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+\begin_inset Formula $Def=Def\cup\left\{ \left\langle a,b\right\rangle \right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end if
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\series bold
+\size footnotesize
+end
+\series default
+ 
+\series bold
+for
+\end_layout
+
+\begin_layout LyX-Code
+\paragraph_spacing single
+
+\family roman
+\size footnotesize
 Continue as in algorithm 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "alg:AlgoErr"
 
 \end_inset
@@ -12286,7 +12389,7 @@ Compionamento AAF ammissibile
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -14237,9 +14340,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-
-\lang english
-Probability of each semantics
+Probabilità per ogni semantica
 \end_layout
 
 \end_inset
@@ -14273,9 +14374,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-
-\lang english
-Defeats and arguments in 
+Defeat e argomenti in 
 \begin_inset Formula $S$
 \end_inset
 
@@ -14308,7 +14407,9 @@ name "fig:Characteristics-of-chosen"
 
 \end_inset
 
-Characteristics of chosen problem instances
+
+\lang italian
+Caratteristiche delle istanze usate nei test
 \end_layout
 
 \end_inset
@@ -14343,7 +14444,7 @@ reference "fig:IstanzeTest"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Float figure
@@ -14440,7 +14541,7 @@ name "fig:IstanzeTest"
 
 \end_inset
 
-Due delle iistanze 
+Due delle istanze 
 \begin_inset Formula $\left\langle PrAF,S\right\rangle $
 \end_inset
 
@@ -15448,7 +15549,7 @@ dove
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status collapsed
@@ -15596,7 +15697,8 @@ reference "fig:PreferredAdm005-1-1"
 
 \end_inset
 
- sono illustrati i confronti tra l'algoritmo admissible based e quello naive.
+ sono illustrati i confronti tra l'algoritmo admissible based e quello naive,
+ rispettivamente per la semantica complete, grounded e preferred.
 \end_layout
 
 \begin_layout Standard
@@ -15932,7 +16034,7 @@ Dai grafici appena osservati si può concludere che, a differenza dell'algoritmo
  polinomiali come complete e grounded, l'algoritmo admissible based è legato
  al numero di successi.
  Questo è un risultato a sfavore dell'approccio admissible based rispetto
- a quello conflict-free based per probabilità 
+ a quello conflict-free based per casi in cui la probabilità 
 \begin_inset Formula $P_{CF}\left(S\right)\cong P_{admissible}\left(S\right)$
 \end_inset
 
@@ -16787,13 +16889,17 @@ Se la dimensione dell'istanza (
 \begin_inset Formula $\alpha$
 \end_inset
 
-, calcolare la probabilità in maniera esatta.
+, si calcola la probabilità 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ in maniera esatta.
  In tali casi, la cardinalità dello spazio di ricerca potrebbe essere inferiore
  al numero di iterazioni della simulazione Monte Carlo.
 \end_layout
 
 \begin_layout Enumerate
-Altrimenti calcolare una approssimazione 
+Altrimenti si calcola una approssimazione 
 \begin_inset Formula $P'$
 \end_inset
 
@@ -16810,7 +16916,8 @@ Altrimenti calcolare una approssimazione
 \begin_inset Formula $P_{adm}\left(S\right)\ll P_{CF}\left(S\right)$
 \end_inset
 
-, usare l'algoritmo admissible based per calcolare 
+.
+ Si usa l'algoritmo admissible based per calcolare 
 \begin_inset Formula $P'$
 \end_inset
 
@@ -16818,7 +16925,7 @@ Altrimenti calcolare una approssimazione
 \end_layout
 
 \begin_layout Enumerate
-Resituire un'approssimazione di 
+Si restituisce un'approssimazione di 
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
@@ -16831,11 +16938,12 @@ Resituire un'approssimazione di
 \begin_inset Formula $P'\geq\frac{P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
 \end_inset
 
-, calcolare il risultato finale 
+, il risultato finale 
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- con l'algoritmo admissible based, altrimenti con quello conflict-free based.
+ si calcola con l'algoritmo admissible based, altrimenti con quello conflict-fre
+e based.
 \end_layout
 
 \begin_layout Standard
@@ -16909,7 +17017,7 @@ ne alla probabilità che un insieme di argomenti soddisfi i criteri di una
  certa semantica per i probabilistic argumentation framework, basato sul
  metodo Monte Carlo.
  È stato inoltre mostrato, come per alcuni problemi polinomiali per l'abstract
- argumentation framework, la complessità non sia aumentata ma sia rimasta
+ argumentation framework la complessità non sia aumentata ma sia rimasta
  polinomiale.
  In particolare, è possibile calcolare la probabilità che un insieme di
  argomenti sia conflict-free, admissible o stabile in tempo polinomiale
@@ -16923,7 +17031,7 @@ Sulla base di questo nuovo importante risultato, è stato esteso l'approccio
 e calcolabili in tempo polinomiale, con l'obiettivo di ridurre lo spazio
  di campionamento e migliorare l'efficienza dell'algoritmo.
  La caratterizzazione teorica di questi due nuovi approcci (conflict-free
- based e admissible-based) mostra i vantaggi in termini di efficienza rispetto
+ based e admissible based) mostra i vantaggi in termini di efficienza rispetto
  all'approccio naive.
 \end_layout
 
@@ -16932,9 +17040,9 @@ Sotto determinate ipotesi, è possibile concludere che l'efficienza dell'algorit
 o conflict-free based proposto è direttamente proporzionale alla probabilità
  calcolata in tempo polinomiale rispetto al numero di iterazioni dell'algoritmo
  originale.
- Per l'algoritmo admissible based sono state studiate teoricamente le condizioni
- per le quali quest'ultimo risulta essere più efficiente rispetto all'algoritmo
- conflict-free based stesso.
+ Per l'algoritmo admissible based sono state individuate teoricamente le
+ condizioni per le quali quest'ultimo risulta essere più efficiente rispetto
+ all'algoritmo conflict-free based.
  Inoltre, questi due nuovi approcci proposti, analogamente a quello originario,
  sono assolutamente generali poiché la molteplicità dei tipi di estensione
  in letteratura richiedono le proprietà conflict-free e admissible.
@@ -16944,8 +17052,8 @@ o conflict-free based proposto è direttamente proporzionale alla probabilità
 Infine, sono stati illustrati i risultati degli esperimenti per confrontare
  l'efficienza computazionale dei tre algoritmi in termini di tempo CPU,
  successi e numeri di iterazioni Monte Carlo.
- Questi risultati si ritrovano con la caratterizzazione teorica affrontata
- nel capitolo 
+ Questi risultati rispecchiano la caratterizzazione teorica affrontata nel
+ capitolo 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Approssimazione-probabilità-in"
