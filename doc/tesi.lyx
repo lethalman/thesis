@@ -274,7 +274,7 @@ key "Li:2011:PAF:2238189.2238191,Rienstra12,Thimm12"
 \emph on
 PrAF
 \emph default
-), e di analizzare e ottimizzare degli algoritmi esistenti per calcolare
+), e di analizzare e ottimizzare degli algoritmi esistenti usati per calcolare
  la probabilità nei probabilistic argumentation framework in maniera approssimat
 a.
 \end_layout
@@ -322,9 +322,10 @@ Sulla base di questi casi trattabili, l'approccio esistente verrà esteso
 \end_layout
 
 \begin_layout Standard
-Verrà mostrato infine come il nuovo algoritmo è in genere più efficiente
- rispetto all'algoritmo naive esistente, specialmente nel caso di semantica
- complete e grounded.
+Verranno proposti due algoritmi, conflict-free based e admissible based,
+ e infine verrà mostrato come quest'ultimi sono in genere più efficienti
+ rispetto all'algoritmo naive, e rispetto a quali basi teoriche e pratiche
+ scegliere l'uno rispetto all'altro.
 \end_layout
 
 \begin_layout Section
@@ -376,20 +377,24 @@ ree, ammissibile o stabile in tempo polinomiale.
  Questo importante risultato, oltre a dimostrare che passare da un contesto
  deterministico ad un contesto incerto rappresentato con probabilità non
  necessariamente introduce un ulteriore livello di complessità per tutti
- in problemi, è fondamentale per applicare delle ottimizzazioni nel calcolo
- delle probabilità dei casi intrattabili.
+ in problemi, è fondamentale nell'applicazione di ottimizzazioni per il
+ calcolo delle probabilità dei casi intrattabili.
 \end_layout
 
 \begin_layout Standard
-In questo lavoro di tesi verrà proposto un algoritmo basato sul metodo Monte
- Carlo per approssimare la probabilità che un insieme di argomenti sia consisten
-te rispetto ad una determinata semantica, ottimizzato in base al fatto che
- è possibile calcolare una probabilità condizionata in maniera esatta.
+In questo lavoro di tesi verranno proposti due algoritmi basati sul metodo
+ Monte Carlo per approssimare la probabilità che un insieme di argomenti
+ sia consistente rispetto ad una determinata semantica, ottimizzato in base
+ al fatto che è possibile calcolare le probabilità conflict-free e admissible
+ in maniera esatta.
  Ciò permette di campionare uno spazio più ridotto rispetto a quello originario.
- I risultati teorici in questa tesi mostreranno che esiste un upperbound
- al numero di iterazioni della simulazione Monte Carlo ottimizzata rispetto
- a quella naive, che dipende dalla probabilità condizionata calcolata in
- tempo polinomiale.
+\end_layout
+
+\begin_layout Standard
+Per il primo approccio proposto conflict-free based, i risultati teorici
+ in questa tesi mostreranno che esiste un upperbound al numero di iterazioni
+ della simulazione Monte Carlo ottimizzata rispetto a quella naive, che
+ dipende dalla probabilità conflict-free calcolata in tempo polinomiale.
 \end_layout
 
 \begin_layout Standard
@@ -410,6 +415,26 @@ In base all'oservazione di cui sopra, e al risultato teorico che determina
  un upperbound sul numero di iterazioni della simulazione, concludere che
  l'algoritmo ottimizzato risulta avere un upperbound sul tempo CPU rispetto
  all'algoritmo naive che dipende dalla probabilità conflict-free.
+\end_layout
+
+\begin_layout Standard
+Per il secondo approccio proposto admissible based, nonostante lo spazio
+ di campionamento sia più ridotto rispetto a quello conflict-free, non è
+ scontato che l'efficienza sia migliore rispetto all'approccio conflict-free.
+ La tesi contribuirà:
+\end_layout
+
+\begin_layout Itemize
+Ad osservare come nella pratica esistono casi in cui l'algoritmo admissible
+ based è più efficiente rispetto a quello conflict-free based, e viceversa.
+ Entrambi gli algoritmi proposti sono comunque più efficienti di quello
+ naive.
+\end_layout
+
+\begin_layout Itemize
+A caratterizzare teoricamente un metodo pratico con il quale è possibile
+ stabilire le condizioni rispetto alle quali conviene usare l'algoritmo
+ admissible based piuttosto che quello conflict-free based.
 \end_layout
 
 \begin_layout Standard
@@ -441,12 +466,15 @@ Nel capitolo 3 verrà descritto un metodo esistente per il calcolo approssimato
 azione teorica di come questo risultato possa essere usato per migliorare
  l'efficienza nel calcolo delle probabilità dei casi intrattabili di probabilist
 ic argumentation framework.
+ Sulla base di questo risultato, verranno proposti due algoritmi per il
+ calcolo delle probabilità e su quali basi teoriche questi risultano essere
+ più efficienti rispetto all'algoritmo naive esistente.
 \end_layout
 
 \begin_layout Standard
 Nel capitolo 4 verranno mostrati i risultati sperimentali del confronto
- tra il nuovo algoritmo ottimizzato proposto e l'algoritmo naive esistente,
- e il setting con il quale sono stati ottenuti i risultati.
+ tra i due nuovi algoritmo proposti e l'algoritmo naive esistente, e i diversi
+ setting usati per i test.
 \end_layout
 
 \begin_layout Standard
@@ -489,11 +517,19 @@ key "DunneWooldridge2009"
 
 \begin_layout Standard
 Non c'è una definizione unica nella letteratura della teoria dell'argomentazione
- su come definire un argomento.
+ su cosa sia precisamente un argomento.
  Alcune definizioni sono più o meno minimali di altre.
- Una definizione minimale può essere la seguente: un argomento è un insieme
- di proposizioni, composte da un insieme di premesse e da una conclusione,
- ed un metodo di inferenza che va dalle premesse alla conclusione.
+ Una definizione minimale può essere la seguente: 
+\begin_inset Quotes eld
+\end_inset
+
+un argomento è un insieme di proposizioni, composte da un insieme di premesse
+ e da una conclusione, ed un metodo di inferenza che va dalle premesse alla
+ conclusione
+\begin_inset Quotes erd
+\end_inset
+
+.
  Un argomento può essere supportato da altri argomenti, o può essere attaccato
  da altri argomenti.
 \end_layout
@@ -501,11 +537,10 @@ Non c'è una definizione unica nella letteratura della teoria dell'argomentazion
 \begin_layout Standard
 L'approccio generale, o la metodologia, dell'argomentazione è diversa da
  quella tradizionale della logica deduttiva.
- L'approccio della logica deduttiva si concentra su un singolo path inferenziale
-, dove le premesse e le conclusioni sono predeterminate, e alla quale si
- applicano modelli formali come calcolo proposizionale e la teoria della
- quantificazione per determinare se una certa conclusione segue un insieme
- di premesse.
+ Logica deduttiva si concentra su un singolo path inferenziale, dove le
+ premesse e le conclusioni sono predeterminate, e alla quale si applicano
+ modelli formali come calcolo proposizionale e la teoria della quantificazione
+ per determinare se una certa conclusione segue un insieme di premesse.
 \end_layout
 
 \begin_layout Standard
@@ -541,8 +576,8 @@ i che dovrebbero costituire il legal reasoning.
  argomenti.
  In questo ambito quindi l'argomentazione serve a mettere in discussione
  quali argomenti sono validi rispetto al framework legale per soddisfare
- le esigenze di un cliente, piuttosto che determinare le conseguenze delle
- azioni.
+ le esigenze di un cliente, piuttosto che semplicemente determinare le conseguen
+ze di un insieme di azioni.
 \end_layout
 
 \begin_layout Section
@@ -550,8 +585,8 @@ Abstract Argumentation Framework
 \end_layout
 
 \begin_layout Standard
-Vi sono vari modi di modellare un argument system, in base alle diverse
- interpretazioni di argomento.
+Esistono vari modi di modellare un argument system, in base alle diverse
+ interpretazioni di argomento e di relazione tra gli argomenti.
  Un modello molto semplice e molto usato in letteratura nella teoria dell'argome
 ntazione è l'abstract argumentation framework.
 \end_layout
@@ -733,9 +768,9 @@ Un semplice esempio di abstract argumentation framework
 \begin_inset Formula $\left\langle \left\{ a,b\right\} ,\left\{ \left\langle b,a\right\rangle \right\} \right\rangle $
 \end_inset
 
- è illustrato in 
+ è illustrato in figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:L'argomento-b-attacca"
 
 \end_inset
@@ -750,7 +785,7 @@ b
 \emph on
 a
 \emph default
- non può essere giustificato perché è attaccato in ogni caso dall'argomento
+ non può essere giustificato essendo attaccato in ogni caso dall'argomento
  
 \begin_inset Quotes eld
 \end_inset
@@ -763,9 +798,9 @@ b
 \end_layout
 
 \begin_layout Standard
-In 
+In figura 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Argomento-a-difeso"
 
 \end_inset
@@ -792,6 +827,7 @@ b
 a
 \emph default
  non ha validità.
+ Ci si riferisce
 \end_layout
 
 \begin_layout Standard
@@ -952,7 +988,7 @@ e.
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout LyX-Code
 \paragraph_spacing single
@@ -8625,9 +8661,15 @@ Questo concetto di accettabilità oggettiva o soggettiva di un argomento,
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Approssimazione-probabilità-in"
+
+\end_inset
+
 Approssimazione probabilità in probabilistic argumentation frameworks
 \begin_inset Argument
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Approssimazione probabilità per PrAF
@@ -8671,7 +8713,7 @@ In questa sezione verrà descritto l'approccio basato sul metodo Monte Carlo
 \begin_inset Formula $\mathcal{F}$
 \end_inset
 
- se l'insieme 
+, se l'insieme 
 \begin_inset Formula $S\in\mathcal{E}_{\mathfrak{S}}\left(\mathcal{F}\right)$
 \end_inset
 
@@ -8691,7 +8733,7 @@ Dato un insieme di input, un sottoinsieme di questi input è selezionato
 \end_layout
 
 \begin_layout Enumerate
-Sugli input selezionati al passo precedene, vengono effettuate delle operazioni.
+Si effettuano delle operazioni sugli di input selezionati al passo precedene.
 \end_layout
 
 \begin_layout Enumerate
@@ -9810,14 +9852,14 @@ Le proprietà conflict-free e admissible sono richieste per tutte le semantiche
  molto importanti nella letteratura, anche se da sole non definiscono un
  tipo di estensione come complete, grounded, preferred, ecc..
  Come introdotto nei capitoli introduttivi e come vedremo in seguito, calcolare
- la probabilità che un insieme di argomenti sia conflict-free permetterà
- di ottimizzare il calcolo della probabilità per casi più difficili.
+ la probabilità che un insieme di argomenti sia conflict-free o admissible
+ permetterà di ottimizzare il calcolo della probabilità per casi più difficili.
 \end_layout
 
 \begin_layout Standard
 Oltre a conflict-free e admissible, un risultato molto importante è che
  è possibile calcolare la probabilità che un insieme sia una estensione
- stabile in tempo polinomiale, con lo stesso approccio delle probabilità
+ stabile in tempo polinomiale, con lo stesso approccio usato per le probabilità
  di cui sopra.
 \end_layout
 
@@ -10052,10 +10094,10 @@ Verifichiamo la correttezza osservando che la somma
 
 \begin_layout Standard
 Per calcolare la probabilità che l'insieme 
-\begin_inset Formula $S$
+\begin_inset Formula $S=\left\{ a,c\right\} $
 \end_inset
 
- sia conflict-free in maniera esatta, admissible o stable, usiamo la formula
+ sia conflict-free, admissible o stable in maniera esatta usiamo la formula
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -10138,7 +10180,7 @@ reference "eq:Psemantic"
 
  è necessario enumerare tutti i possible world per calcolare le tre probabilità
  di cui sopra.
- Con le formule descritte precedentemente invece, otteniamo lo stesso risultato
+ Con le formule appena introdotte invece, otteniamo lo stesso risultato
  visitando direttamente il PrAF senza enumerare i possible world:
 \end_layout
 
@@ -10201,6 +10243,16 @@ La possibilità di calcolare
 \end_inset
 
 , in maniera più efficiente.
+ Il calcolo di questa probabilità viene fatto estendendo la simulazione
+ Monte Carlo nella sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Simulazione-Monte-Carlo"
+
+\end_inset
+
+, riducendo lo spazio degli AAF da campionare, e da questo cambiamento ne
+ deriva anche un intervallo di confidenza diverso.
 \end_layout
 
 \begin_layout Standard
@@ -10232,14 +10284,7 @@ Osserviamo che
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- come nell'algoritmo naive descritto nella sezione 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Simulazione-Monte-Carlo"
-
-\end_inset
-
-.
+ come nell'algoritmo naive.
 \end_layout
 
 \begin_layout Standard
@@ -10255,7 +10300,7 @@ Dato
 \begin_inset Formula $p=X/N$
 \end_inset
 
-, definiamo l'intervallo di confidenz:
+, definiamo l'intervallo di confidenza:
 \end_layout
 
 \begin_layout Standard
@@ -11371,14 +11416,23 @@ reference "sec:Casi-trattabili"
 
  per semplicità) è calcolabile in tempo polinomiale, e le semantiche viste
  finora richiedono l'ammissibilità oltre che la non conflittualità.
- Il procedimento è analogo al caso conflict-free, poiché vale la seguente
- equazione per l'intervallo di confidenza:
+ Il procedimento per calcolare il numero di iterazioni 
+\begin_inset Formula $N$
+\end_inset
+
+ e successi 
+\begin_inset Formula $X$
+\end_inset
+
+ rispetto all'algoritmo naive è assolutamente analogo al caso conflict-free
+ visto nella sezione precedente, poiché vale la seguente equazione per l'interva
+llo di confidenza:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-P_{\mathfrak{S}}\left(S\right)=P_{\mathfrak{S}\cap CF}\left(S\right)=P_{adm}\left(S\right)\cdot P_{\mathfrak{S}\mid adm}\left(S\right)=P_{adm}\left(S\right)\cdot\left(p\pm z_{1-\alpha/2}\cdot\sqrt{\frac{p\left(1-p\right)}{N}}\right)
+P_{\mathfrak{S}}\left(S\right)=P_{\mathfrak{S}\cap adm}\left(S\right)=P_{adm}\left(S\right)\cdot P_{\mathfrak{S}\mid adm}\left(S\right)=P_{adm}\left(S\right)\cdot\left(p\pm z_{1-\alpha/2}\cdot\sqrt{\frac{p\left(1-p\right)}{N}}\right)
 \]
 
 \end_inset
@@ -11424,7 +11478,7 @@ reference "eq:IterazioniCF"
 
 , da sostituire nell'algoritmo 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "alg:AlgoErr"
 
 \end_inset
@@ -11452,7 +11506,7 @@ Anche qui, banalmente, per
  Le conclusioni sull'efficienza dell'algoritmo però non equivalgono a quelle
  del caso conflict-free, perché il campionamento degli AAF ammissibili è
  più complicato di quello degli AAF conflict-free come vedremo nella sezione
- successiva.
+ successiva e come osservato nei risultati sperimentali.
 \end_layout
 
 \begin_layout Subsection
@@ -11468,7 +11522,11 @@ reference "sub:Sampling-CF"
 \end_inset
 
 , campionare lo spazio degli AAF conflict-free è semplice, poiché basta
- non generare i defeat conflittuali.
+ non generare i defeat conflittuali all'interno dell'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+.
  Il fatto di non generare questi defeat, non comporta alcun bias dovutamente
  al fatto che non c'è interdipendenza tra questa scelta e l'esistenza di
  altri defeat o argomenti.
@@ -11477,7 +11535,12 @@ reference "sub:Sampling-CF"
 \begin_inset Formula $S$
 \end_inset
 
- dipende dalla scelta degli argomenti e defeat generati.
+ dipende dalla scelta degli argomenti e defeat generati al di fuori dell'insieme
+ 
+\begin_inset Formula $S$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -11566,7 +11629,7 @@ se
 \begin_inset Formula $P_{D}\left(a,b\right)=1$
 \end_inset
 
- oppure si decide di generare almeno un defeat 
+ oppure si decide di generare il defeat 
 \begin_inset Formula $\left\langle a,b\right\rangle $
 \end_inset
 
@@ -11653,6 +11716,99 @@ Per il resto l'algoritmo di base rimane lo stesso di quello originario
 LatexCommand eqref
 reference "alg:Algoritmo-per-approssimare"
 
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Prima di descrivere in dettaglio l'algoritmo proposto, è necessario introdurre
+ il concetto di ammissibilità locale per l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ Per localmente ammissibile rispetto ad 
+\begin_inset Formula $a\in A\setminus S$
+\end_inset
+
+, s'intende il fatto che l'insieme 
+\begin_inset Formula $S$
+\end_inset
+
+ sia ammissibile posto che 
+\begin_inset Formula $S$
+\end_inset
+
+ sia ammissibile rispetto a tutti gli altri argomenti 
+\begin_inset Formula $b\in Arg\setminus S$
+\end_inset
+
+ con 
+\begin_inset Formula $a\neq b$
+\end_inset
+
+.
+ Ovvero, la scelta di generare l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ dipende esclusivamente dalla relazione che l'argomento 
+\begin_inset Formula $a$
+\end_inset
+
+ ha con 
+\begin_inset Formula $S$
+\end_inset
+
+, indipendentemente dagli altri argomenti.
+ In altre parole, si assume che gli altri argomenti e defeat (elaborati
+ successivamente) non vadano in conflitto con la proprietà di ammissibilità.
+\end_layout
+
+\begin_layout Standard
+Più formalmente:
+\end_layout
+
+\begin_layout Definition
+Dato un AAF 
+\begin_inset Formula $\left\langle Arg,Def\right\rangle $
+\end_inset
+
+, un insieme di argomenti 
+\begin_inset Formula $S\subseteq Arg$
+\end_inset
+
+ è 
+\emph on
+localmente
+\emph default
+ 
+\emph on
+ammissible
+\emph default
+ rispetto ad un argomento 
+\begin_inset Formula $a\in Arg$
+\end_inset
+
+ se e solo se 
+\begin_inset Formula $\nexists\left\langle a,b\right\rangle \in Def$
+\end_inset
+
+ tale che 
+\begin_inset Formula $b\in S$
+\end_inset
+
+, oppure 
+\begin_inset Formula $\exists b,c\in S$
+\end_inset
+
+ tali che 
+\begin_inset Formula $\left\langle a,b\right\rangle \in Def$
+\end_inset
+
+ e 
+\begin_inset Formula $\left\langle c,a\right\rangle \in Def$
 \end_inset
 
 .
@@ -11746,7 +11902,11 @@ b\in S
 \begin_inset Formula $S$
 \end_inset
 
- sia localmente ammissibile posto che l'argomento 
+ sia localmente ammissibile rispetto ad 
+\begin_inset Formula $a$
+\end_inset
+
+ posto che l'argomento 
 \begin_inset Formula $a$
 \end_inset
 
@@ -11797,7 +11957,11 @@ b\in S
 \begin_inset Formula $S$
 \end_inset
 
- sia localmente ammissibile posto che 
+ sia localmente ammissibile rispetto ad 
+\begin_inset Formula $a$
+\end_inset
+
+ posto che 
 \begin_inset Formula $a$
 \end_inset
 
@@ -11834,82 +11998,6 @@ b\in S
 
  se 
 \begin_inset Formula $P_{A}\left(a\right)=1$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Per 
-\emph on
-localmente
-\emph default
- 
-\emph on
-ammissibile
-\emph default
- rispetto ad 
-\begin_inset Formula $a\in A\setminus S$
-\end_inset
-
-, s'intende il fatto che l'insieme 
-\begin_inset Formula $S$
-\end_inset
-
- sia ammissibile posto che 
-\begin_inset Formula $S$
-\end_inset
-
- sia ammissibile rispetto a tutti gli altri argomenti 
-\begin_inset Formula $b\in Arg\setminus S$
-\end_inset
-
- con 
-\begin_inset Formula $a\neq b$
-\end_inset
-
-.
- Ovvero, la scelta di generare l'argomento 
-\begin_inset Formula $a$
-\end_inset
-
- dipende esclusivamente dalla relazione che l'argomento 
-\begin_inset Formula $a$
-\end_inset
-
- ha con 
-\begin_inset Formula $S$
-\end_inset
-
-, indipendentemente dagli altri argomenti.
- In altre parole, si assume che gli altri argomenti e defeat (elaborati
- successivamente) non vadano in conflitto con la proprietà di ammissibilità.
-\end_layout
-
-\begin_layout Standard
-A differenza degli algoritmi di campionamento precedenti, si sceglie di
- generare l'argomento 
-\begin_inset Formula $a\in A\setminus S$
-\end_inset
-
- con probabilità 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset Formula $P\left(a\in Arg\mid locadm\right)$
-\end_inset
-
- piuttosto che 
-\begin_inset Formula $P_{A}\left(a\right)$
 \end_inset
 
 .
@@ -12539,6 +12627,35 @@ Generazione di almeno un defeat verso
 \end_layout
 
 \begin_layout Standard
+A differenza degli algoritmi di campionamento precedenti, si sceglie di
+ generare l'argomento 
+\begin_inset Formula $a\in A\setminus S$
+\end_inset
+
+ con probabilità 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $P\left(a\in Arg\mid locadm\right)$
+\end_inset
+
+ piuttosto che 
+\begin_inset Formula $P_{A}\left(a\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 Nell'algoritmo 
 \family roman
 \series medium
@@ -12578,8 +12695,16 @@ reference "alg:GeneraAlmenoUnDefeat"
 \end_layout
 
 \begin_layout Standard
-Per spiegare l'approccio usato per generare almeno un defeat, supponiamo
- di avere (senza perdita di generalità) un insieme di oggetti 
+Per spiegare l'approccio usato per generare 
+\begin_inset Quotes eld
+\end_inset
+
+almeno un defeat
+\begin_inset Quotes erd
+\end_inset
+
+, supponiamo di avere (senza perdita di generalità) un insieme di oggetti
+ 
 \begin_inset Formula $O=\left\{ a,b,c\right\} $
 \end_inset
 
@@ -12595,7 +12720,7 @@ Definiamo la variabile aleatoria
 \begin_inset Formula $X$
 \end_inset
 
- tali che le realizzazioni costituiscono lo spazio degli eventi di tutte
+ tale che le realizzazioni costituiscono lo spazio degli eventi di tutte
  le combinazioni degli oggetti in 
 \begin_inset Formula $O$
 \end_inset
@@ -12608,7 +12733,7 @@ Definiamo la variabile aleatoria
 \end_layout
 
 \begin_layout Standard
-La probabilità che almeno uno dei tre oggetti occorra è 
+La probabilità che almeno uno dei tre oggetti sia presente è 
 \begin_inset Formula $P\left(X\neq\emptyset\right)=1-{\displaystyle \prod_{o\in O}}\left(1-P\left(o\right)\right)=0.496$
 \end_inset
 
@@ -12652,20 +12777,22 @@ reference "fig:Albero-delle-combinazioni"
 \begin_inset Formula $X$
 \end_inset
 
- non vuota.
- Infatti, si noti come nell'albero non sia presente la combinazione vuota
- 
+ non vuota, infatti nell'albero non è presente la combinazione indotta dal
+ path 
 \begin_inset Formula $\neg a,\neg b,\neg c$
 \end_inset
 
 .
- Si noti anche che le probabilità nei nodi non sono normalizzate rispetto
+ Si noti che le probabilità dei nodi nell'albero non sono normalizzate rispetto
  a 
 \begin_inset Formula $P\left(X\neq\emptyset\right)$
 \end_inset
 
  esclusivamente per semplicità di esposizione.
- Infatti, d'ora in poi faremo riferimento a numeri random 
+\end_layout
+
+\begin_layout Standard
+D'ora in poi faremo riferimento a numeri random 
 \begin_inset Formula $r\in\left[0,P\left(X\neq\emptyset\right)\right]$
 \end_inset
 
@@ -12741,8 +12868,8 @@ Albero delle combinazioni in cui occorre almeno un oggetto
 \end_layout
 
 \begin_layout Standard
-L'algoritmo esponenziale descritto precedentemente non fa altro che generare
- le foglie di quest'albero, e scegliere tra una di queste foglie.
+L'algoritmo esponenziale non fa altro che generare le foglie di quest'albero,
+ e scegliere tra una di queste foglie.
  Ad esempio, sia 
 \begin_inset Formula $r$
 \end_inset
@@ -12830,7 +12957,7 @@ Ad esempio, per scegliere la foglia indotta dal path
 
 \begin_layout Standard
 L'algoritmo descritto di seguito parte dalla radice e arriva ad una delle
- foglie, passando per ogni oggetto 
+ foglie, considerando ogni oggetto 
 \begin_inset Formula $o\in O$
 \end_inset
 
@@ -12858,7 +12985,7 @@ Se
 \begin_inset Formula $O'=\emptyset$
 \end_inset
 
- allora termino restituendo 
+ allora si resituisce 
 \begin_inset Formula $X$
 \end_inset
 
@@ -12866,7 +12993,7 @@ Se
 \end_layout
 
 \begin_layout Enumerate
-Si sceglie un qualsiasi oggetto 
+Altrimenti si sceglie un qualsiasi oggetto 
 \begin_inset Formula $o\in O'$
 \end_inset
 
@@ -12899,7 +13026,7 @@ Altrimenti si aggiorna
 \begin_inset Formula $offset=offset+\left(1-offset\right)\cdot P\left(o\right)$
 \end_inset
 
-, continuando nel sottoalbero indotto dalla scelta di 
+, continuando nel sottoalbero indotto dalla scelta 
 \begin_inset Formula $\neg o$
 \end_inset
 
@@ -12959,15 +13086,27 @@ reference "alg:GeneraAlmenoUnDefeat"
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:EfficienzaAdmissible"
+
+\end_inset
+
 Efficienza teorica dell'algoritmo
 \end_layout
 
 \begin_layout Standard
-Dagli esperimenti, ribadiamo che l'efficienza dell'algoritmo basato sulla
- probabilità conflict-free è strettamente legato al numero di iterazioni
- per la semantica complete e grounded, mentre quello admissible based è
- legato al numero di successi, entrambe in rapporto al rispettivo valore
- dell'algoritmo naive.
+Dagli esperimenti nel capitolo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Sperimentazione-delle-ottimizzaz"
+
+\end_inset
+
+, osserviamo che l'efficienza dell'algoritmo basato sulla probabilità conflict-f
+ree è strettamente legato al numero di iterazioni per la semantica complete
+ e grounded, mentre quello admissible based è legato al numero di successi,
+ entrambe in rapporto al rispettivo valore dell'algoritmo naive.
  Per questo vogliamo determinare quando è convieniente usare l'algoritmo
  admissible based, ovvero quando 
 \begin_inset Formula $\frac{X_{adm}}{\hat{X}}\leq\frac{N_{CF}}{\hat{N}}$
@@ -12977,11 +13116,11 @@ Dagli esperimenti, ribadiamo che l'efficienza dell'algoritmo basato sulla
 \begin_inset Formula $X_{adm}$
 \end_inset
 
- è il numero di successi dell'algoritmo admissible based mentre 
+ è il numero di successi dell'algoritmo admissible based, 
 \begin_inset Formula $N_{CF}$
 \end_inset
 
- è il numero di iterazioni dell'algoritmo conflict-free based, 
+ è il numero di iterazioni dell'algoritmo conflict-free based, mentre 
 \begin_inset Formula $\hat{X}$
 \end_inset
 
@@ -12989,8 +13128,20 @@ Dagli esperimenti, ribadiamo che l'efficienza dell'algoritmo basato sulla
 \begin_inset Formula $\hat{N}$
 \end_inset
 
- sono rispettivamente successi e iterazioni dell'algoritmo naive.
- Richiamiamo le formule come segue:
+ sono rispettivamente il numero di successi e iterazioni dell'algoritmo
+ naive.
+\end_layout
+
+\begin_layout Standard
+Richiamiamo le formule per 
+\begin_inset Formula $N_{CF}$
+\end_inset
+
+ e 
+\begin_inset Formula $X_{adm}$
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
@@ -13028,7 +13179,7 @@ X_{adm}=\hat{X}\cdot\frac{1-P_{\mathfrak{S}\mid adm}\left(S\right)}{1-P_{\mathfr
 \end_layout
 
 \begin_layout Standard
-Sostituendo le equazioni di cui sopra otteniamo:
+Sostituendo le equazioni di cui sopra otteniamo quanto segue:
 \end_layout
 
 \begin_layout Standard
@@ -13261,6 +13412,12 @@ dalla quale si deriva
 \end_layout
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Sperimentazione-delle-ottimizzaz"
+
+\end_inset
+
 Sperimentazione delle ottimizzazioni per probabilistic argumentation frameworks
 \begin_inset Argument
 status collapsed
@@ -13279,25 +13436,27 @@ Ambiente e architettura per la sperimentazione
 \end_layout
 
 \begin_layout Standard
-Abbiamo descritto, dato un generico PrAF, due algoritmi per il calcolo della
+Abbiamo descritto, dato un generico PrAF, tre algoritmi per il calcolo della
  probabilità che un dato insieme di argomenti sia giustificato rispetto
- a una certa semantica.
+ a una certa semantica, il primo naive e gli altri due proposti in questa
+ tesi che ottimizzano l'approccio naive.
 \end_layout
 
 \begin_layout Standard
 L'obiettivo di questo lavoro di tesi è valutare il tempo di esecuzione e
- il numero di iterazioni dell'algoritmo ottimizzato basato su Monte Carlo
- rispetto all'algoritmo naive, fissato un certo livello di errore.
+ il numero di iterazioni di uno dei due algoritmi ottimizzati basati su
+ Monte Carlo rispetto all'algoritmo naive, fissato un certo livello di errore.
 \end_layout
 
 \begin_layout Standard
-Entrambi gli algoritmi sono stati implementati in Java usando strutture
- dati hashed per codificare efficientemente la sparsezza dei grafi PrAF.
+Gli algoritmi sono stati implementati in Java usando strutture dati hashed
+ per codificare efficientemente la sparsezza dei grafi PrAF.
 \end_layout
 
 \begin_layout Standard
-Gli esperimenti sono stati eseguiti su PrAF da 10 a 20 argomenti, un insieme
- di argomenti composto da 6 a 8 argomenti ed un livello di errore 
+Gli esperimenti sono stati eseguiti su PrAF da 10 fino a 20 argomenti, un
+ insieme di argomenti composto da 6 fino a 8 argomenti ed un livello di
+ errore 
 \begin_inset Formula $\epsilon=0.01$
 \end_inset
 
@@ -13313,13 +13472,13 @@ Come prima cosa c'è la necessità di trovare delle istanze
 \begin_inset Formula $\left\langle PrAF,S\right\rangle $
 \end_inset
 
- da 10 a 20 argomenti su cui eseguire i test tali che abbiano determinate
+ da 10 fino a 20 argomenti su cui eseguire i test tali che abbiano determinate
  caratteristiche.
 \end_layout
 
 \begin_layout Standard
-Si genera in maniera random un PrAF di 15 (o 20) argomenti a partire da
- tre distribuzioni di probabilità:
+L'idea è quella di generare in maniera random un PrAF di 15 (o 20) argomenti
+ a partire da tre distribuzioni di probabilità:
 \end_layout
 
 \begin_layout Itemize
@@ -13351,7 +13510,11 @@ Successivamente si cerca, dato il PrAF precedentemente generato, un insieme
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- alta;
+ alta essendo 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)\leq P_{CF}\left(S\right)$
+\end_inset
+
+;
 \end_layout
 
 \begin_layout Itemize
@@ -13405,8 +13568,8 @@ Infine, eseguiamo 20 run con livello di errore di
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- con entrambi gli algoritmi per stimare il tempo CPU, il numero di successi
- e il numero di iterazioni, e confrontarli con i risultati teorici.
+ per stimare il tempo CPU, il numero di successi e il numero di iterazioni,
+ e confrontarli con i risultati teorici.
 \end_layout
 
 \begin_layout Section
@@ -13582,7 +13745,7 @@ Vengono usate probabilità alte per gli argomenti in modo da aumentare
 \begin_inset Formula $P_{CF}\left(S\right)=\left(0.95\right)^{8}\cong0.66$
 \end_inset
 
- che è già molto vicino al lowerbound dei vincoli precedentemente stabiliti.
+ che è già molto vicino al lowerbound dei vincoli prestabiliti.
 \end_layout
 
 \begin_layout Standard
@@ -13850,8 +14013,8 @@ b\in A
 \end_layout
 
 \begin_layout Standard
-Intuitivamente, quello che si vuole è massimizzare la probabilità che gli
- argomenti in 
+Intuitivamente, si vuole massimizzare la probabilità che gli argomenti in
+ 
 \begin_inset Formula $S$
 \end_inset
 
@@ -13898,7 +14061,7 @@ ne lineare, si può approssimare la produttoria con una sommatoria, e per
 a\in A\\
 b\in A
 \end{subarray}}}s_{a}\cdot P_{A}\left(b\right)\cdot P_{D}\left(b,a\right)-c_{3}\cdot{\displaystyle \sum_{a\in A}\left(1-s_{a}\right)\cdot P_{A}\left(a\right)}\\
-\forall a\in A,\, s_{a}\in\left\{ 0,1\right\} 
+s.t.\,\,\,\forall a\in A,\, s_{a}\in\left\{ 0,1\right\} 
 \end{array}
 \]
 
@@ -15217,33 +15380,6 @@ Come mostrato nei grafici, il nuovo algoritmo basato sull'idea di usare
 \end_layout
 
 \begin_layout Standard
-Uno stesso AAF può essere indotto più volte per via del metodo Monte Carlo,
- in base alla probabilità 
-\begin_inset Formula $P_{PrAF}\left(\mathcal{AAF}\right)$
-\end_inset
-
-.
- Un approccio più pratico per velocizzare il tempo di calcolo sarebbe quello
- di avere una cache 
-\begin_inset Formula $LRU:2^{\mathcal{AAF}}\rightarrow\left\{ true,false\right\} $
-\end_inset
-
-, con lo scopo di memorizzare il risultato della funzione di valutazione
- semantica 
-\begin_inset Formula $\mathcal{E}_{\mathfrak{S}}\left(\mathcal{AAF},S\right)$
-\end_inset
-
- per gli AAF indotti più ricorrenti.
- Questo avrebbe degli effetti positivi per quanto riguarda l'efficienza
- per PrAF con pochi argomenti e defeat, dove la probabilità di generare
- uno stesso AAF è molto maggiore rispetto al caso di un PrAF con molti argomenti
- e defeat, altrimenti il costo di aggiornare e consultare la cache sorpasserebbe
- i benefici dell'usare la cache stessa.
- Alcuni test sono stati effettuati in Java usando una LinkedHashMap come
- cache LRU, e la maggiorparte del tempo viene spesa per fare garbage collection.
-\end_layout
-
-\begin_layout Standard
 Mostriamo infine come il campionamento dello spazio degli AAF conflict-free
  non sia biased, confrontando l'errore relativo dei due approcci con il
  valore di probabilità di una simulazione Monte Carlo naive con errore 
@@ -15251,8 +15387,8 @@ Mostriamo infine come il campionamento dello spazio degli AAF conflict-free
 \end_inset
 
 .
- Ipotizziamo quindi che la probabilità restituita da questa simulazione
- sia quella vera, al fine di calcolare l'errore di approssimazione.
+ Ipotizziamo che la probabilità restituita da quest'ultima simulazione sia
+ quella vera, al fine di calcolare l'errore di approssimazione.
  Il test viene eseguito per la semantica grounded nel grafico 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -15792,11 +15928,15 @@ Confronto per la semantica preferred con
 
 \begin_layout Standard
 Dai grafici appena osservati si può concludere che, a differenza dell'algoritmo
- CF based che è legato al numero di iterazioni per le semantiche polinomiali
- come complete e grounded, l'algoritmo admissible based è legato al numero
- di successi.
+ conflict-free based che è legato al numero di iterazioni per le semantiche
+ polinomiali come complete e grounded, l'algoritmo admissible based è legato
+ al numero di successi.
  Questo è un risultato a sfavore dell'approccio admissible based rispetto
- a quello conflict-free based.
+ a quello conflict-free based per probabilità 
+\begin_inset Formula $P_{CF}\left(S\right)\cong P_{admissible}\left(S\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -16158,9 +16298,16 @@ Confronto per la semantica preferred con
 \end_layout
 
 \begin_layout Standard
-In tutti e tre i casi, ci ritroviamo con il risultato teorico per il quale
- l'algoritmo admissible based è più efficiente quando vale 
-\begin_inset Formula $P_{adm}\left(S\right)\geq\frac{P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
+In tutti e tre i casi, ci ritroviamo con il risultato teorico (sezione 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:EfficienzaAdmissible"
+
+\end_inset
+
+) per il quale l'algoritmo admissible based è più efficiente quando vale
+ 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)\geq\frac{P_{adm}\left(S\right)\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
 \end_inset
 
 .
@@ -16174,7 +16321,7 @@ In tutti e tre i casi, ci ritroviamo con il risultato teorico per il quale
 \end_inset
 
 ), e il tempo CPU impiegato dall'algoritmo admissible based è effettivamente
- inferiore a quello dell'algoritmo CF based.
+ inferiore a quello dell'algoritmo conflict-free based.
  Negli altri casi, l'approccio admissible based è meno inefficiente, ma
  questo dipende dalle istanze che abbiamo scelto.
 \end_layout
@@ -16200,7 +16347,7 @@ La dimensione delle istanze (numero argomenti e defeat del PrAF, e numero
 \begin_inset Formula $S$
 \end_inset
 
-) rimane invariata, mentre le nuove probabilità 
+) rimarrà invariata, mentre le nuove probabilità 
 \begin_inset Formula $P_{CF}\left(S\right)$
 \end_inset
 
@@ -16208,8 +16355,8 @@ La dimensione delle istanze (numero argomenti e defeat del PrAF, e numero
 \begin_inset Formula $P_{admissible}\left(S\right)$
 \end_inset
 
- e delle semantiche complete, grounded e preferred sono descritte nel grafico
- 
+ e delle semantiche complete, grounded e preferred sono sintetizzate nel
+ grafico 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:InstancesAdm"
@@ -16261,7 +16408,7 @@ Probabilità semantiche per ogni istanza
 
 \begin_layout Standard
 La diseguaglianza 
-\begin_inset Formula $P_{adm}\left(S\right)\geq\frac{P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)\geq\frac{P_{adm}\left(S\right)\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
 \end_inset
 
  per queste istanze vale sempre, e infatti l'algoritmo admissible based
@@ -16623,8 +16770,8 @@ Confronto per la semantica preferred con
 \end_layout
 
 \begin_layout Standard
-In conclusione, possiamo risolvere il problema di calcolare la probabilità
- 
+In conclusione, nella pratica possiamo risolvere il problema di calcolare
+ la probabilità 
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
@@ -16641,8 +16788,8 @@ Se la dimensione dell'istanza (
 \end_inset
 
 , calcolare la probabilità in maniera esatta.
- Il numero di iterazioni Monte Carlo potrebbero essere superiori alla cardinalit
-à dello spazio di ricerca.
+ In tali casi, la cardinalità dello spazio di ricerca potrebbe essere inferiore
+ al numero di iterazioni della simulazione Monte Carlo.
 \end_layout
 
 \begin_layout Enumerate
@@ -16684,8 +16831,11 @@ Resituire un'approssimazione di
 \begin_inset Formula $P'\geq\frac{P_{adm}\cdot\left(P_{CF}\left(S\right)-1\right)}{P_{adm}\left(S\right)-1}$
 \end_inset
 
-, calcolare tale approssimazione con l'algoritmo admissible based, altrimenti
- con quello conflict-free based.
+, calcolare il risultato finale 
+\begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
+\end_inset
+
+ con l'algoritmo admissible based, altrimenti con quello conflict-free based.
 \end_layout
 
 \begin_layout Standard
@@ -16755,7 +16905,7 @@ Oltre agli abstract e ai probabilistic argumentation framework, sono state
 
 \begin_layout Standard
 Nel terzo capitolo, è stato mostrato un approccio per calcolare un'approssimazio
-ne alla probabilità che un insieme di argomenti soddisfi criteri di una
+ne alla probabilità che un insieme di argomenti soddisfi i criteri di una
  certa semantica per i probabilistic argumentation framework, basato sul
  metodo Monte Carlo.
  È stato inoltre mostrato, come per alcuni problemi polinomiali per l'abstract
@@ -16769,44 +16919,45 @@ ne alla probabilità che un insieme di argomenti soddisfi criteri di una
 
 \begin_layout Standard
 Sulla base di questo nuovo importante risultato, è stato esteso l'approccio
- naive basato su Monte Carlo sfruttando la probabilità conflict-free calcolabile
- in tempo polinomiale come probabilità condizionata, con l'obiettivo di
- ridurre lo spazio di campionamento e migliorare l'efficienza dell'algoritmo.
- La caratterizzazione teorica di questo nuovo approccio mostra i vantaggi
- in termini di efficienza del nuovo algoritmo.
- Sotto determinate ipotesi, è possibile concludere che l'efficienza del
- nuovo algoritmo è direttamente proporzionale alla probabilità condizionata
+ naive basato su Monte Carlo sfruttando le probabilità conflict-free e admissibl
+e calcolabili in tempo polinomiale, con l'obiettivo di ridurre lo spazio
+ di campionamento e migliorare l'efficienza dell'algoritmo.
+ La caratterizzazione teorica di questi due nuovi approcci (conflict-free
+ based e admissible-based) mostra i vantaggi in termini di efficienza rispetto
+ all'approccio naive.
+\end_layout
+
+\begin_layout Standard
+Sotto determinate ipotesi, è possibile concludere che l'efficienza dell'algoritm
+o conflict-free based proposto è direttamente proporzionale alla probabilità
  calcolata in tempo polinomiale rispetto al numero di iterazioni dell'algoritmo
  originale.
- Inoltre, questo approccio, come quello originario, è assolutamente generale
- poiché tutti i tipi di estensione in letteratura richiedono la proprietà
- conflict-free.
- 
+ Per l'algoritmo admissible based sono state studiate teoricamente le condizioni
+ per le quali quest'ultimo risulta essere più efficiente rispetto all'algoritmo
+ conflict-free based stesso.
+ Inoltre, questi due nuovi approcci proposti, analogamente a quello originario,
+ sono assolutamente generali poiché la molteplicità dei tipi di estensione
+ in letteratura richiedono le proprietà conflict-free e admissible.
 \end_layout
 
 \begin_layout Standard
 Infine, sono stati illustrati i risultati degli esperimenti per confrontare
- l'efficienza computazione dei due algoritmi in termini di tempo CPU, successi
- e numeri di iterazioni Monte Carlo.
- L'algoritmo risulta essere in genere più efficiente di quello naive, specialmen
-te nel caso di semantica complete e grounded (e in generale di quei problemi
- decisionali che hanno complessità polinomiale per gli abstract argumentation
- framework).
+ l'efficienza computazionale dei tre algoritmi in termini di tempo CPU,
+ successi e numeri di iterazioni Monte Carlo.
+ Questi risultati si ritrovano con la caratterizzazione teorica affrontata
+ nel capitolo 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Approssimazione-probabilità-in"
+
+\end_inset
+
+, e mostrano come gli algoritmi proposti siano in genere più efficienti
+ di quello naive, specialmente nel caso di semantica complete e grounded
+ (e in generale di quei problemi decisionali che hanno complessità polinomiale
+ per gli abstract argumentation framework).
  Nel capitolo viene altresì specificato il setting usato per le simulazioni
  e i processi di costruzione delle istanze usate nei test.
-\end_layout
-
-\begin_layout Standard
-Il lavoro in questa tesi è stato focalizzato sul calcolare la probabilità
- che un insieme di argomenti sia una estensione posto che sia conflict-free.
- Come mostrato però, anche la probabilità admissible può essere calcolata
- in tempo polinomiale, e solitamente tale probabilità è inferiore a quella
- conflict-free.
- Quindi lo spazio di campionamento sarebbe ancora più ridotto rispetto allo
- spazio delle istanze conflict-free, ottenendo ulteriori miglioramenti in
- efficienza.
- Il problema rimane però costruire un algoritmo di campionamento che non
- sia biased, che non è un problema semplice come nel caso conflict-free.
 \end_layout
 
 \begin_layout Chapter
