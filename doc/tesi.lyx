@@ -302,11 +302,7 @@ In generale, il problema di calcolare tale probabilità è nella classe di
 \begin_inset Formula $\mathbf{FP^{\#P}}$
 \end_inset
 
- o 
-\begin_inset Formula $\mathbf{FP^{\#NP}}$
-\end_inset
-
-, in dipendenza dalla semantica adottata.
+.
  Per alcuni casi particolari però, specificatamente per le proprietà conflict-fr
 ee, admissible e stable, verrà mostrato come la probabilità di quest'ultime
  possa essere calcolata in tempo polinomiale.
@@ -318,7 +314,7 @@ Sulla base di questi casi trattabili, l'approccio esistente verrà esteso
  Le semantiche che saranno usate per il confronto all'atto sperimentale
  sono la semantica complete, grounded e preferred.
  Queste semantiche tradizionali sono quelle più comunemente adottate nella
- letteratura della teoria dell'argumentation framework.pr
+ letteratura della teoria dell'argumentation framework.
 \end_layout
 
 \begin_layout Standard
@@ -359,12 +355,8 @@ ion framework.
 \end_inset
 
  per gli abstract argumentation frameworks, diventano intrattabili con complessi
-tà rispettivamente 
+tà 
 \begin_inset Formula $\mathbf{FP^{\#P}}$
-\end_inset
-
- e 
-\begin_inset Formula $\mathbf{FP^{\#NP}}$
 \end_inset
 
  nei probabilistic argumentation frameworks.
@@ -6623,28 +6615,20 @@ Per i probabilistic argumentation framework, ci focalizziamo sul problema
 \end_inset
 
 .
- In genere la complessità di questi problemi per ogni semantica 
-\begin_inset Formula $\mathfrak{S}$
-\end_inset
-
- diventa 
-\begin_inset Formula $\mathbf{FP}^{\#P}$
-\end_inset
-
- o 
-\begin_inset Formula $\mathbf{FP}^{\#NP}$
-\end_inset
-
-, rispettivamente se il problema originario 
+ In genere la complessità di questi problemi 
 \begin_inset Formula $VER_{\mathfrak{S}}$
 \end_inset
 
- è in 
+ aumenta da 
 \begin_inset Formula $\mathbf{P}$
 \end_inset
 
- o in 
+ o 
 \begin_inset Formula $\mathbf{NP}$
+\end_inset
+
+ a 
+\begin_inset Formula $\mathbf{FP}^{\#P}$
 \end_inset
 
 , come mostrato nella tabella 
@@ -6803,11 +6787,7 @@ preferred
 \begin_inset Formula $\mathbf{FP}^{\#P}$
 \end_inset
 
--hard e 
-\begin_inset Formula $\mathbf{FP}^{\#NP}$
-\end_inset
-
-
+-complete
 \end_layout
 
 \end_inset
@@ -6830,11 +6810,7 @@ ideal
 \begin_inset Formula $\mathbf{FP}^{\#P}$
 \end_inset
 
--hard e 
-\begin_inset Formula $\mathbf{FP}^{\#NP}$
-\end_inset
-
-
+-complete
 \end_layout
 
 \end_inset
@@ -6907,6 +6883,18 @@ reference "sec:Casi-trattabili"
 
  in tempo polinomiale, e come si può sfruttare questa caratteristica per
  ottimizzare il calcolo delle probabilità.
+\end_layout
+
+\begin_layout Standard
+Si noti come la complessità per le semantiche preferred e ideal sia 
+\begin_inset Formula $\mathbf{FP}^{\#P}$
+\end_inset
+
+, piuttosto che 
+\begin_inset Formula $\mathbf{FP}^{\#NP}$
+\end_inset
+
+ come ci si aspetterebbe intuitivamente.
 \end_layout
 
 \begin_layout Section
@@ -14447,6 +14435,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -14488,6 +14480,10 @@ status collapsed
 \end_inset
 
 
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -14526,6 +14522,10 @@ status collapsed
 
 \end_layout
 
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
 \end_inset
 
 

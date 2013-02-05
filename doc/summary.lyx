@@ -1383,9 +1383,9 @@ extension iff
 \end_layout
 
 \begin_layout Standard
-Deciding whether a set of arguments is grounded is certainly harder than
- deciding if a set is complete, and in particular it requires exponential
- time with respect to the number of arguments and defeats.
+Deciding whether a set of arguments is grounded is polynomial with respect
+ to the number of arguments and defeats.
+ Thus finding the unique grounded extension has polynomial complexity.
 \end_layout
 
 \begin_layout Standard
@@ -3235,12 +3235,6 @@ Together with the number of trials, we want to determine the relation between
 \end_inset
 
  of the new algorithm.
- As we will see in the experiments, this is an interesting measure for the
- grounded semantics when 
-\begin_inset Formula $P_{complete}\left(S\right)\cong P_{grounded}\left(S\right)$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard
@@ -3721,7 +3715,7 @@ About the defeat probabilities it might seem counterintuitive to have an
 \begin_inset Formula $P_{\mathfrak{S}}\left(S\right)$
 \end_inset
 
- in case of complete and grounded semantics.
+ in case of complete and preferred semantics.
  For instance, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -4293,7 +4287,7 @@ Characteristics of chosen problem instances
 \end_layout
 
 \begin_layout Standard
-We chose to run the experiments for the complete and grounded semantics.
+We chose to run the experiments for the complete and preferred semantics.
  For each instance and for each semantics we run the experiment 20 times,
  with a confidence level of 95% and error levels of 
 \begin_inset Formula $\epsilon=0.01$
@@ -4580,8 +4574,11 @@ reference "fig:CompleteRelative005"
 \end_layout
 
 \begin_layout Standard
-This is not true for the grounded semantics which is an harder decision
- problem as shown in 
+This is not true for the preferred semantics, which is a 
+\begin_inset Formula $\mathbf{coNP}$
+\end_inset
+
+ problem, as shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:Grounded01"
@@ -4604,17 +4601,8 @@ reference "fig:Grounded005"
 \end_inset
 
 .
- Interestingly, the CPU time is very tied to the number of successes with
+ Interestingly, the CPU is no more tied to the number of successes with
  respect to the naive algorithm.
- The reason is that, in our experiments, 
-\begin_inset Formula $P_{grounded}\left(S\right)\cong P_{complete}\left(S\right)$
-\end_inset
-
-, therefore 
-\begin_inset Formula $S$
-\end_inset
-
- is unlikely to be complete but not grounded in any induced AAF.
 \end_layout
 
 \begin_layout Standard
@@ -4632,11 +4620,11 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename grounded_absolute_01.png
+	filename preferred_absolute_01.png
 	width 50col%
 
 \end_inset
@@ -4670,7 +4658,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename grounded_relative_01.png
+	filename preferred_relative_01.png
 	width 50col%
 
 \end_inset
@@ -4709,7 +4697,7 @@ name "fig:Grounded01"
 
 \end_inset
 
-Run time comparison for the grounded semantics with 
+Run time comparison for the preferred semantics with 
 \begin_inset Formula $\epsilon=0.01$
 \end_inset
 
@@ -4741,11 +4729,11 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename grounded_absolute_005.png
+	filename preferred_absolute_005.png
 	width 50col%
 
 \end_inset
@@ -4775,11 +4763,11 @@ Absolute time and number of trials
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename grounded_relative_005.png
+	filename preferred_relative_005.png
 	width 50col%
 
 \end_inset
@@ -4818,7 +4806,7 @@ name "fig:Grounded005"
 
 \end_inset
 
-Run time comparison for the grounded semantics with 
+Run time comparison for the preferred semantics with 
 \begin_inset Formula $\epsilon=0.005$
 \end_inset
 
