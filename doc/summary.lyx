@@ -4601,8 +4601,8 @@ reference "fig:Grounded005"
 \end_inset
 
 .
- Interestingly, the CPU is no more tied to the number of successes with
- respect to the naive algorithm.
+ Interestingly, the CPU is no more tied to the number of trials with respect
+ to the naive algorithm.
 \end_layout
 
 \begin_layout Standard
